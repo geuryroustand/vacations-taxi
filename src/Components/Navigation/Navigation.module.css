@@ -1,0 +1,14 @@
+.navbar-bg {
+  background-color: var(--secondary-color);
+}
+.navbar-bg a {
+  color: white;
+}
+.logo-main {
+  font-size: 30px;
+  color: white;
+}
+.logo-vacations-text {
+  color: #f0a500;
+  font-weight: bold;
+}

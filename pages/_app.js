@@ -1,7 +1,29 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Layout from "../src/Components/Layout/Layout";
+import ReactDOM from "react-dom";
+import React from "react";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
 
-export default MyApp
+const config = {
+  rules: [
+    {
+      id: "skip-link",
+      enabled: true
+    }
+  ]
+};
+
+if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
+  const axe = require("@axe-core/react");
+  axe(React, ReactDOM, 1000, config);
+}
+
+export default MyApp;

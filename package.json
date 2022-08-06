@@ -6,15 +6,45 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . ",
+    "lint:fix": "eslint --fix ",
+    "format": "prettier --write .",
+    "eslint-check": "eslint --print-config path/to/main.js | eslint-config-prettier-check",
+    "prepare": "husky install",
+    "lint-css": "npx stylelint --fix"
   },
   "dependencies": {
+    "bootstrap": "^5.2.0",
     "next": "12.2.3",
     "react": "18.2.0",
+    "react-bootstrap": "^2.4.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "eslint": "8.20.0",
-    "eslint-config-next": "12.2.3"
+    "@axe-core/react": "^4.4.3",
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "12.2.3",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-unicorn": "^43.0.2",
+    "husky": "^8.0.1",
+    "lint": "^0.7.0",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.9.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^26.0.0",
+    "stylelint-order": "^5.0.0"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "npm run lint",
+      "prettier --write"
+    ]
   }
 }
