@@ -1,17 +1,17 @@
 .hero {
-  /* background-color: blue; */
-  background: url("/images/hero-small.JPG") no-repeat center center/cover;
+  background-color: blue;
+  /* background: url("/images/hero-small.JPG") no-repeat center center/cover; */
 
   height: 75vh;
   position: relative;
   color: white;
 }
 
-@media (min-width: 62em) {
+/* @media (min-width: 62em) {
   .hero {
     background: url("/images/hero.JPG") no-repeat center center/cover;
   }
-}
+} */
 .hero::before {
   content: "";
   position: absolute;
