@@ -4,14 +4,14 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from "next/image";
 
-function DatePickerSearchForm() {
+function DatePickerSearchForm({ labelPickDate }) {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <div className={styled.date}>
       <div className={styled.calender}>
         <Image src="/images/calendar.svg" width="20px" height="20px" alt="calendar" />
         <label className="visually-hidden" htmlFor="date-picker">
-          Pick your travel date
+          {labelPickDate}
         </label>
         <DatePicker
           id="date-picker"

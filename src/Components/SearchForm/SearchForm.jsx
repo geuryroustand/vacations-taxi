@@ -1,34 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Image from "next/image";
 import styled from "./SearchForm.module.css";
 
 import DatePickerSearchForm from "../DatePickerSearchForm/DatePickerSearchForm";
+import SearchFormInput from "../SearchFormInput/SearchFormInput";
 
-const SearchForm = () => {
+const SearchForm = ({ isClicked }) => {
   return (
     <Form className={styled.form}>
-      <Form.Group className={styled["form-control"]} controlId="formBasicPickLocation">
-        <Image src="/images/Location.svg" width="18px" height="18px" alt="location" />
-        <Form.Label className="visually-hidden">Enter pick-up location</Form.Label>
-        <Form.Control
-          className={styled["form-input"]}
-          type="text"
-          placeholder="Enter pick-up location"
+      <div className={styled["searchForm"]}>
+        <SearchFormInput
+          labelPick="Enter pick-up location"
+          placeHolderPick="Enter pick-up location"
+          labelDrop="Enter drop location"
+          placeHolderDrop="Enter drop location "
         />
-      </Form.Group>
+        <DatePickerSearchForm labelPickDate="arrival date" />
+      </div>
 
-      <Form.Group className={styled["form-control"]} controlId="formBasicDestination">
-        <Image src="/images/Location.svg" width="18px" height="18px" alt="location" />
-        <Form.Label className="visually-hidden">Enter destination </Form.Label>
-        <Form.Control
-          className={styled["form-input"]}
-          type="text"
-          placeholder="Enter destination "
-        />
-      </Form.Group>
-      <DatePickerSearchForm />
+      {isClicked && (
+        <div className={`${styled["searchForm"]} ${styled["return-searchForm"]} `}>
+          <SearchFormInput
+            labelPick="Enter pick-up location"
+            placeHolderPick="Enter pick-up location"
+            labelDrop="Enter drop location"
+            placeHolderDrop="Enter drop location "
+          />
+
+          <DatePickerSearchForm labelPickDate="departure date" />
+        </div>
+      )}
+
       <Button type="submit" className={styled["search-btn"]}>
         <Image src="/images/search.svg" width="18px" height="18px" alt="location" />
         Search

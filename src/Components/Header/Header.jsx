@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "./Header.module.css";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import SearchForm from "../SearchForm/SearchForm";
 
 const Header = () => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const onClick = () => {
+    setIsClicked(!isClicked);
+  };
+
   return (
     <header className={styled.hero}>
       <Container>
@@ -13,10 +19,18 @@ const Header = () => {
           Easy airport transfers to and from your accommodation
         </h2>
 
-        <Button className={styled["oneWay-btn"]}>One-way</Button>
-        <Button className={styled["return-btn"]}>Return</Button>
+        <Button
+          onClick={onClick}
+          className={isClicked ? styled["btn-selected"] : styled["btn-oneWay"]}>
+          One-way
+        </Button>
+        <Button
+          onClick={onClick}
+          className={isClicked ? styled["btn-oneWay"] : styled["btn-selected"]}>
+          Return
+        </Button>
 
-        <SearchForm />
+        <SearchForm isClicked={isClicked} />
       </Container>
     </header>
   );
