@@ -1,0 +1,27 @@
+.why {
+  padding-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.svg {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.first {
+  background-color: var(--first-icon-bg);
+}
+.second {
+  background-color: var(--second-icon-bg);
+}
+.third {
+  background-color: var(--third-icon-bg);
+}
+.content {
+  /* display: flex; */
+  /* gap: 1rem; */
+}

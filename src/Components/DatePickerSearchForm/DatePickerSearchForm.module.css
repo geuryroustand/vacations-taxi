@@ -15,11 +15,13 @@
   width: 50%;
   height: 2.81rem;
   display: flex;
+
   padding-left: 0.5rem;
   align-items: center;
   height: 2.81rem;
-  background: #ffffff;
-  border: 0.5px solid #c4c4c4;
+
+  background: var(--third-color);
+  border: 0.5px solid var(--fourth-color);
   border-radius: 5px;
 }
 
@@ -39,25 +41,33 @@
 .date-picker {
   width: 90%;
   border: none;
-  color: rgba(0, 0, 0, 0.5);
+  /* color: rgba(0, 0, 0, 0.5); */
   padding-left: 0.5rem;
 }
 
 .passenger {
   display: flex;
-  justify-content: space-evenly;
-  background: var(--third-color);
-  height: 2.81rem;
-  display: flex;
   align-items: center;
-  border: 0.5px solid #c4c4c4;
-  border-radius: 5px;
+
+  gap: 1rem;
   width: 50%;
+  height: 2.81rem;
+
+  background-color: var(--third-color);
+  border: 0.5px solid var(--fourth-color);
+
+  border-radius: 5px;
 }
 
 @media (max-width: 20em) {
   .passenger {
     width: 90%;
+  }
+}
+
+@media (min-width: 45em) {
+  .passenger {
+    justify-content: space-evenly;
   }
 }
 @media (min-width: 62em) {
@@ -67,5 +77,5 @@
 }
 .select-passenger {
   border: none;
-  color: rgba(0, 0, 0, 0.5);
+  /* color: rgba(0, 0, 0, 0.5); */
 }

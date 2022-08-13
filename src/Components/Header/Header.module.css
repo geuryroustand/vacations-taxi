@@ -73,8 +73,7 @@
   width: 6.8rem;
   margin-top: 2rem;
   margin-right: 1rem;
-  background: var(--secondary-color);
-  color: var(--third-color);
+  color: var(--secondary-color);
   background: var(--primary-color);
   border: none;
 }

@@ -1,0 +1,9 @@
+.trusted {
+  background-color: var(--five-color);
+}
+
+@media (min-width: 62em) {
+  .content {
+    display: flex;
+  }
+}
