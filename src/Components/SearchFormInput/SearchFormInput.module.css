@@ -1,7 +1,6 @@
 .form-control {
   padding-left: 0.5rem;
   display: flex;
-  width: 90%;
   height: 2.81rem;
 
   background: var(--third-color);
@@ -12,8 +11,7 @@
 
 @media (min-width: 62em) {
   .form-control {
-    width: 40%;
-    margin-right: 1rem;
+    width: 20%;
     height: 3.5rem;
   }
 }

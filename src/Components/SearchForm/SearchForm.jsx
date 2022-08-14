@@ -18,6 +18,13 @@ const SearchForm = ({ isClicked }) => {
           placeHolderDrop="Enter drop location "
         />
         <DatePickerSearchForm labelPickDate="arrival date" />
+
+        {!isClicked && (
+          <Button type="submit" className={styled["search-btn"]}>
+            <Image src="/images/search.svg" width="25px" height="25px" alt="location" />
+            Search
+          </Button>
+        )}
       </div>
 
       {isClicked && (
@@ -30,13 +37,13 @@ const SearchForm = ({ isClicked }) => {
           />
 
           <DatePickerSearchForm labelPickDate="departure date" />
+
+          <Button type="submit" className={styled["search-btn"]}>
+            <Image src="/images/search.svg" width="25px" height="25px" alt="location" />
+            Search
+          </Button>
         </div>
       )}
-
-      <Button type="submit" className={styled["search-btn"]}>
-        <Image src="/images/search.svg" width="18px" height="18px" alt="location" />
-        Search
-      </Button>
     </Form>
   );
 };

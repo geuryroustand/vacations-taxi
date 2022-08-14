@@ -8,18 +8,20 @@
 @media (min-width: 62em) {
   .searchForm {
     display: flex;
-    height: 3.8rem;
+    gap: 1rem;
   }
 }
 
 .search-btn {
+  width: 100%;
+  height: 3.5rem;
+
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  height: 2.6rem;
-  width: 6.8rem;
+  justify-content: center;
+  gap: 1rem;
 
-  margin-top: 1rem;
+  font-size: 1.7rem;
   color: var(--third-color);
   background: var(--secondary-color);
   border-radius: 3px;
@@ -28,17 +30,16 @@
 
 @media (max-width: 20em) {
   .search-btn {
-    width: 90%;
+    width: 100%;
     justify-content: center;
-  }
-
-  .search-btn img {
-    padding-right: 1rem !important;
   }
 }
 
 @media (min-width: 62em) {
   .search-btn {
-    height: 2.81rem;
+    width: 15%;
+    justify-content: center;
+    font-size: 1.5rem;
+    gap: 1rem;
   }
 }

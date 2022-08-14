@@ -1,0 +1,50 @@
+.howWork {
+  padding-bottom: 1rem;
+}
+
+.howWork h2 {
+  text-align: center;
+  font-size: 2.18rem;
+  line-height: 2.68rem;
+  text-align: center;
+  padding: 5.75rem 0 3.18rem;
+}
+
+.howWorkContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.howWorkContainer h3 {
+  padding-top: 1.35rem;
+
+  color: black;
+
+  font-weight: 400;
+  font-size: 1.06rem;
+  line-height: 1.25rem;
+}
+@media (min-width: 45em) {
+  .howWorkContainer {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+.howWorkContext {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.howWorkContext p {
+  width: 0;
+  height: 117px;
+  border: 2px dashed rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 45em) {
+  .howWorkContext p {
+    display: none;
+  }
+}
