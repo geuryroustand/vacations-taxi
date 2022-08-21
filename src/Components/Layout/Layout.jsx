@@ -1,5 +1,6 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+
+import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 
@@ -9,6 +10,7 @@ const Layout = ({ children }) => {
       <Navigation />
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   );
 };

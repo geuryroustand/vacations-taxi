@@ -1,0 +1,36 @@
+import React from "react";
+import Container from "react-bootstrap/Container";
+import { List } from "../List/List";
+import Link from "next/link";
+import styled from "./Footer.module.css";
+
+const Footer = () => {
+  return (
+    <footer className={styled.footer}>
+      <Container>
+        <ul className={styled.footerUl}>
+          <li className={styled.footerList}>
+            <h3 className={styled.heading}>Services</h3>
+            <Link href="#">How it Works</Link>
+            <Link href="#">Shared Ride Information</Link>
+            <Link href="#">Destinations</Link>
+            <Link href="#">Airports</Link>
+          </li>
+
+          <li className={styled.footerList}>
+            <h3 className={styled.heading}>Company</h3>
+            <Link href="#">About Us</Link>
+            <Link href="#">Help Center</Link>
+            <Link href="#">Terms and Conditions</Link>
+          </li>
+        </ul>
+
+        <p className={styled.copyright}>
+          Copyright &copy; vacationsTaxi.com&trade;. All rights reserved.{" "}
+        </p>
+      </Container>
+    </footer>
+  );
+};
+
+export default Footer;

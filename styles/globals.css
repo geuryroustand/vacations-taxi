@@ -8,3 +8,7 @@
   --second-icon-bg: #ffa6d5;
   --third-icon-bg: #6d9886;
 }
+
+.navbar-toggler {
+  border: var(--primary-color) solid !important ;
+}
