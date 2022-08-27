@@ -9,7 +9,7 @@ const Navigation = () => {
   return (
     <Navbar className={styled["navbar-bg"]} expand="lg">
       <Container>
-        <Navbar.Brand className={styled["logo-main"]} href="#home">
+        <Navbar.Brand className={styled["logo-main"]} href="/">
           <span className={styled["logo-vacations-text"]}>Vacations</span>Taxis.com
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

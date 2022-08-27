@@ -1,0 +1,21 @@
+.list {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+
+  white-space: nowrap;
+  overflow-x: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 45em) {
+  .list {
+    padding-top: 0;
+  }
+}

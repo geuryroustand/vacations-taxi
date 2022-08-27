@@ -17,7 +17,7 @@ const SearchForm = ({ isClicked }) => {
           labelDrop="Enter drop location"
           placeHolderDrop="Enter drop location "
         />
-        <DatePickerSearchForm labelPickDate="arrival date" />
+        <DatePickerSearchForm labelPickDate="arrival date" labelPickTime="arrival pick time" />
 
         {!isClicked && (
           <Button type="submit" className={styled["search-btn"]}>
@@ -36,13 +36,18 @@ const SearchForm = ({ isClicked }) => {
             placeHolderDrop="Enter drop location "
           />
 
-          <DatePickerSearchForm labelPickDate="departure date" />
-
-          <Button type="submit" className={styled["search-btn"]}>
-            <Image src="/images/search.svg" width="25px" height="25px" alt="location" />
-            Search
-          </Button>
+          <DatePickerSearchForm
+            labelPickDate="departure date"
+            labelPickTime="departure pick time"
+          />
         </div>
+      )}
+
+      {isClicked && (
+        <Button type="submit" className={styled["search-btn"]}>
+          <Image src="/images/search.svg" width="25px" height="25px" alt="location" />
+          Search
+        </Button>
       )}
     </Form>
   );

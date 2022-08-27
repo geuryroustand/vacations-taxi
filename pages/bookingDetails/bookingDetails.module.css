@@ -1,0 +1,23 @@
+.bookingDetails {
+  background-color: #f7f7f7;
+  padding-top: 2rem;
+}
+
+@media (min-width: 45em) {
+  .bookingDetailsContainer {
+    display: flex;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 45em) {
+  .bookingDetailsWith {
+    width: 90%;
+  }
+}
+
+@media (min-width: 62em) {
+  .bookingDetailsWith {
+    width: 30%;
+  }
+}

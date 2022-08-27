@@ -1,0 +1,62 @@
+.form {
+  margin-top: 1rem;
+}
+
+.passenger {
+  background-color: var(--third-color);
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.flightDetails {
+  background-color: var(--third-color);
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.form a {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 1rem;
+  padding: 1rem;
+
+  /* width: 10rem; */
+
+  background: #00236d;
+  border-radius: 5px;
+  text-decoration: none;
+
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.2rem;
+
+  color: #ffffff;
+}
+
+@media (min-width: 45em) {
+  .controlForm {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .formGroup {
+    width: 50%;
+  }
+}
+
+.phoneInput input {
+  border: none;
+}
+
+@media (min-width: 62em) {
+  .form {
+    margin-top: 0;
+    height: 16.6rem;
+  }
+
+  .formGroup {
+    width: 100%;
+  }
+}

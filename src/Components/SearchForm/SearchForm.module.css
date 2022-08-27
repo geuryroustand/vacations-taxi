@@ -37,9 +37,6 @@
 
 @media (min-width: 62em) {
   .search-btn {
-    width: 15%;
-    justify-content: center;
-    font-size: 1.5rem;
-    gap: 1rem;
+    width: 20%;
   }
 }

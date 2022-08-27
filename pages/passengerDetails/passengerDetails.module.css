@@ -1,0 +1,11 @@
+.passengerDetails {
+  background-color: #f7f7f7;
+  padding: 2rem 0;
+}
+
+@media (min-width: 62em) {
+  .passengerDetailsContainer {
+    display: flex;
+    gap: 1rem;
+  }
+}

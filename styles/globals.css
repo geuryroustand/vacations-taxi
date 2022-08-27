@@ -12,3 +12,7 @@
 .navbar-toggler {
   border: var(--primary-color) solid !important ;
 }
+
+.react-datepicker__time-container {
+  width: 100% !important;
+}
