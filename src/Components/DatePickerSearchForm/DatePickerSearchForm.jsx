@@ -95,7 +95,7 @@ function DatePickerSearchForm({ labelPickDate, labelPickTime }) {
           />
         </div>
         <div className={styled.passenger}>
-          <Image src="/images/user.svg" width="18px" height="18px" alt="user" />
+          <Image src="/images/user.svg" width="20px" height="20px" alt="user" />
 
           <label htmlFor="passenger">Passenger </label>
           <select
