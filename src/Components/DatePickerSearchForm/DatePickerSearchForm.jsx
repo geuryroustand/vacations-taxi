@@ -56,7 +56,7 @@ function DatePickerSearchForm({ labelPickDate, labelPickTime }) {
 
       <div className={styled.passengerAndPickTime}>
         <div className={styled.pickTime}>
-          <Image src="/images/clock.svg" width="20px" height="20px" alt="calendar" />
+          <Image src="/images/Clock.svg" width="20px" height="20px" alt="calendar" />
           <label className="visually-hidden" htmlFor="pickTime">
             {labelPickTime}
           </label>
