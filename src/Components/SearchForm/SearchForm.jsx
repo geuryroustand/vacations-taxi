@@ -42,7 +42,6 @@ const SearchForm = ({ isClicked }) => {
           />
         </div>
       )}
-
       {isClicked && (
         <Button type="submit" className={styled["search-btn"]}>
           <Image src="/images/search.svg" width="25px" height="25px" alt="location" />

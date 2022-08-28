@@ -37,6 +37,7 @@
 
 @media (min-width: 62em) {
   .search-btn {
-    width: 20%;
+    width: 10rem;
+    font-size: 1.2rem;
   }
 }

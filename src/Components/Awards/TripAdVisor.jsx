@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styled from "./TripAdVisor.module.css";
 
 const TripAdVisor = () => {
-  return (
+  const [isLoaded, setIsLoaded] = useState(true);
+  useEffect(() => {
+    setIsLoaded(false);
+  }, []);
+  return isLoaded ? (
+    <h1>Loading </h1>
+  ) : (
     <div className={styled.tripAdVisor}>
       <div id="TA_certificateOfExcellence191" className="TA_certificateOfExcellence">
         <ul id="5zjDV6ZetG" className="TA_links aNn96rrV">
@@ -28,11 +34,10 @@ const TripAdVisor = () => {
         data-loadtrk
         onLoad={() => "this.loadtrk=true"}></script>
 
-      <div id="TA_selfserveprop506" className="TA_selfserveprop">
-        <ul id="A2LDzC" className="TA_links 0fJ6ZlNfu5">
-          <li id="BWhP4ZbYIID" className="cXfWQqS">
+      <div id="TA_selfserveprop292" className="TA_selfserveprop">
+        <ul id="Zy9r3Q" className="TA_links 6dzyQN">
+          <li id="ISXsnc36" className="XRdjhCvmMUTI">
             <Link
-              title="TripAdvisor reviews "
               target="_blank"
               href="https://www.tripadvisor.com/Attraction_Review-g811253-d10500716-Reviews-Dominican_Airport_Transfers_PLUS-Santa_Barbara_de_Samana_Samana_Province_Dominic.html">
               <img
@@ -45,9 +50,9 @@ const TripAdVisor = () => {
       </div>
       <script
         async
-        src="https://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=506&amp;locationId=10500716&amp;lang=en_US&amp;rating=true&amp;nreviews=5&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=false&amp;border=true&amp;display_version=2"
+        src="https://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=292&amp;locationId=10500716&amp;lang=en_US&amp;rating=true&amp;nreviews=5&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=false&amp;border=true&amp;display_version=2"
         data-loadtrk
-        onLoad={() => "this.loadtrk=true"}></script>
+        onload="this.loadtrk=true"></script>
     </div>
   );
 };
