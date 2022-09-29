@@ -5,6 +5,9 @@ import Container from "react-bootstrap/Container";
 import CarList from "../../src/Components/CarList/CarList";
 
 import styled from "./bookingDetails.module.css";
+import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
+
+import { useRouter } from "next/router";
 
 export default function BookingDetails() {
   const flightInfo = {
@@ -18,8 +21,15 @@ export default function BookingDetails() {
     totalPrice: 260
   };
 
+  const { pathname } = useRouter();
+  const currentProcess = pathname === "/bookingDetails" ? "process" : "";
+  console.log(pathname);
+
   return (
     <div className={styled.bookingDetails}>
+      <Container>
+        <BookingStepProcess />
+      </Container>
       <Container className={styled.bookingDetailsContainer}>
         <BookingSummary flightInfo={flightInfo} bookingDetailsWith={styled.bookingDetailsWith} />
         <CarList />

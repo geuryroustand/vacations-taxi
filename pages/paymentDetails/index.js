@@ -1,14 +1,14 @@
 import React from "react";
+
 import Container from "react-bootstrap/Container";
 
-import styled from "./passengerDetails.module.css";
+import styled from "./paymentDetails.module.css";
 import BookingSummary from "../../src/Components/BookingSummary/BookingSummary";
 import Passenger from "../../src/Components/Passenger/Passenger";
-
-import { useRouter } from "next/router";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
+import Payment from "../../src/Components/Payment/Payment";
 
-export default function passengerDetails() {
+export default function paymentDetails() {
   const flightInfo = {
     from: "Santo Domingo Airport (SDQ)",
     to: "Bahia Principe Portillo",
@@ -20,18 +20,16 @@ export default function passengerDetails() {
     totalPrice: 260
   };
 
-  const { pathname } = useRouter();
-  const currentProcess = pathname === "/passengerDetails" ? "process" : "";
-
   return (
-    <div className={styled.passengerDetails}>
+    <form className={styled.paymentDetails}>
       <Container>
         <BookingStepProcess />
       </Container>
-      <Container className={styled.passengerDetailsContainer}>
+
+      <Container className={styled.paymentDetailsContainer}>
         <BookingSummary flightInfo={flightInfo} />
-        <Passenger />
+        <Payment />
       </Container>
-    </div>
+    </form>
   );
 }

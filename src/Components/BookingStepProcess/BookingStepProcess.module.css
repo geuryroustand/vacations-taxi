@@ -1,0 +1,34 @@
+.bookingStepProcess {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.step {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 2.62rem;
+  width: 2.62rem;
+
+  border: 4px solid var(--fourth-color);
+  border-radius: 50%;
+
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--fourth-color);
+}
+
+.process {
+  color: var(--third-color);
+  background-color: var(--secondary-darkest-color);
+  border: none;
+}
+
+@media (min-width: 45em) {
+  .bookingStepProcess {
+    width: 25rem;
+    margin: 3rem auto;
+  }
+}

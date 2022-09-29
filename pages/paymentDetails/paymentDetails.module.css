@@ -1,0 +1,11 @@
+.paymentDetails {
+  background-color: #f7f7f7;
+  padding: 2rem 0;
+}
+
+@media (min-width: 62em) {
+  .paymentDetailsContainer {
+    display: flex;
+    gap: 1rem;
+  }
+}

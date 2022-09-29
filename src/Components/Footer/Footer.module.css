@@ -1,5 +1,5 @@
 .footer {
-  background: linear-gradient(360deg, #001a51 -22.68%, #00236d 111.34%);
+  background: linear-gradient(360deg, #001a51 -22.68%, var(--secondary-darkest-color) 111.34%);
   color: var(--third-color);
   padding: 1rem 0;
 }

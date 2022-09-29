@@ -1,0 +1,59 @@
+.payment {
+  background-color: var(--third-color);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  margin-top: 1.62rem;
+  padding: 1.75rem 1rem;
+
+  position: relative;
+}
+
+@media (min-width: 62em) {
+  .payment {
+    margin-top: 0;
+  }
+}
+
+.paymentHeading {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.paymentWithCard {
+  display: flex;
+}
+
+.paragraph {
+  line-height: 1.18rem;
+  color: rgba(0, 0, 0, 0.8);
+  margin: 1.25rem 0;
+}
+
+.paymentBtn {
+  width: 100%;
+  height: 54.63px;
+
+  border: none;
+  margin: 0 auto;
+
+  background-color: var(--secondary-darkest-color);
+  font-size: 1.2rem;
+  border-radius: 5px;
+}
+
+@media (min-width: 62em) {
+  .payment {
+    height: 378px;
+  }
+  .paymentBtn {
+    width: 200px;
+  }
+}
+
+.termsAndConditions {
+  margin: 0 0.3rem;
+}

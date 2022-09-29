@@ -1,6 +1,7 @@
 :root {
   --primary-color: #f0a500;
   --secondary-color: #003580;
+  --secondary-darkest-color: #00236d;
   --third-color: #ffffff;
   --fourth-color: #c4c4c4;
   --five-color: #f7f7f7;
@@ -19,4 +20,10 @@
 
 .cXfWQqS img {
   width: 100%;
+}
+
+@media (min-width: 48em) {
+  .fade {
+    display: none !important;
+  }
 }
