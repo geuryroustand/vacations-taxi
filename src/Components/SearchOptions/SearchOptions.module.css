@@ -2,31 +2,45 @@
   list-style: none;
   padding-left: 0;
   background-color: var(--third-color);
-  height: 22rem;
+  height: 15.5rem;
   overflow-y: scroll;
+}
 
-  /* position: absolute; */
-
-  /* width: 20rem; */
-  /* z-index: 1; */
+.searchList::-webkit-scrollbar {
+  display: none;
 }
 
 @media (min-width: 48em) {
   .searchList {
-    position: absolute;
-    bottom: 0;
+    width: 100%;
 
-    width: 20rem;
+    position: absolute;
+
     z-index: 1;
+  }
+}
+
+@media (min-width: 62em) {
+  .searchList {
+    top: 3.7rem;
+    width: 20rem;
+  }
+
+  .moveLeft {
+    left: 16.6rem;
   }
 }
 
 .searchListOption {
   font-size: 1.1rem;
-  margin-top: 1rem;
   padding: 0.8rem 0;
-  /* border-top: 1px solid var(--five-color); */
   border-bottom: 2px solid var(--five-color);
+}
+
+@media (min-width: 62em) {
+  .searchListOption {
+    padding-left: 1rem !important;
+  }
 }
 
 .searchListOption:hover {

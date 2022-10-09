@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useMediaQuery } from "react-responsive";
+import { debounce } from "lodash";
+
 import Image from "next/image";
 import styled from "./SearchForm.module.css";
 
@@ -11,14 +15,29 @@ import ModalBoots from "../Modal/Modal";
 import SearchOptions from "../SearchOptions/SearchOptions";
 
 const SearchForm = ({ isClicked }) => {
+  const isDesktopOrLaptopOrTable = useMediaQuery({
+    query: "(min-width:48rem)"
+  });
+
+  const [searchedTerm, setSearchedTerm] = useState({
+    pickUp: "",
+    dropOff: ""
+  });
+
   const [validated, setValidated] = useState(false);
+
+  const [showPickUpSearchedResult, setShowPickUpSearchedResult] = useState(true);
+  const [showDropOffSearchedResult, setShowDropOffSearchedResult] = useState(true);
+
   const [inputValue, setInputValue] = useState({});
 
   const [show, setShow] = useState(false);
+
   const showModal = (inputClickedValue) => {
     setInputValue(inputClickedValue);
     setShow(true);
   };
+
   const closeModal = () => setShow(false);
 
   const handleSubmit = (event) => {
@@ -31,49 +50,149 @@ const SearchForm = ({ isClicked }) => {
     setValidated(true);
   };
 
+  const [locationsFetch, setLocationsFetch] = useState({
+    searchResults: [],
+    noSearch: true
+  });
+
+  const searchLocation = useCallback(
+    debounce(async (e) => {
+      if (e.target.value.length > 3) {
+        try {
+          const response = await fetch(
+            `https://vacationstaxi.herokuapp.com/locations/search`,
+
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+
+              body: JSON.stringify({
+                location: e.target.value.trim()
+              })
+            }
+          );
+
+          if (response.ok) {
+            const getDestinations = await response.json();
+
+            setLocationsFetch({
+              ...locationsFetch,
+              searchResults: getDestinations,
+              noSearch: !false
+            });
+          }
+        } catch (error) {
+          console.log(error);
+
+          setLocationsFetch({
+            noSearch: true
+          });
+          return;
+        }
+      }
+    }, 500),
+    []
+  );
+
   const onChange = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
+    setSearchedTerm({
+      ...searchedTerm,
+      [e.target.name]: e.target.value
+    });
+
+    searchLocation(e);
+    if (e.target.name === "pickUp") {
+      setShowPickUpSearchedResult(true);
+    } else {
+      setShowDropOffSearchedResult(true);
+    }
   };
+
+  const onClickedSearchedResult = ({ pickUp, dropOff }) => {
+    if (pickUp) {
+      setSearchedTerm({
+        ...searchedTerm,
+        pickUp
+      });
+      setShowPickUpSearchedResult(!showPickUpSearchedResult);
+    } else {
+      setSearchedTerm({
+        ...searchedTerm,
+        dropOff
+      });
+      setShowDropOffSearchedResult(!showDropOffSearchedResult);
+    }
+  };
+
+  console.log(showPickUpSearchedResult);
 
   return (
     <Form className={styled.form} validated={validated} noValidate onSubmit={handleSubmit}>
-      <div className={styled["searchForm"]}>
+      <div className={styled.searchForm}>
         <SearchFormInput
           label="Enter pick-up location"
           placeHolder="Enter pick-up location"
-          name="pick-up"
+          name="pickUp"
           id="formBasicPickLocation1"
           isEmptyFeedback="Please provide a pick-up location"
           required={true}
           validated={validated}
-          onClickInput={() =>
-            showModal({
-              title: "Pick-up location",
-              label: "Enter pick-up location",
-              placeHolder: "Enter pick-up location"
-            })
-          }
+          onClickInput={() => {
+            !isDesktopOrLaptopOrTable &&
+              showModal({
+                title: "Pick-up location",
+                label: "Enter pick-up location",
+                placeHolder: "Enter pick-up location"
+              });
+          }}
           onChange={onChange}
+          searchedTerm={searchedTerm.pickUp || ""}
+          // onKeyUp={debouncedSearchLocation}
         />
-        <SearchOptions />
+
+        {showPickUpSearchedResult &&
+          isDesktopOrLaptopOrTable &&
+          searchedTerm.pickUp &&
+          showPickUpSearchedResult && (
+            <SearchOptions
+              locationsFetch={locationsFetch}
+              onClickedSearchedResult={onClickedSearchedResult}
+              optionToShow="pickUp"
+            />
+          )}
 
         <SearchFormInput
           label="Enter drop location"
           placeHolder="Enter drop location "
-          name="drop-off"
+          name="dropOff"
           id="formBasicDropLocation1"
           isEmptyFeedback="Please provide a drop-off location"
           required={true}
           validated={validated}
-          onClickInput={() =>
-            showModal({
-              title: "Drop-off location",
-              label: "Enter drop location ",
-              placeHolder: "Enter pick-up location"
-            })
-          }
+          onClickInput={() => {
+            !isDesktopOrLaptopOrTable &&
+              showModal({
+                title: "Drop-off location",
+                label: "Enter drop location ",
+                placeHolder: "Enter pick-up location"
+              });
+          }}
+          onChange={onChange}
+          // onKeyUp={searchLocation}
+          searchedTerm={searchedTerm.dropOff || ""}
         />
+
+        {showDropOffSearchedResult && isDesktopOrLaptopOrTable && searchedTerm.dropOff && (
+          <SearchOptions
+            moveLeft
+            locationsFetch={locationsFetch}
+            onClickedSearchedResult={onClickedSearchedResult}
+            optionToShow="dropOff"
+          />
+        )}
+
         {/* <SearchFormInput
           labelPick="Enter pick-up location"
           placeHolderPick="Enter pick-up location"
@@ -130,7 +249,12 @@ const SearchForm = ({ isClicked }) => {
         </Button>
       )}
 
-      <ModalBoots show={show} closeModal={closeModal} inputValue={inputValue} />
+      <ModalBoots
+        show={show}
+        closeModal={closeModal}
+        inputValue={inputValue}
+        locationsFetch={locationsFetch}
+      />
     </Form>
   );
 };

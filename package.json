@@ -15,12 +15,14 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.0",
-    "next": "12.2.3",
+    "lodash": "^4.17.21",
+    "next": "^12.3.1",
     "react": "18.2.0",
     "react-bootstrap": "^2.4.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
-    "react-phone-number-input": "^3.2.10"
+    "react-phone-number-input": "^3.2.10",
+    "react-responsive": "^9.0.0"
   },
   "devDependencies": {
     "@axe-core/react": "^4.4.3",
@@ -35,7 +37,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unicorn": "^43.0.2",
     "husky": "^8.0.1",
-    "lint": "^0.7.0",
+    "lint": "^1.1.2",
     "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
     "stylelint-config-prettier": "^9.0.3",

@@ -3,12 +3,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "../src/Components/Layout/Layout";
 import ReactDOM from "react-dom";
 import React from "react";
+import SSRProvider from "react-bootstrap/SSRProvider";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <SSRProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </SSRProvider>
   );
 }
 

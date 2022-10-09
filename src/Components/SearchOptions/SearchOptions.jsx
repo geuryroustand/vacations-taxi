@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled from "./SearchOptions.module.css";
 
-const SearchOptions = () => {
+const data = [
+  "Samana",
+  "Las Terrenas",
+  "Bahia Principe Portillo",
+  "Bahia Principe Cayacoa",
+  "Bahia Principe Cayacoa",
+  "Bahia Principe Cayacoa",
+  "Bahia Principe Cayacoa",
+  "Bahia Principe Cayacoa"
+];
+const SearchOptions = ({ moveLeft, locationsFetch, onClickedSearchedResult, optionToShow }) => {
+  const [filteredLocations, setFilteredLocations] = useState();
+
   return (
-    <ul className={styled.searchList}>
-      <li className={styled.searchListOption}>Samana</li>
-      <li className={styled.searchListOption}>Las Terrenas</li>
-      <li className={styled.searchListOption}>Bahia Principe Portillo</li>
-      <li className={styled.searchListOption}>Bahia Principe Cayacoa</li>
-      <li className={styled.searchListOption}>Bahia Principe Cayacoa</li>
-      <li className={styled.searchListOption}>Bahia Principe Cayacoa</li>
-      <li className={styled.searchListOption}>Bahia Principe Cayacoa</li>
-      <li className={styled.searchListOption}>Bahia Principe Cayacoa</li>
+    <ul className={`${styled.searchList} ${moveLeft && styled.moveLeft}`}>
+      {locationsFetch?.searchResults?.map(({ location, _id }) => (
+        <li
+          key={_id}
+          className={styled.searchListOption}
+          onClick={() => {
+            optionToShow === "pickUp"
+              ? onClickedSearchedResult({ pickUp: location })
+              : onClickedSearchedResult({ dropOff: location });
+          }}>
+          {location}
+        </li>
+      ))}
     </ul>
   );
 };

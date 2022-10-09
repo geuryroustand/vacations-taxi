@@ -5,6 +5,10 @@
   padding: 1rem;
   border-radius: 10px;
 }
+
+.searchForm {
+  position: relative;
+}
 @media (min-width: 62em) {
   .searchForm {
     display: flex;

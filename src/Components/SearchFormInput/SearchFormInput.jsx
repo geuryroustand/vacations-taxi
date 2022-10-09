@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Form from "react-bootstrap/Form";
 import styled from "./SearchFormInput.module.css";
 import Image from "next/image";
-import SearchOptions from "../SearchOptions/SearchOptions";
+
+import { debounce } from "lodash";
 
 const SearchFormInput = ({
   label,
@@ -15,10 +16,13 @@ const SearchFormInput = ({
   validated,
   autoFocus,
   onClickInput,
-  onChange
+  onChange,
+  onKeyUp,
+  searchedTerm
 }) => {
   const isEmpty = validated ? styled.validated : "";
 
+  // const debouncedOnChange = useCallback(debounce(onChange, 1000), []);
   return (
     <>
       <Form.Group className={`${styled["form-control"]} ${isEmpty}`} controlId={id}>
@@ -27,7 +31,7 @@ const SearchFormInput = ({
           <Form.Label className="visually-hidden"> {label} </Form.Label>
           <Form.Control
             className={styled["form-input"]}
-            type="text"
+            type="search"
             placeholder={placeHolder}
             required={required}
             disabled={disabled}
@@ -35,6 +39,9 @@ const SearchFormInput = ({
             onClick={onClickInput}
             onChange={onChange}
             name={name}
+            onKeyUp={onKeyUp}
+            value={searchedTerm}
+            autoComplete="off"
           />
           <Form.Control.Feedback className={styled.searchFormFeedBack} type="invalid">
             {isEmptyFeedback}
