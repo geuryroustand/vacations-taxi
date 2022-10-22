@@ -21,7 +21,24 @@ const SearchForm = ({ isClicked }) => {
 
   const [searchedTerm, setSearchedTerm] = useState({
     pickUp: "",
-    dropOff: ""
+    dropOff: "",
+    pickUpSearchedTermClicked: false,
+    dropOffSearchedTermClicked: false,
+    pickUpDate: "",
+    pickUpTime: "",
+    dropOffDate: "",
+    dropOffTime: ""
+  });
+
+  const [pickUpDate, setPickUpDate] = useState(new Date());
+  const [pickUpTime, setPickUpTime] = useState(new Date());
+
+  const [dropOffDate, setDropOffDate] = useState(new Date());
+  const [dropOffTime, setDropOffTime] = useState(new Date());
+
+  const [passenger, setPassenger] = useState({
+    pickUpPassenger: 0,
+    dropOffPassenger: 0
   });
 
   const [validated, setValidated] = useState(false);
@@ -92,7 +109,7 @@ const SearchForm = ({ isClicked }) => {
           return;
         }
       }
-    }, 500),
+    }, 600),
     []
   );
 
@@ -114,19 +131,19 @@ const SearchForm = ({ isClicked }) => {
     if (pickUp) {
       setSearchedTerm({
         ...searchedTerm,
-        pickUp
+        pickUp,
+        pickUpSearchedTermClicked: true
       });
       setShowPickUpSearchedResult(!showPickUpSearchedResult);
     } else {
       setSearchedTerm({
         ...searchedTerm,
-        dropOff
+        dropOff,
+        dropOffSearchedTermClicked: true
       });
       setShowDropOffSearchedResult(!showDropOffSearchedResult);
     }
   };
-
-  console.log(showPickUpSearchedResult);
 
   return (
     <Form className={styled.form} validated={validated} noValidate onSubmit={handleSubmit}>
@@ -202,7 +219,20 @@ const SearchForm = ({ isClicked }) => {
           validated={validated}
         /> */}
 
-        <DatePickerSearchForm labelPickDate="arrival date" labelPickTime="arrival pick time" />
+        <DatePickerSearchForm
+          pickUpAndDropDate={pickUpDate}
+          setPickUpAndDropDate={setPickUpDate}
+          pickUpAndDropTime={pickUpTime}
+          setPickUpAndDropTime={setPickUpTime}
+          labelPickDate="arrival date"
+          labelPickTime="arrival pick time"
+          getPassenger={(e) =>
+            setPassenger({
+              ...passenger,
+              pickUpPassenger: e.target.value
+            })
+          }
+        />
 
         {!isClicked && (
           <Button type="submit" className={styled["search-btn"]}>
@@ -223,22 +253,34 @@ const SearchForm = ({ isClicked }) => {
           /> */}
 
           <SearchFormInput
-            label="Enter pick-up location"
-            placeHolder="Enter pick-up location"
+            label="Enter drop location"
+            placeHolder="Enter drop location"
             isEmptyFeedback="Please provide a pick-up location"
             disabled={true}
+            searchedTerm={searchedTerm.dropOffSearchedTermClicked ? searchedTerm.dropOff : ""}
           />
 
           <SearchFormInput
-            label="Enter drop location"
-            placeHolder="Enter drop location "
+            label="Enter pick-up location"
+            placeHolder="Enter pick-up location"
             isEmptyFeedback="Please provide a drop-off location"
             disabled={true}
+            searchedTerm={searchedTerm.pickUpSearchedTermClicked ? searchedTerm.pickUp : ""}
           />
 
           <DatePickerSearchForm
+            pickUpAndDropDate={dropOffDate}
+            setPickUpAndDropDate={setDropOffDate}
+            pickUpAndDropTime={dropOffTime}
+            setPickUpAndDropTime={setDropOffTime}
             labelPickDate="departure date"
             labelPickTime="departure pick time"
+            getPassenger={(e) =>
+              setPassenger({
+                ...passenger,
+                pickUpPassenger: e.target.value
+              })
+            }
           />
         </div>
       )}

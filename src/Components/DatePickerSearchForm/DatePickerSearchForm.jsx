@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
+
 import styled from "./DatePickerSearchForm.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from "next/image";
 
-function DatePickerSearchForm({ labelPickDate, labelPickTime }) {
-  const [startDate, setStartDate] = useState(new Date());
-  const [startDatePickUpTime, setStartDatePickUpTime] = useState(new Date());
+function DatePickerSearchForm({
+  pickUpAndDropDate,
+  setPickUpAndDropDate,
 
+  labelPickDate,
+  labelPickTime,
+
+  pickUpAndDropTime,
+  setPickUpAndDropTime,
+
+  getPassenger
+}) {
   return (
     <div className={styled.date}>
       <div className={styled.calender}>
@@ -19,13 +28,14 @@ function DatePickerSearchForm({ labelPickDate, labelPickTime }) {
           id="date-picker"
           // showTimeSelect
 
-          selected={startDate}
+          selected={pickUpAndDropDate}
           // selected={dataToSend.arrivalDate}
           // dateFormat="MM/dd/yyyy h:mm aa"
           // showTimeInput
           // timeInputLabel="Pick-up Time:"
           // dateFormat="eee d, MMM  yyyy h:mm aa"
-          onChange={(date) => setStartDate(date)}
+          onSelect={(date) => setPickUpAndDropDate(date)}
+          // onChange={dateSelect}
           // timeClassName={handleColor}
           minDate={new Date()}
           maxDate={new Date("02-29-2024")}
@@ -48,7 +58,7 @@ function DatePickerSearchForm({ labelPickDate, labelPickTime }) {
           withPortal
           portalId="root-portal"
           className={styled["date-picker"]}
-          required
+          // required
           // value={dataToSend.arrivalDate}
           // onChange={(e) => handlerData("arrivalDate", e.target.value)}
         />
@@ -62,8 +72,13 @@ function DatePickerSearchForm({ labelPickDate, labelPickTime }) {
           </label>
           <DatePicker
             id="pickTime"
-            selected={startDatePickUpTime}
-            onChange={(date) => setStartDatePickUpTime(date)}
+            selected={pickUpAndDropTime}
+            onChange={(date) => setPickUpAndDropTime(date)}
+            showTimeSelectOnly
+            showTimeSelect
+            timeIntervals={1}
+            timeCaption="Pick-up time"
+            dateFormat="h:mm aa"
             // id="date-picker"
             // selected={dataToSend.arrivalDate}
             // dateFormat="MM/dd/yyyy h:mm aa"
@@ -71,11 +86,6 @@ function DatePickerSearchForm({ labelPickDate, labelPickTime }) {
             // timeInputLabel="Pick-up Time:"
             // dateFormat="eee d, MMM  yyyy h:mm aa"
             // timeClassName={handleColor}
-            showTimeSelect
-            showTimeSelectOnly
-            timeIntervals={1}
-            timeCaption="Pick-up time"
-            dateFormat="h:mm aa"
             // timeFormat="HH:mm"
             // peekNextMonth
             // scrollableYearDropdown
@@ -89,9 +99,6 @@ function DatePickerSearchForm({ labelPickDate, labelPickTime }) {
             // withPortal
             // portalId="root-portal"
             className={styled.datePickUp}
-
-            // value={dataToSend.arrivalDate}
-            // onChange={(e) => handlerData("arrivalDate", e.target.value)}
           />
         </div>
         <div className={styled.passenger}>
@@ -103,10 +110,7 @@ function DatePickerSearchForm({ labelPickDate, labelPickTime }) {
             id="passenger"
             className={styled["select-passenger"]}
             required
-            // value={dataToSend.passengers}
-            // onChange={(e) => handlerData("passengers", e.target.value)}
-          >
-            {/* <option value="passenger">Passenger</option> */}
+            onChange={getPassenger}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

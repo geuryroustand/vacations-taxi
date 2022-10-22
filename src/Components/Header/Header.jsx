@@ -8,7 +8,7 @@ const Header = () => {
   const [isClicked, setIsClicked] = useState(false);
 
   const onClick = () => {
-    setIsClicked(!isClicked);
+    // setIsClicked(!isClicked);
   };
 
   return (
@@ -20,12 +20,12 @@ const Header = () => {
         </h2>
 
         <Button
-          onClick={onClick}
+          onClick={() => setIsClicked(false)}
           className={isClicked ? styled["btn-selected"] : styled["btn-oneWay"]}>
           One-way
         </Button>
         <Button
-          onClick={onClick}
+          onClick={() => setIsClicked(true)}
           className={isClicked ? styled["btn-oneWay"] : styled["btn-selected"]}>
           Return
         </Button>

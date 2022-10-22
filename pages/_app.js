@@ -4,14 +4,17 @@ import Layout from "../src/Components/Layout/Layout";
 import ReactDOM from "react-dom";
 import React from "react";
 import SSRProvider from "react-bootstrap/SSRProvider";
-
+import { Provider } from "react-redux";
+import { store } from "../src/redux/store";
 function MyApp({ Component, pageProps }) {
   return (
-    <SSRProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </SSRProvider>
+    <Provider store={store}>
+      <SSRProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SSRProvider>
+    </Provider>
   );
 }
 
