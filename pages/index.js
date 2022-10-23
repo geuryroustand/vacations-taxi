@@ -1,11 +1,5 @@
 import Head from "next/head";
 
-import Header from "../src/Components/Header/Header";
-import Awards from "../src/Components/Awards/Awards";
-
-import HowWork from "../src/Components/HowWork/HowWork";
-import Trusted from "../src/Components/Trusted/Trusted";
-
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
@@ -35,11 +29,6 @@ export default function Home() {
 
         <DynamicAwards />
       </Suspense>
-
-      {/* <Header /> */}
-      {/* <Trusted /> */}
-      {/* <HowWork /> */}
-      {/* <Awards /> */}
     </>
   );
 }

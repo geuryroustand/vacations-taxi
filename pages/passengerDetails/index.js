@@ -1,11 +1,22 @@
-import React from "react";
+import React, { Suspense } from "react";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+
 import Container from "react-bootstrap/Container";
 
 import styled from "./passengerDetails.module.css";
-import BookingSummary from "../../src/Components/BookingSummary/BookingSummary";
-import Passenger from "../../src/Components/Passenger/Passenger";
 
-import { useRouter } from "next/router";
+const DynamicBookingSummary = dynamic(
+  () => import("../../src/Components/BookingSummary/BookingSummary"),
+  {
+    suspense: true
+  }
+);
+
+const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Passenger"), {
+  suspense: true
+});
+
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 
 export default function passengerDetails() {
@@ -29,8 +40,10 @@ export default function passengerDetails() {
         <BookingStepProcess />
       </Container>
       <Container className={styled.passengerDetailsContainer}>
-        <BookingSummary flightInfo={flightInfo} />
-        <Passenger />
+        <Suspense fallback={`Loading...`}>
+          <DynamicBookingSummary flightInfo={flightInfo} />
+          <DynamicPassenger />
+        </Suspense>
       </Container>
     </div>
   );

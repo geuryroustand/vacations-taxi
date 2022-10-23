@@ -1,12 +1,22 @@
-import React from "react";
+import React, { Suspense } from "react";
+import dynamic from "next/dynamic";
 
 import Container from "react-bootstrap/Container";
 
 import styled from "./paymentDetails.module.css";
-import BookingSummary from "../../src/Components/BookingSummary/BookingSummary";
-import Passenger from "../../src/Components/Passenger/Passenger";
+
+const DynamicBookingSummary = dynamic(
+  () => import("../../src/Components/BookingSummary/BookingSummary"),
+  {
+    suspense: true
+  }
+);
+
+const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Payment"), {
+  suspense: true
+});
+
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
-import Payment from "../../src/Components/Payment/Payment";
 
 export default function paymentDetails() {
   const flightInfo = {
@@ -27,8 +37,10 @@ export default function paymentDetails() {
       </Container>
 
       <Container className={styled.paymentDetailsContainer}>
-        <BookingSummary flightInfo={flightInfo} />
-        <Payment />
+        <Suspense fallback={`Loading...`}>
+          <DynamicBookingSummary flightInfo={flightInfo} />
+          <DynamicPayment />
+        </Suspense>
       </Container>
     </form>
   );
