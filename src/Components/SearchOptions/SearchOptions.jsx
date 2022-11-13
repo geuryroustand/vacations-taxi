@@ -23,8 +23,8 @@ const SearchOptions = ({ moveLeft, locationsFetch, onClickedSearchedResult, opti
           className={styled.searchListOption}
           onClick={() => {
             optionToShow === "pickUp"
-              ? onClickedSearchedResult({ pickUp: location })
-              : onClickedSearchedResult({ dropOff: location });
+              ? onClickedSearchedResult({ pickUp: location, pickUpID: _id })
+              : onClickedSearchedResult({ dropOff: location, dropOffID: _id });
           }}>
           {location}
         </li>

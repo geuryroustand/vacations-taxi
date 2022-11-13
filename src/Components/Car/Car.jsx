@@ -3,20 +3,36 @@ import Image from "next/image";
 import styled from "./Car.module.css";
 import Link from "next/link";
 
-const Car = () => {
+const Car = ({
+  totalPassengers,
+  totalSuitCases,
+  cartTypeImage,
+  totalPrice,
+  OneWayOrRoundTrip,
+  cartSelected,
+  selected,
+  id
+}) => {
+  const selectedClass = styled[`${selected}Selected`];
+
   return (
-    <div className={styled.car}>
+    <div id={id} className={`${styled.car} `} onClick={cartSelected}>
       <div className={styled.list}>
         <Image src="/images/people.svg" width="20px" height="20px" alt="total of people" />
-        <span>Up to 4 passengers</span>
+        <span>Up to {totalPassengers} passengers</span>
       </div>
 
       <div className={styled.list}>
         <Image src="/images/suitcase.svg" width="20px" height="20px" alt="total of people" />
-        <span>Up to 4 suitcases</span>
+        <span>Up to {totalSuitCases} suitcases</span>
       </div>
 
-      <Image src="/images/standard.webp" width="194.4px" height=" 93.73px" alt="standard card" />
+      <Image
+        src={`/images/${cartTypeImage}`}
+        width="194.4px"
+        height=" 93.73px"
+        alt="standard card"
+      />
 
       <div className={styled.list}>
         <Image src="/images/check.svg" width="20px" height="20px" alt="free Cancellation" />
@@ -45,12 +61,12 @@ const Car = () => {
 
       <div className={styled.list}>
         <p>Total Price:</p>
-        <h3>$ 260</h3>
+        <h3>$ {totalPrice}</h3>
       </div>
 
       <div className={styled.list}>
-        <p>/One way</p>
-        <Link href="#">Select this vehicle</Link>
+        <p>/{OneWayOrRoundTrip}</p>
+        <Link href="/">Select this vehicle</Link>
       </div>
     </div>
   );

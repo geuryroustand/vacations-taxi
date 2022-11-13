@@ -1,9 +1,16 @@
 .bookingDetails {
   background-color: #f7f7f7;
   padding-top: 2rem;
+  padding-bottom: 5%;
 }
 
-@media (min-width: 45em) {
+@media (min-width: 62em) {
+  .bookingDetails {
+    padding-bottom: 20rem;
+  }
+}
+
+@media (min-width: 62em) {
   .bookingDetailsContainer {
     display: flex;
     gap: 2rem;
@@ -19,5 +26,17 @@
 @media (min-width: 62em) {
   .bookingDetailsWith {
     width: 30%;
+  }
+}
+
+/* @media (min-width: 45em) {
+  .cartAndPassengerDetail {
+    width: 90%;
+  }
+} */
+
+@media (min-width: 62em) {
+  .cartAndPassengerDetail {
+    width: 70%;
   }
 }

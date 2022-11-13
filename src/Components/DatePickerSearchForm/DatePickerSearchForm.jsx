@@ -76,9 +76,11 @@ function DatePickerSearchForm({
             onChange={(date) => setPickUpAndDropTime(date)}
             showTimeSelectOnly
             showTimeSelect
-            timeIntervals={1}
+            timeIntervals={10}
             timeCaption="Pick-up time"
+            timeFormat="HH:mm"
             dateFormat="h:mm aa"
+            // showTimeInput
             // id="date-picker"
             // selected={dataToSend.arrivalDate}
             // dateFormat="MM/dd/yyyy h:mm aa"

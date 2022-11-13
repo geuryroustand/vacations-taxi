@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import { debounce } from "lodash";
+import { format } from "date-fns";
 
 import Image from "next/image";
 import styled from "./SearchForm.module.css";
@@ -15,20 +17,18 @@ import ModalBoots from "../Modal/Modal";
 import SearchOptions from "../SearchOptions/SearchOptions";
 
 const SearchForm = ({ isClicked }) => {
-  const isDesktopOrLaptopOrTable = useMediaQuery({
-    query: "(min-width:48rem)"
+  let isDesktopOrLaptopOrTable = true;
+
+  // const isDesktopOrLaptopOrTable = useMediaQuery({
+  //   query: "(min-width:48rem)"
+  // });
+
+  const [passenger, setPassenger] = useState({
+    pickUpPassenger: 1,
+    dropOffPassenger: 1
   });
 
-  const [searchedTerm, setSearchedTerm] = useState({
-    pickUp: "",
-    dropOff: "",
-    pickUpSearchedTermClicked: false,
-    dropOffSearchedTermClicked: false,
-    pickUpDate: "",
-    pickUpTime: "",
-    dropOffDate: "",
-    dropOffTime: ""
-  });
+  console.log(passenger);
 
   const [pickUpDate, setPickUpDate] = useState(new Date());
   const [pickUpTime, setPickUpTime] = useState(new Date());
@@ -36,10 +36,46 @@ const SearchForm = ({ isClicked }) => {
   const [dropOffDate, setDropOffDate] = useState(new Date());
   const [dropOffTime, setDropOffTime] = useState(new Date());
 
-  const [passenger, setPassenger] = useState({
-    pickUpPassenger: 0,
-    dropOffPassenger: 0
+  const [searchedTerm, setSearchedTerm] = useState({
+    pickUp: "",
+    dropOff: "",
+    pickUpSearchedTermClicked: false,
+    dropOffSearchedTermClicked: false,
+    pickUpDate: "",
+    pickUpTime: ""
   });
+
+  const router = useRouter();
+
+  useEffect(() => {
+    setSearchedTerm({
+      ...searchedTerm,
+      pickUpDate: format(pickUpDate, "eee d, MMM  yyyy"),
+      pickUpTime: format(pickUpTime, "k:m")
+    });
+  }, [pickUpDate, pickUpTime]);
+
+  useEffect(() => {
+    if (isClicked) {
+      setSearchedTerm({
+        ...searchedTerm,
+        pickUpReturn: searchedTerm.dropOff,
+        dropOffReturn: searchedTerm.pickUp,
+        dropOffDate: format(dropOffDate, "eee d, MMM  yyyy"),
+        dropOffTime: format(dropOffTime, "k:m"),
+        roundtrip: true
+      });
+    } else {
+      setSearchedTerm({
+        pickUp: searchedTerm.pickUp,
+        dropOff: searchedTerm.dropOff,
+        pickUpDate: searchedTerm.pickUpDate,
+        pickUpTime: searchedTerm.pickUpTime,
+        pickUpSearchedTermClicked: true,
+        dropOffSearchedTermClicked: true
+      });
+    }
+  }, [isClicked, dropOffDate, dropOffTime]);
 
   const [validated, setValidated] = useState(false);
 
@@ -57,11 +93,68 @@ const SearchForm = ({ isClicked }) => {
 
   const closeModal = () => setShow(false);
 
-  const handleSubmit = (event) => {
+  const submitData = (event) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+    event.preventDefault();
+
+    const {
+      dropOffDate,
+      dropOffReturn,
+      dropOffTime,
+
+      pickUpDate,
+      pickUpReturn,
+      pickUpTime,
+
+      roundtrip,
+
+      dropOffID,
+      pickUpID
+    } = searchedTerm;
+
+    const { pickUpPassenger, dropOffPassenger } = passenger;
+
+    if (!form.checkValidity() === false) {
+      if (roundtrip) {
+        router.push({
+          pathname: "/bookingDetails",
+          query: {
+            pickUp: pickUpID,
+            dropOff: dropOffID,
+            dropOffDate,
+            dropOffReturn,
+            dropOffTime,
+
+            pickUpDate,
+            pickUpReturn,
+            pickUpTime,
+
+            pickUpPassenger,
+            dropOffPassenger,
+            roundtrip
+          }
+        });
+      } else {
+        router.push({
+          pathname: "/bookingDetails",
+          query: {
+            pickUp: pickUpID,
+            dropOff: dropOffID,
+            pickUpDate,
+            pickUpReturn,
+            pickUpTime,
+            pickUpPassenger
+          }
+        });
+      }
+      // router.push({
+      //   pathname: "/bookingDetails",
+      //   query: {
+      //     ...searchedTerm,
+
+      //     ...passenger
+      //   }
+      // });
     }
 
     setValidated(true);
@@ -77,7 +170,7 @@ const SearchForm = ({ isClicked }) => {
       if (e.target.value.length > 3) {
         try {
           const response = await fetch(
-            `https://vacationstaxi.herokuapp.com/locations/search`,
+            `http://localhost:3001/locations/search`,
 
             {
               method: "POST",
@@ -127,11 +220,12 @@ const SearchForm = ({ isClicked }) => {
     }
   };
 
-  const onClickedSearchedResult = ({ pickUp, dropOff }) => {
+  const onClickedSearchedResult = ({ pickUp, pickUpID, dropOff, dropOffID }) => {
     if (pickUp) {
       setSearchedTerm({
         ...searchedTerm,
         pickUp,
+        pickUpID,
         pickUpSearchedTermClicked: true
       });
       setShowPickUpSearchedResult(!showPickUpSearchedResult);
@@ -139,6 +233,7 @@ const SearchForm = ({ isClicked }) => {
       setSearchedTerm({
         ...searchedTerm,
         dropOff,
+        dropOffID,
         dropOffSearchedTermClicked: true
       });
       setShowDropOffSearchedResult(!showDropOffSearchedResult);
@@ -146,7 +241,7 @@ const SearchForm = ({ isClicked }) => {
   };
 
   return (
-    <Form className={styled.form} validated={validated} noValidate onSubmit={handleSubmit}>
+    <Form className={styled.form} validated={validated} noValidate onSubmit={submitData}>
       <div className={styled.searchForm}>
         <SearchFormInput
           label="Enter pick-up location"
@@ -278,7 +373,7 @@ const SearchForm = ({ isClicked }) => {
             getPassenger={(e) =>
               setPassenger({
                 ...passenger,
-                pickUpPassenger: e.target.value
+                dropOffPassenger: e.target.value
               })
             }
           />

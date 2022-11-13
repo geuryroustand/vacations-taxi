@@ -18,23 +18,81 @@ const DynamicCarList = dynamic(() => import("../../src/Components/CarList/CarLis
   suspense: true
 });
 
+const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Passenger"), {
+  suspense: true
+});
+
 import Container from "react-bootstrap/Container";
 
 import styled from "./bookingDetails.module.css";
 
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function BookingDetails() {
-  const flightInfo = {
-    from: "Santo Domingo Airport (SDQ)",
-    to: "Bahia Principe Portillo",
-    arrivalDate: "Saturday 27, Aug 2022 ",
-    arrivalAt: "At 13 : 37",
-    departureDate: "Sunday 21, Aug 2022",
-    departureAt: "At 13 : 37",
-    passengers: 3,
-    totalPrice: 260
+  const [isLoading, setIsLoading] = useState(null);
+  const [dataInfo, setDataInfo] = useState();
+
+  const router = useRouter();
+
+  // const {
+  //   dropOffDate,
+  //   dropOffPassenger,
+  //   dropOffReturn,
+  //   dropOffTime,
+
+  //   pickUpDate,
+  //   pickUpPassenger,
+  //   pickUpReturn,
+  //   pickUpTime,
+  //   roundtrip,
+
+  //   pickUp,
+  //   dropOff
+  // } = router?.query;
+
+  console.log(router.query);
+  const getData = async () => {
+    setIsLoading(true);
+
+    const res = await fetch(
+      `http://localhost:3001/locations/addPrices?pickUp=${router?.query?.pickUp}&dropOff=${router?.query?.dropOff}`
+    );
+
+    if (res.ok) {
+      setIsLoading(false);
+      const data = await res.json();
+      setDataInfo(data);
+    }
   };
+
+  useEffect(() => {
+    getData();
+  }, [router.query.pickUp]);
+
+  if (isLoading) {
+    return <p>Loading </p>;
+  }
+
+  let flightInfo;
+  console.log(dataInfo);
+  if (router.query.roundtrip) {
+    flightInfo = {
+      from: dataInfo?.pickUp,
+      to: dataInfo?.dropOff,
+      arrivalDate: router?.query?.pickUpDate,
+      arrivalAt: `At ${router.query?.pickUpTime}`,
+
+      departureDate: router.query?.dropOffDate,
+      departureAt: `At ${router.query?.dropOffTime}`,
+      passengers: router.query?.dropOffPassenger,
+      priceTaxi1: dataInfo?.priceTaxi1,
+      priceTaxi2: dataInfo?.priceTaxi2,
+      priceTaxi3: dataInfo?.priceTaxi3,
+      priceTaxi4: dataInfo?.priceTaxi4
+    };
+  }
 
   const { pathname } = useRouter();
   const currentProcess = pathname === "/bookingDetails" ? "process" : "";
@@ -51,7 +109,16 @@ export default function BookingDetails() {
             flightInfo={flightInfo}
             bookingDetailsWith={styled.bookingDetailsWith}
           />
-          <DynamicCarList />
+          <div className={styled.cartAndPassengerDetail}>
+            <DynamicCarList
+              priceTaxi1={dataInfo?.priceTaxi1}
+              priceTaxi2={dataInfo?.priceTaxi2}
+              priceTaxi3={dataInfo?.priceTaxi3}
+              priceTaxi4={dataInfo?.priceTaxi4}
+              OneWayOrRoundTrip={router.query?.roundtrip ? "RoundTrip" : "One way"}
+            />
+            <DynamicPassenger />
+          </div>
         </Suspense>
       </Container>
     </div>

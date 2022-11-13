@@ -1,38 +1,41 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import styled from "./BookingSummary.module.css";
 
-const BookingSummary = ({ flightInfo, bookingDetailsWith }) => {
-  const { from, to, arrivalDate, arrivalAt, departureDate, departureAt, passengers, totalPrice } =
-    flightInfo;
+const BookingSummary = (props) => {
+  // const { arrivalDate, arrivalAt, departureDate, departureAt, passengers, totalPrice } =
+  //   props?.flightInfo;
+
+  const { totalPrice } = useSelector((state) => state.flightInfoReducer);
 
   return (
-    <section className={`${styled.bookingDetails} ${bookingDetailsWith} `}>
+    <section className={`${styled.bookingDetails} ${props.bookingDetailsWith} `}>
       <h1>Your booking details</h1>
 
       <p>From</p>
 
-      <h2>{from}</h2>
+      <h2>{props.flightInfo?.from}</h2>
 
       <p>To</p>
 
-      <h2 className={styled.headingBorder}>{to}</h2>
+      <h2 className={styled.headingBorder}>{props.flightInfo?.to}</h2>
 
-      <p>Arrival Date</p>
+      <p>Arrival Trip</p>
       <div className={styled.headingBorder}>
-        <h2>{arrivalDate}</h2>
-        <h2>{arrivalAt}</h2>
+        <h2>{props.flightInfo?.arrivalDate}</h2>
+        <h2>{props.flightInfo?.arrivalAt}</h2>
       </div>
 
-      <p>Departure Date</p>
+      <p>Departure Trip</p>
       <div className={styled.headingBorder}>
-        <h2>{departureDate}</h2>
-        <h2>{departureAt}</h2>
+        <h2>{props.flightInfo?.departureDate}</h2>
+        <h2>{props.flightInfo?.departureAt}</h2>
       </div>
 
       <p>Passengers</p>
 
-      <h2>{passengers}</h2>
+      <h2>{props.flightInfo?.passengers}</h2>
 
       <p>Total Price</p>
 

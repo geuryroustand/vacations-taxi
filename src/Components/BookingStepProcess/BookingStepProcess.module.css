@@ -2,6 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  margin: 0 auto;
+  width: 14rem;
 }
 
 .step {
@@ -26,9 +29,8 @@
   border: none;
 }
 
-@media (min-width: 45em) {
+@media (min-width: 62em) {
   .bookingStepProcess {
-    width: 25rem;
     margin: 3rem auto;
   }
 }

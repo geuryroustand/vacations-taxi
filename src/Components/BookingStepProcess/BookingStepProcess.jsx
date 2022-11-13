@@ -19,11 +19,12 @@ const BookingStepProcess = ({ process }) => {
       </p>
 
       <p className={`${styled.step} ${stepTwo}  `}>2</p>
-      <p>
-        <Image src="/images/arrow.svg" width="100%" height="25px" alt="arrow" />
-      </p>
 
-      <p className={`${styled.step} ${stepThree} `}>3</p>
+      {/* <p>
+        <Image src="/images/arrow.svg" width="100%" height="25px" alt="arrow" />
+      </p> */}
+
+      {/* <p className={`${styled.step} ${stepThree} `}>3</p> */}
     </div>
   );
 };
