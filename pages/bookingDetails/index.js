@@ -29,6 +29,8 @@ import styled from "./bookingDetails.module.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { allFlightInfo, updateTotalPrice } from "../../src/redux/flightInfoSlice";
 
 export default function BookingDetails() {
   const [isLoading, setIsLoading] = useState(null);
@@ -36,23 +38,24 @@ export default function BookingDetails() {
 
   const router = useRouter();
 
-  // const {
-  //   dropOffDate,
-  //   dropOffPassenger,
-  //   dropOffReturn,
-  //   dropOffTime,
+  const {
+    dropOffDate,
+    dropOffPassenger,
+    dropOffReturn,
+    dropOffTime,
 
-  //   pickUpDate,
-  //   pickUpPassenger,
-  //   pickUpReturn,
-  //   pickUpTime,
-  //   roundtrip,
+    pickUpDate,
+    pickUpPassenger,
+    pickUpReturn,
+    pickUpTime,
+    roundtrip,
 
-  //   pickUp,
-  //   dropOff
-  // } = router?.query;
+    pickUp,
+    dropOff
+  } = router?.query;
 
-  console.log(router.query);
+  const dispatch = useDispatch();
+
   const getData = async () => {
     setIsLoading(true);
 
@@ -67,8 +70,12 @@ export default function BookingDetails() {
     }
   };
 
+  dispatch(allFlightInfo({ ...router.query, ...dataInfo }));
+
   useEffect(() => {
     getData();
+
+    dispatch(allFlightInfo({ ...router.query, ...dataInfo }));
   }, [router.query.pickUp]);
 
   if (isLoading) {
@@ -76,27 +83,25 @@ export default function BookingDetails() {
   }
 
   let flightInfo;
-  console.log(dataInfo);
+
   if (router.query.roundtrip) {
     flightInfo = {
-      from: dataInfo?.pickUp,
-      to: dataInfo?.dropOff,
+      pickUp: dataInfo?.pickUp,
+      dropOff: dataInfo?.dropOff,
+
       arrivalDate: router?.query?.pickUpDate,
       arrivalAt: `At ${router.query?.pickUpTime}`,
 
       departureDate: router.query?.dropOffDate,
       departureAt: `At ${router.query?.dropOffTime}`,
       passengers: router.query?.dropOffPassenger,
+
       priceTaxi1: dataInfo?.priceTaxi1,
       priceTaxi2: dataInfo?.priceTaxi2,
       priceTaxi3: dataInfo?.priceTaxi3,
       priceTaxi4: dataInfo?.priceTaxi4
     };
   }
-
-  const { pathname } = useRouter();
-  const currentProcess = pathname === "/bookingDetails" ? "process" : "";
-  console.log(pathname);
 
   return (
     <div className={styled.bookingDetails}>
@@ -105,18 +110,9 @@ export default function BookingDetails() {
       </Container>
       <Container className={styled.bookingDetailsContainer}>
         <Suspense fallback={`Loading...`}>
-          <DynamicBookingSummary
-            flightInfo={flightInfo}
-            bookingDetailsWith={styled.bookingDetailsWith}
-          />
+          <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />
           <div className={styled.cartAndPassengerDetail}>
-            <DynamicCarList
-              priceTaxi1={dataInfo?.priceTaxi1}
-              priceTaxi2={dataInfo?.priceTaxi2}
-              priceTaxi3={dataInfo?.priceTaxi3}
-              priceTaxi4={dataInfo?.priceTaxi4}
-              OneWayOrRoundTrip={router.query?.roundtrip ? "RoundTrip" : "One way"}
-            />
+            <DynamicCarList />
             <DynamicPassenger />
           </div>
         </Suspense>

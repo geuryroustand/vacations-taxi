@@ -4,10 +4,19 @@ import { useSelector } from "react-redux";
 import styled from "./BookingSummary.module.css";
 
 const BookingSummary = (props) => {
-  // const { arrivalDate, arrivalAt, departureDate, departureAt, passengers, totalPrice } =
-  //   props?.flightInfo;
+  const { totalPrice, flightInfo } = useSelector((state) => state.flightInfoReducer);
 
-  const { totalPrice } = useSelector((state) => state.flightInfoReducer);
+  const {
+    pickUp,
+    pickUpDate,
+    pickUpTime,
+    dropOff,
+    dropOffDate,
+    dropOffTime,
+    pickUpPassenger,
+    priceTaxi1,
+    roundtrip
+  } = flightInfo;
 
   return (
     <section className={`${styled.bookingDetails} ${props.bookingDetailsWith} `}>
@@ -15,31 +24,35 @@ const BookingSummary = (props) => {
 
       <p>From</p>
 
-      <h2>{props.flightInfo?.from}</h2>
+      <h2>{pickUp}</h2>
 
       <p>To</p>
 
-      <h2 className={styled.headingBorder}>{props.flightInfo?.to}</h2>
+      <h2 className={styled.headingBorder}>{dropOff}</h2>
 
       <p>Arrival Trip</p>
       <div className={styled.headingBorder}>
-        <h2>{props.flightInfo?.arrivalDate}</h2>
-        <h2>{props.flightInfo?.arrivalAt}</h2>
-      </div>
+        <h2>{pickUpDate}</h2>
 
-      <p>Departure Trip</p>
-      <div className={styled.headingBorder}>
-        <h2>{props.flightInfo?.departureDate}</h2>
-        <h2>{props.flightInfo?.departureAt}</h2>
+        <h2>At {pickUpTime}</h2>
       </div>
+      {roundtrip && (
+        <div>
+          <p>Departure Trip</p>
+          <div className={styled.headingBorder}>
+            <h2>{dropOffDate}</h2>
+            <h2>At {dropOffTime}</h2>
+          </div>
+        </div>
+      )}
 
       <p>Passengers</p>
 
-      <h2>{props.flightInfo?.passengers}</h2>
+      <h2>{pickUpPassenger}</h2>
 
       <p>Total Price</p>
 
-      <h2>$ {totalPrice}</h2>
+      <h2>$ {totalPrice ? totalPrice : +priceTaxi1}</h2>
     </section>
   );
 };

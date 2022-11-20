@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styled from "./Car.module.css";
 import Link from "next/link";
@@ -8,13 +8,11 @@ const Car = ({
   totalSuitCases,
   cartTypeImage,
   totalPrice,
-  OneWayOrRoundTrip,
+  oneWayOrRoundTrip,
+  cartClicked,
   cartSelected,
-  selected,
   id
 }) => {
-  const selectedClass = styled[`${selected}Selected`];
-
   return (
     <div id={id} className={`${styled.car} `} onClick={cartSelected}>
       <div className={styled.list}>
@@ -65,8 +63,8 @@ const Car = ({
       </div>
 
       <div className={styled.list}>
-        <p>/{OneWayOrRoundTrip}</p>
-        <Link href="/">Select this vehicle</Link>
+        <p>/{oneWayOrRoundTrip}</p>
+        <Link href="#">Select this vehicle</Link>
       </div>
     </div>
   );

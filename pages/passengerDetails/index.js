@@ -31,9 +31,6 @@ export default function passengerDetails() {
     totalPrice: 260
   };
 
-  const { pathname } = useRouter();
-  const currentProcess = pathname === "/passengerDetails" ? "process" : "";
-
   return (
     <div className={styled.passengerDetails}>
       <Container>

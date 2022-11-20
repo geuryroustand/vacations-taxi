@@ -15,14 +15,16 @@
   margin-top: 1rem;
 }
 
-.form a {
+.form button {
   display: flex;
   justify-content: center;
 
   margin-top: 1rem;
   padding: 1rem;
 
-  /* width: 10rem; */
+  border: none;
+
+  width: 100%;
 
   background: var(--secondary-darkest-color);
   border-radius: 5px;
@@ -33,6 +35,10 @@
   line-height: 1.2rem;
 
   color: var(--third-color);
+}
+
+.formTextArea {
+  width: 100%;
 }
 
 @media (min-width: 45em) {

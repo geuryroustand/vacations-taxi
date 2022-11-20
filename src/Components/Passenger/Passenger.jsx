@@ -8,34 +8,97 @@ import styled from "./Passenger.module.css";
 
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
 
 const Passenger = () => {
-  const [value, setValue] = useState();
+  const [validated, setValidated] = useState(false);
+  const [passengerInfo, setPassengerInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobileNumber: "",
+    arrivalAirlineName: "",
+    arrivalFlightNumber: "",
+    departureAirlineName: "",
+    departureFlightNumber: "",
+    requests: ""
+  });
 
-  console.log(value);
+  const { roundtrip } = useSelector((state) => state.flightInfoReducer.flightInfo);
+
+  const sendData = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      console.log("dispact");
+    }
+
+    setValidated(true);
+  };
+
+  const getPassengerInfo = (e) => {
+    setPassengerInfo({
+      ...passengerInfo,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
-    <Form className={styled.form}>
+    <Form className={styled.form} noValidate validated={validated} onSubmit={sendData}>
       <div className={styled.passenger}>
         <h2>Passenger Details</h2>
         <div className={styled.controlForm}>
           <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="fistName">
             <Form.Label>First Name</Form.Label>
-            <Form.Control type="text" placeholder="Joe" />
+            <Form.Control
+              type="text"
+              placeholder="Joe"
+              required
+              name="firstName"
+              value={passengerInfo.firstName}
+              onChange={getPassengerInfo}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please enter your fist name
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="lastName">
             <Form.Label>Last Name</Form.Label>
-            <Form.Control type="text" placeholder="Does" />
+            <Form.Control
+              type="text"
+              placeholder="Does"
+              required
+              name="lastName"
+              value={passengerInfo.lastName}
+              onChange={getPassengerInfo}
+            />
+
+            <Form.Control.Feedback type="invalid">
+              Please enter your last name
+            </Form.Control.Feedback>
           </Form.Group>
         </div>
 
         <div className={styled.controlForm}>
           <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              required
+              name="email"
+              value={passengerInfo.email}
+              onChange={getPassengerInfo}
+            />
             <Form.Text className="text-muted">
               We'll send you the confirmation voucher here
             </Form.Text>
+
+            <Form.Control.Feedback type="invalid">Please enter a valid email</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="mobile">
@@ -45,8 +108,15 @@ const Passenger = () => {
               international
               defaultCountry="DO"
               placeholder="Enter mobile number"
-              value={value}
-              onChange={setValue}
+              required
+              name="mobileNumber"
+              value={passengerInfo.mobileNumber}
+              onChange={(mobileNumber) =>
+                setPassengerInfo({
+                  ...passengerInfo,
+                  mobileNumber
+                })
+              }
             />
           </Form.Group>
         </div>
@@ -58,31 +128,74 @@ const Passenger = () => {
         <div className={styled.controlForm}>
           <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="airLineName">
             <Form.Label>Arrival Airline Name</Form.Label>
-            <Form.Control type="text" placeholder="Air Canada" />
+            <Form.Control
+              type="text"
+              placeholder="Air Canada"
+              name="arrivalAirlineName"
+              value={passengerInfo.arrivalAirlineName}
+              onChange={getPassengerInfo}
+            />
           </Form.Group>
 
           <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="lastName">
             <Form.Label>Flight Number</Form.Label>
-            <Form.Control type="text" placeholder="ATC5962" />
+            <Form.Control
+              type="text"
+              placeholder="ATC5962"
+              name="arrivalFlightNumber"
+              value={passengerInfo.arrivalFlightNumber}
+              onChange={getPassengerInfo}
+            />
           </Form.Group>
         </div>
 
-        <div className={styled.controlForm}>
-          <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="airLineName">
-            <Form.Label>Departure Airline Name</Form.Label>
-            <Form.Control type="text" placeholder="Air Canada" />
-          </Form.Group>
+        {roundtrip && (
+          <div className={styled.controlForm}>
+            <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="airLineName">
+              <Form.Label>Departure Airline Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Air Canada"
+                name="departureAirlineName"
+                value={passengerInfo.departureAirlineName}
+                onChange={getPassengerInfo}
+              />
+            </Form.Group>
 
-          <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="lastName">
-            <Form.Label>Flight Number</Form.Label>
-            <Form.Control type="text" placeholder="ATC456" />
+            <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="lastName">
+              <Form.Label>Flight Number</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="ATC456"
+                name="departureFlightNumber"
+                value={passengerInfo.departureFlightNumber}
+                onChange={getPassengerInfo}
+              />
+            </Form.Group>
+          </div>
+        )}
+
+        <div className={styled.controlForm}>
+          <Form.Group className={`mb-3 ${styled.formTextArea}`} controlId="controlTextarea1">
+            <Form.Label>Any requests?</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="Things like: I need a child set or Please hold a sign that says..."
+              name="requests"
+              value={passengerInfo.requests}
+              onChange={getPassengerInfo}
+            />
           </Form.Group>
         </div>
       </div>
 
-      <Link type="submit" className={styled.continueBtn} href="#">
+      <Button type="submit" className={styled.continueBtn}>
         Continue
-      </Link>
+      </Button>
+      {/* <Link type="submit" href="#">
+        Continue
+      </Link> */}
     </Form>
   );
 };
