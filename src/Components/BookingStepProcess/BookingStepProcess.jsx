@@ -1,15 +1,13 @@
 import React from "react";
-import styled from "./BookingStepProcess.module.css";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import styled from "./BookingStepProcess.module.css";
 
-const BookingStepProcess = ({ process }) => {
+const BookingStepProcess = () => {
   const { pathname } = useRouter();
 
   const stepTwo =
     pathname === "/passengerDetails" || pathname === "/paymentDetails" ? styled.process : "";
-
-  const stepThree = pathname === "/paymentDetails" ? styled.process : "";
 
   return (
     <div className={styled.bookingStepProcess}>

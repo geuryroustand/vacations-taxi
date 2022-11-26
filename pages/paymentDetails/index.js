@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
 import styled from "./paymentDetails.module.css";
+import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -16,9 +17,7 @@ const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Paymen
   suspense: true
 });
 
-import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
-
-export default function paymentDetails() {
+function paymentDetails() {
   const flightInfo = {
     from: "Santo Domingo Airport (SDQ)",
     to: "Bahia Principe Portillo",
@@ -37,7 +36,7 @@ export default function paymentDetails() {
       </Container>
 
       <Container className={styled.paymentDetailsContainer}>
-        <Suspense fallback={`Loading...`}>
+        <Suspense fallback="Loading...">
           <DynamicBookingSummary flightInfo={flightInfo} />
           <DynamicPayment />
         </Suspense>
@@ -45,3 +44,5 @@ export default function paymentDetails() {
     </form>
   );
 }
+
+export default paymentDetails;

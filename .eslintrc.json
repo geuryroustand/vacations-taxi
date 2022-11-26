@@ -37,6 +37,16 @@
         "extensions": [".js", ".jsx"]
       }
     ],
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        }
+      }
+    ],
+    "react/function-component-definition": "off"
   }
 }

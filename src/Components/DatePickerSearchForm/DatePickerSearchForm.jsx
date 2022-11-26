@@ -1,9 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
-
-import styled from "./DatePickerSearchForm.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from "next/image";
+
+import styled from "./DatePickerSearchForm.module.css";
 
 function DatePickerSearchForm({
   pickUpAndDropDate,

@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import styled from "./Header.module.css";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+
+import styled from "./Header.module.css";
 import SearchForm from "../SearchForm/SearchForm";
 
 const Header = () => {
   const [isClicked, setIsClicked] = useState(false);
-
-  const onClick = () => {
-    // setIsClicked(!isClicked);
-  };
 
   return (
     <header className={styled.hero}>

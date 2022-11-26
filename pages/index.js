@@ -1,5 +1,3 @@
-import Head from "next/head";
-
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
@@ -21,14 +19,12 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 
 export default function Home() {
   return (
-    <>
-      <Suspense fallback={`Loading...`}>
-        <DynamicHeader />
-        <DynamicTrusted />
-        <DynamicHowWork />
+    <Suspense fallback="Loading...">
+      <DynamicHeader />
+      <DynamicTrusted />
+      <DynamicHowWork />
 
-        <DynamicAwards />
-      </Suspense>
-    </>
+      <DynamicAwards />
+    </Suspense>
   );
 }

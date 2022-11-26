@@ -1,11 +1,18 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable global-require */
+/* eslint-disable unicorn/prefer-module */
+
 import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Layout from "../src/Components/Layout/Layout";
+
 import ReactDOM from "react-dom";
 import React from "react";
 import SSRProvider from "react-bootstrap/SSRProvider";
 import { Provider } from "react-redux";
-import { store } from "../src/redux/store";
+
+import Layout from "../src/Components/Layout/Layout";
+import store from "../src/redux/store";
+
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>

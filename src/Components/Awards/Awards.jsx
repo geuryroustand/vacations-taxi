@@ -14,7 +14,7 @@ const Awards = () => {
     <section className={styled.awards}>
       <Container>
         <h2> Awards</h2>
-        <Suspense fallback={`Loading...`}>
+        <Suspense fallback="Loading...">
           <DynamicTripAdVisor />
         </Suspense>
       </Container>

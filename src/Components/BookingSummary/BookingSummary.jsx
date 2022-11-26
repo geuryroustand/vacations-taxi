@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import styled from "./BookingSummary.module.css";
 
-const BookingSummary = (props) => {
+const BookingSummary = ({ bookingDetailsWith }) => {
   const { totalPrice, flightInfo } = useSelector((state) => state.flightInfoReducer);
 
   const {
@@ -19,7 +19,7 @@ const BookingSummary = (props) => {
   } = flightInfo;
 
   return (
-    <section className={`${styled.bookingDetails} ${props.bookingDetailsWith} `}>
+    <section className={`${styled.bookingDetails} ${bookingDetailsWith} `}>
       <h1>Your booking details</h1>
 
       <p>From</p>
@@ -52,7 +52,7 @@ const BookingSummary = (props) => {
 
       <p>Total Price</p>
 
-      <h2>$ {totalPrice ? totalPrice : +priceTaxi1}</h2>
+      <h2>$ {totalPrice || +priceTaxi1}</h2>
     </section>
   );
 };

@@ -12,12 +12,12 @@ const DynamicNavigation = dynamic(() => import("../Navigation/Navigation"), {
 const Layout = ({ children }) => {
   return (
     <>
-      <Suspense fallback={`Loading...`}>
+      <Suspense fallback="Loading...">
         <DynamicNavigation />
       </Suspense>
 
       <main>{children}</main>
-      <Suspense fallback={`Loading...`}>
+      <Suspense fallback="Loading...">
         <DynamicFooter />
       </Suspense>
     </>

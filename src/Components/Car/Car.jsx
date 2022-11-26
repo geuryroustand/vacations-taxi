@@ -1,7 +1,14 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
+import React from "react";
 import Image from "next/image";
-import styled from "./Car.module.css";
 import Link from "next/link";
+
+import styled from "./Car.module.css";
 
 const Car = ({
   totalPassengers,
@@ -9,9 +16,9 @@ const Car = ({
   cartTypeImage,
   totalPrice,
   oneWayOrRoundTrip,
-  cartClicked,
   cartSelected,
-  id
+  id,
+  selectedText
 }) => {
   return (
     <div id={id} className={`${styled.car} `} onClick={cartSelected}>
@@ -64,7 +71,7 @@ const Car = ({
 
       <div className={styled.list}>
         <p>/{oneWayOrRoundTrip}</p>
-        <Link href="#">Select this vehicle</Link>
+        <Link href="#">{selectedText}</Link>
       </div>
     </div>
   );

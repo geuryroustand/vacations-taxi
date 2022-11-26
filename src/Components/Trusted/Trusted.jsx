@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import { Why } from "./Why";
 import styled from "./Trusted.module.css";
+
 const Trusted = () => {
   return (
     <section className={styled.trusted}>

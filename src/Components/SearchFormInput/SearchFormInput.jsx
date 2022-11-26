@@ -1,9 +1,8 @@
-import React, { useCallback } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
-import styled from "./SearchFormInput.module.css";
 import Image from "next/image";
 
-import { debounce } from "lodash";
+import styled from "./SearchFormInput.module.css";
 
 const SearchFormInput = ({
   label,

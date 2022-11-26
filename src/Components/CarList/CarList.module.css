@@ -10,11 +10,6 @@
   scrollbar-width: none;
 }
 
-.selected {
-  border-bottom: 3px solid var(--primary-color);
-  border-left: 3px solid var(--primary-color);
-}
-
 .list::-webkit-scrollbar {
   display: none;
 }

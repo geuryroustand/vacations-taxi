@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 
 import styled from "./SearchOptions.module.css";
@@ -18,6 +20,7 @@ const SearchOptions = ({ moveLeft, locationsFetch, onClickedSearchedResult, opti
   return (
     <ul className={`${styled.searchList} ${moveLeft && styled.moveLeft}`}>
       {locationsFetch?.searchResults?.map(({ location, _id }) => (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
         <li
           key={_id}
           className={styled.searchListOption}

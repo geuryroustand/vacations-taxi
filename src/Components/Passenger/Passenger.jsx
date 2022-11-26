@@ -2,14 +2,12 @@ import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
 
-import Link from "next/link";
-
-import styled from "./Passenger.module.css";
-
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
+
+import styled from "./Passenger.module.css";
 
 const Passenger = () => {
   const [validated, setValidated] = useState(false);
@@ -31,18 +29,15 @@ const Passenger = () => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
-      event.stopPropagation();
-
-      console.log("dispact");
     }
 
     setValidated(true);
   };
 
-  const getPassengerInfo = (e) => {
+  const getPassengerInfo = (event) => {
     setPassengerInfo({
       ...passengerInfo,
-      [e.target.name]: e.target.value
+      [event.target.name]: event.target.value
     });
   };
 
@@ -95,7 +90,7 @@ const Passenger = () => {
               onChange={getPassengerInfo}
             />
             <Form.Text className="text-muted">
-              We'll send you the confirmation voucher here
+              We ll send you the confirmation voucher here
             </Form.Text>
 
             <Form.Control.Feedback type="invalid">Please enter a valid email</Form.Control.Feedback>

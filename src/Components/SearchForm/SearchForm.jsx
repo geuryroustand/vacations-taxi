@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-expressions */
+// eslint-disable-next-line no-shadow
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -17,7 +20,7 @@ import ModalBoots from "../Modal/Modal";
 import SearchOptions from "../SearchOptions/SearchOptions";
 
 const SearchForm = ({ isClicked }) => {
-  let isDesktopOrLaptopOrTable = true;
+  const isDesktopOrLaptopOrTable = true;
 
   // const isDesktopOrLaptopOrTable = useMediaQuery({
   //   query: "(min-width:48rem)"
@@ -27,8 +30,6 @@ const SearchForm = ({ isClicked }) => {
     pickUpPassenger: 1,
     dropOffPassenger: 1
   });
-
-  console.log(passenger);
 
   const [pickUpDate, setPickUpDate] = useState(new Date());
   const [pickUpTime, setPickUpTime] = useState(new Date());
@@ -166,8 +167,8 @@ const SearchForm = ({ isClicked }) => {
   });
 
   const searchLocation = useCallback(
-    debounce(async (e) => {
-      if (e.target.value.length > 3) {
+    debounce(async (event) => {
+      if (event.target.value.length > 3) {
         try {
           const response = await fetch(
             `http://localhost:3001/locations/search`,
@@ -179,7 +180,7 @@ const SearchForm = ({ isClicked }) => {
               },
 
               body: JSON.stringify({
-                location: e.target.value.trim()
+                location: event.target.value.trim()
               })
             }
           );
@@ -195,25 +196,23 @@ const SearchForm = ({ isClicked }) => {
           }
         } catch (error) {
           console.log(error);
-
           setLocationsFetch({
             noSearch: true
           });
-          return;
         }
       }
     }, 600),
     []
   );
 
-  const onChange = (e) => {
+  const onChange = (event) => {
     setSearchedTerm({
       ...searchedTerm,
-      [e.target.name]: e.target.value
+      [event.target.name]: event.target.value
     });
 
-    searchLocation(e);
-    if (e.target.name === "pickUp") {
+    searchLocation(event);
+    if (event.target.name === "pickUp") {
       setShowPickUpSearchedResult(true);
     } else {
       setShowDropOffSearchedResult(true);
@@ -249,7 +248,7 @@ const SearchForm = ({ isClicked }) => {
           name="pickUp"
           id="formBasicPickLocation1"
           isEmptyFeedback="Please provide a pick-up location"
-          required={true}
+          required
           validated={validated}
           onClickInput={() => {
             !isDesktopOrLaptopOrTable &&
@@ -281,7 +280,7 @@ const SearchForm = ({ isClicked }) => {
           name="dropOff"
           id="formBasicDropLocation1"
           isEmptyFeedback="Please provide a drop-off location"
-          required={true}
+          required
           validated={validated}
           onClickInput={() => {
             !isDesktopOrLaptopOrTable &&
@@ -321,10 +320,10 @@ const SearchForm = ({ isClicked }) => {
           setPickUpAndDropTime={setPickUpTime}
           labelPickDate="arrival date"
           labelPickTime="arrival pick time"
-          getPassenger={(e) =>
+          getPassenger={(event) =>
             setPassenger({
               ...passenger,
-              pickUpPassenger: e.target.value
+              pickUpPassenger: event.target.value
             })
           }
         />
@@ -338,7 +337,7 @@ const SearchForm = ({ isClicked }) => {
       </div>
 
       {isClicked && (
-        <div className={`${styled["searchForm"]} ${styled["return-searchForm"]} `}>
+        <div className={`${styled.searchForm} ${styled["return-searchForm"]} `}>
           {/* <SearchFormInput
             labelPick="Enter pick-up location"
             placeHolderPick="Enter pick-up location"
@@ -351,7 +350,7 @@ const SearchForm = ({ isClicked }) => {
             label="Enter drop location"
             placeHolder="Enter drop location"
             isEmptyFeedback="Please provide a pick-up location"
-            disabled={true}
+            disabled
             searchedTerm={searchedTerm.dropOffSearchedTermClicked ? searchedTerm.dropOff : ""}
           />
 
@@ -359,7 +358,7 @@ const SearchForm = ({ isClicked }) => {
             label="Enter pick-up location"
             placeHolder="Enter pick-up location"
             isEmptyFeedback="Please provide a drop-off location"
-            disabled={true}
+            disabled
             searchedTerm={searchedTerm.pickUpSearchedTermClicked ? searchedTerm.pickUp : ""}
           />
 
@@ -370,10 +369,10 @@ const SearchForm = ({ isClicked }) => {
             setPickUpAndDropTime={setDropOffTime}
             labelPickDate="departure date"
             labelPickTime="departure pick time"
-            getPassenger={(e) =>
+            getPassenger={(event) =>
               setPassenger({
                 ...passenger,
-                dropOffPassenger: e.target.value
+                dropOffPassenger: event.target.value
               })
             }
           />

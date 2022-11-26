@@ -1,9 +1,10 @@
-import React from "react";
-import styled from "./Payment.module.css";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 
 import Image from "next/image";
 import { Button } from "react-bootstrap";
 import Link from "next/link";
+import styled from "./Payment.module.css";
 
 const Payment = () => {
   return (
@@ -12,13 +13,13 @@ const Payment = () => {
       <p>Select your payment method</p>
 
       <div className={styled.paymentWithCard}>
-        <input type="radio" name="paymentMethod" id="card" value="card" /> 
+        <input type="radio" name="paymentMethod" id="card" value="card" />
         <label htmlFor="card">Pay with:</label>
         <Image src="/images/creditCards.svg" width="195.89px" height="18px" alt="location" />
       </div>
 
       <div>
-        <input type="radio" name="paymentMethod" id="effective" value="effective" /> 
+        <input type="radio" name="paymentMethod" id="effective" value="effective" />
         <label htmlFor="effective">Effective</label>
       </div>
       <p className={styled.paragraph}>
@@ -27,7 +28,7 @@ const Payment = () => {
       </p>
 
       <p>
-        By clicking 'PAY & BOOK' you are accepting our
+        By clicking PAY & BOOK you are accepting our
         <Link target="_blank" href="#">
           <a className={styled.termsAndConditions}> Terms and Conditions</a>
         </Link>

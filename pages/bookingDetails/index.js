@@ -1,10 +1,15 @@
-import React from "react";
+/* eslint-disable unicorn/prevent-abbreviations */
+/* eslint-disable unicorn/no-null */
+/* eslint-disable no-unsafe-optional-chaining */
+/* eslint-disable no-unused-vars */
 
+import React, { Suspense, useState, useEffect } from "react";
+import Container from "react-bootstrap/Container";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
-
-import BookingSummary from "../../src/Components/BookingSummary/BookingSummary";
-import CarList from "../../src/Components/CarList/CarList";
+import styled from "./bookingDetails.module.css";
+import { allFlightInfo } from "../../src/redux/flightInfoSlice";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 
 const DynamicBookingSummary = dynamic(
@@ -22,17 +27,7 @@ const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Pa
   suspense: true
 });
 
-import Container from "react-bootstrap/Container";
-
-import styled from "./bookingDetails.module.css";
-
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { allFlightInfo, updateTotalPrice } from "../../src/redux/flightInfoSlice";
-
-export default function BookingDetails() {
+function BookingDetails() {
   const [isLoading, setIsLoading] = useState(null);
   const [dataInfo, setDataInfo] = useState();
 
@@ -109,7 +104,7 @@ export default function BookingDetails() {
         <BookingStepProcess />
       </Container>
       <Container className={styled.bookingDetailsContainer}>
-        <Suspense fallback={`Loading...`}>
+        <Suspense fallback="Loading...">
           <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />
           <div className={styled.cartAndPassengerDetail}>
             <DynamicCarList />
@@ -120,3 +115,5 @@ export default function BookingDetails() {
     </div>
   );
 }
+
+export default BookingDetails;
