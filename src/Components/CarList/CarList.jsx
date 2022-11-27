@@ -14,9 +14,8 @@ const CarList = () => {
 
   const reference = useRef(queryId4);
 
-  const { priceTaxi1, priceTaxi2, priceTaxi3, priceTaxi4, roundtrip } = useSelector(
-    (state) => state.flightInfoReducer.flightInfo
-  );
+  const { priceTaxi1, priceTaxi2, priceTaxi3, priceTaxi4, roundtrip } =
+    useSelector((state) => state?.flightInfoReducer?.flightInfo) || {};
 
   const oneWayOrRoundTrip = roundtrip ? "RoundTrip" : "One way";
 

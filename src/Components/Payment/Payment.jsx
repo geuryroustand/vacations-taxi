@@ -1,31 +1,59 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-import Image from "next/image";
-import { Button } from "react-bootstrap";
+// import Image from "next/image";
+import { useSelector } from "react-redux";
+import Button from "react-bootstrap/Button";
+import { useState } from "react";
+
 import Link from "next/link";
 import styled from "./Payment.module.css";
 
 const Payment = () => {
+  const { bookingInfo } = useSelector((state) => state.flightInfoReducer) || {};
+
+  const { totalPrice } = bookingInfo;
+
+  const [paymentMethod, setPaymentMethod] = useState("");
+
+  const getPayMethod = (event) => {
+    setPaymentMethod(event.target.value);
+  };
+
   return (
     <div className={styled.payment}>
       <h2 className={styled.paymentHeading}>Payment Details</h2>
       <p>Select your payment method</p>
 
-      <div className={styled.paymentWithCard}>
-        <input type="radio" name="paymentMethod" id="card" value="card" />
+      {/* <div className={styled.paymentWithCard}>
+        <input type="radio" onChange={getPayMethod} name="paymentMethod" id="card" value="card" />
         <label htmlFor="card">Pay with:</label>
         <Image src="/images/creditCards.svg" width="195.89px" height="18px" alt="location" />
-      </div>
+      </div> */}
 
       <div>
-        <input type="radio" name="paymentMethod" id="effective" value="effective" />
+        <input
+          onChange={getPayMethod}
+          type="radio"
+          name="paymentMethod"
+          id="effective"
+          value="effective"
+          checked
+        />
         <label htmlFor="effective">Effective</label>
       </div>
-      <p className={styled.paragraph}>
-        You can pay with debit or credit card. We going to be redirect to stripe , once the payment
-        its done you going to be redirect to our website again.
-      </p>
+
+      {paymentMethod === "card" ? (
+        <p className={styled.paragraph}>
+          You can pay by debit or credit card. We will redirect you to the stripe page, once the
+          payment is done, you will be redirected to our website again.
+        </p>
+      ) : (
+        <p className={styled.paragraph}>
+          Please note that cash payments can only be made in cash for the total amount due once at
+          destination.
+        </p>
+      )}
 
       <p>
         By clicking PAY & BOOK you are accepting our
@@ -39,7 +67,7 @@ const Payment = () => {
       </p>
 
       <Button className={styled.paymentBtn} type="submit">
-        Pay $000 & Book
+        Pay ${totalPrice} & Book
       </Button>
     </div>
   );

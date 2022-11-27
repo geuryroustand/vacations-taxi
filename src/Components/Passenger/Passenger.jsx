@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
-
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { useSelector } from "react-redux";
-import { Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "react-bootstrap/Button";
+import { useRouter } from "next/router";
 
 import styled from "./Passenger.module.css";
+import { bookingInfo } from "../../redux/flightInfoSlice";
 
 const Passenger = () => {
   const [validated, setValidated] = useState(false);
+
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const [passengerInfo, setPassengerInfo] = useState({
     firstName: "",
     lastName: "",
@@ -23,12 +28,14 @@ const Passenger = () => {
     requests: ""
   });
 
-  const { roundtrip } = useSelector((state) => state.flightInfoReducer.flightInfo);
+  const { roundtrip } = useSelector((state) => state.flightInfoReducer.flightInfo) || {};
 
   const sendData = (event) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
+    event.preventDefault();
+    if (!form.checkValidity() === false) {
+      dispatch(bookingInfo(passengerInfo));
+      router.push("/paymentDetails");
     }
 
     setValidated(true);

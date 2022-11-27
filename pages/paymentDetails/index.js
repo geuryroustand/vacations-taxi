@@ -18,17 +18,6 @@ const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Paymen
 });
 
 function paymentDetails() {
-  const flightInfo = {
-    from: "Santo Domingo Airport (SDQ)",
-    to: "Bahia Principe Portillo",
-    arrivalDate: "Saturday 27, Aug 2022 ",
-    arrivalAt: "At 13 : 37",
-    departureDate: "Sunday 21, Aug 2022",
-    departureAt: "At 13 : 37",
-    passengers: 3,
-    totalPrice: 260
-  };
-
   return (
     <form className={styled.paymentDetails}>
       <Container>
@@ -37,7 +26,7 @@ function paymentDetails() {
 
       <Container className={styled.paymentDetailsContainer}>
         <Suspense fallback="Loading...">
-          <DynamicBookingSummary flightInfo={flightInfo} />
+          <DynamicBookingSummary />
           <DynamicPayment />
         </Suspense>
       </Container>

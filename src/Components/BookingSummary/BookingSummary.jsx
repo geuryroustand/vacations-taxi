@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import styled from "./BookingSummary.module.css";
 
 const BookingSummary = ({ bookingDetailsWith }) => {
-  const { totalPrice, flightInfo } = useSelector((state) => state.flightInfoReducer);
+  const { totalPrice, flightInfo, bookingInfo } =
+    useSelector((state) => state?.flightInfoReducer) || {};
 
   const {
     pickUp,
@@ -16,7 +17,9 @@ const BookingSummary = ({ bookingDetailsWith }) => {
     pickUpPassenger,
     priceTaxi1,
     roundtrip
-  } = flightInfo;
+  } = flightInfo || {};
+
+  const { firstName, lastName, email, mobileNumber } = bookingInfo || {};
 
   return (
     <section className={`${styled.bookingDetails} ${bookingDetailsWith} `}>
@@ -42,6 +45,19 @@ const BookingSummary = ({ bookingDetailsWith }) => {
           <div className={styled.headingBorder}>
             <h2>{dropOffDate}</h2>
             <h2>At {dropOffTime}</h2>
+          </div>
+        </div>
+      )}
+
+      {firstName && lastName && (
+        <div>
+          <p>Passengers information</p>
+          <div className={styled.headingBorder}>
+            <h6>
+              {firstName} {lastName}
+            </h6>
+            <h6>{email}</h6>
+            <h6>{mobileNumber} </h6>
           </div>
         </div>
       )}

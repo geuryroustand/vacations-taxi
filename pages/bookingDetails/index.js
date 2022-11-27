@@ -33,21 +33,21 @@ function BookingDetails() {
 
   const router = useRouter();
 
-  const {
-    dropOffDate,
-    dropOffPassenger,
-    dropOffReturn,
-    dropOffTime,
+  // const {
+  //   dropOffDate,
+  //   dropOffPassenger,
+  //   dropOffReturn,
+  //   dropOffTime,
 
-    pickUpDate,
-    pickUpPassenger,
-    pickUpReturn,
-    pickUpTime,
-    roundtrip,
+  //   pickUpDate,
+  //   pickUpPassenger,
+  //   pickUpReturn,
+  //   pickUpTime,
+  //   roundtrip,
 
-    pickUp,
-    dropOff
-  } = router?.query;
+  //   pickUp,
+  //   dropOff
+  // } = router?.query;
 
   const dispatch = useDispatch();
 
@@ -77,26 +77,26 @@ function BookingDetails() {
     return <p>Loading </p>;
   }
 
-  let flightInfo;
+  // let flightInfo;
 
-  if (router.query.roundtrip) {
-    flightInfo = {
-      pickUp: dataInfo?.pickUp,
-      dropOff: dataInfo?.dropOff,
+  // if (router.query.roundtrip) {
+  //   flightInfo = {
+  //     pickUp: dataInfo?.pickUp,
+  //     dropOff: dataInfo?.dropOff,
 
-      arrivalDate: router?.query?.pickUpDate,
-      arrivalAt: `At ${router.query?.pickUpTime}`,
+  //     arrivalDate: router?.query?.pickUpDate,
+  //     arrivalAt: `At ${router.query?.pickUpTime}`,
 
-      departureDate: router.query?.dropOffDate,
-      departureAt: `At ${router.query?.dropOffTime}`,
-      passengers: router.query?.dropOffPassenger,
+  //     departureDate: router.query?.dropOffDate,
+  //     departureAt: `At ${router.query?.dropOffTime}`,
+  //     passengers: router.query?.dropOffPassenger,
 
-      priceTaxi1: dataInfo?.priceTaxi1,
-      priceTaxi2: dataInfo?.priceTaxi2,
-      priceTaxi3: dataInfo?.priceTaxi3,
-      priceTaxi4: dataInfo?.priceTaxi4
-    };
-  }
+  //     priceTaxi1: dataInfo?.priceTaxi1,
+  //     priceTaxi2: dataInfo?.priceTaxi2,
+  //     priceTaxi3: dataInfo?.priceTaxi3,
+  //     priceTaxi4: dataInfo?.priceTaxi4
+  //   };
+  // }
 
   return (
     <div className={styled.bookingDetails}>
