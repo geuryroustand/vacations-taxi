@@ -1,0 +1,24 @@
+.loading {
+  background-color: var(--five-color);
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fallBackLoading {
+  background-color: var(--five-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading h4 {
+  margin-bottom: 1.5rem;
+}
+.spinnerColor {
+  color: var(--primary-color);
+}

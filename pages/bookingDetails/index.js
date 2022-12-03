@@ -11,6 +11,8 @@ import dynamic from "next/dynamic";
 import styled from "./bookingDetails.module.css";
 import { allFlightInfo } from "../../src/redux/flightInfoSlice";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
+import Loading from "../../src/Components/Loading/Loading";
+import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -74,7 +76,7 @@ function BookingDetails() {
   }, [router.query.pickUp]);
 
   if (isLoading) {
-    return <p>Loading </p>;
+    return <Loading />;
   }
 
   // let flightInfo;
@@ -104,11 +106,13 @@ function BookingDetails() {
         <BookingStepProcess />
       </Container>
       <Container className={styled.bookingDetailsContainer}>
-        <Suspense fallback="Loading...">
+        <Suspense fallback={<FallBackLoading />}>
           <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />
           <div className={styled.cartAndPassengerDetail}>
-            <DynamicCarList />
-            <DynamicPassenger />
+            <Suspense fallback={<FallBackLoading />}>
+              <DynamicCarList />
+              <DynamicPassenger />
+            </Suspense>
           </div>
         </Suspense>
       </Container>

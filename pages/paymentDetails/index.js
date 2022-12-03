@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 
 import Container from "react-bootstrap/Container";
 
+import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "./paymentDetails.module.css";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 
@@ -25,7 +26,7 @@ function paymentDetails() {
       </Container>
 
       <Container className={styled.paymentDetailsContainer}>
-        <Suspense fallback="Loading...">
+        <Suspense fallback={<FallBackLoading />}>
           <DynamicBookingSummary />
           <DynamicPayment />
         </Suspense>

@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   suspense: true
@@ -19,11 +20,11 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 
 export default function Home() {
   return (
-    <Suspense fallback="Loading...">
+    <Suspense fallback={<FallBackLoading />}>
       <DynamicHeader />
       <DynamicTrusted />
-      <DynamicHowWork />
 
+      <DynamicHowWork />
       <DynamicAwards />
     </Suspense>
   );

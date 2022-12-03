@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 
 import styled from "./passengerDetails.module.css";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
+import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -35,7 +36,7 @@ export default function passengerDetails() {
         <BookingStepProcess />
       </Container>
       <Container className={styled.passengerDetailsContainer}>
-        <Suspense fallback="Loading...">
+        <Suspense fallback={<FallBackLoading />}>
           <DynamicBookingSummary flightInfo={flightInfo} />
           <DynamicPassenger />
         </Suspense>

@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 
 import dynamic from "next/dynamic";
+import FallBackLoading from "../Loading/FallBackLoading";
 
 const DynamicFooter = dynamic(() => import("../Footer/Footer"), {
   suspense: true
@@ -12,12 +13,12 @@ const DynamicNavigation = dynamic(() => import("../Navigation/Navigation"), {
 const Layout = ({ children }) => {
   return (
     <>
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<FallBackLoading />}>
         <DynamicNavigation />
       </Suspense>
 
       <main>{children}</main>
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<FallBackLoading />}>
         <DynamicFooter />
       </Suspense>
     </>
