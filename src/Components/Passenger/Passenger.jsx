@@ -28,7 +28,9 @@ const Passenger = () => {
     requests: ""
   });
 
-  const { roundtrip } = useSelector((state) => state.flightInfoReducer.flightInfo) || {};
+  const { roundtrip } = useSelector((state) => state.payload) || {};
+
+  // let roundtrip;
 
   const sendData = (event) => {
     const form = event.currentTarget;

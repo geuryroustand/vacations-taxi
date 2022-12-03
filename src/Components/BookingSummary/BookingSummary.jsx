@@ -4,8 +4,9 @@ import { useSelector } from "react-redux";
 import styled from "./BookingSummary.module.css";
 
 const BookingSummary = ({ bookingDetailsWith }) => {
-  const { totalPrice, flightInfo, bookingInfo } =
-    useSelector((state) => state?.flightInfoReducer) || {};
+  const { flightInfoReducer } = useSelector((state) => state) || {};
+
+  const { totalPrice, flightInfo, bookingInfo } = flightInfoReducer;
 
   const {
     pickUp,

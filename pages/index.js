@@ -23,7 +23,6 @@ export default function Home() {
     <Suspense fallback={<FallBackLoading />}>
       <DynamicHeader />
       <DynamicTrusted />
-
       <DynamicHowWork />
       <DynamicAwards />
     </Suspense>

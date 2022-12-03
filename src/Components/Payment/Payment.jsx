@@ -12,7 +12,7 @@ import styled from "./Payment.module.css";
 const Payment = () => {
   const { bookingInfo } = useSelector((state) => state.flightInfoReducer) || {};
 
-  const { totalPrice } = bookingInfo;
+  const { totalPrice } = bookingInfo || {};
 
   const [paymentMethod, setPaymentMethod] = useState("");
 

@@ -31,7 +31,6 @@ const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Pa
 
 function BookingDetails() {
   const [isLoading, setIsLoading] = useState(null);
-  const [dataInfo, setDataInfo] = useState();
 
   const router = useRouter();
 
@@ -55,7 +54,10 @@ function BookingDetails() {
 
   const getData = async () => {
     setIsLoading(true);
-
+    if (!router?.query?.pickUp && !router?.query?.dropOff) {
+      setIsLoading(true);
+      return;
+    }
     const res = await fetch(
       `http://localhost:3001/locations/addPrices?pickUp=${router?.query?.pickUp}&dropOff=${router?.query?.dropOff}`
     );
@@ -63,17 +65,13 @@ function BookingDetails() {
     if (res.ok) {
       setIsLoading(false);
       const data = await res.json();
-      setDataInfo(data);
+      dispatch(allFlightInfo({ ...router.query, ...data }));
     }
   };
 
-  dispatch(allFlightInfo({ ...router.query, ...dataInfo }));
-
   useEffect(() => {
     getData();
-
-    dispatch(allFlightInfo({ ...router.query, ...dataInfo }));
-  }, [router.query.pickUp]);
+  }, [router.query.pickUp, router.query.dropOff]);
 
   if (isLoading) {
     return <Loading />;
