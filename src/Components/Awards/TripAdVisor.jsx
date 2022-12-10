@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import styled from "./TripAdVisor.module.css";
 
@@ -9,10 +8,11 @@ const TripAdVisor = () => {
       <div id="TA_certificateOfExcellence191" className="TA_certificateOfExcellence">
         <ul id="5zjDV6ZetG" className="TA_links aNn96rrV">
           <li id="l27ui5u" className="ww9Pfb8">
-            <Link
+            <a
               title="tripadvisor certificate"
               target="_blank"
-              href="https://www.tripadvisor.com/Attraction_Review-g811253-d10500716-Reviews-Dominican_Airport_Transfers_PLUS-Santa_Barbara_de_Samana_Samana_Province_Dominic.html">
+              href="https://www.tripadvisor.com/Attraction_Review-g811253-d10500716-Reviews-Dominican_Airport_Transfers_PLUS-Santa_Barbara_de_Samana_Samana_Province_Dominic.html"
+              rel="noreferrer">
               <Image
                 width={100}
                 height={100}
@@ -21,7 +21,7 @@ const TripAdVisor = () => {
                 className="widCOEImg"
                 alt="TripAdvisor"
               />
-            </Link>
+            </a>
           </li>
         </ul>
       </div>
@@ -35,17 +35,18 @@ const TripAdVisor = () => {
       <div id="TA_selfserveprop506" className="TA_selfserveprop">
         <ul id="A2LDzC" className="TA_links 0fJ6ZlNfu5">
           <li id="BWhP4ZbYIID" className="cXfWQqS">
-            <Link
+            <a
               title="TripAdvisor reviews "
               target="_blank"
-              href="https://www.tripadvisor.com/Attraction_Review-g811253-d10500716-Reviews-Dominican_Airport_Transfers_PLUS-Santa_Barbara_de_Samana_Samana_Province_Dominic.html">
+              href="https://www.tripadvisor.com/Attraction_Review-g811253-d10500716-Reviews-Dominican_Airport_Transfers_PLUS-Santa_Barbara_de_Samana_Samana_Province_Dominic.html"
+              rel="noreferrer">
               <Image
                 width={100}
                 height={100}
                 alt="TripAdvisor"
                 src="https://www.tripadvisor.com/img/cdsi/img2/branding/v2/Tripadvisor_lockup_horizontal_secondary_registered-11900-2.svg"
               />
-            </Link>
+            </a>
           </li>
         </ul>
       </div>

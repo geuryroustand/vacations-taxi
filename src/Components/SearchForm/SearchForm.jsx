@@ -1,12 +1,8 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-expressions */
-// eslint-disable-next-line no-shadow
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-// import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 import { debounce } from "lodash";
 import { format } from "date-fns";
 
@@ -20,22 +16,23 @@ import ModalBoots from "../Modal/Modal";
 import SearchOptions from "../SearchOptions/SearchOptions";
 
 const SearchForm = ({ isClicked }) => {
-  const isDesktopOrLaptopOrTable = true;
-
-  // const isDesktopOrLaptopOrTable = useMediaQuery({
-  //   query: "(min-width:48rem)"
-  // });
+  const isDesktopOrLaptopOrTable =
+    typeof window !== "undefined"
+      ? useMediaQuery({
+          query: "(min-width:48rem)"
+        })
+      : false;
 
   const [passenger, setPassenger] = useState({
     pickUpPassenger: 1,
     dropOffPassenger: 1
   });
 
-  const [pickUpDate, setPickUpDate] = useState(new Date());
-  const [pickUpTime, setPickUpTime] = useState(new Date());
+  const [currentPickUpDate, setCurrentPickUpDate] = useState(new Date());
+  const [currentPickUpTime, setCurrentPickUpTime] = useState(new Date());
 
-  const [dropOffDate, setDropOffDate] = useState(new Date());
-  const [dropOffTime, setDropOffTime] = useState(new Date());
+  const [currentDropOffDate, setCurrentDropOffDate] = useState(new Date());
+  const [currentDropOffTime, setCurrentDropOffTime] = useState(new Date());
 
   const [searchedTerm, setSearchedTerm] = useState({
     pickUp: "",
@@ -51,10 +48,10 @@ const SearchForm = ({ isClicked }) => {
   useEffect(() => {
     setSearchedTerm({
       ...searchedTerm,
-      pickUpDate: format(pickUpDate, "eee d, MMM  yyyy"),
-      pickUpTime: format(pickUpTime, "k:m")
+      pickUpDate: format(currentPickUpDate, "eee d, MMM  yyyy"),
+      pickUpTime: format(currentPickUpTime, "k:m")
     });
-  }, [pickUpDate, pickUpTime]);
+  }, [currentPickUpDate, currentPickUpTime]);
 
   useEffect(() => {
     if (isClicked) {
@@ -62,8 +59,8 @@ const SearchForm = ({ isClicked }) => {
         ...searchedTerm,
         pickUpReturn: searchedTerm.dropOff,
         dropOffReturn: searchedTerm.pickUp,
-        dropOffDate: format(dropOffDate, "eee d, MMM  yyyy"),
-        dropOffTime: format(dropOffTime, "k:m"),
+        dropOffDate: format(currentDropOffDate, "eee d, MMM  yyyy"),
+        dropOffTime: format(currentDropOffTime, "k:m"),
         roundtrip: true
       });
     } else {
@@ -76,41 +73,37 @@ const SearchForm = ({ isClicked }) => {
         dropOffSearchedTermClicked: true
       });
     }
-  }, [isClicked, dropOffDate, dropOffTime]);
+  }, [isClicked, currentDropOffDate, currentDropOffTime]);
 
   const [validated, setValidated] = useState(false);
 
   const [showPickUpSearchedResult, setShowPickUpSearchedResult] = useState(true);
   const [showDropOffSearchedResult, setShowDropOffSearchedResult] = useState(true);
 
-  const [inputValue, setInputValue] = useState({});
+  const [modalInputValues, setModalInputValues] = useState({});
 
-  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const closeModal = () => setShowModal(false);
 
-  const showModal = (inputClickedValue) => {
-    setInputValue(inputClickedValue);
-    setShow(true);
+  const searchInputClicked = (inputClickedValue) => {
+    setModalInputValues(inputClickedValue);
+    setShowModal(true);
   };
-
-  const closeModal = () => setShow(false);
 
   const submitData = (event) => {
     const form = event.currentTarget;
     event.preventDefault();
 
     const {
-      dropOffDate,
       dropOffReturn,
-      dropOffTime,
-
-      pickUpDate,
       pickUpReturn,
-      pickUpTime,
-
       roundtrip,
-
       dropOffID,
-      pickUpID
+      pickUpID,
+      pickUpDate,
+      pickUpTime,
+      dropOffDate,
+      dropOffTime
     } = searchedTerm;
 
     const { pickUpPassenger, dropOffPassenger } = passenger;
@@ -148,14 +141,6 @@ const SearchForm = ({ isClicked }) => {
           }
         });
       }
-      // router.push({
-      //   pathname: "/bookingDetails",
-      //   query: {
-      //     ...searchedTerm,
-
-      //     ...passenger
-      //   }
-      // });
     }
 
     setValidated(true);
@@ -212,6 +197,23 @@ const SearchForm = ({ isClicked }) => {
     });
 
     searchLocation(event);
+
+    // if (!isDesktopOrLaptopOrTable && event.target.value !== "" && event.target.name === "pickUp") {
+    //   searchInputClicked({
+    //     title: "Pick-up location",
+    //     label: "Enter pick-up location",
+    //     placeHolder: "Enter pick-up location"
+    //   });
+    // }
+
+    // if (!isDesktopOrLaptopOrTable && event.target.value !== "" && event.target.name === "dropOff") {
+    //   searchInputClicked({
+    //     title: "Drop-off location",
+    //     label: "Enter drop location ",
+    //     placeHolder: "Enter pick-up location"
+    //   });
+    // }
+
     if (event.target.name === "pickUp") {
       setShowPickUpSearchedResult(true);
     } else {
@@ -220,6 +222,10 @@ const SearchForm = ({ isClicked }) => {
   };
 
   const onClickedSearchedResult = ({ pickUp, pickUpID, dropOff, dropOffID }) => {
+    if (!isDesktopOrLaptopOrTable) {
+      setShowModal(false);
+    }
+
     if (pickUp) {
       setSearchedTerm({
         ...searchedTerm,
@@ -250,14 +256,15 @@ const SearchForm = ({ isClicked }) => {
           isEmptyFeedback="Please provide a pick-up location"
           required
           validated={validated}
-          onClickInput={() => {
+          onClickInput={() =>
             !isDesktopOrLaptopOrTable &&
-              showModal({
-                title: "Pick-up location",
-                label: "Enter pick-up location",
-                placeHolder: "Enter pick-up location"
-              });
-          }}
+            searchInputClicked({
+              title: "Pick-up location",
+              label: "Enter pick-up location",
+              placeHolder: "Enter pick-up location",
+              optionToShow: "pickUp"
+            })
+          }
           onChange={onChange}
           searchedTerm={searchedTerm.pickUp || ""}
           // onKeyUp={debouncedSearchLocation}
@@ -282,14 +289,15 @@ const SearchForm = ({ isClicked }) => {
           isEmptyFeedback="Please provide a drop-off location"
           required
           validated={validated}
-          onClickInput={() => {
+          onClickInput={() =>
             !isDesktopOrLaptopOrTable &&
-              showModal({
-                title: "Drop-off location",
-                label: "Enter drop location ",
-                placeHolder: "Enter pick-up location"
-              });
-          }}
+            searchInputClicked({
+              title: "Drop-off location",
+              label: "Enter drop location ",
+              placeHolder: "Enter pick-up location",
+              optionToShow: "dropOff"
+            })
+          }
           onChange={onChange}
           // onKeyUp={searchLocation}
           searchedTerm={searchedTerm.dropOff || ""}
@@ -314,10 +322,10 @@ const SearchForm = ({ isClicked }) => {
         /> */}
 
         <DatePickerSearchForm
-          pickUpAndDropDate={pickUpDate}
-          setPickUpAndDropDate={setPickUpDate}
-          pickUpAndDropTime={pickUpTime}
-          setPickUpAndDropTime={setPickUpTime}
+          pickUpAndDropDate={currentPickUpDate}
+          setPickUpAndDropDate={setCurrentPickUpDate}
+          pickUpAndDropTime={currentPickUpTime}
+          setPickUpAndDropTime={setCurrentPickUpTime}
           labelPickDate="arrival date"
           labelPickTime="arrival pick time"
           getPassenger={(event) =>
@@ -363,10 +371,10 @@ const SearchForm = ({ isClicked }) => {
           />
 
           <DatePickerSearchForm
-            pickUpAndDropDate={dropOffDate}
-            setPickUpAndDropDate={setDropOffDate}
-            pickUpAndDropTime={dropOffTime}
-            setPickUpAndDropTime={setDropOffTime}
+            pickUpAndDropDate={currentDropOffDate}
+            setPickUpAndDropDate={setCurrentDropOffDate}
+            pickUpAndDropTime={currentDropOffTime}
+            setPickUpAndDropTime={setCurrentDropOffTime}
             labelPickDate="departure date"
             labelPickTime="departure pick time"
             getPassenger={(event) =>
@@ -386,10 +394,12 @@ const SearchForm = ({ isClicked }) => {
       )}
 
       <ModalBoots
-        show={show}
+        showModal={showModal}
         closeModal={closeModal}
-        inputValue={inputValue}
+        modalInputValues={modalInputValues}
         locationsFetch={locationsFetch}
+        onChange={onChange}
+        onClickedSearchedResult={onClickedSearchedResult}
       />
     </Form>
   );

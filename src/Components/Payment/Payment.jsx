@@ -4,6 +4,7 @@
 // import Image from "next/image";
 import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { useState } from "react";
 
 import Link from "next/link";
@@ -54,6 +55,15 @@ const Payment = () => {
           destination.
         </p>
       )}
+
+      <Form.Group className="mb-3">
+        <Form.Check
+          required
+          label="Agree to terms and conditions"
+          feedback="You must agree before booking."
+          feedbackType="invalid"
+        />
+      </Form.Group>
 
       <p>
         By clicking PAY & BOOK you are accepting our

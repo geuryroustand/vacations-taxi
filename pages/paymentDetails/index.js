@@ -1,7 +1,8 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import dynamic from "next/dynamic";
 
 import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "./paymentDetails.module.css";
@@ -19,8 +20,20 @@ const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Paymen
 });
 
 function paymentDetails() {
+  const [validated, setValidated] = useState(false);
+
+  const sendInfo = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
   return (
-    <form className={styled.paymentDetails}>
+    <Form className={styled.paymentDetails} noValidate validated={validated} onSubmit={sendInfo}>
       <Container>
         <BookingStepProcess />
       </Container>
@@ -31,7 +44,7 @@ function paymentDetails() {
           <DynamicPayment />
         </Suspense>
       </Container>
-    </form>
+    </Form>
   );
 }
 

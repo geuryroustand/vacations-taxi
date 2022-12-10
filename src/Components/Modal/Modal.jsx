@@ -5,19 +5,31 @@ import Modal from "react-bootstrap/Modal";
 import SearchFormInput from "../SearchFormInput/SearchFormInput";
 import SearchOptions from "../SearchOptions/SearchOptions";
 
-const ModalBoots = ({ show, closeModal, inputValue, locationsFetch }) => {
-  const { title, label, placeHolder } = inputValue;
+const ModalBoots = ({
+  showModal,
+  closeModal,
+  modalInputValues,
+  locationsFetch,
+  onChange,
+  onClickedSearchedResult
+}) => {
+  const { title, label, placeHolder, optionToShow } = modalInputValues;
 
   return (
-    <Modal show={show} onHide={closeModal}>
+    <Modal show={showModal} onHide={closeModal}>
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <SearchFormInput label={label} placeHolder={placeHolder} autoFocus />
+          <SearchFormInput label={label} placeHolder={placeHolder} autoFocus onChange={onChange} />
         </Form>
-        <SearchOptions show locationsFetch={locationsFetch} />
+        <SearchOptions
+          show
+          locationsFetch={locationsFetch}
+          onClickedSearchedResult={onClickedSearchedResult}
+          optionToShow={optionToShow}
+        />
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={closeModal}>
