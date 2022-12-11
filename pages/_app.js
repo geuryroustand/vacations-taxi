@@ -9,6 +9,7 @@ import ReactDOM from "react-dom";
 import React from "react";
 import SSRProvider from "react-bootstrap/SSRProvider";
 import { Provider } from "react-redux";
+// import { PersistGate } from "reduxjs-toolkit-persist/integration/react";
 // eslint-disable-next-line no-unused-vars
 
 import Layout from "../src/Components/Layout/Layout";
@@ -19,7 +20,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <SSRProvider>
-        {/* <PersistGate loading={null} persistor={persistor}> */}
+        {/* <PersistGate loading="Loading" persistor={persistor}> */}
         <Layout>
           <Component {...pageProps} />
         </Layout>

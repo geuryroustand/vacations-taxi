@@ -65,6 +65,7 @@ function BookingDetails() {
     if (res.ok) {
       setIsLoading(false);
       const data = await res.json();
+
       dispatch(allFlightInfo({ ...router.query, ...data }));
     }
   };
