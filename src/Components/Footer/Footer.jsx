@@ -20,8 +20,8 @@ const Footer = () => {
           <li className={styled.footerList}>
             <h3 className={styled.heading}>Company</h3>
             <Link href="/">About Us</Link>
-            <Link href="/">Help Center</Link>
-            <Link href="/">Terms and Conditions</Link>
+            <Link href="/contactUs">Help Center</Link>
+            <Link href="/termsAndConditions">Terms and Conditions</Link>
           </li>
         </ul>
 

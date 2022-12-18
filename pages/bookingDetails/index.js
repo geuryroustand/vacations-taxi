@@ -52,6 +52,7 @@ function BookingDetails() {
 
   const dispatch = useDispatch();
 
+  // TODO  fixed the problem when fetch and the price its not find
   const getData = async () => {
     setIsLoading(true);
     if (!router?.query?.pickUp && !router?.query?.dropOff) {

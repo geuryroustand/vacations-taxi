@@ -32,3 +32,7 @@
   border-bottom: 3px solid var(--primary-color);
   border-left: 3px solid var(--primary-color);
 }
+
+.main {
+  margin: auto;
+}

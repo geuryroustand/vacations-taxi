@@ -2,8 +2,8 @@
 /* eslint-disable global-require */
 /* eslint-disable unicorn/prefer-module */
 
-import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/globals.css";
 
 import ReactDOM from "react-dom";
 import React from "react";

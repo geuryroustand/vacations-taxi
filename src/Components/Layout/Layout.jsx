@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
         <DynamicNavigation />
       </Suspense>
 
-      <main>{children}</main>
+      <main className="main">{children}</main>
       <Suspense fallback={<FallBackLoading />}>
         <DynamicFooter />
       </Suspense>
