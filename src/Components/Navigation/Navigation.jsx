@@ -2,7 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+// import NavDropdown from "react-bootstrap/NavDropdown";
 import styled from "./Navigation.module.css";
 
 const Navigation = () => {
@@ -16,14 +16,14 @@ const Navigation = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            {/* <Nav.Link href="/">Link</Nav.Link> */}
+            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="/">Action</NavDropdown.Item>
               <NavDropdown.Item href="/">Another action</NavDropdown.Item>
               <NavDropdown.Item href="/">Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/">Separated link</NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

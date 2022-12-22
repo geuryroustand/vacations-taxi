@@ -1,0 +1,14 @@
+.articleContainer {
+  padding-top: 5rem;
+}
+
+.articleContainer article {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.articleHeading {
+  font-size: 2rem;
+  text-align: center;
+  padding-bottom: 2rem;
+}

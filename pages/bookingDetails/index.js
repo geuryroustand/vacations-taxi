@@ -6,13 +6,14 @@
 import React, { Suspense, useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import styled from "./bookingDetails.module.css";
 import { allFlightInfo } from "../../src/redux/flightInfoSlice";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 import Loading from "../../src/Components/Loading/Loading";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+import MyHead from "../../src/Components/MyHead/MyHead";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -31,6 +32,8 @@ const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Pa
 
 function BookingDetails() {
   const [isLoading, setIsLoading] = useState(null);
+
+  const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
 
   const router = useRouter();
 
@@ -76,7 +79,12 @@ function BookingDetails() {
   }, [router.query.pickUp, router.query.dropOff]);
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <>
+        <MyHead title="Searching..." noIndex />
+        <Loading />;
+      </>
+    );
   }
 
   // let flightInfo;
@@ -102,6 +110,10 @@ function BookingDetails() {
 
   return (
     <div className={styled.bookingDetails}>
+      <MyHead
+        title={`${pickUp || ""}  ${pickUp && dropOff ? "to" : ""} ${dropOff || ""}`}
+        noIndex
+      />
       <Container>
         <BookingStepProcess />
       </Container>

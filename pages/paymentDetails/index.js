@@ -10,6 +10,7 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "./paymentDetails.module.css";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 import { persistor } from "../../src/redux/store";
+import MyHead from "../../src/Components/MyHead/MyHead";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -24,6 +25,8 @@ const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Paymen
 
 function paymentDetails() {
   const { bookingInfo } = useSelector((state) => state.flightInfoReducer);
+
+  const { pickUp, dropOff } = bookingInfo || {};
 
   const [validated, setValidated] = useState(false);
 
@@ -43,6 +46,11 @@ function paymentDetails() {
 
   return (
     <Form className={styled.paymentDetails} noValidate validated={validated} onSubmit={sendInfo}>
+      <MyHead
+        title={`${pickUp || ""}  ${pickUp && dropOff ? "to" : ""} ${dropOff || ""}`}
+        noIndex
+      />
+
       <Container>
         <BookingStepProcess />
       </Container>

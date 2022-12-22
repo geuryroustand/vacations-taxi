@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 
 import styled from "./contactUs.module.css";
+import MyHead from "../../src/Components/MyHead/MyHead";
 
 const DynamicContactForm = dynamic(() => import("../../src/Components/contactForm/ContactForm"), {
   suspense: true
@@ -20,6 +21,7 @@ const DynamicContactForm = dynamic(() => import("../../src/Components/contactFor
 function contactUs() {
   return (
     <div className={styled.contactForm}>
+      <MyHead title="Contact Us" noIndex />
       <Container>
         <Suspense fallback={<FallBackLoading />}>
           <DynamicContactForm />
