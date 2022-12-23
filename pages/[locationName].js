@@ -24,28 +24,23 @@ function PagesForSEO({ locationFound }) {
   const { article1, article2, desc, heading1, keywords } = locationFound;
 
   return (
-    <>
+    <Suspense fallback={<FallBackLoading />}>
       <MyHead title={heading1} desc={desc} keyword={keywords} />
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader heading1={heading1} heading2={desc} headingType />
-        <DynamicTrusted />
+      <DynamicHeader heading1={heading1} heading2={desc} headingType />
+      <DynamicTrusted />
 
-        <Container className={styled.articleContainer}>
-          <article>
-            <h2 className={styled.articleHeading}>{article1.title}</h2>
-            <p>{article1.paragraph}.</p>
-          </article>
-          <article>
-            <h2 className={styled.articleHeading}>{article2.title}</h2>
-            <p>{article2.paragraph}.</p>
-          </article>
-        </Container>
-      </Suspense>
-
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicAwards />
-      </Suspense>
-    </>
+      <Container className={styled.articleContainer}>
+        <article>
+          <h2 className={styled.articleHeading}>{article1.title}</h2>
+          <p>{article1.paragraph}.</p>
+        </article>
+        <article>
+          <h2 className={styled.articleHeading}>{article2.title}</h2>
+          <p>{article2.paragraph}.</p>
+        </article>
+      </Container>
+      <DynamicAwards />
+    </Suspense>
   );
 }
 
