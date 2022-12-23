@@ -16,9 +16,9 @@ const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted")
   suspense: true
 });
 
-const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
-  suspense: true
-});
+// const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
+//   suspense: true
+// });
 
 function PagesForSEO({ locationFound }) {
   const { article1, article2, desc, heading1, keywords } = locationFound;
@@ -39,7 +39,7 @@ function PagesForSEO({ locationFound }) {
           <p>{article2.paragraph}.</p>
         </article>
       </Container>
-      <DynamicAwards />
+      {/* <DynamicAwards /> */}
     </Suspense>
   );
 }
