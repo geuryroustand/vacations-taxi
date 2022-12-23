@@ -23,11 +23,12 @@ function PagesForSEO({ locationFound }) {
   const { article1, article2, desc, heading1, keywords } = locationFound;
 
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
       <MyHead title={heading1} desc={desc} keyword={keywords} />
-      <DynamicHeader heading1={heading1} heading2={desc} headingType />
-      <DynamicTrusted />
-
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader heading1={heading1} heading2={desc} headingType />
+        <DynamicTrusted />
+      </Suspense>
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>{article1.title}</h2>
@@ -39,8 +40,11 @@ function PagesForSEO({ locationFound }) {
           <p>{article2.paragraph}.</p>
         </article>
       </Container>
-      <DynamicAwards />
-    </Suspense>
+
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicAwards />
+      </Suspense>
+    </>
   );
 }
 

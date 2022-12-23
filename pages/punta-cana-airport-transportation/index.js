@@ -21,20 +21,22 @@ const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards")
 
 export default function seoPage() {
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
       <MyHead
         title="Punta cana airport transportation"
         desc="Reliable and affordable Punta Cana airport transportation"
         keyword="Punta cana airport transportation | Airport shuttle punta cana | Punta Cana Airport Transfer | Punta Cana Taxi "
       />
-      <DynamicHeader
-        heading1="Punta cana airport transportation"
-        heading2="It is factual that Punta Cana airport is the busiest airport in the Dominican Republic. It is accountable for above
+
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader
+          heading1="Punta cana airport transportation"
+          heading2="It is factual that Punta Cana airport is the busiest airport in the Dominican Republic. It is accountable for above
           60% air arrivals. It has open-air terminals. Our Punta Cana airport transfer shuttle
           services are going to add to your travel leisure in many ways."
-      />
-      <DynamicTrusted />
-
+        />
+        <DynamicTrusted />
+      </Suspense>
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>Airport shuttle punta cana</h2>
@@ -165,7 +167,10 @@ export default function seoPage() {
           </ul>
         </article>
       </Container>
-      <DynamicAwards />
-    </Suspense>
+
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicAwards />
+      </Suspense>
+    </>
   );
 }
