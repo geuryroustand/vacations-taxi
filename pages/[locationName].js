@@ -49,8 +49,8 @@ export async function getStaticProps({ params }) {
   const response = await fetch(
     `${
       PROD
-        ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/seoLocations`
-        : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/seoLocations`
+        ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/seoLocations`
+        : `${process.env.NEXT_PUBLIC_API_DEV_URL}/seoLocations`
     }`
   );
   const seoLocations = await response.json();
@@ -78,10 +78,11 @@ export async function getStaticPaths() {
   const response = await fetch(
     `${
       PROD
-        ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/seoLocations`
-        : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/seoLocations`
+        ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/seoLocations`
+        : `${process.env.NEXT_PUBLIC_API_DEV_URL}/seoLocations`
     }`
   );
+
   const seoLocations = await response.json();
 
   const locations = seoLocations.map((location) =>
