@@ -11,9 +11,13 @@ const Header = ({ heading1, heading2 }) => {
   return (
     <header className={styled.hero}>
       <Container>
-        <h1 className={styled["main-heading"]}>{heading1}</h1>
+        <h1 className={styled["main-heading"]}>
+          {heading1 || "Reliable, low cost airport transfers"}
+        </h1>
 
-        <h2 className={styled["sub-heading"]}>{heading2}</h2>
+        <h2 className={styled["sub-heading"]}>
+          {heading2 || "Easy airport transfers to and from your accommodation"}
+        </h2>
 
         <Button
           onClick={() => setIsClicked(false)}

@@ -23,10 +23,7 @@ export default function Home() {
   persistor.purge();
   return (
     <Suspense fallback={<FallBackLoading />}>
-      <DynamicHeader
-        heading1="Reliable, low cost airport transfers"
-        heading2=" Easy airport transfers to and from your accommodation"
-      />
+      <DynamicHeader />
       <DynamicTrusted />
       <DynamicHowWork />
       <DynamicAwards />

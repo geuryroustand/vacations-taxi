@@ -26,7 +26,7 @@ function PagesForSEO({ locationFound }) {
   return (
     <Suspense fallback={<FallBackLoading />}>
       <MyHead title={heading1} desc={desc} keyword={keywords} />
-      <DynamicHeader heading1={heading1} heading2={desc} headingType />
+      <DynamicHeader heading1={heading1} heading2={desc} />
       <DynamicTrusted />
 
       <Container className={styled.articleContainer}>
