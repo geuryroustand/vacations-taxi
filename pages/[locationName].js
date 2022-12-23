@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+// eslint-disable-next-line no-unused-vars
 import Container from "react-bootstrap/Container";
 
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
@@ -28,18 +29,18 @@ function PagesForSEO({ locationFound }) {
       <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader heading1={heading1} heading2={desc} headingType />
         <DynamicTrusted />
-      </Suspense>
-      <Container className={styled.articleContainer}>
-        <article>
-          <h2 className={styled.articleHeading}>{article1.title}</h2>
-          <p>{article1.paragraph}.</p>
-        </article>
 
-        <article>
-          <h2 className={styled.articleHeading}>{article2.title}</h2>
-          <p>{article2.paragraph}.</p>
-        </article>
-      </Container>
+        <Container className={styled.articleContainer}>
+          <article>
+            <h2 className={styled.articleHeading}>{article1.title}</h2>
+            <p>{article1.paragraph}.</p>
+          </article>
+          <article>
+            <h2 className={styled.articleHeading}>{article2.title}</h2>
+            <p>{article2.paragraph}.</p>
+          </article>
+        </Container>
+      </Suspense>
 
       <Suspense fallback={<FallBackLoading />}>
         <DynamicAwards />
