@@ -45,7 +45,14 @@ function PagesForSEO({ locationFound }) {
 }
 
 export async function getStaticProps({ params }) {
-  const response = await fetch("http://localhost:3001/seoLocations");
+  const PROD = process.env.NODE_ENV === "production";
+  const response = await fetch(
+    `${
+      PROD
+        ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/seoLocations`
+        : `${process.env.NEXT_PUBLIC_API_DEV_URL}/seoLocations`
+    }`
+  );
   const seoLocations = await response.json();
 
   const locationFound = seoLocations.find(
@@ -66,7 +73,15 @@ export async function getStaticProps({ params }) {
 // Pre generated paths
 
 export async function getStaticPaths() {
-  const response = await fetch("http://localhost:3001/seoLocations");
+  const PROD = process.env.NODE_ENV === "production";
+
+  const response = await fetch(
+    `${
+      PROD
+        ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/seoLocations`
+        : `${process.env.NEXT_PUBLIC_API_DEV_URL}/seoLocations`
+    }`
+  );
   const seoLocations = await response.json();
 
   const locations = seoLocations.map((location) =>

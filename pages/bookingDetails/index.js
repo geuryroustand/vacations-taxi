@@ -62,8 +62,13 @@ function BookingDetails() {
       setIsLoading(true);
       return;
     }
+    const PROD = process.env.NODE_ENV === "production";
     const res = await fetch(
-      `http://localhost:3001/locations/addPrices?pickUp=${router?.query?.pickUp}&dropOff=${router?.query?.dropOff}`
+      `${
+        PROD
+          ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/addPrices?pickUp=${router?.query?.pickUp}&dropOff=${router?.query?.dropOff}`
+          : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/addPrices?pickUp=${router?.query?.pickUp}&dropOff=${router?.query?.dropOff}`
+      }`
     );
 
     if (res.ok) {

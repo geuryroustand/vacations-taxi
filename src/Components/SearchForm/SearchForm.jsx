@@ -155,8 +155,14 @@ const SearchForm = ({ isClicked }) => {
     debounce(async (event) => {
       if (event.target.value.length > 3) {
         try {
+          const PROD = process.env.NODE_ENV === "production";
+
           const response = await fetch(
-            `http://localhost:3001/locations/search`,
+            `${
+              PROD
+                ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/search`
+                : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/search`
+            }`,
 
             {
               method: "POST",
