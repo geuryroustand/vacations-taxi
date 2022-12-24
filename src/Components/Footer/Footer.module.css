@@ -1,7 +1,12 @@
 .footer {
   background: linear-gradient(360deg, #001a51 -22.68%, var(--secondary-darkest-color) 111.34%);
   color: var(--third-color);
+
+  margin-top: 2rem;
   padding: 1rem 0;
+  line-height: 2rem;
+  height: 100%;
+  overflow: hidden;
 }
 
 .footerUl {

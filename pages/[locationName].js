@@ -1,10 +1,9 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-// eslint-disable-next-line no-unused-vars
+
 import Container from "react-bootstrap/Container";
 
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
-// eslint-disable-next-line no-unused-vars
 import styled from "./locationsName.module.css";
 
 import MyHead from "../src/Components/MyHead/MyHead";
@@ -22,7 +21,6 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 });
 
 function PagesForSEO({ locationFound }) {
-  // eslint-disable-next-line no-unused-vars
   const { article1, article2, desc, heading1, keywords } = locationFound;
 
   return (
@@ -30,7 +28,7 @@ function PagesForSEO({ locationFound }) {
       <MyHead title={heading1} desc={desc} keyword={keywords} />
       <DynamicHeader heading1={heading1} heading2={desc} />
       <DynamicTrusted />
-      {/* 
+
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>{article1.title}</h2>
@@ -40,7 +38,7 @@ function PagesForSEO({ locationFound }) {
           <h2 className={styled.articleHeading}>{article2.title}</h2>
           <p>{article2.paragraph}.</p>
         </article>
-      </Container> */}
+      </Container>
       <DynamicAwards />
     </Suspense>
   );
