@@ -64,19 +64,9 @@
 }
 .address p a {
   text-decoration: none;
+  font-size: 1.5rem;
 }
 
 .address span {
   align-self: flex-start;
 }
-
-/* @media (min-width: 62em) {
-  .form {
-    margin-top: 0;
-    height: 16.6rem;
-  }
-
-  .formGroup {
-    width: 100%;
-  }
-} */
