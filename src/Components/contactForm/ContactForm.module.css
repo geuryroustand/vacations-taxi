@@ -1,3 +1,7 @@
+.main {
+  min-height: auto !important;
+}
+
 .contact {
   background-color: var(--third-color);
   box-shadow: 0px 20px 30px rgba(102, 106, 245, 0.13);
@@ -35,6 +39,9 @@
   width: 100%;
   background-color: var(--primary-color);
   border: none;
+  color: black;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .contactImg {

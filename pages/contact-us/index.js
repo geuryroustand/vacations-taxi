@@ -22,11 +22,13 @@ function contactUs() {
   return (
     <div className={styled.contactForm}>
       <MyHead title="Contact Us" noIndex />
-      <Container>
+
+      <Container className={styled.contactFormWrapper}>
         <Suspense fallback={<FallBackLoading />}>
           <DynamicContactForm />
         </Suspense>
       </Container>
+      <p className={styled.formBgTop} />
     </div>
   );
 }

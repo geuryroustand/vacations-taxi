@@ -34,5 +34,6 @@
 }
 
 .main {
-  min-height: 100vh;
+  min-height: 85vh;
+  /* margin-bottom: 100%; */
 }
