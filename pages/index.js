@@ -24,7 +24,10 @@ export default function Home() {
   return (
     <>
       <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader />
+        <DynamicHeader
+          heading1="Reliable, low cost airport transfers"
+          heading2="Easy airport transfers to and from your accommodation"
+        />
       </Suspense>
       <Suspense fallback={<FallBackLoading />}>
         <DynamicTrusted />
