@@ -22,11 +22,17 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 export default function Home() {
   persistor.purge();
   return (
-    <Suspense fallback={<FallBackLoading />}>
-      <DynamicHeader />
-      <DynamicTrusted />
-      <DynamicHowWork />
-      <DynamicAwards />
-    </Suspense>
+    <>
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader />
+      </Suspense>
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicTrusted />
+        <DynamicHowWork />
+      </Suspense>
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicAwards />
+      </Suspense>
+    </>
   );
 }
