@@ -11,6 +11,7 @@
 .fallBackLoading {
   background-color: var(--five-color);
   display: flex;
+  height: 6rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;

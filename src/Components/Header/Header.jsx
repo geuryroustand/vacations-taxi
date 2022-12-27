@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
+
+import dynamic from "next/dynamic";
+
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 
 import styled from "./Header.module.css";
+
 import SearchForm from "../SearchForm/SearchForm";
+
+import FallBackLoading from "../Loading/FallBackLoading";
+
+const DynamicHeading = dynamic(() => import("../Heading/Heading"), {
+  suspense: true
+});
 
 const Header = ({ heading1, heading2 }) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -11,7 +21,9 @@ const Header = ({ heading1, heading2 }) => {
   return (
     <header className={styled.hero}>
       <Container>
-        <h1 className={styled["main-heading"]}>{heading1}</h1>
+        <Suspense fallback={<FallBackLoading />}>
+          <DynamicHeading style={styled["main-heading"]} headingText={heading1} />
+        </Suspense>
 
         <h2 className={styled["sub-heading"]}>{heading2}</h2>
 
