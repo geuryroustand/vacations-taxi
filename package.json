@@ -32,6 +32,8 @@
   },
   "devDependencies": {
     "@axe-core/react": "^4.4.3",
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "autoprefixer": "^10.4.13",
     "eslint": "^8.20.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "12.2.3",
@@ -45,6 +47,9 @@
     "eslint-plugin-unicorn": "^43.0.2",
     "husky": "^8.0.1",
     "lint": "^1.1.2",
+    "postcss": "^8.4.20",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^7.8.3",
     "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
     "stylelint-config-prettier": "^9.0.3",

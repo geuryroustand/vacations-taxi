@@ -1,11 +1,23 @@
 .loading {
   background-color: var(--five-color);
+
   height: 100vh;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.loading h4 {
+  text-align: center;
+  width: 15rem;
+}
+
+@media (min-width: 37.5em) {
+  .loading h4 {
+    text-align: center;
+    width: 100%;
+  }
 }
 
 .fallBackLoading {
