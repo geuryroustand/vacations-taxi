@@ -21,7 +21,7 @@ const Footer = () => {
             <h3 className={styled.heading}>Company</h3>
             <Link href="/">About Us</Link>
             <Link href="/contact-us">Help Center</Link>
-            <Link href="/termsAndConditions">Terms and Conditions</Link>
+            <Link href="/terms-and-conditions">Terms and Conditions</Link>
           </li>
         </ul>
 

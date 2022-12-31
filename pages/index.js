@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 import { persistor } from "../src/redux/store";
 
@@ -29,7 +30,9 @@ export default function Home() {
       />
 
       <DynamicTrusted />
+
       <DynamicHowWork />
+
       <DynamicAwards />
     </Suspense>
   );

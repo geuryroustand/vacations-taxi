@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import useMediaQuery from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 import debounce from "lodash/debounce";
 import format from "date-fns/format";
 
@@ -132,7 +132,7 @@ const SearchForm = ({ isClicked }) => {
     if (!form.checkValidity() === false) {
       if (roundtrip) {
         router.push({
-          pathname: "/bookingDetails",
+          pathname: "/booking-details",
           query: {
             pickUp: pickUpID,
             dropOff: dropOffID,
@@ -151,7 +151,7 @@ const SearchForm = ({ isClicked }) => {
         });
       } else {
         router.push({
-          pathname: "/bookingDetails",
+          pathname: "/booking-details",
           query: {
             pickUp: pickUpID,
             dropOff: dropOffID,
