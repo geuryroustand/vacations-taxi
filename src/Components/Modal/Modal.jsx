@@ -1,9 +1,18 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import SearchFormInput from "../SearchFormInput/SearchFormInput";
-import SearchOptions from "../SearchOptions/SearchOptions";
+import dynamic from "next/dynamic";
+
+import FallBackLoading from "../Loading/FallBackLoading";
+
+const DynamicSearchFormInput = dynamic(() => import("../SearchFormInput/SearchFormInput"), {
+  suspense: true
+});
+
+const DynamicSearchOptions = dynamic(() => import("../SearchOptions/SearchOptions"), {
+  suspense: true
+});
 
 const ModalBoots = ({
   showModal,
@@ -16,27 +25,34 @@ const ModalBoots = ({
   const { title, label, placeHolder, optionToShow } = modalInputValues;
 
   return (
-    <Modal show={showModal} onHide={closeModal}>
-      <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <SearchFormInput label={label} placeHolder={placeHolder} autoFocus onChange={onChange} />
-        </Form>
-        <SearchOptions
-          show
-          locationsFetch={locationsFetch}
-          onClickedSearchedResult={onClickedSearchedResult}
-          optionToShow={optionToShow}
-        />
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={closeModal}>
-          Close
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <Suspense fallback={<FallBackLoading />}>
+      <Modal show={showModal} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <DynamicSearchFormInput
+              label={label}
+              placeHolder={placeHolder}
+              autoFocus
+              onChange={onChange}
+            />
+          </Form>
+          <DynamicSearchOptions
+            show
+            locationsFetch={locationsFetch}
+            onClickedSearchedResult={onClickedSearchedResult}
+            optionToShow={optionToShow}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </Suspense>
   );
 };
 
