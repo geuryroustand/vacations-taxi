@@ -7,7 +7,7 @@ const BookingStepProcess = () => {
   const { pathname } = useRouter();
 
   const stepTwo =
-    pathname === "/passengerDetails" || pathname === "/paymentDetails" ? styled.process : "";
+    pathname === "/passenger-Details" || pathname === "/payment-details" ? styled.process : "";
 
   return (
     <div className={styled.bookingStepProcess}>

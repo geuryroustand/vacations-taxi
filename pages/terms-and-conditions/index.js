@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { Suspense } from "react";
 
 import Container from "react-bootstrap/Container";
@@ -11,150 +10,138 @@ export default function termsAndConditions() {
       <MyHead title="Term and Condition" noIndex />
       <Suspense fallback={<FallBackLoading />}>
         <div className="mt-5">
-          <h1>Term and Condition</h1>
+          <h1>Terms and Conditions</h1>
 
           <p>
-            This Privacy Policy governs the manner in which Dominican Airport Transfers | Punta Cana
-            Transfers | Santo Domingo Airport Transfers | Punta Cana Luxury Transfers | Dominican
-            Airport Transfers Plus collects, uses, maintains and discloses information collected
-            from users (each, a "User") of the{" "}
-            <a href="http://www.dominicanairporttransfersplus.com/">
-              http://www.dominicanairporttransfersplus.com/
-            </a>
-            website ("Site").
-          </p>
-
-          <h2> Personal identification information</h2>
-
-          <p>
-            We may collect personal identification information from Users in a variety of ways,
-            including, but not limited to, when Users visit our site, register on the site, place an
-            order, fill out a form, and in connection with other activities, services, features or
-            resources we make available on our Site.Users may be asked for, as appropriate, name,
-            email address, mailing address, phone number. Users may, however, visit our Site
-            anonymously. We will collect personal identification information from Users only if they
-            voluntarily submit such information to us. Users can always refuse to supply personally
-            identification information, except that it may prevent them from engaging in certain
-            Site related activities.
+            Welcome to vacationstaxis.com, the website that connects you with reliable and
+            professional taxi and transportation services for your vacations and travels. By
+            accessing or using our website and services, you agree to be bound by these terms and
+            conditions (the &quot;Terms &quot; ). Please read these Terms carefully before using our
+            website and services. If you do not agree to these Terms, you may not access or use our
+            website and services.
           </p>
 
           <p>
-            <b>Non-personal identification information</b>We may collect non-personal identification
-            information about Users whenever they interact with our Site. Non-personal
-            identification information may include the browser name, the type of computer and
-            technical information about Users means of connection to our Site, such as the operating
-            system and the Internet service providers utilized and other similar information.
+            Vacationstaxis.com provides a platform for users to book and pay for taxi and
+            transportation services offered by third-party providers. We do not own or operate any
+            vehicles and we are not a transportation company. We act as an intermediary between
+            users and third-party providers, and we do not provide transportation services
+            ourselves.
           </p>
 
           <p>
-            <b>Web browser cookies</b>Our Site may use "cookies" to enhance User experience. User's
-            web browser places cookies on their hard drive for record-keeping purposes and sometimes
-            to track information about them. User may choose to set their web browser to refuse
-            cookies, or to alert you when cookies are being sent. If they do so, note that some
-            parts of the Site may not function properly.
-          </p>
-          <p>
-            <b>How we use collected information</b>Dominican Airport Transfers | Punta Cana
-            Transfers | Santo Domingo Airport Transfers | Punta Cana Luxury Transfers | Dominican
-            Airport Transfers Plus may collect and use Users personal information for the following
-            purposes:
+            When you book a taxi or transportation service through our website, you enter into a
+            contract directly with the third-party provider. We are not a party to that contract and
+            we have no control over the quality or safety of the services provided by the
+            third-party provider. We do not endorse or guarantee the services of any third-party
+            provider.
           </p>
 
-          <ul>
-            <li>
-              To run and operate our Site - We may need your information display content on the Site
-              correctly.
-            </li>
-            <li>
-              To improve customer service - Information you provide helps us respond to your
-              customer service requests and support needs more efficiently.{" "}
-            </li>
-            <li>
-              To personalize user experience - We may use information in the aggregate to understand
-              how our Users as a group use the services and resources provided on our Site.
-            </li>
-            <li>
-              To improve our Site - We may use feedback you provide to improve our products and
-              services.
-            </li>
-            <li>
-              To send periodic emails - We may use the email address to send User information and
-              updates pertaining to their order. It may also be used to respond to their inquiries,
-              questions, and/or other requests.{" "}
-            </li>
-          </ul>
-
+          <h2>Use of Our Website</h2>
           <p>
-            <b>How we protect your information</b>We adopt appropriate data collection, storage and
-            processing practices and security measures to protect against unauthorized access,
-            alteration, disclosure or destruction of your personal information, username, password,
-            transaction information and data stored on our Site.
-          </p>
-          <p>
-            <b>Sharing your personal information</b>
-            We do not sell, trade, or rent Users personal identification information to others. We
-            may share generic aggregated demographic information not linked to any personal
-            identification information regarding visitors and users with our business partners,
-            trusted affiliates and advertisers for the purposes outlined above. We may use third
-            party service providers to help us operate our business and the Site or administer
-            activities on our behalf, such as sending out newsletters or surveys. We may share your
-            information with these third parties for those limited purposes provided that you have
-            given us your permission.
-          </p>
-          <p>
-            <b>Electronic newsletters</b> If User decides to opt-in to our mailing list, they will
-            receive emails that may include company news, updates, related product or service
-            information, etc. If at any time the User would like to unsubscribe from receiving
-            future emails, we include detailed unsubscribe instructions at the bottom of each email
-            or User may contact us via our Site. We may use third party service providers to help us
-            operate our business and the Site or administer activities on our behalf, such as
-            sending out newsletters or surveys. We may share your information with these third
-            parties for those limited purposes provided that you have given us your permission.
-          </p>
-          <p>
-            <b>Compliance with children's online privacy protection act</b>Protecting the privacy of
-            the very young is especially important. For that reason, we never collect or maintain
-            information at our Site from those we actually know are under 13, and no part of our
-            website is structured to attract anyone under 13.
+            vacationstaxis.com grants you a limited, non-exclusive, non-transferable, revocable
+            license to access and use our website for your personal, non-commercial use only. You
+            may not use our website for any illegal or unauthorized purpose. You may not use our
+            website in any way that could damage, disable, overburden, or impair our website or
+            interfere with any other party is use of our website. You may not attempt to gain
+            unauthorized access to our website or any accounts, computer systems, or networks
+            connected to our website.
           </p>
 
           <p>
-            <b>Changes to this privacy policy</b>Dominican Airport Transfers | Punta Cana Transfers
-            | Santo Domingo Airport Transfers | Punta Cana Luxury Transfers | Dominican Airport
-            Transfers Plus has the discretion to update this privacy policy at any time. When we do,
-            we will post a notification on the main page of our Site, revise the updated date at the
-            bottom of this page and send you an email. We encourage Users to frequently check this
-            page for any changes to stay informed about how we are helping to protect the personal
-            information we collect. You acknowledge and agree that it is your responsibility to
-            review this privacy policy periodically and become aware of modifications.
+            By using our website and services, you represent and warrant that you are at least 18
+            years old and that you have the legal capacity to enter into a contract. If you are
+            using our website and services on behalf of a company or other legal entity, you
+            represent and warrant that you have the authority to bind that entity to these Terms.
+          </p>
+          <p>
+            You are responsible for the accuracy and completeness of the information you provide to
+            us when you use our website and services. You agree to pay for all charges and fees
+            associated with your use of our website and services, including any applicable taxes. We
+            reserve the right to change our fees and charges at any time, and we will provide notice
+            of any such changes through our website.
           </p>
 
           <p>
+            Our website and services are provided &quot;as is &quot; and &quot;as available&quot;.
+            We make no representations or warranties of any kind, express or implied, as to the
+            operation of our website or the information, content, materials, or products included on
+            our website. We will not be liable for any damages of any kind arising from the use of
+            our website or services, including but not limited to direct, indirect, incidental,
+            punitive, and consequential damages.
+          </p>
+          <h2>Changes to These Terms of Service</h2>
+          <p>
+            We reserve the right to modify, suspend, or discontinue our website and services at any
+            time without notice. We will not be liable to you or any third party for any
+            modification, suspension, or discontinuation of our website or services.
+          </p>
+          <p>
+            These Terms constitute the entire agreement between you and vacationstaxis.com and
+            govern your use of our website and services. These Terms supersede any prior agreements
+            between you and vacationstaxis.com.
+          </p>
+
+          <h2>Governing Law</h2>
+          <p>
+            These Terms and any disputes arising out of or in connection with these Terms will be
+            governed by and construed in accordance with the laws of the Dominican Republic, without
+            giving effect to any principles of conflicts of law. You agree to submit to the personal
+            jurisdiction of the courts located in Samana, Santa Barbara de Samana for the purpose of
+            litigating all such disputes.
+          </p>
+
+          <p>
+            If any provision of these Terms is found to be invalid or unenforceable, that provision
+            will be enforced to the maximum extent possible, and the remaining provisions of these
+            Terms will remain in full force and effect.
+          </p>
+          <h2>Booking and Payment</h2>
+          <p>
+            All bookings made through our website are subject to availability. We reserve the right
+            to refuse any booking without providing a reason. Payment for all bookings must be made
+            through our website using a valid credit or debit card. We accept Visa, Mastercard, and
+            American Express. Your card will be charged at the time of booking.
+          </p>
+
+          <h2>Cancellation and Refund Policy</h2>
+
+          <p>
+            You may cancel your booking at any time before the start of your journey. To cancel your
+            booking, please contact us through the contact form on our website or by email at{" "}
             <b>
-              <b>Your acceptance of these terms</b>
+              <a href="mailto:info@vacationstaxis.com">info@vacationstaxis.com</a>
             </b>
-            By using this Site, you signify your acceptance of this policy. If you do not agree to
-            this policy, please do not use our Site. Your continued use of the Site following the
-            posting of changes to this policy will be deemed your acceptance of those changes.
+          </p>
+          <p>
+            If you cancel your booking more than 24 hours before the start of your journey, you will
+            receive a full refund. If you cancel your booking within 15 hours of the start of your
+            journey, you will be eligible for a refund of 60% of the total paid.
+          </p>
+          <p>
+            In the event that we need to cancel your booking due to unforeseen circumstances, we
+            will provide you with a full refund.
+          </p>
+          <p>
+            if in case you experience any kinds of problems with your flight ternaries, you can
+            inform us. We will try to adapt to your needs and pick you later or before.
+          </p>
+          <p>
+            We will NOT do the REFUND in case of &quot;NO SHOW&quot;, which means that the client is
+            expected at the airport or at the hotel and the client just doesn&apos;t show up without
+            any prior notice - till now we never have charged any cancellation fees for our
+            transfers from any of our clients!
           </p>
 
+          <h2>Contact Us</h2>
           <p>
-            <b>Contacting us </b>
-            If you have any questions about this Privacy Policy, the practices of this site, or your
-            dealings with this site, please contact us.
-            <h3>Cancellation Policy for Private Transfers:</h3>
-            <p>
-              Your money will be refunded if the cancellation is done 24 hours before scheduled. No
-              questions to ask, if in case you experience any kinds of problems with your flight
-              ternaries, you can inform us. We will try to adapt to your needs and pick you later or
-              before. We can also refund the Money in cases where your flight got cancelled. If you
-              cancel few mins less than your scheduled time, then we will refund 60%. We will NOT do
-              the REFUND in case of &quot;NO SHOW&quot;, which means that the client is expected at
-              the airport or at the hotel and the client just doesn&#39;t show up without any prior
-              notice) - till now we never have charged any cancellations fees for our transfers from
-              any of our clients !
-            </p>
+            If you have any questions about these Terms of Service, please contact us through the
+            contact form on our website or by email at{" "}
+            <b>
+              <a href="mailto:info@vacationstaxis.com">info@vacationstaxis.com</a>
+            </b>
           </p>
+          <p>Thank you for using vacationstaxis.com!</p>
         </div>
       </Suspense>
     </Container>

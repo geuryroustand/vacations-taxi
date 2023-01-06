@@ -69,11 +69,11 @@ const Payment = () => {
 
         <p>
           By clicking PAY & BOOK you are accepting our
-          <Link target="_blank" href="#">
+          <Link target="_blank" href="/terms-and-conditions">
             <a className={styled.termsAndConditions}> Terms and Conditions</a>
           </Link>
           and
-          <Link className={styled.termsAndConditions} target="_blank" href="#">
+          <Link className={styled.termsAndConditions} target="_blank" href="/privacy-notice">
             <a className={styled.termsAndConditions}>Privacy Notice</a>
           </Link>
         </p>

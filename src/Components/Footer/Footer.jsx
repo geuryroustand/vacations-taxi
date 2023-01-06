@@ -11,7 +11,7 @@ const Footer = () => {
         <ul className={styled.footerUl}>
           <li className={styled.footerList}>
             <h3 className={styled.heading}>Services</h3>
-            <Link href="/">How it Works</Link>
+            <Link href="/#how-we-work">How it Works</Link>
             <Link href="/">Shared Ride Information</Link>
             <Link href="/">Destinations</Link>
             <Link href="/">Airports</Link>
@@ -19,8 +19,9 @@ const Footer = () => {
 
           <li className={styled.footerList}>
             <h3 className={styled.heading}>Company</h3>
-            <Link href="/">About Us</Link>
+            <Link href="/about-us">About Us</Link>
             <Link href="/contact-us">Help Center</Link>
+            <Link href="/privacy-notice"> Privacy Notice</Link>
             <Link href="/terms-and-conditions">Terms and Conditions</Link>
           </li>
         </ul>

@@ -6,7 +6,7 @@ import styled from "./HowWork.module.css";
 
 const HowWork = () => {
   return (
-    <section className={styled.howWork}>
+    <section className={styled.howWork} id="how-we-work">
       <h2>How it work?</h2>
       <Container className={styled.howWorkContainer}>
         <div className={styled.howWorkContext}>

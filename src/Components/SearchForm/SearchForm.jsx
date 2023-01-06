@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
@@ -11,15 +11,7 @@ import format from "date-fns/format";
 import Image from "next/image";
 import styled from "./SearchForm.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
-
-// import SearchOptions from "../SearchOptions/SearchOptions";
-// import ModalBoots from "../Modal/Modal";
-// import DatePickerSearchForm from "../DatePickerSearchForm/DatePickerSearchForm";
-// import SearchFormInput from "../SearchFormInput/SearchFormInput";
-
-const DynamicSearchOptions = dynamic(() => import("../SearchOptions/SearchOptions"), {
-  suspense: true
-});
+import SearchOptions from "../SearchOptions/SearchOptions";
 
 const DynamicModalBoots = dynamic(() => import("../Modal/Modal"), {
   suspense: true
@@ -49,6 +41,8 @@ const SearchForm = ({ isClicked }) => {
     dropOffPassenger: 1
   });
 
+  const inputReference = useRef();
+
   const [currentPickUpDate, setCurrentPickUpDate] = useState(new Date());
   const [currentPickUpTime, setCurrentPickUpTime] = useState(new Date());
 
@@ -61,7 +55,9 @@ const SearchForm = ({ isClicked }) => {
     pickUpSearchedTermClicked: false,
     dropOffSearchedTermClicked: false,
     pickUpDate: "",
-    pickUpTime: ""
+    pickUpTime: "",
+    userValueTypeInTheModal: "",
+    valueTyped: ""
   });
 
   const router = useRouter();
@@ -172,58 +168,64 @@ const SearchForm = ({ isClicked }) => {
     noSearch: true
   });
 
-  const searchLocation = useCallback(
-    debounce(async (event) => {
-      if (event.target.value.length > 3) {
-        try {
-          const PROD = process.env.NODE_ENV === "production";
+  const searchLocation = debounce(async () => {
+    if (
+      searchedTerm.valueTyped?.length > 3 &&
+      searchedTerm.valueTyped === inputReference.current.value
+    ) {
+      try {
+        const PROD = process.env.NODE_ENV === "production";
 
-          const response = await fetch(
-            `${
-              PROD
-                ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/search`
-                : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/search`
-            }`,
+        const response = await fetch(
+          `${
+            PROD
+              ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/search`
+              : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/search`
+          }`,
 
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
 
-              body: JSON.stringify({
-                location: event.target.value.trim()
-              })
-            }
-          );
-
-          if (response.ok) {
-            const getDestinations = await response.json();
-
-            setLocationsFetch({
-              ...locationsFetch,
-              searchResults: getDestinations,
-              noSearch: !false
-            });
+            body: JSON.stringify({
+              location: searchedTerm.valueTyped.trim()
+            })
           }
-        } catch (error) {
-          console.log(error);
+        );
+
+        if (response.ok) {
+          const getDestinations = await response.json();
+
           setLocationsFetch({
-            noSearch: true
+            ...locationsFetch,
+            searchResults: getDestinations,
+            noSearch: !false
           });
         }
+      } catch (error) {
+        console.log(error);
+        setLocationsFetch({
+          noSearch: true
+        });
       }
-    }, 600),
-    []
-  );
+    }
+  }, 600);
+
+  useEffect(() => {
+    searchLocation();
+  }, [searchedTerm.valueTyped]);
 
   const onChange = (event) => {
+    // if (event.target.value.length <= 2 && !isDesktopOrLaptopOrTable) setShowModal(true);
     setSearchedTerm({
       ...searchedTerm,
+      valueTyped: event.target.value,
       [event.target.name]: event.target.value
     });
 
-    searchLocation(event);
+    // searchLocation(event);
 
     // if (!isDesktopOrLaptopOrTable && event.target.value !== "" && event.target.name === "pickUp") {
     //   searchInputClicked({
@@ -277,6 +279,7 @@ const SearchForm = ({ isClicked }) => {
       <Form className={styled.form} validated={validated} noValidate onSubmit={submitData}>
         <div className={styled.searchForm}>
           <DynamicSearchFormInput
+            inputRef={inputReference}
             label="Enter pick-up location"
             placeHolder="Enter pick-up location"
             name="pickUp"
@@ -295,6 +298,7 @@ const SearchForm = ({ isClicked }) => {
             }
             onChange={onChange}
             searchedTerm={searchedTerm.pickUp || ""}
+
             // onKeyUp={debouncedSearchLocation}
           />
 
@@ -302,7 +306,7 @@ const SearchForm = ({ isClicked }) => {
             isDesktopOrLaptopOrTable &&
             searchedTerm.pickUp &&
             showPickUpSearchedResult && (
-              <DynamicSearchOptions
+              <SearchOptions
                 locationsFetch={locationsFetch}
                 onClickedSearchedResult={onClickedSearchedResult}
                 optionToShow="pickUp"
@@ -310,6 +314,7 @@ const SearchForm = ({ isClicked }) => {
             )}
 
           <DynamicSearchFormInput
+            inputRef={inputReference}
             label="Enter drop location"
             placeHolder="Enter drop location "
             name="dropOff"
@@ -332,7 +337,7 @@ const SearchForm = ({ isClicked }) => {
           />
 
           {showDropOffSearchedResult && isDesktopOrLaptopOrTable && searchedTerm.dropOff && (
-            <DynamicSearchOptions
+            <SearchOptions
               moveLeft
               locationsFetch={locationsFetch}
               onClickedSearchedResult={onClickedSearchedResult}
@@ -422,12 +427,20 @@ const SearchForm = ({ isClicked }) => {
         )}
 
         <DynamicModalBoots
+          inputRef={inputReference}
           showModal={showModal}
           closeModal={closeModal}
           modalInputValues={modalInputValues}
           locationsFetch={locationsFetch}
           onChange={onChange}
           onClickedSearchedResult={onClickedSearchedResult}
+          // name={searchedTerm.pickUp.length === 1 ? "pickUp" : ""}
+          // searchedTerm.dropOff.length === 1 && "dropOff"
+
+          // searchedTerm={
+          //   searchedTerm.pickUp
+          //   // (searchedTerm.dropOff.length === 1 && searchedTerm.dropOff)
+          // }
         />
       </Form>
     </Suspense>

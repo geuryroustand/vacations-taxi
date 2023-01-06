@@ -17,11 +17,13 @@ const SearchFormInput = ({
   onClickInput,
   onChange,
   onKeyUp,
-  searchedTerm
+  searchedTerm,
+  inputRef
 }) => {
   const isEmpty = validated ? styled.validated : "";
 
   // const debouncedOnChange = useCallback(debounce(onChange, 1000), []);
+
   return (
     <>
       <Form.Group className={`${styled["form-control"]} ${isEmpty}`} controlId={id}>
@@ -39,8 +41,10 @@ const SearchFormInput = ({
             onChange={onChange}
             name={name}
             onKeyUp={onKeyUp}
+            // defaultValue={searchedTerm}
             value={searchedTerm}
             autoComplete="off"
+            ref={inputRef}
           />
           <Form.Control.Feedback className={styled.searchFormFeedBack} type="invalid">
             {isEmptyFeedback}
