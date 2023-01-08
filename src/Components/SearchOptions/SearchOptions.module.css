@@ -85,3 +85,9 @@
     padding-left: 1rem !important;
   }
 }
+
+.isError a {
+  text-decoration: none;
+  text-align: center;
+  /* background-color: red; */
+}

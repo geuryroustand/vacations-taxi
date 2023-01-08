@@ -41,7 +41,9 @@ const SearchForm = ({ isClicked }) => {
     dropOffPassenger: 1
   });
 
-  const inputReference = useRef();
+  const inputPickUpReference = useRef();
+  const inputDropOffReference = useRef();
+  const modalInputReference = useRef();
 
   const [currentPickUpDate, setCurrentPickUpDate] = useState(new Date());
   const [currentPickUpTime, setCurrentPickUpTime] = useState(new Date());
@@ -165,17 +167,24 @@ const SearchForm = ({ isClicked }) => {
 
   const [locationsFetch, setLocationsFetch] = useState({
     searchResults: [],
-    noSearch: true
+    noSearch: true,
+    isLoading: false,
+    isError: false
   });
 
   const searchLocation = debounce(async () => {
     if (
-      searchedTerm.valueTyped?.length > 3 &&
-      searchedTerm.valueTyped === inputReference.current.value
+      (searchedTerm.valueTyped?.length > 3 &&
+        searchedTerm.valueTyped === inputPickUpReference.current.value) ||
+      (searchedTerm.valueTyped?.length > 3 &&
+        searchedTerm.valueTyped === inputDropOffReference.current.value) ||
+      (searchedTerm.valueTyped?.length > 3 &&
+        searchedTerm.valueTyped === modalInputReference.current?.value)
     ) {
       try {
         const PROD = process.env.NODE_ENV === "production";
 
+        setLocationsFetch({ isLoading: true });
         const response = await fetch(
           `${
             PROD
@@ -195,19 +204,24 @@ const SearchForm = ({ isClicked }) => {
           }
         );
 
-        if (response.ok) {
-          const getDestinations = await response.json();
+        if (!response.ok) throw new Error("Not found ,Contact us here to help you");
 
-          setLocationsFetch({
-            ...locationsFetch,
-            searchResults: getDestinations,
-            noSearch: !false
-          });
-        }
+        const getDestinations = await response.json();
+        console.log(getDestinations);
+        setLocationsFetch({
+          ...locationsFetch,
+          isLoading: false,
+          isError: false,
+          searchResults: getDestinations,
+          noSearch: !false
+        });
       } catch (error) {
         console.log(error);
         setLocationsFetch({
-          noSearch: true
+          isLoading: false,
+          noSearch: true,
+          isError: true
+          // searchResults: [{ location: error.message }]
         });
       }
     }
@@ -279,7 +293,7 @@ const SearchForm = ({ isClicked }) => {
       <Form className={styled.form} validated={validated} noValidate onSubmit={submitData}>
         <div className={styled.searchForm}>
           <DynamicSearchFormInput
-            inputRef={inputReference}
+            inputReference={inputPickUpReference}
             label="Enter pick-up location"
             placeHolder="Enter pick-up location"
             name="pickUp"
@@ -314,7 +328,7 @@ const SearchForm = ({ isClicked }) => {
             )}
 
           <DynamicSearchFormInput
-            inputRef={inputReference}
+            inputReference={inputDropOffReference}
             label="Enter drop location"
             placeHolder="Enter drop location "
             name="dropOff"
@@ -427,7 +441,7 @@ const SearchForm = ({ isClicked }) => {
         )}
 
         <DynamicModalBoots
-          inputRef={inputReference}
+          inputReference={modalInputReference}
           showModal={showModal}
           closeModal={closeModal}
           modalInputValues={modalInputValues}

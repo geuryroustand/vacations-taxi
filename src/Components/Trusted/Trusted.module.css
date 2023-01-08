@@ -1,5 +1,6 @@
 .trusted {
   background-color: var(--five-color);
+  min-height: 22rem;
 }
 
 @media (min-width: 62em) {

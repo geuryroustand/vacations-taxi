@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-
 // import Image from "next/image";
 import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
@@ -8,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 // eslint-disable-next-line import/no-unresolved
 import { Client, HydrationProvider } from "react-hydration-provider";
-import Link from "next/link";
+
 import styled from "./Payment.module.css";
 
 const Payment = () => {
@@ -34,15 +32,16 @@ const Payment = () => {
         <Image src="/images/creditCards.svg" width="195.89px" height="18px" alt="location" />
       </div> */}
 
-        <div>
+        <div id="effective">
           <input
             onChange={getPayMethod}
             type="radio"
             name="paymentMethod"
-            id="effective"
             value="effective"
             checked
+            id="effective"
           />
+
           <label htmlFor="effective">Effective</label>
         </div>
 
@@ -69,13 +68,13 @@ const Payment = () => {
 
         <p>
           By clicking PAY & BOOK you are accepting our
-          <Link target="_blank" href="/terms-and-conditions">
-            <a className={styled.termsAndConditions}> Terms and Conditions</a>
-          </Link>
+          <a target="_blank" href="/terms-and-conditions" className={styled.termsAndConditions}>
+            Terms and Conditions
+          </a>
           and
-          <Link className={styled.termsAndConditions} target="_blank" href="/privacy-notice">
-            <a className={styled.termsAndConditions}>Privacy Notice</a>
-          </Link>
+          <a target="_blank" href="/privacy-notice" className={styled.termsAndConditions}>
+            Privacy Notice
+          </a>
         </p>
         <Client>
           <Button className={styled.paymentBtn} type="submit">

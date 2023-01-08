@@ -18,7 +18,7 @@ const SearchFormInput = ({
   onChange,
   onKeyUp,
   searchedTerm,
-  inputRef
+  inputReference
 }) => {
   const isEmpty = validated ? styled.validated : "";
 
@@ -44,7 +44,7 @@ const SearchFormInput = ({
             // defaultValue={searchedTerm}
             value={searchedTerm}
             autoComplete="off"
-            ref={inputRef}
+            ref={inputReference}
           />
           <Form.Control.Feedback className={styled.searchFormFeedBack} type="invalid">
             {isEmptyFeedback}

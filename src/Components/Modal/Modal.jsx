@@ -21,7 +21,7 @@ const ModalBoots = ({
   locationsFetch,
   onChange,
   onClickedSearchedResult,
-  inputRef
+  inputReference
 }) => {
   const { title, label, placeHolder, optionToShow } = modalInputValues;
 
@@ -34,7 +34,7 @@ const ModalBoots = ({
         <Modal.Body>
           <Form>
             <DynamicSearchFormInput
-              inputRef={inputRef}
+              inputReference={inputReference}
               label={label}
               placeHolder={placeHolder}
               autoFocus
