@@ -9,6 +9,9 @@ const nextConfig = {
         hostname: "**.tripadvisor.com"
       }
     ]
+  },
+  experimental: {
+    nextScriptWorkers: true
   }
 };
 

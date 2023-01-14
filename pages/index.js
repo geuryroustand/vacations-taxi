@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       <Script
-        strategy="lazyOnload"
+        strategy="worker"
         id="truendoAutoBlock"
         type="text/javascript"
         src="https://cdn.priv.center/pc/truendo_cmp.pid.js"
