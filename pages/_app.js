@@ -40,6 +40,7 @@ function MyApp({ Component, pageProps }) {
             <meta name="robots" content="index, follow" />
           </Head>
           <Script
+            defer
             strategy="lazyOnload"
             id="truendoAutoBlock"
             type="text/javascript"
