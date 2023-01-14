@@ -9,7 +9,8 @@ module.exports = {
     "/terms-and-conditions",
     "/contact-us",
     "/privacy-notice",
-    "/about-us"
+    "/about-us",
+    "/404"
   ],
   robotsTxtOptions: {
     policies: [
@@ -19,6 +20,7 @@ module.exports = {
       { userAgent: "*", disallow: "/contact-us" },
       { userAgent: "*", disallow: "/privacy-notice" },
       { userAgent: "*", disallow: "/about-us" },
+      { userAgent: "*", disallow: "/404" },
       { userAgent: "*", allow: "/" }
     ]
   }
