@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "./paymentDetails.module.css";
@@ -25,20 +26,42 @@ const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Paymen
 
 function paymentDetails() {
   const { bookingInfo } = useSelector((state) => state.flightInfoReducer);
-
-  const { pickUp, dropOff } = bookingInfo || {};
-
+  const router = useRouter();
   const [validated, setValidated] = useState(false);
-
-  const sendInfo = (event) => {
+  const sendInfo = async (event) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
+    if (!form.checkValidity() === false) {
+      try {
+        const PROD = process.env.NODE_ENV === "production";
 
-      console.log("boo", bookingInfo);
+        const response = await fetch(
+          `${
+            PROD
+              ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/bookings`
+              : `${process.env.NEXT_PUBLIC_API_DEV_URL}/bookings`
+          }`,
 
-      persistor.purge();
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({ ...bookingInfo })
+          }
+        );
+
+        if (!response.ok) throw new Error("Not found ,Contact us here to help you");
+
+        // const getDestinations = await response.json();
+        router.push("/");
+
+        persistor.purge();
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     setValidated(true);
@@ -46,10 +69,7 @@ function paymentDetails() {
 
   return (
     <Form className={styled.paymentDetails} noValidate validated={validated} onSubmit={sendInfo}>
-      <MyHead
-        title={`${pickUp || ""}  ${pickUp && dropOff ? "to" : ""} ${dropOff || ""}`}
-        noIndex
-      />
+      <MyHead title="Payment" noIndex />
 
       <Container>
         <BookingStepProcess />

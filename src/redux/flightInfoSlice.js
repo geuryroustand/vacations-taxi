@@ -5,7 +5,9 @@ const initialState = {
   totalPrice: undefined,
   cartSelectedText: undefined,
   flightInfo: undefined,
-  bookingInfo: undefined
+  bookingInfo: undefined,
+  paymentMethod: undefined,
+  agreedTermsAndConditions: undefined
 };
 
 const flightInfoSlice = createSlice({
@@ -23,6 +25,7 @@ const flightInfoSlice = createSlice({
       const totalPrice = state.totalPrice || state.flightInfo.priceTaxi1;
 
       const existingInfo = {
+        ...state.bookingInfo,
         ...state.flightInfo,
         ...action.payload,
         totalPrice

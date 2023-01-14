@@ -50,11 +50,11 @@ const BookingSummary = ({ bookingDetailsWith }) => {
             <div>
               <p>Passengers information</p>
               <div className={styled.headingBorder}>
-                <h6>
+                <h3>
                   {firstName} {lastName}
-                </h6>
-                <h6>{email}</h6>
-                <h6>{mobileNumber} </h6>
+                </h3>
+                <h3>{email}</h3>
+                <h3>{mobileNumber} </h3>
               </div>
             </div>
           )}

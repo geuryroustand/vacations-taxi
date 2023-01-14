@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
@@ -8,16 +8,18 @@ import { useState } from "react";
 import { Client, HydrationProvider } from "react-hydration-provider";
 
 import styled from "./Payment.module.css";
+import { bookingInfo } from "../../redux/flightInfoSlice";
 
 const Payment = () => {
-  const { bookingInfo } = useSelector((state) => state.flightInfoReducer) || {};
-
-  const { totalPrice } = bookingInfo || {};
+  const flightInfoReducer = useSelector((state) => state.flightInfoReducer) || {};
+  const dispatch = useDispatch();
+  const { totalPrice } = flightInfoReducer.bookingInfo || {};
 
   const [paymentMethod, setPaymentMethod] = useState("");
 
   const getPayMethod = (event) => {
     setPaymentMethod(event.target.value);
+    dispatch(bookingInfo({ [event.target.name]: event.target.value }));
   };
 
   return (
@@ -27,22 +29,28 @@ const Payment = () => {
         <p>Select your payment method</p>
 
         {/* <div className={styled.paymentWithCard}>
-        <input type="radio" onChange={getPayMethod} name="paymentMethod" id="card" value="card" />
-        <label htmlFor="card">Pay with:</label>
-        <Image src="/images/creditCards.svg" width="195.89px" height="18px" alt="location" />
-      </div> */}
-
-        <div id="effective">
-          <input
-            onChange={getPayMethod}
+          <Form.Check
+            label="Pay with:"
             type="radio"
+            onChange={getPayMethod}
             name="paymentMethod"
-            value="effective"
-            checked
-            id="effective"
+            id="card"
+            value="card"
+            required
           />
+          <Image src="/images/creditCards.svg" width="195.89px" height="18px" alt="location" />
+        </div> */}
 
-          <label htmlFor="effective">Effective</label>
+        <div>
+          <Form.Check
+            required
+            onChange={getPayMethod}
+            value="effective"
+            type="radio"
+            id="effective"
+            label="Effective"
+            name="paymentMethod"
+          />
         </div>
 
         {paymentMethod === "card" ? (
@@ -57,12 +65,14 @@ const Payment = () => {
           </p>
         )}
 
-        <Form.Group className="mb-3">
+        <Form.Group>
           <Form.Check
             required
             label="Agree to terms and conditions"
             feedback="You must agree before booking."
             feedbackType="invalid"
+            id="agree"
+            name="agreedTermsAndConditions"
           />
         </Form.Group>
 
