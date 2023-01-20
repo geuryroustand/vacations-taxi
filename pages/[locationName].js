@@ -65,7 +65,8 @@ export async function getStaticProps({ params }) {
   // }
 
   return {
-    props: { locationFound }
+    props: { locationFound },
+    revalidate: 10
   };
 }
 
