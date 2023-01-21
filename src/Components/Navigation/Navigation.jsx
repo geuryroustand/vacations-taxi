@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -10,11 +9,9 @@ const Navigation = () => {
   return (
     <Navbar className={styled["navbar-bg"]} expand="lg">
       <Container>
-        <Link href="/">
-          <Navbar.Brand className={styled["logo-main"]} href="/">
-            <span className={styled["logo-vacations-text"]}>Vacations</span>Taxis.com
-          </Navbar.Brand>
-        </Link>
+        <Navbar.Brand className={styled["logo-main"]} href="/">
+          <span className={styled["logo-vacations-text"]}>Vacations</span>Taxis.com
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
