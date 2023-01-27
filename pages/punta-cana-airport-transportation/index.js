@@ -15,9 +15,9 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
   suspense: true
 });
 
-const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-  suspense: true
-});
+// const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+//   suspense: true
+// });
 
 export default function seoPage() {
   return (
@@ -165,7 +165,7 @@ export default function seoPage() {
           </ul>
         </article>
       </Container>
-      <DynamicAwards />
+      {/* <DynamicAwards /> */}
     </Suspense>
   );
 }
