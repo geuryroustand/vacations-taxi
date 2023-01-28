@@ -10,10 +10,17 @@
   --third-icon-bg: #6d9886;
 }
 
+/* Bootstrap */
 .navbar-toggler {
   border: var(--primary-color) solid !important ;
 }
 
+.accordion-button:not(.collapsed) {
+  color: var(--third-color);
+  background-color: var(--secondary-color);
+}
+
+/* Date Picker */
 .react-datepicker__time-container {
   width: 100% !important;
 }
@@ -36,4 +43,23 @@
 .main {
   min-height: 85vh;
   /* margin-bottom: 100%; */
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }

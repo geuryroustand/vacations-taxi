@@ -1,7 +1,6 @@
 // import Script from "next/script";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 
 // import { persistor } from "../src/redux/store";
@@ -17,7 +16,9 @@ const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted")
 const DynamicHowWork = dynamic(() => import("../src/Components/HowWork/HowWork"), {
   suspense: true
 });
-
+const DynamicFaq = dynamic(() => import("../src/Components/Faq/Faq"), {
+  suspense: true
+});
 // const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 //   suspense: true
 // });
@@ -43,6 +44,8 @@ export default function Home() {
       <DynamicTrusted />
 
       <DynamicHowWork />
+
+      <DynamicFaq />
 
       {/* <DynamicAwards /> */}
     </Suspense>

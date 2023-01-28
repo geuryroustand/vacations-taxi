@@ -1,8 +1,6 @@
 .footer {
   background: linear-gradient(360deg, #001a51 -22.68%, var(--secondary-darkest-color) 111.34%);
   color: var(--third-color);
-
-  margin-top: 2rem;
   padding: 1rem 0;
   line-height: 2rem;
   height: 100%;
@@ -12,7 +10,6 @@
 .footerUl {
   padding-top: 1.5rem;
   list-style: none;
-  border-bottom: 0.4px solid rgba(255, 255, 255, 0.7);
   padding-left: 0;
 }
 @media (min-width: 35em) {
@@ -43,10 +40,26 @@
   }
 }
 
-.footerList a {
+.socialMedia {
+  padding-top: 1.5rem;
+  border-bottom: 0.4px solid rgba(255, 255, 255, 0.7);
+}
+.socialMediaHeading {
+  padding-bottom: 0.4rem;
+  font-size: 1.2rem;
+}
+.footerList a,
+.socialMediaList a {
   text-decoration: none;
   color: var(--third-color);
   padding-bottom: 1rem;
+}
+.socialMediaList {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  gap: 2rem;
+  font-size: 1.3rem;
 }
 
 .copyright {
