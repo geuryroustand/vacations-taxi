@@ -28,10 +28,18 @@ function paymentDetails() {
   const { bookingInfo } = useSelector((state) => state.flightInfoReducer);
   const router = useRouter();
   const [validated, setValidated] = useState(false);
+
   const sendInfo = async (event) => {
     const form = event.currentTarget;
     event.preventDefault();
     event.stopPropagation();
+
+    const cleanEmpty = Object?.fromEntries(
+      Object?.keys(bookingInfo)
+        ?.filter((k) => bookingInfo[k] !== "")
+        ?.map((k) => [k, bookingInfo[k]])
+    );
+
     if (!form.checkValidity() === false) {
       try {
         const PROD = process.env.NODE_ENV === "production";
@@ -49,7 +57,7 @@ function paymentDetails() {
               "Content-Type": "application/json"
             },
 
-            body: JSON.stringify({ ...bookingInfo })
+            body: JSON.stringify(cleanEmpty)
           }
         );
 
