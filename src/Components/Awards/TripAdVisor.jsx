@@ -1,4 +1,3 @@
-/* eslint-disable react/self-closing-comp */
 import React from "react";
 import Image from "next/image";
 
@@ -31,7 +30,8 @@ const TripAdVisor = () => {
         src="https://www.jscache.com/wejs?wtype=certificateOfExcellence&amp;uniq=205&amp;locationId=10500716&amp;lang=en_US&amp;year=2018&amp;display_version=2"
         data-loadtrk
         onLoad={() => "this.loadtrk=true"}
-        defer></script>
+        defer
+      />
 
       <div id="TA_selfserveprop506" className="TA_selfserveprop">
         <ul id="A2LDzC" className="TA_links 0fJ6ZlNfu5">
@@ -53,10 +53,11 @@ const TripAdVisor = () => {
       </div>
 
       <script
+        defer
         src="https://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=506&amp;locationId=10500716&amp;lang=en_US&amp;rating=true&amp;nreviews=5&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=false&amp;border=true&amp;display_version=2"
         data-loadtrk
         onLoad={() => "this.loadtrk=true"}
-        defer></script>
+      />
     </div>
   );
 };
