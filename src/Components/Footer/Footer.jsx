@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
+import { FaTripadvisor } from "react-icons/fa";
 
 import Link from "next/link";
 import styled from "./Footer.module.css";
@@ -20,11 +21,14 @@ const Footer = () => {
             <Link href="/">Santiago Cibao Airport (STI) </Link>
             <Link href="/la-isabella-airport-transfers-and-taxis">La Isabela Airport (JBQ)</Link>
 
-            <a href="/transportation-from-punta-cana-aiport" className="sr-only">
+            <a href="/transportation-from-punta-cana-aiport" target="_blank" className="sr-only">
               Transportation from Punta Cana Airport
             </a>
-            <a href="/punta-cana-airport-transportation" className="sr-only">
+            <a href="/punta-cana-airport-transportation" target="_blank" className="sr-only">
               Punta cana airport transportation
+            </a>
+            <a href="/best-punta-cana-airport-transfers" target="_blank" className="sr-only">
+              Best Punta Cana airport transfers
             </a>
           </li>
 
@@ -71,6 +75,16 @@ const Footer = () => {
                 rel="noreferrer"
                 title="Linkedin">
                 <BsLinkedin />
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://www.tripadvisor.com/Attraction_Review-g811253-d10500716-Reviews-VacationsTaxis-Santa_Barbara_de_Samana_Samana_Province_Dominican_Republic.html"
+                target="_blank"
+                rel="noreferrer"
+                title="TripAdvisor">
+                <FaTripadvisor />
               </a>
             </li>
           </ul>
