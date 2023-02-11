@@ -25,15 +25,15 @@ function MyApp({ Component, pageProps }) {
         {/* <PersistGate loading="Loading" persistor={persistor}> */}
         <Layout>
           <Head>
-            <title>Experience Stress-Free Travel From The Airports | Hotels in all DR...</title>
+            <title>Airport Transfers and Taxi Services all over Dominican Republic</title>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta
               name="description"
-              content="Get Where You Need to Go Safely and Affordably with Our Airport Transportation Services in the Dominican Republic."
+              content="VacationsTaxis- Offers Safe and Affordably Private Airport Taxi Service & Transfers from SDQ Santo Domingo Airport transfers, PUJ Punta Cana Airport Transfers, POP Puerto Plata Airport Transfers, LRM La Romana Airports Transfers, AZS Samana Aiport Transfer, STI Santiago Airport Transfers to all hotels all over the Dominican Republic."
             />
             <meta
               name="keywords"
-              content="Dominican Airport Transfers Services, Punta cana Airport Transfer, Samana Airport Transfer, Santo Domingo Airport Transfer"
+              content="Dominican Airport Transfers Services,PUJ Punta cana Airport Transfer,AZS Samana Airport Transfers, SDQ Santo Domingo Airport Transfers, POP Puerto Plata Airport Transfers, STI Santiago Airport Transfer"
             />
 
             <meta name="robots" content="index, follow" />
