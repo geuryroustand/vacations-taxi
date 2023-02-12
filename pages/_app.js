@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
             />
             <meta
               name="keywords"
-              content="Dominican Airport Transfers Services,PUJ Punta cana Airport Transfer,AZS Samana Airport Transfers, SDQ Santo Domingo Airport Transfers, POP Puerto Plata Airport Transfers, STI Santiago Airport Transfer"
+              content="Dominican Airport Transfers Services,PUJ Punta cana Airport Transfer,AZS Samana Airport Transfers,SDQ Santo Domingo Airport Transfers, POP Puerto Plata Airport Transfers, STI Santiago Airport Transfer"
             />
 
             <meta name="robots" content="index, follow" />

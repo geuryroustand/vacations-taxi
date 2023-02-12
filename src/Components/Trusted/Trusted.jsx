@@ -3,13 +3,13 @@ import Container from "react-bootstrap/Container";
 import { Why } from "./Why";
 import styled from "./Trusted.module.css";
 
-const Trusted = () => {
+const Trusted = ({ altAirPlane, altCreditCart, altPayment }) => {
   return (
     <section className={styled.trusted}>
       <Container className={styled.content}>
         <Why
           svgName="airplane.svg"
-          alt="airplane "
+          alt={altAirPlane ?? "Airplane"}
           width="32px"
           height="32px"
           title="Flight tracking"
@@ -18,7 +18,7 @@ const Trusted = () => {
         />
         <Why
           svgName="credit-card.svg"
-          alt="credit-card "
+          alt={altCreditCart ?? "credit card"}
           width="32px"
           height="32px"
           title="One clear price"
@@ -27,7 +27,7 @@ const Trusted = () => {
         />
         <Why
           svgName="payment.svg"
-          alt="payment "
+          alt={altPayment ?? "Payment"}
           width="32px"
           height="32px"
           title="Tried and trust"

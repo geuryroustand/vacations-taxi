@@ -24,8 +24,8 @@ export default function seoPage() {
     <Suspense fallback={<FallBackLoading />}>
       <MyHead
         title="Punta cana airport transportation"
-        desc="Reliable and affordable Punta Cana airport transportation"
-        keyword="Punta cana airport transportation | Airport shuttle punta cana | Punta Cana Airport Transfer | Punta Cana Taxi "
+        desc="VacationsTaxis offer hassle-free Punta Cana airport transportation Enjoy the convenience of safe & reliable transport to all Punta Cana hotels & the Dominican Republic."
+        keyword="Punta cana airport transportation, Airport shuttle punta cana, Punta Cana Airport Transfer, Punta Cana Taxi"
       />
       <DynamicHeader
         heading1="Punta cana airport transportation"
@@ -33,7 +33,11 @@ export default function seoPage() {
           60% air arrivals. It has open-air terminals. Our Punta Cana airport transfer shuttle
           services are going to add to your travel leisure in many ways."
       />
-      <DynamicTrusted />
+      <DynamicTrusted
+        altAirPlane="Punta cana airport transportation"
+        altCreditCart="Airport shuttle punta cana"
+        altPayment="Punta Cana Taxi"
+      />
 
       <Container className={styled.articleContainer}>
         <article>

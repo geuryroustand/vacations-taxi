@@ -41,7 +41,11 @@ export default function Home() {
         heading2="Easy airport transfers to and from your accommodation"
       />
 
-      <DynamicTrusted />
+      <DynamicTrusted
+        altAirPlane="Dominican Airport Transfers Services"
+        altCreditCart="PUJ Punta cana Airport Transfer"
+        altPayment="SDQ Santo Domingo Airport Transfers"
+      />
 
       <DynamicHowWork />
 

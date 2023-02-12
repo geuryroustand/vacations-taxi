@@ -25,13 +25,17 @@ export default function seoPage() {
       <MyHead
         title="Transportation from Punta Cana Airport"
         desc="Are you looking for a reliable and comfortable transportation option from Punta Cana Airport to your hotel? Look no further than VacationsTaxis.com."
-        keyword="Transportation from Punta Cana Airport | Punta Cana Shuttle Service | Transfer Santo Domingo Punta Cana | VIP Transfer Punta Cana"
+        keyword="Transportation from Punta Cana Airport,Punta Cana Shuttle Service ,Transfer Santo Domingo Punta Cana , VIP Transfer Punta Cana"
       />
       <DynamicHeader
         heading1="Transportation from Punta Cana Airport"
         heading2="We specialize in providing airport transfer services to travelers visiting the beautiful Punta Cana region in the Dominican Republic."
       />
-      <DynamicTrusted />
+      <DynamicTrusted
+        altAirPlane="Transportation from Punta Cana Airport"
+        altCreditCart="Punta Cana Shuttle Service "
+        altPayment="Transfer Santo Domingo Punta Cana"
+      />
 
       <Container className={styled.articleContainer}>
         <article>

@@ -22,12 +22,21 @@ const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted")
 
 function PagesForSEO({ locationFound }) {
   const { article1, article2, desc, heading1, keywords } = locationFound;
+  const keywordSplit = keywords.split(",");
+
+  const firstKeyWord = keywordSplit[0];
+  const secondKeyWord = keywordSplit[1];
+  const thirdKeyWord = keywordSplit[2];
 
   return (
     <Suspense fallback={<FallBackLoading />}>
       <MyHead title={heading1} desc={desc} keyword={keywords} />
       <DynamicHeader heading1={heading1} heading2={desc} />
-      <DynamicTrusted />
+      <DynamicTrusted
+        altAirPlane={firstKeyWord}
+        altCreditCart={secondKeyWord}
+        altPayment={thirdKeyWord}
+      />
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>{article1.title}</h2>
