@@ -1,5 +1,6 @@
 // import Script from "next/script";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 import { Suspense } from "react";
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 
@@ -35,23 +36,38 @@ export default function Home() {
     //     data-siteid="9c95c2f3-c18c-49ce-b8dd-1e5c04cb32b2"
     //   />
 
-    <Suspense fallback={<FallBackLoading />}>
-      <DynamicHeader
-        heading1="Reliable, low cost airport transfers"
-        heading2="Easy airport transfers to and from your accommodation"
+    <>
+      {/* <!-- Google tag (gtag.js) --> */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-9JT5V14EVY"
+        strategy="lazyOnload"
       />
+      <Script id="google-analytics" strategy="lazyOnload">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-      <DynamicTrusted
-        altAirPlane="Dominican Airport Transfers Services"
-        altCreditCart="PUJ Punta cana Airport Transfer"
-        altPayment="SDQ Santo Domingo Airport Transfers"
-      />
+        gtag('config', 'G-9JT5V14EVY');
+      `}
+      </Script>
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader
+          heading1="Reliable, low cost airport transfers"
+          heading2="Easy airport transfers to and from your accommodation"
+        />
 
-      <DynamicHowWork />
+        <DynamicTrusted
+          altAirPlane="Dominican Airport Transfers Services"
+          altCreditCart="PUJ Punta cana Airport Transfer"
+          altPayment="SDQ Santo Domingo Airport Transfers"
+        />
 
-      <DynamicAwards />
-      <DynamicFaq />
-    </Suspense>
-    // </>
+        <DynamicHowWork />
+
+        <DynamicAwards />
+        <DynamicFaq />
+      </Suspense>
+    </>
   );
 }

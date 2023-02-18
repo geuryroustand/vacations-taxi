@@ -37,7 +37,7 @@ const Car = ({
       <Image
         src={`/images/${cartTypeImage}`}
         width="194.4px"
-        height=" 93.73px"
+        height="93.73px"
         alt="standard card"
       />
 

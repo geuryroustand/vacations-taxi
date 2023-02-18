@@ -8,6 +8,7 @@ import "../styles/globals.css";
 import ReactDOM from "react-dom";
 import React from "react";
 import SSRProvider from "react-bootstrap/SSRProvider";
+
 import { Provider } from "react-redux";
 import Head from "next/head";
 
@@ -45,7 +46,6 @@ function MyApp({ Component, pageProps }) {
             <meta name="msapplication-TileColor" content="#da532c" />
             <meta name="theme-color" content="#ffffff" />
           </Head>
-
           <Component {...pageProps} />
         </Layout>
         {/* </PersistGate> */}
