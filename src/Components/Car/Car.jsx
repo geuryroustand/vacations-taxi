@@ -18,10 +18,15 @@ const Car = ({
   oneWayOrRoundTrip,
   cartSelected,
   id,
-  selectedText
+  selectedText,
+  selectedTaxiClassName
 }) => {
+  const addClass = selectedTaxiClassName
+    ? `${styled.car} ${selectedTaxiClassName}`
+    : `${styled.car}`;
+
   return (
-    <div id={id} className={`${styled.car} `} onClick={cartSelected}>
+    <div id={id} className={addClass} onClick={cartSelected}>
       <div className={styled.list}>
         <Image src="/images/people.svg" width="20px" height="20px" alt="total of people" />
         <span>Up to {totalPassengers} passengers</span>

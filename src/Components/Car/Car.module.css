@@ -1,5 +1,5 @@
 .car {
-  width: 14.81rem;
+  width: 20rem;
   padding: 0.5rem;
 
   background-color: #fff !important;
@@ -11,7 +11,7 @@
 
 @media (min-width: 45em) {
   .car {
-    width: 20.68rem;
+    width: 24rem;
     height: 24.12rem;
     padding: 1rem;
   }

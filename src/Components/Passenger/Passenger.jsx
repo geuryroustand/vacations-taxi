@@ -86,7 +86,7 @@ const Passenger = () => {
         </div>
 
         <div className={styled.controlForm}>
-          <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="formBasicEmail">
+          <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="email">
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
@@ -111,7 +111,8 @@ const Passenger = () => {
               defaultCountry="DO"
               placeholder="Enter mobile number"
               required
-              name="mobileNumber"
+              name="mobile"
+              id="mobile"
               value={passengerInfo.mobileNumber}
               onChange={(mobileNumber) =>
                 setPassengerInfo({
@@ -139,7 +140,7 @@ const Passenger = () => {
             />
           </Form.Group>
 
-          <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="lastName">
+          <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="arrivalFlightNumber">
             <Form.Label>Flight Number</Form.Label>
             <Form.Control
               type="text"
@@ -164,7 +165,7 @@ const Passenger = () => {
               />
             </Form.Group>
 
-            <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="lastName">
+            <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="departureFlightNumber">
               <Form.Label>Flight Number</Form.Label>
               <Form.Control
                 type="text"
