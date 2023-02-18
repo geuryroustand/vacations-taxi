@@ -1,13 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-
 import styled from "./Car.module.css";
 
 const Car = ({
@@ -19,14 +11,19 @@ const Car = ({
   cartSelected,
   id,
   selectedText,
-  selectedTaxiClassName
+  selectedTaxiClassName,
+  selectedTextClassName
 }) => {
   const addClass = selectedTaxiClassName
-    ? `${styled.car} ${selectedTaxiClassName}`
+    ? ` ${styled.car} ${selectedTaxiClassName}`
     : `${styled.car}`;
 
+  const addClassText = selectedTextClassName
+    ? `${styled.selectedText} ${styled.selectedTextClass}`
+    : `${styled.selectedText}`;
+
   return (
-    <div id={id} className={addClass} onClick={cartSelected}>
+    <button type="button" id={id} className={addClass} onClick={cartSelected}>
       <div className={styled.list}>
         <Image src="/images/people.svg" width="20px" height="20px" alt="total of people" />
         <span>Up to {totalPassengers} passengers</span>
@@ -76,9 +73,9 @@ const Car = ({
 
       <div className={styled.list}>
         <p>/{oneWayOrRoundTrip}</p>
-        <Link href="#">{selectedText}</Link>
+        <p className={addClassText}>{selectedText}</p>
       </div>
-    </div>
+    </button>
   );
 };
 

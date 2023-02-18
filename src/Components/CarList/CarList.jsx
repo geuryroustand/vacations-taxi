@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 import { updateTotalPrice } from "../../redux/flightInfoSlice";
 import Car from "../Car/Car";
+
 import styled from "./CarList.module.css";
 
 const CarList = () => {
@@ -72,6 +72,7 @@ const CarList = () => {
   return (
     <div className={styled.navContainer}>
       <button
+        title="click to check car option to the left"
         type="button"
         className={styled.navButton}
         onClick={() => handleCartNavigation("left")}>
@@ -90,6 +91,7 @@ const CarList = () => {
             totalPrice={cart.price}
             oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
             selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
+            selectedTextClassName={index === taxiSelected ?? taxiSelected}
             selectedTaxiClassName={index === taxiSelected ? "selectedCart" : ""}
           />
         ))}
@@ -97,6 +99,7 @@ const CarList = () => {
 
       <button
         type="button"
+        title="click to check car option to the right"
         className={styled.navButton}
         onClick={() => handleCartNavigation("right")}>
         <AiOutlineRight />

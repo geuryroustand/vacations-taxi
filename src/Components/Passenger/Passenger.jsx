@@ -154,7 +154,7 @@ const Passenger = () => {
 
         {roundtrip && (
           <div className={styled.controlForm}>
-            <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="airLineName">
+            <Form.Group className={`mb-3 ${styled.formGroup}`} controlId="departureAirlineName">
               <Form.Label>Departure Airline Name</Form.Label>
               <Form.Control
                 type="text"

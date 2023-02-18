@@ -36,8 +36,8 @@
 }
 
 .selectedCart {
-  border-bottom: 3px solid var(--primary-color);
-  border-left: 3px solid var(--primary-color);
+  border-bottom: 3px solid var(--primary-color) !important;
+  border-left: 3px solid var(--primary-color) !important;
 }
 
 .main {

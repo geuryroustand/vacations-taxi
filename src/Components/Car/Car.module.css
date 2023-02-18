@@ -1,6 +1,10 @@
 .car {
   width: 20rem;
   padding: 0.5rem;
+  border: none;
+  /* border-bottom: none;
+  border-top: none;
+  border-right: none; */
 
   background-color: #fff !important;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -29,3 +33,13 @@
   padding-left: 0.6rem;
   padding-bottom: 0.5rem;
 } */
+
+.selectedText {
+  text-decoration: underline;
+  color: var(--secondary-darkest-color);
+  font-weight: 400;
+}
+
+.selectedTextClass {
+  color: var(--primary-color);
+}
