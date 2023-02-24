@@ -25,6 +25,7 @@ const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Paymen
 });
 
 function paymentDetails() {
+  persistor.purge();
   const { bookingInfo } = useSelector((state) => state.flightInfoReducer);
   const router = useRouter();
   const [validated, setValidated] = useState(false);

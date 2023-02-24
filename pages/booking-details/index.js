@@ -14,6 +14,7 @@ import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingS
 import Loading from "../../src/Components/Loading/Loading";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import MyHead from "../../src/Components/MyHead/MyHead";
+// import { persistor } from "../../src/redux/store";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -31,6 +32,7 @@ const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Pa
 });
 
 function BookingDetails() {
+  // persistor.purge();
   const [isLoading, setIsLoading] = useState(null);
 
   const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
@@ -58,6 +60,7 @@ function BookingDetails() {
   // TODO  fixed the problem when fetch and the price its not find
   const getData = async () => {
     setIsLoading(true);
+
     if (!router?.query?.pickUp && !router?.query?.dropOff) {
       setIsLoading(true);
       return;

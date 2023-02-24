@@ -36,10 +36,11 @@
 
 .selectedText {
   text-decoration: underline;
-  color: var(--secondary-darkest-color);
+  color: var(--secondary-color);
   font-weight: 400;
 }
 
 .selectedTextClass {
-  color: var(--primary-color);
+  color: var(--secondary-color);
+  font-weight: bold;
 }
