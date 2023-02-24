@@ -207,7 +207,7 @@ const SearchForm = ({ isClicked }) => {
         if (!response.ok) throw new Error("Not found ,Contact us here to help you");
 
         const getDestinations = await response.json();
-        console.log(getDestinations);
+
         setLocationsFetch({
           ...locationsFetch,
           isLoading: false,

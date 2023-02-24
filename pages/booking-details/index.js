@@ -69,8 +69,12 @@ function BookingDetails() {
     const res = await fetch(
       `${
         PROD
-          ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/addPrices?pickUp=${router?.query?.pickUp}&dropOff=${router?.query?.dropOff}&roundtrip=${router?.query?.roundtrip}`
-          : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/addPrices?pickUp=${router?.query?.pickUp}&dropOff=${router?.query?.dropOff}&roundtrip=${router?.query?.roundtrip}`
+          ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/addPrices?pickUp=${
+              router?.query?.pickUp
+            }&dropOff=${router?.query?.dropOff}&roundtrip=${router?.query?.roundtrip ?? false}`
+          : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/addPrices?pickUp=${
+              router?.query?.pickUp
+            }&dropOff=${router?.query?.dropOff}&roundtrip=${router?.query?.roundtrip ?? false}`
       }`
     );
 
