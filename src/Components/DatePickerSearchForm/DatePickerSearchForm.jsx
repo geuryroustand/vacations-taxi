@@ -1,8 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import es from "date-fns/locale/es";
 
 import styled from "./DatePickerSearchForm.module.css";
 
@@ -18,6 +21,9 @@ function DatePickerSearchForm({
 
   getPassenger
 }) {
+  const { t } = useTranslation("home");
+  const { locale } = useRouter();
+  registerLocale("es", es);
   return (
     <div className={styled.date}>
       <div className={styled.calender}>
@@ -26,6 +32,7 @@ function DatePickerSearchForm({
           {labelPickDate}
         </label>
         <DatePicker
+          locale={locale}
           id="date-picker"
           // showTimeSelect
 
@@ -78,7 +85,7 @@ function DatePickerSearchForm({
             showTimeSelectOnly
             showTimeSelect
             timeIntervals={10}
-            timeCaption="Pick-up time"
+            timeCaption={t("timeCaption")}
             timeFormat="HH:mm"
             dateFormat="h:mm aa"
             // showTimeInput
@@ -107,7 +114,7 @@ function DatePickerSearchForm({
         <div className={styled.passenger}>
           <Image src="/images/user.svg" width="20px" height="20px" alt="user" />
 
-          <label htmlFor="passenger">Passenger </label>
+          <label htmlFor="passenger">{t("passengers")}</label>
           <select
             name="passenger"
             id="passenger"

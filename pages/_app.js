@@ -8,6 +8,7 @@ import "../styles/globals.css";
 import ReactDOM from "react-dom";
 import React from "react";
 import SSRProvider from "react-bootstrap/SSRProvider";
+import { appWithTranslation } from "next-i18next";
 
 import { Provider } from "react-redux";
 import Head from "next/head";
@@ -68,4 +69,4 @@ if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
   axe(React, ReactDOM, 1000, config);
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

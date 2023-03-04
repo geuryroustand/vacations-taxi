@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+// eslint-disable-next-line unicorn/prefer-module
+const { i18n } = require("./next-i18next.config");
+
+module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
@@ -9,10 +12,9 @@ const nextConfig = {
         hostname: "**.tripadvisor.com"
       }
     ]
-  }
+  },
+  i18n
 };
-
-module.exports = nextConfig;
 
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({
 //   enabled: process.env.ANALYZE === "true",

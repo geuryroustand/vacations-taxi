@@ -1,0 +1,33 @@
+{
+  "heading1": "Reliable, low cost airport transfers",
+  "heading2": "Easy airport transfers to and from your accommodation",
+  "oneWay": "One-way",
+  "return": "Return",
+
+  "formPickUpLabel": "Enter pick-up location",
+  "inputPickUpPlaceHolder": "Enter pick-up location",
+  "inputPickUpName": "pickUp",
+  "isEmptyFeedbackPickUp": "Please provide a pick-up location",
+  "modalTitlePickUp": "Pick-up location",
+
+  "formDropLabel": "Enter drop location",
+  "inputDropPlaceHolder": "Enter drop location",
+  "inputDropName": "dropOff",
+  "isEmptyFeedbackDrop": "Please provide a drop-off location",
+  "modalTitleDrop": "Drop-off location",
+
+  "labelPickDate": "arrival date",
+  "labelPickTime": "arrival pick time",
+  "labelPickDate": "departure date",
+  "labelPickTime": "departure pick time",
+  "searchButton": "Search",
+  "passengers": "Passengers",
+  "timeCaption": "Pick-up time",
+
+  "trustedTitle1": "Flight tracking",
+  "trustedParagraph1": "Your driver waits for you in case of delays",
+  "trustedTitle2": "Single, fixed price",
+  "trustedParagraph2": "Confirmed price in advance: no additional fees",
+  "trustedTitle3": "Proven and reliable",
+  "trustedParagraph3": "Experienced drivers and 24/7 customer support for your peace of mind"
+}

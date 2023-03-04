@@ -2,6 +2,8 @@
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import { Suspense } from "react";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 
 // import { persistor } from "../src/redux/store";
@@ -25,6 +27,7 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 });
 
 export default function Home() {
+  const { t } = useTranslation();
   // persistor.purge();
   return (
     <>
@@ -43,10 +46,7 @@ export default function Home() {
       `}
       </Script>
       <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader
-          heading1="Reliable, low cost airport transfers"
-          heading2="Easy airport transfers to and from your accommodation"
-        />
+        <DynamicHeader heading1={t("home:heading1")} heading2={t("home:heading2")} />
 
         <DynamicTrusted
           altAirPlane="Dominican Airport Transfers Services"
@@ -61,4 +61,12 @@ export default function Home() {
       </Suspense>
     </>
   );
+}
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["home"]))
+    }
+  };
 }

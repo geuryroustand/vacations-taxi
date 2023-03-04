@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import { useTranslation } from "next-i18next";
 
 import styled from "./Header.module.css";
 
@@ -17,6 +18,7 @@ const DynamicHeading = dynamic(() => import("../Heading/Heading"), {
 
 const Header = ({ heading1, heading2 }) => {
   const [isClicked, setIsClicked] = useState(false);
+  const { t } = useTranslation("home");
 
   return (
     <header className={styled.hero}>
@@ -30,12 +32,12 @@ const Header = ({ heading1, heading2 }) => {
         <Button
           onClick={() => setIsClicked(false)}
           className={isClicked ? styled["btn-selected"] : styled["btn-oneWay"]}>
-          One-way
+          {t("oneWay")}
         </Button>
         <Button
           onClick={() => setIsClicked(true)}
           className={isClicked ? styled["btn-oneWay"] : styled["btn-selected"]}>
-          Return
+          {t("return")}
         </Button>
 
         <SearchForm isClicked={isClicked} />

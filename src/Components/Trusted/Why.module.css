@@ -3,6 +3,9 @@
   display: flex;
   gap: 1rem;
 }
+.why h2 {
+  font-size: 1.3rem;
+}
 
 .svg {
   width: 3.5rem;
