@@ -94,7 +94,10 @@ function BookingDetails() {
     return (
       <>
         <MyHead title="Searching..." noIndex />
-        <Loading />;
+        <Loading
+          spinnerTitle="We are searching you the best price..."
+          accessibilityTitle="We are searching the best price for you"
+        />
       </>
     );
   }

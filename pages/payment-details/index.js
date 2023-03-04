@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+import Loading from "../../src/Components/Loading/Loading";
 import styled from "./paymentDetails.module.css";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 import { persistor } from "../../src/redux/store";
@@ -25,10 +26,10 @@ const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Paymen
 });
 
 function paymentDetails() {
-  persistor.purge();
   const { bookingInfo } = useSelector((state) => state.flightInfoReducer);
   const router = useRouter();
   const [validated, setValidated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const sendInfo = async (event) => {
     const form = event.currentTarget;
@@ -44,7 +45,7 @@ function paymentDetails() {
     if (!form.checkValidity() === false) {
       try {
         const PROD = process.env.NODE_ENV === "production";
-
+        setIsLoading(true);
         const response = await fetch(
           `${
             PROD
@@ -62,13 +63,16 @@ function paymentDetails() {
           }
         );
 
-        if (!response.ok) throw new Error("Not found ,Contact us here to help you");
-
+        if (!response.ok)
+          throw new Error(
+            "A problem occurred while we were processing your reservation. Please try again or contact us to help you."
+          );
         // const getDestinations = await response.json();
-        router.push("/");
+        router.replace("/");
 
         persistor.purge();
       } catch (error) {
+        setIsLoading(false);
         console.log(error);
       }
     }
@@ -76,22 +80,36 @@ function paymentDetails() {
     setValidated(true);
   };
 
+  if (isLoading) {
+    return (
+      <>
+        <MyHead title="Booking..." noIndex />
+        <Loading
+          spinnerTitle="We are processing your reservation."
+          accessibilityTitle="We are processing your reservation"
+        />
+        ;
+      </>
+    );
+  }
+
   return (
-    <Form className={styled.paymentDetails} noValidate validated={validated} onSubmit={sendInfo}>
+    <>
       <MyHead title="Payment" noIndex />
 
-      <Container>
-        <BookingStepProcess />
-      </Container>
+      <Form className={styled.paymentDetails} noValidate validated={validated} onSubmit={sendInfo}>
+        <Container>
+          <BookingStepProcess />
+        </Container>
+        <Container className={styled.paymentDetailsContainer}>
+          <Suspense fallback={<FallBackLoading />}>
+            <DynamicBookingSummary />
 
-      <Container className={styled.paymentDetailsContainer}>
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicBookingSummary />
-
-          <DynamicPayment />
-        </Suspense>
-      </Container>
-    </Form>
+            <DynamicPayment />
+          </Suspense>
+        </Container>
+      </Form>
+    </>
   );
 }
 

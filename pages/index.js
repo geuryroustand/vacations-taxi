@@ -27,15 +27,6 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 export default function Home() {
   // persistor.purge();
   return (
-    // <>
-    //   <Script
-    //     strategy="worker"
-    //     id="truendoAutoBlock"
-    //     type="text/javascript"
-    //     src="https://cdn.priv.center/pc/truendo_cmp.pid.js"
-    //     data-siteid="9c95c2f3-c18c-49ce-b8dd-1e5c04cb32b2"
-    //   />
-
     <>
       {/* <!-- Google tag (gtag.js) --> */}
       <Script
