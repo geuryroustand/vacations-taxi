@@ -14,7 +14,7 @@ module.exports = {
     ]
   },
   i18n,
-
+  reloadOnPrerender: process.env.NODE_ENV === "development",
   async rewrites() {
     return [
       {
