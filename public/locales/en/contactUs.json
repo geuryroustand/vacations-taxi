@@ -1,0 +1,14 @@
+{
+  "pageTitle": "Contact Us",
+  "heading1": "Get In Touch",
+  "heading2": "We are here to help you! How can we help you?",
+  "name": "Enter your name",
+  "nameFeedBack": "Please provide your name.",
+  "email": "Enter your email",
+  "emailPlaceholder": "jhon@gmail.com",
+  "emailFeedBack": "Please provide a valid email.",
+  "emailShareText": "We ll never share your email with anyone else.",
+  "textareaLabel": "Your message",
+  "textareaFeedBack": "Please provide your request.",
+  "buttonText": "Submit"
+}

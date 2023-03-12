@@ -13,7 +13,22 @@ module.exports = {
       }
     ]
   },
-  i18n
+  i18n,
+
+  async rewrites() {
+    return [
+      {
+        source: "/es/quienes-somos",
+        destination: "/about-us",
+        locale: false
+      },
+      {
+        source: "/es/contacte-con-nosotros",
+        destination: "/contact-us",
+        locale: false
+      }
+    ];
+  }
 };
 
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({

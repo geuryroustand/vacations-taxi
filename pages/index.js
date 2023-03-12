@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Suspense } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 
 // import { persistor } from "../src/redux/store";
@@ -66,7 +67,7 @@ export default function Home() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["home"]))
+      ...(await serverSideTranslations(locale, ["home", "howWork", "faq", "footer"]))
     }
   };
 }

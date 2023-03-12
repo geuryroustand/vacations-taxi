@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Image from "next/image";
-
+import { useTranslation } from "next-i18next";
 import styled from "./ContactForm.module.css";
 
 const ContactForm = () => {
   const [validated, setValidated] = useState(false);
-
+  const { t } = useTranslation("contactUs");
   const submitInfo = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -21,32 +21,28 @@ const ContactForm = () => {
   return (
     <div className={styled.contact}>
       <Form className={styled.form} noValidate validated={validated} onSubmit={submitInfo}>
-        <h1>Get In Touch</h1>
-        <h2>We are here to help you! How can we help you?</h2>
+        <h1>{t("heading1")} </h1>
+        <h2>{t("heading2")}</h2>
         <Form.Group className="mb-3" controlId="controlInputName">
-          <Form.Label>Enter your name</Form.Label>
-          <Form.Control type="text" required placeholder="Enter your name" />
-          <Form.Control.Feedback type="invalid">Please provide your name.</Form.Control.Feedback>
+          <Form.Label>{t("name")}</Form.Label>
+          <Form.Control type="text" required placeholder={t("name")} />
+          <Form.Control.Feedback type="invalid">{t("nameFeedBack")}</Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="controlInputEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="jhon@gmail.com" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid email.
-          </Form.Control.Feedback>
-          <Form.Text className="text-muted">
-            We ll never share your email with anyone else.
-          </Form.Text>
+          <Form.Label>{t("email")}</Form.Label>
+          <Form.Control type="email" placeholder={t("emailPlaceholder")} required />
+          <Form.Control.Feedback type="invalid">{t("emailFeedBack")}</Form.Control.Feedback>
+          <Form.Text className="text-muted">{t("emailShareText")}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="controlInputTexArea">
-          <Form.Label>Your message</Form.Label>
+          <Form.Label>{t("textareaLabel")}</Form.Label>
           <Form.Control required as="textarea" rows={3} />
-          <Form.Control.Feedback type="invalid">Please provide your request.</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">{t("textareaFeedBack")}</Form.Control.Feedback>
         </Form.Group>
 
         <Button className={styled.submitBtn} type="submit">
-          Submit
+          {t("buttonText")}
         </Button>
       </Form>
 

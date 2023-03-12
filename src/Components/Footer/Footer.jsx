@@ -2,33 +2,34 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaTripadvisor } from "react-icons/fa";
-
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import styled from "./Footer.module.css";
 
 const Footer = () => {
+  const { t } = useTranslation("footer");
   return (
     <footer className={styled.footer}>
       <Container>
         <ul className={styled.footerUl}>
           <li className={styled.footerList}>
-            <h3 className={styled.heading}>Top locations</h3>
-            <Link href="/punta-cana-airport-transfers">Punta Cana Airport (PUJ)</Link>
-            <Link href="/santo-domingo-aiport-transfers">Santo Domingo Airport (SDQ)</Link>
-            <Link href="/">Puerto Plata Airport (POP)</Link>
-            <Link href="/samana-el-catey-airport-transfers">Samana Airport (AZS) </Link>
-            <Link href="/">La Romana Airport (LRM) </Link>
-            <Link href="/">Santiago Cibao Airport (STI) </Link>
-            <Link href="/la-isabella-airport-transfers-and-taxis">La Isabela Airport (JBQ)</Link>
+            <h3 className={styled.heading}>{t("heading1")}</h3>
+            <Link href={t("link1")}>{t("link1Text")}</Link>
+            <Link href={t("link2")}>{t("link2Text")}</Link>
+            <Link href={t("link3")}>{t("link3Text")}</Link>
+            <Link href={t("link4")}>{t("link4Text")}</Link>
+            <Link href={t("link5")}>{t("link5Text")}</Link>
+            <Link href={t("link6")}>{t("link6Text")}</Link>
+            <Link href={t("link7")}>{t("link7Text")}</Link>
 
-            <a href="/transportation-from-punta-cana-aiport" target="_blank" className="sr-only">
-              Transportation from Punta Cana Airport
+            <a href={t("link8")} rel="noreferrer" target="_blank" className="sr-only">
+              {t("link8Text")}
             </a>
-            <a href="/punta-cana-airport-transportation" target="_blank" className="sr-only">
-              Punta cana airport transportation
+            <a href={t("link9")} rel="noreferrer" target="_blank" className="sr-only">
+              {t("link9Text")}
             </a>
-            <a href="/best-punta-cana-airport-transfers" target="_blank" className="sr-only">
-              Best Punta Cana airport transfers
+            <a href={t("link10")} rel="noreferrer" target="_blank" className="sr-only">
+              {t("link10Text")}
             </a>
           </li>
 
@@ -39,16 +40,16 @@ const Footer = () => {
           </li> */}
 
           <li className={styled.footerList}>
-            <h3 className={styled.heading}>Company</h3>
-            <Link href="/about-us">About Us</Link>
-            <Link href="/contact-us">Help Center</Link>
-            <Link href="/privacy-notice"> Privacy Notice</Link>
-            <Link href="/terms-and-conditions">Terms and Conditions</Link>
+            <h3 className={styled.heading}>{t("heading2")}</h3>
+            <Link href={t("link11")}>{t("link11Text")}</Link>
+            <Link href={t("link12")}>{t("link12Text")}</Link>
+            <Link href={t("link13")}>{t("link13Text")}</Link>
+            <Link href={t("link14")}>{t("link14Text")}</Link>
           </li>
         </ul>
 
         <div className={styled.socialMedia}>
-          <h3 className={styled.socialMediaHeading}>Follow us on</h3>
+          <h3 className={styled.socialMediaHeading}>{t("socialMediaHeading")}</h3>
           <ul className={styled.socialMediaList}>
             <li>
               <a
@@ -91,7 +92,7 @@ const Footer = () => {
         </div>
 
         <p className={styled.copyright}>
-          Copyright &copy; vacationsTaxi.com&trade;. All rights reserved.{" "}
+          {t("copyright")} &copy; vacationsTaxi.com&trade;. {t("rights")}
         </p>
       </Container>
     </footer>
