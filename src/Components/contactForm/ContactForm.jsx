@@ -67,8 +67,12 @@ const ContactForm = () => {
           <div className={styled.address}>
             <Image src="/images/tel.svg" width="30px" height="30px" alt="location" />
             <p>
-              <a href="tel:+809 864-1053">+1 (809) 864-1053 (DR)</a> <br />
-              <a href="tel:+2392055572">+1 (239) 205-5572 (USA)</a>
+              <a href="tel:+18094536714">+1 (809) 453-6714 (DR)</a> <br />
+              <a
+                href="tel:+13608607857
+">
+                +1 (360) 860-7857 (USA)
+              </a>
             </p>
           </div>
 

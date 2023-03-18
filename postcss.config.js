@@ -22,6 +22,10 @@ module.exports = {
           standard: ["html", "body"],
           // Bootstrap class to keep it
           deep: [
+            /^fade/,
+            /^offcanvas-backdrop/,
+            /^show/,
+            /^offcanvas/,
             /^navbar/,
             /^container/,
             /^modal/,
