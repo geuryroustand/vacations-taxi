@@ -31,9 +31,9 @@ export default function Home() {
       {/* <!-- Google tag (gtag.js) --> */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-9JT5V14EVY"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script id="google-analytics" strategy="lazyOnload">
         {`
         window.dataLayer = window.dataLayer || [];
         function gtag(){window.dataLayer.push(arguments);}
