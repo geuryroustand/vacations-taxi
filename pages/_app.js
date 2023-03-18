@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
             />
             <meta
               name="keywords"
-              content="Dominican Airport Transfers Services,PUJ Punta cana Airport Transfer,AZS Samana Airport Transfers,SDQ Santo Domingo Airport Transfers, POP Puerto Plata Airport Transfers, STI Santiago Airport Transfer"
+              content="VacationsTaxis, Vacations Taxis, Vacations Taxis Dominican Republic, book a taxi,book taxi online, taxi transportation,online cab booking,book airport taxi, taxi ride to airport,online taxi service,cab ride to airport,taxi transportation near me,taxi transportation services,airport car service,airport transportation near me , airport transportation services,airport ride service,airport transfer service, private airport transfer service,best private airport transfer "
             />
 
             <meta name="robots" content="index, follow" />

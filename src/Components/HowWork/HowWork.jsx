@@ -22,6 +22,16 @@ const HowWork = () => {
 
         <div className={styled.howWorkContext}>
           <Image
+            src="/images/locationHowWork.svg"
+            width="107.12px"
+            height="107.12px"
+            alt="PUJ Punta Cana Airport Taxi Services"
+          />
+          <h3>Arrive location</h3>
+        </div>
+
+        <div className={styled.howWorkContext}>
+          <Image
             src="/images/driver.svg"
             width="107.12px"
             height="107.12px"
@@ -29,16 +39,6 @@ const HowWork = () => {
           />
           <h3>Meet your driver</h3>
           <p />
-        </div>
-
-        <div className={styled.howWorkContext}>
-          <Image
-            src="/images/locationHowWork.svg"
-            width="107.12px"
-            height="107.12px"
-            alt="PUJ Punta Cana Airport Taxi Services"
-          />
-          <h3>Arrive location</h3>
         </div>
       </Container>
     </section>

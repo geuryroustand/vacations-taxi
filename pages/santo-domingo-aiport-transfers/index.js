@@ -102,22 +102,6 @@ export default function seoPage() {
             in Santo Domingo.
           </p>
         </article>
-
-        <article>
-          <h2 className={styled.articleHeading}>Santo Domingo Airport Transfers</h2>
-          <p>
-            When it comes to traveling, one of the most important factors is convenience. Nobody
-            wants to waste time and energy figuring out how to get from the airport to their hotel,
-            especially after a long flight. This is where airport transfers come in.
-          </p>
-
-          <p>
-            Vacationstaxis.com offers efficient and convenient airport transfers in Santo Domingo
-            that will take you directly from the airport to your hotel. This service is perfect for
-            those looking for a more efficient and direct way of getting to their hotel, with no
-            unnecessary stops or detours.
-          </p>
-        </article>
       </Container>
       {/* <DynamicAwards /> */}
     </Suspense>
