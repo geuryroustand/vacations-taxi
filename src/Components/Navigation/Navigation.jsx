@@ -16,17 +16,17 @@ const Navigation = () => {
             <span className={styled["logo-vacations-text"]}>Vacations</span>Taxis.com
           </Navbar.Brand>
         </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" />
         <Navbar.Offcanvas
           id="offcanvasNavbar-expand-lg"
           aria-labelledby="offcanvasNavbarLabel-expand-lg"
           placement="end">
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg">Information</Offcanvas.Title>
+            <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg-info">Information</Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body closeButton>
+          <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <NavDropdown title="Top locations" id="offcanvasNavbarDropdown-expand-lg">
+              <NavDropdown title="Top locations" id="offcanvasNavbarDropdown-expand-lg-top">
                 <NavDropdown.Item href="/punta-cana-airport-transfers">
                   Punta Cana Airport (PUJ)
                 </NavDropdown.Item>
@@ -58,7 +58,7 @@ const Navigation = () => {
                   La Isabela Airport (JBQ)
                 </NavDropdown.Item>
               </NavDropdown>
-              <NavDropdown title="Company" id="offcanvasNavbarDropdown-expand-lg">
+              <NavDropdown title="Company" id="offcanvasNavbarDropdown-expand-lg-company">
                 <NavDropdown.Item href="/about-us">About Us</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/privacy-notice">Privacy Notice</NavDropdown.Item>

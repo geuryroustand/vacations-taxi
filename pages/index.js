@@ -33,7 +33,7 @@ export default function Home() {
         src="https://www.googletagmanager.com/gtag/js?id=G-9JT5V14EVY"
         strategy="lazyOnload"
       />
-      <Script id="google-analytics" strategy="lazyOnload">
+      <Script id="google-analytics" strategy="afterInteractive">
         {`
         window.dataLayer = window.dataLayer || [];
         function gtag(){window.dataLayer.push(arguments);}
