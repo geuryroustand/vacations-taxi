@@ -24,6 +24,12 @@
   background-color: var(--secondary-color);
 }
 
+.invalid-feedbackShow {
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
+
 /* Date Picker */
 .react-datepicker__time-container {
   width: 100% !important;

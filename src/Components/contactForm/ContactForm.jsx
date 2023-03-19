@@ -2,53 +2,136 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Image from "next/image";
-
+import Link from "next/link";
 import styled from "./ContactForm.module.css";
 
 const ContactForm = () => {
   const [validated, setValidated] = useState(false);
+  const [infoSent, setInfoSent] = useState(false);
 
-  const submitInfo = (event) => {
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    message: "",
+    name: ""
+  });
+  const [message, setMessage] = useState([]);
+
+  const submitInfo = async (event) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
+    if (!form.checkValidity() === false) {
+      try {
+        const PROD = process.env.NODE_ENV === "production";
+
+        const response = await fetch(
+          `${
+            PROD
+              ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/contact-us`
+              : `${process.env.NEXT_PUBLIC_API_DEV_URL}/contact-us`
+          }`,
+
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(inputValue)
+          }
+        );
+
+        if (!response.ok) {
+          const errors = await response.json();
+          setValidated(true);
+          throw errors;
+        }
+        setInfoSent(true);
+        setMessage([]);
+
+        // TODO no show the form after submit it
+      } catch (error) {
+        setMessage(...error.error);
+      }
     }
 
     setValidated(true);
   };
 
+  const getUserInputValue = (event) => {
+    setInputValue({
+      ...inputValue,
+      [event.target.name]: event.target.value
+    });
+  };
+
   return (
     <div className={styled.contact}>
-      <Form className={styled.form} noValidate validated={validated} onSubmit={submitInfo}>
-        <h1>Get In Touch</h1>
-        <h2>We are here to help you! How can we help you?</h2>
-        <Form.Group className="mb-3" controlId="controlInputName">
-          <Form.Label>Enter your name</Form.Label>
-          <Form.Control type="text" required placeholder="Enter your name" />
-          <Form.Control.Feedback type="invalid">Please provide your name.</Form.Control.Feedback>
-        </Form.Group>
+      {infoSent ? (
+        <div>
+          <p className={styled.message}>
+            Your message has been sent, we will contact you as soon as possible.
+          </p>
+          <Link href="/">Go back to home</Link>
+        </div>
+      ) : (
+        <Form className={styled.form} noValidate validated={validated} onSubmit={submitInfo}>
+          <h1>Get In Touch</h1>
+          <h2>We are here to help you! How can we help you?</h2>
+          <Form.Group className="mb-3" controlId="controlInputName">
+            <Form.Label>Enter your name</Form.Label>
+            <Form.Control
+              onChange={getUserInputValue}
+              value={inputValue.name}
+              name="name"
+              type="text"
+              required
+              placeholder="Enter your name"
+            />
+            <Form.Control.Feedback type="invalid">Please provide your name.</Form.Control.Feedback>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="controlInputEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="jhon@gmail.com" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid email.
-          </Form.Control.Feedback>
-          <Form.Text className="text-muted">
-            We ll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="controlInputTexArea">
-          <Form.Label>Your message</Form.Label>
-          <Form.Control required as="textarea" rows={3} />
-          <Form.Control.Feedback type="invalid">Please provide your request.</Form.Control.Feedback>
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="controlInputEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              onChange={getUserInputValue}
+              name="email"
+              type="email"
+              value={inputValue.email}
+              placeholder="jhon@gmail.com"
+              required
+            />
+            {message.param === "email" ? (
+              <p className="invalid-feedbackShow">{message?.msg}</p>
+            ) : (
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid email.
+              </Form.Control.Feedback>
+            )}
+            <Form.Text className="text-muted">
+              We ll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="controlInputTexArea">
+            <Form.Label>Your message</Form.Label>
+            <Form.Control
+              onChange={getUserInputValue}
+              name="message"
+              required
+              value={inputValue.message}
+              as="textarea"
+              rows={3}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please provide your request.
+            </Form.Control.Feedback>
+          </Form.Group>
 
-        <Button className={styled.submitBtn} type="submit">
-          Submit
-        </Button>
-      </Form>
+          <Button className={styled.submitBtn} type="submit">
+            Submit
+          </Button>
+        </Form>
+      )}
 
       <div>
         <div className={styled.contactImg}>

@@ -8,7 +8,8 @@ const nextConfig = {
         protocol: "https",
         hostname: "**.tripadvisor.com"
       }
-    ]
+    ],
+    formats: ["image/avif", "image/webp"]
   }
 };
 

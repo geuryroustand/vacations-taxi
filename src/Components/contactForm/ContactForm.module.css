@@ -66,3 +66,9 @@
 .address span {
   align-self: flex-start;
 }
+
+.message {
+  width: 100%;
+  margin-top: 5rem;
+  color: var(--secondary-color);
+}

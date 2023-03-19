@@ -28,6 +28,7 @@ const HowWork = () => {
             alt="PUJ Punta Cana Airport Taxi Services"
           />
           <h3>Arrive location</h3>
+          <p />
         </div>
 
         <div className={styled.howWorkContext}>
@@ -38,7 +39,6 @@ const HowWork = () => {
             alt="POP Puerto Plata Airport Transfers"
           />
           <h3>Meet your driver</h3>
-          <p />
         </div>
       </Container>
     </section>
