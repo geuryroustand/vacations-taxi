@@ -30,6 +30,9 @@ const Footer = () => {
             <a href="/best-punta-cana-airport-transfers" target="_blank" className="sr-only">
               Best Punta Cana airport transfers
             </a>
+            <a href="/dominican-republic-airport-transfers" target="_blank" className="sr-only">
+              Dominican Airport Transfers
+            </a>
           </li>
 
           {/* <li className={styled.footerList}>
