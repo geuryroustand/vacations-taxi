@@ -26,11 +26,11 @@ function MyApp({ Component, pageProps }) {
         {/* <PersistGate loading="Loading" persistor={persistor}> */}
         <Layout>
           <Head>
-            <title>Airport Transfers and Taxi Services all over Dominican Republic</title>
+            <title>Book A Taxi Online | Airport Transportation</title>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta
               name="description"
-              content="VacationsTaxis- Offers Safe and Affordably Private Airport Taxi Service & Transfers from SDQ Santo Domingo Airport transfers, PUJ Punta Cana Airport Transfers, POP Puerto Plata Airport Transfers, LRM La Romana Airports Transfers, AZS Samana Aiport Transfer, STI Santiago Airport Transfers to all hotels all over the Dominican Republic."
+              content="Book a taxi online for easy airport transfers to/from your accommodation. Various taxi transportation services. Tried & trusted. Flight tracking. 24/7 support."
             />
             <meta
               name="keywords"

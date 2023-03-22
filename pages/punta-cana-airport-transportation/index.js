@@ -23,8 +23,8 @@ export default function seoPage() {
   return (
     <Suspense fallback={<FallBackLoading />}>
       <MyHead
-        title="Punta cana airport transportation"
-        desc="VacationsTaxis offer hassle-free Punta Cana airport transportation Enjoy the convenience of safe & reliable transport to all Punta Cana hotels & the Dominican Republic."
+        title="Punta Cana Airport Transfers Book Now for Hassle-Free Travel"
+        desc="VacationsTaxis offer hassle-free Punta Cana airport transportation Enjoy convenience  & reliable transport to all Punta Cana hotels & the Dominican. Republic."
         keyword="Punta cana airport transportation, Airport shuttle punta cana, Punta Cana Airport Transfer, Punta Cana Taxi"
       />
       <DynamicHeader

@@ -24,7 +24,7 @@ export default function dominicanRepublicAirportTransfers() {
     <Suspense fallback={<FallBackLoading />}>
       <MyHead
         title="Dominican Republic Airport Transfers and Shuttle"
-        desc="Looking for a reliable and safe airport transfer service in the Dominican Republic? Your search may end up with the top-class transportation services of Vacations Taxis."
+        desc="Our experienced drivers and modern vehicles guarantee a safe and comfortable journey in the Dominican Airport transfers to your hotel. With competitive prices."
         keyword="dominican airport transfers,
         shuttle central dominican republic,
         dominican republic airport transfers,
