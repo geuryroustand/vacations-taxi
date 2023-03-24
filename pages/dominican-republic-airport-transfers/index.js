@@ -39,6 +39,7 @@ export default function dominicanRepublicAirportTransfers() {
         dat dominican airport transfer,
         DAT transfers,
         "
+        canonicalURL="dominican-republic-airport-transfers"
       />
       <DynamicHeader
         heading1="Dominican Republic Airport Transfers"

@@ -25,7 +25,8 @@ export default function seoPage() {
       <MyHead
         title="Punta Cana Airport Transfers Book Now for Hassle-Free Travel"
         desc="VacationsTaxis offer hassle-free Punta Cana airport transportation Enjoy convenience  & reliable transport to all Punta Cana hotels & the Dominican. Republic."
-        keyword="Punta cana airport transportation, Airport shuttle punta cana, Punta Cana Airport Transfer, Punta Cana Taxi"
+        keyword="punta cana airport transportation, airport shuttle punta cana, punta cana airport Transfer, punta cana taxi, punta cana taxis"
+        canonicalURL="punta-cana-airport-transportation"
       />
       <DynamicHeader
         heading1="Punta cana airport transportation"

@@ -15,7 +15,7 @@ const DynamicContactForm = dynamic(() => import("../../src/Components/contactFor
 function contactUs() {
   return (
     <div className={styled.contactForm}>
-      <MyHead title="Contact Us" noIndex />
+      <MyHead title="Contact Us" noIndex canonicalURL="contact-us" />
 
       <Container className={styled.contactFormWrapper}>
         <Suspense fallback={<FallBackLoading />}>

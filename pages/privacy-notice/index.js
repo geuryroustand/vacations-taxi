@@ -7,7 +7,7 @@ import MyHead from "../../src/Components/MyHead/MyHead";
 export default function termsAndConditions() {
   return (
     <Container>
-      <MyHead title="Privacy Notice" noIndex />
+      <MyHead title="Privacy Notice" noIndex canonicalURL="privacy-notice" />
       <Suspense fallback={<FallBackLoading />}>
         <div className="mt-5">
           <h1>Privacy Notice</h1>

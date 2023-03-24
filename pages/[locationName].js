@@ -30,7 +30,12 @@ function PagesForSEO({ locationFound }) {
 
   return (
     <Suspense fallback={<FallBackLoading />}>
-      <MyHead title={title} desc={desc} keyword={keywords} />
+      <MyHead
+        title={title}
+        desc={desc}
+        keyword={keywords}
+        canonicalURL={heading1.replaceAll(" ", "-").toLowerCase()}
+      />
       <DynamicHeader heading1={heading1} heading2={desc} />
       <DynamicTrusted
         altAirPlane={firstKeyWord}

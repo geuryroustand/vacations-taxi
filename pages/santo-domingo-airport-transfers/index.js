@@ -24,8 +24,9 @@ export default function seoPage() {
     <Suspense fallback={<FallBackLoading />}>
       <MyHead
         title="Santo Domingo Airport Transfers: Reliable Taxis for Your Trip"
-        desc=""
-        keyword="Experience seamless Santo Domingo airport transfers with VacationsTaxi.Our reliable taxi services provide safe and comfortable transportation all over Dom. Rep."
+        desc="Experience seamless Santo Domingo airport transfers with VacationsTaxi.Our reliable taxi services provide safe and comfortable transportation all over Dom. Rep."
+        keyword="santo domingo airport transportation, santo domingo airport taxi, santo domingo airport transfers, airport transfer santo domingo, santo domingo airport to punta cana, transportation santo domingo to punta cana, santo domingo airport shuttle, shuttle from santo domingo to punta cana, private transportation from santo domingo to punta cana, santo domingo to punta cana shuttle, transfer from santo domingo to punta cana"
+        canonicalURL="santo-domingo-airport-transfers"
       />
       <DynamicHeader
         heading1="Santo domingo airport transfers and taxi"

@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
               name="keywords"
               content="VacationsTaxis, Vacations Taxis, Vacations Taxis Dominican Republic, book a taxi,book taxi online, taxi transportation,online cab booking,book airport taxi, taxi ride to airport,online taxi service,cab ride to airport,taxi transportation near me,taxi transportation services,airport car service,airport transportation near me , airport transportation services,airport ride service,airport transfer service, private airport transfer service,best private airport transfer "
             />
-
+            <link rel="canonical" href="https://www.vacationstaxis.com/" key="canonical" />
             <meta name="robots" content="index, follow" />
             <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
             <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />

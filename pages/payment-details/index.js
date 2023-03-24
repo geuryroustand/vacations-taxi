@@ -83,7 +83,7 @@ function paymentDetails() {
   if (isLoading) {
     return (
       <>
-        <MyHead title="Booking..." noIndex />
+        <MyHead title="Booking..." noIndex canonicalURL="payment-details" />
         <Loading
           spinnerTitle="We are processing your reservation."
           accessibilityTitle="We are processing your reservation"

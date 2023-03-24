@@ -25,7 +25,8 @@ export default function seoPage() {
       <MyHead
         title="Hassle-Free & Affordable Transportation Punta Cana Airport"
         desc="We offer affordable and convenient transportation from Punta Cana Airport to your hotel With 24/7 availability and a commitment to customer satisfaction."
-        keyword="Transportation from punta Cana Airport,Punta Cana Shuttle Service ,Transfer Santo Domingo Punta Cana , VIP Transfer Punta Cana, Punta cana shuttle, Punta cana shuttle service, Airport transportation Punta cana, Punta cana airport shuttle"
+        keyword="transportation from punta Cana Airport, punta cana shuttle service , transfer santo domingo punta cana , vip transfer punta cana, punta cana shuttle, punta cana shuttle service, airport transportation punta cana , punta cana airport shuttle"
+        canonicalURL="transportation-from-punta-cana-airport"
       />
       <DynamicHeader
         heading1="Transportation from Punta Cana Airport"

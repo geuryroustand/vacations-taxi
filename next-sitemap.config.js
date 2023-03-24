@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 // eslint-disable-next-line unicorn/prefer-module
 module.exports = {
-  siteUrl: "https://www.vacationstaxis.com",
+  siteUrl: "https://www.vacationstaxis.com/",
   generateRobotsTxt: true,
   exclude: [
     "/booking-details",
