@@ -15,7 +15,7 @@ const Footer = () => {
             <h3 className={styled.heading}>Top locations</h3>
             <Link href="/punta-cana-airport-transfers">Punta Cana Airport (PUJ)</Link>
             <Link href="/santo-domingo-aiport-transfers">Santo Domingo Airport (SDQ)</Link>
-            <Link href="/">Puerto Plata Airport (POP)</Link>
+            <Link href="/puerto-plata-airport-transfers">Puerto Plata Airport (POP)</Link>
             <Link href="/samana-el-catey-airport-transfers">Samana Airport (AZS) </Link>
             <Link href="/">La Romana Airport (LRM) </Link>
             <Link href="/">Santiago Cibao Airport (STI) </Link>
@@ -32,6 +32,9 @@ const Footer = () => {
             </a>
             <a href="/dominican-republic-airport-transfers" target="_blank" className="sr-only">
               Dominican Airport Transfers
+            </a>
+            <a href="/puerto-plata-airport-transportation" target="_blank" className="sr-only">
+              Puerto Plata Airport Transportation
             </a>
           </li>
 
@@ -94,7 +97,7 @@ const Footer = () => {
         </div>
 
         <p className={styled.copyright}>
-          Copyright &copy; vacationsTaxi.com&trade;. All rights reserved.{" "}
+          Copyright &copy; vacationsTaxi.com&trade;. All rights reserved.
         </p>
       </Container>
     </footer>
