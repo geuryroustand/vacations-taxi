@@ -14,7 +14,7 @@ const Footer = () => {
           <li className={styled.footerList}>
             <h3 className={styled.heading}>Top locations</h3>
             <Link href="/punta-cana-airport-transfers">Punta Cana Airport (PUJ)</Link>
-            <Link href="/santo-domingo-aiport-transfers">Santo Domingo Airport (SDQ)</Link>
+            <Link href="/santo-domingo-airport-transfers">Santo Domingo Airport (SDQ)</Link>
             <Link href="/puerto-plata-airport-transfers">Puerto Plata Airport (POP)</Link>
             <Link href="/samana-el-catey-airport-transfers">Samana Airport (AZS) </Link>
             <Link href="/">La Romana Airport (LRM) </Link>

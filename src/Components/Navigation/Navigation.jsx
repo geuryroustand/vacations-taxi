@@ -34,22 +34,38 @@ const Navigation = () => {
                 <NavDropdown.Item href="/santo-domingo-aiport-transfers">
                   Santo Domingo Airport (SDQ)
                 </NavDropdown.Item>
-                {/* <NavDropdown.Item href="/santo-domingo-aiport-transfers">
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="/puerto-plata-airport-transfers">
                   Puerto Plata Airport (POP)
-                </NavDropdown.Item> */}
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/samana-el-catey-airport-transfers">
-                  Samana Airport (AZS)
+                  Samana El Catey Airport (AZS)
                 </NavDropdown.Item>
-
+                <a
+                  href="/transportation-from-punta-cana-airport"
+                  target="_blank"
+                  className="sr-only">
+                  Transportation from Punta Cana Airport
+                </a>
+                <a href="/punta-cana-airport-transportation" target="_blank" className="sr-only">
+                  Punta cana airport transportation
+                </a>
+                <a href="/best-punta-cana-airport-transfers" target="_blank" className="sr-only">
+                  Best Punta Cana airport transfers
+                </a>
+                <a href="/dominican-republic-airport-transfers" target="_blank" className="sr-only">
+                  Dominican Airport Transfers
+                </a>
+                <a href="/puerto-plata-airport-transportation" target="_blank" className="sr-only">
+                  Puerto Plata Airport Transportation
+                </a>
                 {/* <NavDropdown.Item href="/samana-el-catey-airport-transfers">
                 La Romana Airport (LRM)
                 </NavDropdown.Item> */}
-
                 {/* <NavDropdown.Item href="/samana-el-catey-airport-transfers">
                Santiago Cibao Airport (STI)
                 </NavDropdown.Item> */}
-
                 {/* <NavDropdown.Item href="/samana-el-catey-airport-transfers">
                Santiago Cibao Airport (STI)
                 </NavDropdown.Item> */}
