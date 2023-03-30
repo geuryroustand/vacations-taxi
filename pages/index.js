@@ -1,5 +1,6 @@
 // import Script from "next/script";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 import Script from "next/script";
 import { Suspense } from "react";
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
@@ -28,6 +29,33 @@ export default function Home() {
   // persistor.purge();
   return (
     <>
+      <Head>
+        {/* Facebook Meta Tag */}
+
+        <meta property="og:url" content="https://www.vacationstaxis.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Book A Taxi Online | Airport Transportation" />
+        <meta
+          property="og:description"
+          content="Book a taxi online for easy airport transfers to/from your accommodation. Various taxi transportation services. Tried & trusted. Flight tracking. 24/7 support."
+        />
+        <meta property="og:image" content="https://www.vacationstaxis.com/images/openGraph.jpg" />
+
+        {/* Twitter Meta Tag */}
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="vacationstaxis.com" />
+        <meta property="twitter:url" content="https://www.vacationstaxis.com/" />
+        <meta property="twitter:title" content="Book A Taxi Online | Airport Transportation" />
+        <meta
+          property="twitter:description"
+          content="Book a taxi online for easy airport transfers to/from your accommodation. Various taxi transportation services. Tried & trusted. Flight tracking. 24/7 support."
+        />
+        <meta
+          property="twitter:image"
+          content="https://www.vacationstaxis.com/images/openGraph.jpg"
+        />
+      </Head>
       {/* <!-- Google tag (gtag.js) --> */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-9JT5V14EVY"

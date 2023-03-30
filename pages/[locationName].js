@@ -36,6 +36,32 @@ function PagesForSEO({ locationFound }) {
         keyword={keywords}
         canonicalURL={heading1.replaceAll(" ", "-").toLowerCase()}
       />
+      {/* Facebook Meta Tag */}
+
+      <meta
+        property="og:url"
+        content={`https://www.vacationstaxis.com/${heading1.replaceAll(" ", "-").toLowerCase()}`}
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={desc} />
+      <meta property="og:image" content="https://www.vacationstaxis.com/images/openGraph.jpg" />
+
+      {/* Twitter Meta Tag */}
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:domain" content="vacationstaxis.com" />
+      <meta
+        property="twitter:url"
+        content={`https://www.vacationstaxis.com/${heading1.replaceAll(" ", "-").toLowerCase()}`}
+      />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={desc} />
+      <meta
+        property="twitter:image"
+        content="https://www.vacationstaxis.com/images/openGraph.jpg"
+      />
+
       <DynamicHeader heading1={heading1} heading2={desc} />
       <DynamicTrusted
         altAirPlane={firstKeyWord}

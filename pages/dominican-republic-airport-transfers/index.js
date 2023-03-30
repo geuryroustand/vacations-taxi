@@ -41,6 +41,7 @@ export default function dominicanRepublicAirportTransfers() {
         "
         canonicalURL="dominican-republic-airport-transfers"
       />
+
       <DynamicHeader
         heading1="Dominican Republic Airport Transfers"
         heading2="Your delightful journey starts with us- Book your Dominican airport transfer with Vacations Taxis!"
