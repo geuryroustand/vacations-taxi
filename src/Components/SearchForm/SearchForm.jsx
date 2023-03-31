@@ -185,25 +185,36 @@ const SearchForm = ({ isClicked }) => {
         const PROD = process.env.NODE_ENV === "production";
 
         setLocationsFetch({ isLoading: true });
+        // const response = await fetch(
+        //   `${
+        //     PROD
+        //       ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/search`
+        //       : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/search`
+        //   }`,
+
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json"
+        //     },
+
+        //     body: JSON.stringify({
+        //       location: searchedTerm.valueTyped.trim()
+        //     })
+        //   }
+        // );
+
         const response = await fetch(
           `${
             PROD
-              ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/search`
-              : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/search`
-          }`,
-
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-              location: searchedTerm.valueTyped.trim()
-            })
-          }
+              ? `${
+                  process.env.NEXT_PUBLIC_API_PROD_URL
+                }/locations/search?location=${searchedTerm.valueTyped.trim()}`
+              : `${
+                  process.env.NEXT_PUBLIC_API_DEV_URL
+                }/locations/search?location=${searchedTerm.valueTyped.trim()}`
+          }`
         );
-
         if (!response.ok) throw new Error("Not found ,Contact us here to help you");
 
         const getDestinations = await response.json();
