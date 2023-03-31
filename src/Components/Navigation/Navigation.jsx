@@ -70,7 +70,7 @@ const Navigation = () => {
                Santiago Cibao Airport (STI)
                 </NavDropdown.Item> */}
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/la-isabella-airport-transfers-and-taxis">
+                <NavDropdown.Item href="/la-isabela-airport-transfers-and-taxis">
                   La Isabela Airport (JBQ)
                 </NavDropdown.Item>
               </NavDropdown>
