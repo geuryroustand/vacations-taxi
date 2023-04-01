@@ -37,7 +37,7 @@ function PagesForSEO({ locationFound }) {
         canonicalURL={heading1.replaceAll(" ", "-").toLowerCase()}
       />
 
-      <DynamicHeader heading1={heading1} heading2={desc} />
+      <DynamicHeader heading1={heading1} heading1Paragraph={desc} />
       <DynamicTrusted
         altAirPlane={firstKeyWord}
         altCreditCart={secondKeyWord}

@@ -15,18 +15,18 @@ const DynamicHeading = dynamic(() => import("../Heading/Heading"), {
   suspense: true
 });
 
-const Header = ({ heading1, heading2 }) => {
+const Header = ({ heading1, heading1Paragraph }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
     <header className={styled.hero}>
       <Container>
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicHeading style={styled["main-heading"]} headingText={heading1} />
-        </Suspense>
-
-        <h2 className={styled["sub-heading"]}>{heading2}</h2>
-
+        <article>
+          <Suspense fallback={<FallBackLoading />}>
+            <DynamicHeading style={styled.heading1} headingText={heading1} />
+          </Suspense>
+          <p className={styled.heading1Paragraph}>{heading1Paragraph} </p>
+        </article>
         <Button
           onClick={() => setIsClicked(false)}
           className={isClicked ? styled["btn-selected"] : styled["btn-oneWay"]}>

@@ -31,7 +31,7 @@ const Navigation = () => {
                   Punta Cana Airport (PUJ)
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/santo-domingo-aiport-transfers">
+                <NavDropdown.Item href="/santo-domingo-airport-transfers">
                   Santo Domingo Airport (SDQ)
                 </NavDropdown.Item>
                 <NavDropdown.Divider />

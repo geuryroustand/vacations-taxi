@@ -30,7 +30,7 @@ export default function seoPage() {
       />
       <DynamicHeader
         heading1="Transportation from Punta Cana Airport"
-        heading2="We specialize in providing airport transfer services to travelers visiting the beautiful Punta Cana region in the Dominican Republic."
+        heading1Paragraph="We specialize in providing airport transfer services to travelers visiting the beautiful Punta Cana region in the Dominican Republic."
       />
       <DynamicTrusted
         altAirPlane="Transportation from Punta Cana Airport"

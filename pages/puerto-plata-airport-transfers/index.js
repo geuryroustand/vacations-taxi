@@ -36,7 +36,7 @@ export default function seoPage() {
       />
       <DynamicHeader
         heading1="The Ultimate Guide to Puerto Plata Airport Transfers: How to Find the Best Shuttle Service"
-        heading2="As a frequent traveler, I have found that one of the most stressful aspects of any trip is figuring out transportation to and from the airport. This is especially true when traveling to a new destination. That is why I have put together this ultimate guide to Puerto Plata airport transfers to help fellow travelers navigate the process and find the best shuttle service available."
+        heading1Paragraph="As a frequent traveler, I have found that one of the most stressful aspects of any trip is figuring out transportation to and from the airport. This is especially true when traveling to a new destination. That is why I have put together this ultimate guide to Puerto Plata airport transfers to help fellow travelers navigate the process and find the best shuttle service available."
       />
       <DynamicTrusted
         altAirPlane="puerto plata airport transfers"

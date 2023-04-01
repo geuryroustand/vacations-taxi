@@ -35,7 +35,7 @@ export default function puntaCanaAirportTransfers() {
 
       <DynamicHeader
         heading1="Why Punta Cana Airport Transfers Should Be a Top Priority for Your Travel Plans?"
-        heading2="As someone who has traveled to Punta Cana, I can attest to the importance of airport transfers. It's a beautiful destination with lots to see and do, but getting to and from the airport can be a hassle. That's why Punta Cana airport transfers should be a top priority for your travel plans. In this article, we'll explore why airport transfers are important, the benefits of private and luxury transfers, how to choose the right transfer service, and more."
+        heading1Paragraph="As someone who has traveled to Punta Cana, I can attest to the importance of airport transfers. It's a beautiful destination with lots to see and do, but getting to and from the airport can be a hassle. That's why Punta Cana airport transfers should be a top priority for your travel plans. In this article, we'll explore why airport transfers are important, the benefits of private and luxury transfers, how to choose the right transfer service, and more."
       />
       <DynamicTrusted
         altAirPlane="Punta Cana Airport Transfers"

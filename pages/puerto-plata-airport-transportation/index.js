@@ -39,7 +39,7 @@ export default function seoPage() {
       />
       <DynamicHeader
         heading1="The Ultimate Guide to Puerto Plata Airport Transportation: Tips and Tricks to Make Your Journey Smooth"
-        heading2="As an often traveler to Puerto Plata Dominican Republic, I have discovered that transportation to and from the airport can be a hassle. The good news is that with proper planning, you can avoid stress and make your journey to the beautiful city of Puerto Plata smooth and enjoyable. In this ultimate guide, I will share with you some tips and tricks to make your transportation experience hassle-free."
+        heading1Paragraph="As an often traveler to Puerto Plata Dominican Republic, I have discovered that transportation to and from the airport can be a hassle. The good news is that with proper planning, you can avoid stress and make your journey to the beautiful city of Puerto Plata smooth and enjoyable. In this ultimate guide, I will share with you some tips and tricks to make your transportation experience hassle-free."
       />
       <DynamicTrusted
         altAirPlane="puerto plata airport transportation"

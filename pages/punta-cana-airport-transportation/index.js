@@ -30,7 +30,7 @@ export default function seoPage() {
       />
       <DynamicHeader
         heading1="Punta cana airport transportation"
-        heading2="It is factual that Punta Cana airport is the busiest airport in the Dominican Republic. It is accountable for above
+        heading1Paragraph="It is factual that Punta Cana airport is the busiest airport in the Dominican Republic. It is accountable for above
           60% air arrivals. It has open-air terminals. Our Punta Cana airport transfer shuttle
           services are going to add to your travel leisure in many ways."
       />

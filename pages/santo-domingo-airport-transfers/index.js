@@ -30,7 +30,7 @@ export default function seoPage() {
       />
       <DynamicHeader
         heading1="Santo domingo airport transfers and taxi"
-        heading2="We specialize in providing airport transfer and taxis from Santo Domingo Airport SDQ"
+        heading1Paragraph="We specialize in providing airport transfer and taxis from Santo Domingo Airport SDQ"
       />
       <DynamicTrusted
         altAirPlane="santo domingo airport transportation"

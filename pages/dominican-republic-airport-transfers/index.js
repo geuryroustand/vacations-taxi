@@ -44,7 +44,7 @@ export default function dominicanRepublicAirportTransfers() {
 
       <DynamicHeader
         heading1="Dominican Republic Airport Transfers"
-        heading2="Your delightful journey starts with us- Book your Dominican airport transfer with Vacations Taxis!"
+        heading1Paragraph="Your delightful journey starts with us- Book your Dominican airport transfer with Vacations Taxis!"
       />
       <DynamicTrusted
         altAirPlane="dominican airport transfers"
