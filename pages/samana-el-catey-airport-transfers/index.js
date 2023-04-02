@@ -23,8 +23,8 @@ export default function samanaAirportTransfers() {
   return (
     <Suspense fallback={<FallBackLoading />}>
       <MyHead
-        title="Affordable & Efficient Samana El Catey Airport Transfers Taxis"
-        desc="VacationsTaxis offer convenient and reliable Samana Airport Transfers & Taxi services to all hotels in Samana, Las Terrenas, Las Galeras & all of the Dom. Rep."
+        title="Samana Airport Taxis & Transfers | Book Online Now"
+        desc="Save time and money by booking your Samana airport transfer with us. Reliable and affordable airport taxis & transfers from El Catey International Airport (AZS)"
         keyword="samana airport transfers,
         taxi samana dominican republic,
         taxi samana,
@@ -38,7 +38,9 @@ export default function samanaAirportTransfers() {
         el catey airport taxi,
         taxi from samana airport,
         azs transfer,
-        azs taxi"
+        azs taxi,
+        taxi from samana airport to las terrenas
+        "
         canonicalURL="samana-el-catey-airport-transfers"
       />
       <DynamicHeader

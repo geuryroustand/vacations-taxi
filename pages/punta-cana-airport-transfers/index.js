@@ -23,12 +23,19 @@ export default function puntaCanaAirportTransfers() {
   return (
     <Suspense fallback={<FallBackLoading />}>
       <MyHead
-        title="Best Punta Cana Airport Transfers | Shuttle Service"
-        desc="Get the best Punta Cana airport transfer services throughout the Dominican Republic. Comfortable & spacious shuttle service. 15 - 60 min process. Upfront pricing."
-        keyword="Punta Cana Airport Transfers,
-        Punta Cana Private Airport transfers ,
-        Punta Cana Luxury Airport Transfers
-      
+        title="Punta Cana Airport Transfers, Private & Luxury Taxi Services"
+        desc="Book your private and luxury airport transfers from Punta Cana Airport to your hotel or resort. Enjoy a stress-free travel experience & reliable taxi services."
+        keyword="punta cana airport transfers,
+        punta cana airport transfer,
+        punta cana private airport transfers,
+        punta cana transfer service,
+        punta cana private transfers,
+        luxury airport transfers punta cana,
+        private transfer punta cana airport,
+        punta cana transfer,
+        airport transfer punta cana,
+        transfer punta cana airport to hotel ,
+        private transfer from punta cana airport 
         "
         canonicalURL="punta-cana-airport-transfers"
       />
