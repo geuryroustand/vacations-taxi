@@ -19,12 +19,12 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
 //   suspense: true
 // });
 
-export default function seoPage() {
+export default function puertoPlataAirportTransportation() {
   return (
     <Suspense fallback={<FallBackLoading />}>
       <MyHead
-        title="Puerto Plata Airport Transportation: Tips & Tricks for Easy Travel"
-        desc="Planning a trip to Puerto Plata? Check out our ultimate guide to airport transportation including tips for getting to and from both POP and STI airports and how"
+        title="Puerto Plata Airport Transportation"
+        desc="Make your journey to Puerto Plata smooth & enjoyable with our airport shuttle service. Get tips and tricks for stress-free transportation in our ultimate guide."
         keyword="puerto plata airport transportation,
         transportation from santiago airport to puerto plata resort,
         transportation from sti to puerto plata,

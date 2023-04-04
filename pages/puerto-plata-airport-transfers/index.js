@@ -19,12 +19,12 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
 //   suspense: true
 // });
 
-export default function seoPage() {
+export default function puertoPlataAirport() {
   return (
     <Suspense fallback={<FallBackLoading />}>
       <MyHead
-        title="Puerto Plata Airport Transfers: the Best Shuttle Service"
-        desc="Don't stress about transportation to and from the airport! Check out our guide to Puerto Plata airport transfers, tips for finding the best shuttle service."
+        title="Puerto Plata Airport Transfers | Hassle-Free Shuttle Service"
+        desc="Make your journey to Puerto Plata smooth and enjoyable with our ultimate guide to airport transfers. Avoid stress and book your airport shuttle in advance."
         keyword="puerto plata airport transfers,
         airport shuttle puerto plata,
         puerto plata shuttle,
