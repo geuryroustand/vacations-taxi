@@ -17,7 +17,7 @@ const Footer = () => {
             <Link href="/santo-domingo-airport-transfers">Santo Domingo Airport (SDQ)</Link>
             <Link href="/puerto-plata-airport-transfers">Puerto Plata Airport (POP)</Link>
             <Link href="/samana-el-catey-airport-transfers">Samana Airport (AZS) </Link>
-            <Link href="/">La Romana Airport (LRM) </Link>
+            <Link href="/la-romana-airport-transfer">La Romana Airport (LRM) </Link>
             <Link href="/">Santiago Cibao Airport (STI) </Link>
             <Link href="/la-isabela-airport-transfers-and-taxis">La Isabela Airport (JBQ)</Link>
 

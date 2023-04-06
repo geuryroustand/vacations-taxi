@@ -42,6 +42,10 @@ const Navigation = () => {
                 <NavDropdown.Item href="/samana-el-catey-airport-transfers">
                   Samana El Catey Airport (AZS)
                 </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="/la-romana-airport-transfer">
+                  La Romana Airport (LRM)
+                </NavDropdown.Item>
                 <a
                   href="/transportation-from-punta-cana-airport"
                   target="_blank"
