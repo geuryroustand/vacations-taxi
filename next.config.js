@@ -2,9 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  env: {
-    NEXTRUNTIME: "development"
-  },
+  // env: {
+  //   NEXTRUNTIME: "development"
+  // },
   images: {
     remotePatterns: [
       {
