@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import { Suspense } from "react";
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
+import Header from "../src/Components/Header/Header";
 
 // import { persistor } from "../src/redux/store";
 
@@ -75,13 +76,17 @@ export default function Home() {
       `}
       </Script>
 
-      <Suspense fallback={<FallBackLoading />}>
+      <Header
+        heading1="Reliable, low cost airport transfers"
+        heading1Paragraph="Easy airport transfers to and from your accommodation"
+      />
+      {/* <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="Reliable, low cost airport transfers"
           heading1Paragraph="Easy airport transfers to and from your accommodation"
-        />
+        /> */}
 
-        {/* <DynamicTrusted
+      {/* <DynamicTrusted
           altAirPlane="Dominican Airport Transfers Services"
           altCreditCart="PUJ Punta cana Airport Transfer"
           altPayment="SDQ Santo Domingo Airport Transfers"
@@ -89,7 +94,7 @@ export default function Home() {
         <DynamicHowWork />
         <DynamicAwards />
         <DynamicFaq /> */}
-      </Suspense>
+      {/* </Suspense> */}
     </>
   );
 }
