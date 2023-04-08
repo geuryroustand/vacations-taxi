@@ -1,7 +1,7 @@
 // import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import Script from "next/script";
+// import Script from "next/script";
 import { Suspense } from "react";
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 
@@ -57,7 +57,7 @@ export default function Home() {
         />
       </Head>
       {/* <!-- Google tag (gtag.js) --> */}
-      <Script
+      {/* <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${
           process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
         }`}
@@ -73,7 +73,7 @@ export default function Home() {
           process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
         }');
       `}
-      </Script>
+      </Script> */}
       <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="Reliable, low cost airport transfers"
