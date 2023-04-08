@@ -29,20 +29,21 @@ function PagesForSEO({ locationFound }) {
   const thirdKeyWord = keywordSplit[2];
 
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
       <MyHead
         title={title}
         desc={desc}
         keyword={keywords}
         canonicalURL={heading1.replaceAll(" ", "-").toLowerCase()}
       />
-
-      <DynamicHeader heading1={heading1} heading1Paragraph={desc} />
-      <DynamicTrusted
-        altAirPlane={firstKeyWord}
-        altCreditCart={secondKeyWord}
-        altPayment={thirdKeyWord}
-      />
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader heading1={heading1} heading1Paragraph={desc} />
+        <DynamicTrusted
+          altAirPlane={firstKeyWord}
+          altCreditCart={secondKeyWord}
+          altPayment={thirdKeyWord}
+        />
+      </Suspense>
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>{article1.title}</h2>
@@ -54,7 +55,7 @@ function PagesForSEO({ locationFound }) {
         </article>
       </Container>
       {/* <DynamicAwards /> */}
-    </Suspense>
+    </>
   );
 }
 

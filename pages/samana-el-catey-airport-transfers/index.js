@@ -21,7 +21,7 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
 
 export default function samanaAirportTransfers() {
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
       <MyHead
         title="Samana Airport Taxis & Transfers | Book Online Now"
         desc="Save time and money by booking your Samana airport transfer with us. Reliable and affordable airport taxis & transfers from El Catey International Airport (AZS)"
@@ -43,15 +43,17 @@ export default function samanaAirportTransfers() {
         "
         canonicalURL="samana-el-catey-airport-transfers"
       />
-      <DynamicHeader
-        heading1="Maximizing Your Vacation Time: The Benefits of Pre-Booking Samana Airport Transfers"
-        heading1Paragraph="Are you planning a vacation to the beautiful Samana Peninsula? Samana is known for its stunning beaches, lush vegetation, and breathtaking waterfalls. But before you can start enjoying all that the region has to offer, you have to figure out how to get from the airport to your hotel. This is where pre-booking a Samana airport transfer can make all the difference."
-      />
-      <DynamicTrusted
-        altAirPlane="samana airport transfers"
-        altCreditCart="samana airport transportation"
-        altPayment="samana airport shuttle"
-      />
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader
+          heading1="Maximizing Your Vacation Time: The Benefits of Pre-Booking Samana Airport Transfers"
+          heading1Paragraph="Are you planning a vacation to the beautiful Samana Peninsula? Samana is known for its stunning beaches, lush vegetation, and breathtaking waterfalls. But before you can start enjoying all that the region has to offer, you have to figure out how to get from the airport to your hotel. This is where pre-booking a Samana airport transfer can make all the difference."
+        />
+        <DynamicTrusted
+          altAirPlane="samana airport transfers"
+          altCreditCart="samana airport transportation"
+          altPayment="samana airport shuttle"
+        />
+      </Suspense>
 
       <Container className={styled.articleContainer}>
         <article>
@@ -247,6 +249,6 @@ export default function samanaAirportTransfers() {
         </article>
       </Container>
       {/* <DynamicAwards /> */}
-    </Suspense>
+    </>
   );
 }

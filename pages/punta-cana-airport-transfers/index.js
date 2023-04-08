@@ -25,7 +25,7 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
 
 export default function puntaCanaAirportTransfers() {
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
       <MyHead
         title="Punta Cana Airport Transfers, Private & Luxury Taxi Services"
         desc="Book your private and luxury airport transfers from Punta Cana Airport to your hotel or resort. Enjoy a stress-free travel experience & reliable taxi services."
@@ -44,16 +44,17 @@ export default function puntaCanaAirportTransfers() {
         canonicalURL="punta-cana-airport-transfers"
       />
 
-      <DynamicHeader
-        heading1="Why Punta Cana Airport Transfers Should Be a Top Priority for Your Travel Plans?"
-        heading1Paragraph="As someone who has traveled to Punta Cana, I can attest to the importance of airport transfers. It's a beautiful destination with lots to see and do, but getting to and from the airport can be a hassle. That's why Punta Cana airport transfers should be a top priority for your travel plans. In this article, we'll explore why airport transfers are important, the benefits of private and luxury transfers, how to choose the right transfer service, and more."
-      />
-      <DynamicTrusted
-        altAirPlane="Punta Cana Airport Transfers"
-        altCreditCart="Punta Cana Private Airport transfers"
-        altPayment="Punta Cana Luxury Airport Transfers"
-      />
-
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader
+          heading1="Why Punta Cana Airport Transfers Should Be a Top Priority for Your Travel Plans?"
+          heading1Paragraph="As someone who has traveled to Punta Cana, I can attest to the importance of airport transfers. It's a beautiful destination with lots to see and do, but getting to and from the airport can be a hassle. That's why Punta Cana airport transfers should be a top priority for your travel plans. In this article, we'll explore why airport transfers are important, the benefits of private and luxury transfers, how to choose the right transfer service, and more."
+        />
+        <DynamicTrusted
+          altAirPlane="Punta Cana Airport Transfers"
+          altCreditCart="Punta Cana Private Airport transfers"
+          altPayment="Punta Cana Luxury Airport Transfers"
+        />
+      </Suspense>
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>Introduction to Punta Cana Airport Transfers</h2>
@@ -300,6 +301,6 @@ export default function puntaCanaAirportTransfers() {
         </article>
       </Container>
       {/* <DynamicAwards /> */}
-    </Suspense>
+    </>
   );
 }

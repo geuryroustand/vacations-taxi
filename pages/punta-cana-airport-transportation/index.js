@@ -21,7 +21,7 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
 
 export default function seoPage() {
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
       <MyHead
         title="Punta Cana Airport Shuttle & Transportation Services"
         desc="Arrive in style with our Punta Cana airport transportation services. Choose from private cars, shuttles, and more. Book now for a stress-free travel experience."
@@ -39,15 +39,17 @@ export default function seoPage() {
         airport shuttle punta cana"
         canonicalURL="punta-cana-airport-transportation"
       />
-      <DynamicHeader
-        heading1="Navigating Punta Cana Airport Transportation: Tips and Tricks for a Stress-Free Arrival"
-        heading1Paragraph="Are you planning a trip to Punta Cana and feeling overwhelmed by the prospect of navigating the transportation options upon your arrival at the airport? Don't worry; you're not alone. Punta Cana is a popular tourist destination, and with that comes a variety of transportation options that can be confusing for first-time visitors. In this article, we will discuss the different types of Punta Cana airport transportation, the benefits of using a professional transportation service, how to choose the best Punta Cana airport shuttle, tips for booking Punta Cana car service, and reliable Punta Cana transportation services to ensure a stress-free arrival."
-      />
-      <DynamicTrusted
-        altAirPlane="Punta cana airport transportation"
-        altCreditCart="Airport shuttle punta cana"
-        altPayment="transportation to punta cana airport"
-      />
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader
+          heading1="Navigating Punta Cana Airport Transportation: Tips and Tricks for a Stress-Free Arrival"
+          heading1Paragraph="Are you planning a trip to Punta Cana and feeling overwhelmed by the prospect of navigating the transportation options upon your arrival at the airport? Don't worry; you're not alone. Punta Cana is a popular tourist destination, and with that comes a variety of transportation options that can be confusing for first-time visitors. In this article, we will discuss the different types of Punta Cana airport transportation, the benefits of using a professional transportation service, how to choose the best Punta Cana airport shuttle, tips for booking Punta Cana car service, and reliable Punta Cana transportation services to ensure a stress-free arrival."
+        />
+        <DynamicTrusted
+          altAirPlane="Punta cana airport transportation"
+          altCreditCart="Airport shuttle punta cana"
+          altPayment="transportation to punta cana airport"
+        />
+      </Suspense>
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>
@@ -132,8 +134,6 @@ export default function seoPage() {
           </p>
         </article>
       </Container>
-
-      {/* <DynamicAwards /> */}
-    </Suspense>
+    </>
   );
 }

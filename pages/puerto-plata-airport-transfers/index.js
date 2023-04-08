@@ -21,7 +21,7 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
 
 export default function puertoPlataAirport() {
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
       <MyHead
         title="Puerto Plata Airport Transfers | Hassle-Free Shuttle Service"
         desc="Make your journey to Puerto Plata smooth and enjoyable with our ultimate guide to airport transfers. Avoid stress and book your airport shuttle in advance."
@@ -34,15 +34,17 @@ export default function puertoPlataAirport() {
         puerto plata airport shuttle"
         canonicalURL="puerto-plata-airport-transfers"
       />
-      <DynamicHeader
-        heading1="The Ultimate Guide to Puerto Plata Airport Transfers: How to Find the Best Shuttle Service"
-        heading1Paragraph="As a frequent traveler, I have found that one of the most stressful aspects of any trip is figuring out transportation to and from the airport. This is especially true when traveling to a new destination. That is why I have put together this ultimate guide to Puerto Plata airport transfers to help fellow travelers navigate the process and find the best shuttle service available."
-      />
-      <DynamicTrusted
-        altAirPlane="puerto plata airport transfers"
-        altCreditCart="airport shuttle puerto plata"
-        altPayment="puerto plata shuttle"
-      />
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader
+          heading1="The Ultimate Guide to Puerto Plata Airport Transfers: How to Find the Best Shuttle Service"
+          heading1Paragraph="As a frequent traveler, I have found that one of the most stressful aspects of any trip is figuring out transportation to and from the airport. This is especially true when traveling to a new destination. That is why I have put together this ultimate guide to Puerto Plata airport transfers to help fellow travelers navigate the process and find the best shuttle service available."
+        />
+        <DynamicTrusted
+          altAirPlane="puerto plata airport transfers"
+          altCreditCart="airport shuttle puerto plata"
+          altPayment="puerto plata shuttle"
+        />
+      </Suspense>
 
       <Container className={styled.articleContainer}>
         <article>
@@ -253,6 +255,6 @@ export default function puertoPlataAirport() {
         </article>
       </Container>
       {/* <DynamicAwards /> */}
-    </Suspense>
+    </>
   );
 }

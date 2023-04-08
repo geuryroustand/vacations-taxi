@@ -21,7 +21,7 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
 
 export default function dominicanRepublicAirportTransfers() {
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
       <MyHead
         title="Dominican Republic Airport Transfers and Shuttle"
         desc="Our experienced drivers and modern vehicles guarantee a safe and comfortable journey in the Dominican Airport transfers to your hotel. With competitive prices."
@@ -41,16 +41,17 @@ export default function dominicanRepublicAirportTransfers() {
         "
         canonicalURL="dominican-republic-airport-transfers"
       />
-
-      <DynamicHeader
-        heading1="Dominican Republic Airport Transfers"
-        heading1Paragraph="Your delightful journey starts with us- Book your Dominican airport transfer with Vacations Taxis!"
-      />
-      <DynamicTrusted
-        altAirPlane="dominican airport transfers"
-        altCreditCart="shuttle central dominican republic"
-        altPayment="dominican republic airport transfers"
-      />
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader
+          heading1="Dominican Republic Airport Transfers"
+          heading1Paragraph="Your delightful journey starts with us- Book your Dominican airport transfer with Vacations Taxis!"
+        />
+        <DynamicTrusted
+          altAirPlane="dominican airport transfers"
+          altCreditCart="shuttle central dominican republic"
+          altPayment="dominican republic airport transfers"
+        />
+      </Suspense>
 
       <Container className={styled.articleContainer}>
         <article>
@@ -267,6 +268,6 @@ export default function dominicanRepublicAirportTransfers() {
         </article>
       </Container>
       {/* <DynamicAwards /> */}
-    </Suspense>
+    </>
   );
 }

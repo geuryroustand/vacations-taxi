@@ -21,7 +21,7 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
 
 export default function laRomanaAirportTransfer() {
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
       <MyHead
         title="La Romana Airport Transfer Service | Shuttle & Transportation"
         desc="Make your trip to La Romana, Dominican Republic hassle-free with our airport transfer service.Book now for a convenient and comfortable ride to your destination"
@@ -47,16 +47,18 @@ export default function laRomanaAirportTransfer() {
         transportation punta cana to la romana,"
         canonicalURL="la-romana-airport-transfer"
       />
-      <DynamicHeader
-        heading1="The Best La Romana Airport Transfer Services for Stress-Free Travel"
-        heading1Paragraph="If you're planning a trip to La Romana, Dominican Republic, getting to and from the airport can be stressful. However, with the right La Romana airport transfer service, you can ensure a smooth and stress-free travel experience. In this article, we'll explore the best La Romana airport transfer services available, their benefits, and how to choose the right one for you."
-      />
-      <DynamicTrusted
-        altAirPlane="la romana airport transfer"
-        altCreditCart="airport shuttle la romana"
-        altPayment="la romana airport transportation"
-      />
 
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader
+          heading1="The Best La Romana Airport Transfer Services for Stress-Free Travel"
+          heading1Paragraph="If you're planning a trip to La Romana, Dominican Republic, getting to and from the airport can be stressful. However, with the right La Romana airport transfer service, you can ensure a smooth and stress-free travel experience. In this article, we'll explore the best La Romana airport transfer services available, their benefits, and how to choose the right one for you."
+        />
+        <DynamicTrusted
+          altAirPlane="la romana airport transfer"
+          altCreditCart="airport shuttle la romana"
+          altPayment="la romana airport transportation"
+        />
+      </Suspense>
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>Introduction to La Romana Airport Transfer</h2>
@@ -284,6 +286,6 @@ export default function laRomanaAirportTransfer() {
         </article>
       </Container>
       {/* <DynamicAwards /> */}
-    </Suspense>
+    </>
   );
 }
