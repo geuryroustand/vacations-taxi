@@ -21,9 +21,9 @@ const DynamicHowWork = dynamic(() => import("../src/Components/HowWork/HowWork")
 const DynamicFaq = dynamic(() => import("../src/Components/Faq/Faq"), {
   suspense: true
 });
-const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
-  suspense: true
-});
+// const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
+//   suspense: true
+// });
 
 export default function Home() {
   // persistor.purge();
@@ -88,7 +88,7 @@ export default function Home() {
 
         <DynamicHowWork />
 
-        <DynamicAwards />
+        {/* <DynamicAwards /> */}
         <DynamicFaq />
       </Suspense>
     </>
