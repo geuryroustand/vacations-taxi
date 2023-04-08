@@ -22,7 +22,8 @@ const Awards = () => {
   return (
     <section className={addCSS}>
       <Container>
-        <TripAdVisor />
+        <h1>hi</h1>
+        {/* <TripAdVisor /> */}
 
         {/* <Suspense fallback={<FallBackLoading />}>
           <DynamicTripAdVisor />
