@@ -29,7 +29,7 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 export default function Home() {
   // persistor.purge();
   return (
-    <div>
+    <>
       <Head>
         {/* Facebook Meta Tag */}
 
@@ -81,10 +81,10 @@ export default function Home() {
         heading1Paragraph="Easy airport transfers to and from your accommodation"
       /> */}
 
-      {/* <DynamicHeader
-          heading1="Reliable, low cost airport transfers"
-          heading1Paragraph="Easy airport transfers to and from your accommodation"
-        /> */}
+      <DynamicHeader
+        heading1="Reliable, low cost airport transfers"
+        heading1Paragraph="Easy airport transfers to and from your accommodation"
+      />
       {/* <Suspense fallback={<FallBackLoading />}> */}
       <DynamicTrusted
         altAirPlane="Dominican Airport Transfers Services"
@@ -95,6 +95,6 @@ export default function Home() {
       <DynamicAwards />
       <DynamicFaq />
       {/* </Suspense> */}
-    </div>
+    </>
   );
 }
