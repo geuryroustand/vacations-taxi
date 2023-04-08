@@ -59,7 +59,7 @@ export default function Home() {
       {/* <!-- Google tag (gtag.js) --> */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${
-          process.env.NODE_ENV !== "development" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+          process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
         }`}
         strategy="lazyOnload"
       />
@@ -70,7 +70,7 @@ export default function Home() {
         gtag('js', new Date());
 
         gtag('config', 'https://www.googletagmanager.com/gtag/js?id=${
-          process.env.NODE_ENV !== "development" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+          process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
         }');
       `}
       </Script>
