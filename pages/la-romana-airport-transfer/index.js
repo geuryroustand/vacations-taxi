@@ -1,19 +1,20 @@
-import React, { Suspense } from "react";
-import dynamic from "next/dynamic";
+// import React, { Suspense } from "react";
+
+// import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+// import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
-  suspense: true
-});
+// const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
+//   suspense: true
+// });
 
-const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
-  suspense: true
-});
+// const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
+//   suspense: true
+// });
 
 // const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
 //   suspense: true
@@ -48,7 +49,7 @@ export default function laRomanaAirportTransfer() {
         canonicalURL="la-romana-airport-transfer"
       />
 
-      <Suspense fallback={<FallBackLoading />}>
+      {/* <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="The Best La Romana Airport Transfer Services for Stress-Free Travel"
           heading1Paragraph="If you're planning a trip to La Romana, Dominican Republic, getting to and from the airport can be stressful. However, with the right La Romana airport transfer service, you can ensure a smooth and stress-free travel experience. In this article, we'll explore the best La Romana airport transfer services available, their benefits, and how to choose the right one for you."
@@ -58,7 +59,7 @@ export default function laRomanaAirportTransfer() {
           altCreditCart="airport shuttle la romana"
           altPayment="la romana airport transportation"
         />
-      </Suspense>
+      </Suspense> */}
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>Introduction to La Romana Airport Transfer</h2>

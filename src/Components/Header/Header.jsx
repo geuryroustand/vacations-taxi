@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, Suspense } from "react";
 
 import dynamic from "next/dynamic";
@@ -22,9 +23,10 @@ const Header = ({ heading1, heading1Paragraph }) => {
     <header className={styled.hero}>
       <Container>
         <article>
-          <Suspense fallback={<FallBackLoading />}>
+          <h1>hi</h1>
+          {/* <Suspense fallback={<FallBackLoading />}>
             <DynamicHeading style={styled.heading1} headingText={heading1} />
-          </Suspense>
+          </Suspense> */}
           <p className={styled.heading1Paragraph}>{heading1Paragraph} </p>
         </article>
         <Button

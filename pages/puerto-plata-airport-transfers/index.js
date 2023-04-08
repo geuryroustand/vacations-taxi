@@ -1,18 +1,19 @@
-import React, { Suspense } from "react";
-import dynamic from "next/dynamic";
+// import React, { Suspense } from "react";
+
+// import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+// import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
-  suspense: true
-});
+// const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
+//   suspense: true
+// });
 
-const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
-  suspense: true
-});
+// const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
+//   suspense: true
+// });
 
 // const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
 //   suspense: true
@@ -33,7 +34,7 @@ export default function puertoPlataAirport() {
         puerto plata airport shuttle"
         canonicalURL="puerto-plata-airport-transfers"
       />
-      <Suspense fallback={<FallBackLoading />}>
+      {/* <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="The Ultimate Guide to Puerto Plata Airport Transfers: How to Find the Best Shuttle Service"
           heading1Paragraph="As a frequent traveler, I have found that one of the most stressful aspects of any trip is figuring out transportation to and from the airport. This is especially true when traveling to a new destination. That is why I have put together this ultimate guide to Puerto Plata airport transfers to help fellow travelers navigate the process and find the best shuttle service available."
@@ -43,7 +44,7 @@ export default function puertoPlataAirport() {
           altCreditCart="airport shuttle puerto plata"
           altPayment="puerto plata shuttle"
         />
-      </Suspense>
+      </Suspense> */}
 
       <Container className={styled.articleContainer}>
         <article>
