@@ -68,8 +68,8 @@ export default function puntaCanaAirportTransfers() {
           </p>
         </article>
 
-        <DynamicHowWork />
-        <DynamicAwards />
+        {/* <DynamicHowWork /> */}
+        {/* <DynamicAwards /> */}
         <article>
           <h2 className={styled.articleHeading}>
             Why Punta Cana Airport Transfers are important for your travel plans?
