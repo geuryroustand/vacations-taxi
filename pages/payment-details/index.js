@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { Suspense, useState } from "react";
 import dynamic from "next/dynamic";
 
@@ -103,12 +102,10 @@ function paymentDetails() {
           <BookingStepProcess />
         </Container>
         <Container className={styled.paymentDetailsContainer}>
-          <h1>hi</h1>
-          {/* <Suspense fallback={<FallBackLoading />}>
+          <Suspense fallback={<FallBackLoading />}>
             <DynamicBookingSummary />
-
             <DynamicPayment />
-          </Suspense> */}
+          </Suspense>
         </Container>
       </Form>
     </>

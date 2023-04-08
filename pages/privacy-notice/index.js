@@ -1,15 +1,14 @@
-/* eslint-disable no-unused-vars */
-import React, { Suspense } from "react";
+import React from "react";
 
 import Container from "react-bootstrap/Container";
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+
 import MyHead from "../../src/Components/MyHead/MyHead";
 
 export default function termsAndConditions() {
   return (
     <Container>
       <MyHead title="Privacy Notice" noIndex canonicalURL="privacy-notice" />
-      {/* <Suspense fallback={<FallBackLoading />}> */}
+
       <div className="mt-5">
         <h1>Privacy Notice</h1>
 
@@ -91,7 +90,6 @@ export default function termsAndConditions() {
           </a>
         </p>
       </div>
-      {/* </Suspense> */}
     </Container>
   );
 }

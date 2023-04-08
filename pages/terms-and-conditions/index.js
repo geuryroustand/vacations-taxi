@@ -1,15 +1,12 @@
-/* eslint-disable no-unused-vars */
-import React, { Suspense } from "react";
+import React from "react";
 
 import Container from "react-bootstrap/Container";
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
 export default function termsAndConditions() {
   return (
     <Container>
       <MyHead title="Term and Condition" noIndex canonicalURL="terms-and-conditions" />
-      {/* <Suspense fallback={<FallBackLoading />}> */}
       <div className="mt-5">
         <h1>Terms and Conditions</h1>
 
@@ -141,7 +138,6 @@ export default function termsAndConditions() {
         </p>
         <p>Thank you for using vacationstaxis.com!</p>
       </div>
-      {/* </Suspense> */}
     </Container>
   );
 }

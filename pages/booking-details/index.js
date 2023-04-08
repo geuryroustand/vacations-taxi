@@ -1,8 +1,3 @@
-/* eslint-disable unicorn/prevent-abbreviations */
-/* eslint-disable unicorn/no-null */
-/* eslint-disable no-unsafe-optional-chaining */
-/* eslint-disable no-unused-vars */
-
 import React, { Suspense, useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import { useRouter } from "next/router";
@@ -33,7 +28,7 @@ const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Pa
 
 function BookingDetails() {
   // persistor.purge();
-  const [isLoading, setIsLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
 
@@ -66,7 +61,7 @@ function BookingDetails() {
       return;
     }
     const PROD = process.env.NODE_ENV === "production";
-    const res = await fetch(
+    const response = await fetch(
       `${
         PROD
           ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/addPrices?pickUp=${
@@ -78,9 +73,9 @@ function BookingDetails() {
       }`
     );
 
-    if (res.ok) {
+    if (response.ok) {
       setIsLoading(false);
-      const data = await res.json();
+      const data = await response.json();
 
       dispatch(allFlightInfo({ ...router.query, ...data }));
     }
@@ -133,8 +128,7 @@ function BookingDetails() {
         <BookingStepProcess />
       </Container>
       <Container className={styled.bookingDetailsContainer}>
-        <h1>hi</h1>
-        {/* <Suspense fallback={<FallBackLoading />}>
+        <Suspense fallback={<FallBackLoading />}>
           <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />
           <div className={styled.cartAndPassengerDetail}>
             <Suspense fallback={<FallBackLoading />}>
@@ -142,7 +136,7 @@ function BookingDetails() {
               <DynamicPassenger />
             </Suspense>
           </div>
-        </Suspense> */}
+        </Suspense>
       </Container>
     </div>
   );

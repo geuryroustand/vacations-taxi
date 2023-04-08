@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
@@ -124,21 +123,20 @@ const CarList = () => {
 
       <div className={styled.cartWrapper} ref={wrapperReference}>
         {cartList.map((cart, index) => (
-          <h1 key={cart.id}>hi</h1>
-          // <Suspense key={cart.id} fallback={<FallBackLoading />}>
-          //   <DynamicCar
-          //     id={cart.id}
-          //     cartSelected={() => cartSelected(index, cart.price)}
-          //     totalPassengers={cart.passengers}
-          //     totalSuitCases={cart.suitcases}
-          //     cartTypeImage={cart.image}
-          //     totalPrice={cart.price}
-          //     oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
-          //     selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
-          //     selectedTextClassName={index === taxiSelected ?? taxiSelected}
-          //     selectedTaxiClassName={index === taxiSelected ? "selectedCart" : ""}
-          //   />
-          // </Suspense>
+          <Suspense key={cart.id} fallback={<FallBackLoading />}>
+            <DynamicCar
+              id={cart.id}
+              cartSelected={() => cartSelected(index, cart.price)}
+              totalPassengers={cart.passengers}
+              totalSuitCases={cart.suitcases}
+              cartTypeImage={cart.image}
+              totalPrice={cart.price}
+              oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
+              selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
+              selectedTextClassName={index === taxiSelected ?? taxiSelected}
+              selectedTaxiClassName={index === taxiSelected ? "selectedCart" : ""}
+            />
+          </Suspense>
         ))}
       </div>
 
