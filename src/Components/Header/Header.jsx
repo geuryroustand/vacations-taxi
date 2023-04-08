@@ -40,7 +40,7 @@ const Header = ({ heading1, heading1Paragraph }) => {
           Return
         </Button>
 
-        {/* <SearchForm isClicked={isClicked} /> */}
+        <SearchForm isClicked={isClicked} />
       </Container>
     </header>
   );
