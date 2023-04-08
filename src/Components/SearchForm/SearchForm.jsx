@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, Suspense, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
@@ -14,17 +15,17 @@ import FallBackLoading from "../Loading/FallBackLoading";
 import SearchOptions from "../SearchOptions/SearchOptions";
 
 const DynamicModalBoots = dynamic(() => import("../Modal/Modal"), {
-  suspense: false
+  suspense: true
 });
 
 const DynamicSearchFormInput = dynamic(() => import("../SearchFormInput/SearchFormInput"), {
-  suspense: false
+  suspense: true
 });
 
 const DynamicDatePickerSearchForm = dynamic(
   () => import("../DatePickerSearchForm/DatePickerSearchForm"),
   {
-    suspense: false
+    suspense: true
   }
 );
 
@@ -302,31 +303,31 @@ const SearchForm = ({ isClicked }) => {
   return (
     <Form className={styled.form} validated={validated} noValidate onSubmit={submitData}>
       <div className={styled.searchForm}>
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicSearchFormInput
-            inputReference={inputPickUpReference}
-            label="Enter pick-up location"
-            placeHolder="Enter pick-up location"
-            name="pickUp"
-            id="formBasicPickLocation1"
-            isEmptyFeedback="Please provide a pick-up location"
-            required
-            validated={validated}
-            onClickInput={() =>
-              !isDesktopOrLaptopOrTable &&
-              searchInputClicked({
-                title: "Pick-up location",
-                label: "Enter pick-up location",
-                placeHolder: "Enter pick-up location",
-                optionToShow: "pickUp"
-              })
-            }
-            onChange={onChange}
-            searchedTerm={searchedTerm.pickUp || ""}
+        {/* <Suspense fallback={<FallBackLoading />}> */}
+        <DynamicSearchFormInput
+          inputReference={inputPickUpReference}
+          label="Enter pick-up location"
+          placeHolder="Enter pick-up location"
+          name="pickUp"
+          id="formBasicPickLocation1"
+          isEmptyFeedback="Please provide a pick-up location"
+          required
+          validated={validated}
+          onClickInput={() =>
+            !isDesktopOrLaptopOrTable &&
+            searchInputClicked({
+              title: "Pick-up location",
+              label: "Enter pick-up location",
+              placeHolder: "Enter pick-up location",
+              optionToShow: "pickUp"
+            })
+          }
+          onChange={onChange}
+          searchedTerm={searchedTerm.pickUp || ""}
 
-            // onKeyUp={debouncedSearchLocation}
-          />
-        </Suspense>
+          // onKeyUp={debouncedSearchLocation}
+        />
+        {/* </Suspense> */}
         {showPickUpSearchedResult &&
           isDesktopOrLaptopOrTable &&
           searchedTerm.pickUp &&
@@ -337,30 +338,30 @@ const SearchForm = ({ isClicked }) => {
               optionToShow="pickUp"
             />
           )}
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicSearchFormInput
-            inputReference={inputDropOffReference}
-            label="Enter drop location"
-            placeHolder="Enter drop location "
-            name="dropOff"
-            id="formBasicDropLocation1"
-            isEmptyFeedback="Please provide a drop-off location"
-            required
-            validated={validated}
-            onClickInput={() =>
-              !isDesktopOrLaptopOrTable &&
-              searchInputClicked({
-                title: "Drop-off location",
-                label: "Enter drop location ",
-                placeHolder: "Enter pick-up location",
-                optionToShow: "dropOff"
-              })
-            }
-            onChange={onChange}
-            // onKeyUp={searchLocation}
-            searchedTerm={searchedTerm.dropOff || ""}
-          />
-        </Suspense>
+        {/* <Suspense fallback={<FallBackLoading />}> */}
+        <DynamicSearchFormInput
+          inputReference={inputDropOffReference}
+          label="Enter drop location"
+          placeHolder="Enter drop location "
+          name="dropOff"
+          id="formBasicDropLocation1"
+          isEmptyFeedback="Please provide a drop-off location"
+          required
+          validated={validated}
+          onClickInput={() =>
+            !isDesktopOrLaptopOrTable &&
+            searchInputClicked({
+              title: "Drop-off location",
+              label: "Enter drop location ",
+              placeHolder: "Enter pick-up location",
+              optionToShow: "dropOff"
+            })
+          }
+          onChange={onChange}
+          // onKeyUp={searchLocation}
+          searchedTerm={searchedTerm.dropOff || ""}
+        />
+        {/* </Suspense> */}
         {showDropOffSearchedResult && isDesktopOrLaptopOrTable && searchedTerm.dropOff && (
           <SearchOptions
             moveLeft
@@ -378,22 +379,22 @@ const SearchForm = ({ isClicked }) => {
           required={true}
           validated={validated}
         /> */}
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicDatePickerSearchForm
-            pickUpAndDropDate={currentPickUpDate}
-            setPickUpAndDropDate={setCurrentPickUpDate}
-            pickUpAndDropTime={currentPickUpTime}
-            setPickUpAndDropTime={setCurrentPickUpTime}
-            labelPickDate="arrival date"
-            labelPickTime="arrival pick time"
-            getPassenger={(event) =>
-              setPassenger({
-                ...passenger,
-                pickUpPassenger: event.target.value
-              })
-            }
-          />
-        </Suspense>
+        {/* <Suspense fallback={<FallBackLoading />}> */}
+        <DynamicDatePickerSearchForm
+          pickUpAndDropDate={currentPickUpDate}
+          setPickUpAndDropDate={setCurrentPickUpDate}
+          pickUpAndDropTime={currentPickUpTime}
+          setPickUpAndDropTime={setCurrentPickUpTime}
+          labelPickDate="arrival date"
+          labelPickTime="arrival pick time"
+          getPassenger={(event) =>
+            setPassenger({
+              ...passenger,
+              pickUpPassenger: event.target.value
+            })
+          }
+        />
+        {/* </Suspense> */}
         {!isClicked && (
           <Button type="submit" className={styled["search-btn"]}>
             <Image src="/images/search.svg" width="25px" height="25px" alt="location" />
@@ -411,38 +412,38 @@ const SearchForm = ({ isClicked }) => {
             placeHolderDrop="Enter drop location "
             disabled={true}
           /> */}
-          <Suspense fallback={<FallBackLoading />}>
-            <DynamicSearchFormInput
-              label="Enter drop location"
-              placeHolder="Enter drop location"
-              isEmptyFeedback="Please provide a pick-up location"
-              disabled
-              searchedTerm={searchedTerm.dropOffSearchedTermClicked ? searchedTerm.dropOff : ""}
-            />
+          {/* <Suspense fallback={<FallBackLoading />}> */}
+          <DynamicSearchFormInput
+            label="Enter drop location"
+            placeHolder="Enter drop location"
+            isEmptyFeedback="Please provide a pick-up location"
+            disabled
+            searchedTerm={searchedTerm.dropOffSearchedTermClicked ? searchedTerm.dropOff : ""}
+          />
 
-            <DynamicSearchFormInput
-              label="Enter pick-up location"
-              placeHolder="Enter pick-up location"
-              isEmptyFeedback="Please provide a drop-off location"
-              disabled
-              searchedTerm={searchedTerm.pickUpSearchedTermClicked ? searchedTerm.pickUp : ""}
-            />
+          <DynamicSearchFormInput
+            label="Enter pick-up location"
+            placeHolder="Enter pick-up location"
+            isEmptyFeedback="Please provide a drop-off location"
+            disabled
+            searchedTerm={searchedTerm.pickUpSearchedTermClicked ? searchedTerm.pickUp : ""}
+          />
 
-            <DynamicDatePickerSearchForm
-              pickUpAndDropDate={currentDropOffDate}
-              setPickUpAndDropDate={setCurrentDropOffDate}
-              pickUpAndDropTime={currentDropOffTime}
-              setPickUpAndDropTime={setCurrentDropOffTime}
-              labelPickDate="departure date"
-              labelPickTime="departure pick time"
-              getPassenger={(event) =>
-                setPassenger({
-                  ...passenger,
-                  dropOffPassenger: event.target.value
-                })
-              }
-            />
-          </Suspense>
+          <DynamicDatePickerSearchForm
+            pickUpAndDropDate={currentDropOffDate}
+            setPickUpAndDropDate={setCurrentDropOffDate}
+            pickUpAndDropTime={currentDropOffTime}
+            setPickUpAndDropTime={setCurrentDropOffTime}
+            labelPickDate="departure date"
+            labelPickTime="departure pick time"
+            getPassenger={(event) =>
+              setPassenger({
+                ...passenger,
+                dropOffPassenger: event.target.value
+              })
+            }
+          />
+          {/* </Suspense> */}
         </div>
       )}
       {isClicked && (
@@ -451,24 +452,24 @@ const SearchForm = ({ isClicked }) => {
           Search
         </Button>
       )}
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicModalBoots
-          inputReference={modalInputReference}
-          showModal={showModal}
-          closeModal={closeModal}
-          modalInputValues={modalInputValues}
-          locationsFetch={locationsFetch}
-          onChange={onChange}
-          onClickedSearchedResult={onClickedSearchedResult}
-          // name={searchedTerm.pickUp.length === 1 ? "pickUp" : ""}
-          // searchedTerm.dropOff.length === 1 && "dropOff"
+      {/* <Suspense fallback={<FallBackLoading />}> */}
+      <DynamicModalBoots
+        inputReference={modalInputReference}
+        showModal={showModal}
+        closeModal={closeModal}
+        modalInputValues={modalInputValues}
+        locationsFetch={locationsFetch}
+        onChange={onChange}
+        onClickedSearchedResult={onClickedSearchedResult}
+        // name={searchedTerm.pickUp.length === 1 ? "pickUp" : ""}
+        // searchedTerm.dropOff.length === 1 && "dropOff"
 
-          // searchedTerm={
-          //   searchedTerm.pickUp
-          //   // (searchedTerm.dropOff.length === 1 && searchedTerm.dropOff)
-          // }
-        />
-      </Suspense>
+        // searchedTerm={
+        //   searchedTerm.pickUp
+        //   // (searchedTerm.dropOff.length === 1 && searchedTerm.dropOff)
+        // }
+      />
+      {/* </Suspense> */}
     </Form>
   );
 };
