@@ -14,17 +14,17 @@ import FallBackLoading from "../Loading/FallBackLoading";
 import SearchOptions from "../SearchOptions/SearchOptions";
 
 const DynamicModalBoots = dynamic(() => import("../Modal/Modal"), {
-  suspense: true
+  suspense: false
 });
 
 const DynamicSearchFormInput = dynamic(() => import("../SearchFormInput/SearchFormInput"), {
-  suspense: true
+  suspense: false
 });
 
 const DynamicDatePickerSearchForm = dynamic(
   () => import("../DatePickerSearchForm/DatePickerSearchForm"),
   {
-    suspense: true
+    suspense: false
   }
 );
 
