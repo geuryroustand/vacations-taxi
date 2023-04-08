@@ -15,9 +15,9 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
   suspense: true
 });
 
-// const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-//   suspense: true
-// });
+const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+  suspense: true
+});
 
 export default function puertoPlataAirportTransportation() {
   return (
@@ -62,6 +62,9 @@ export default function puertoPlataAirportTransportation() {
             Puerto Plata, and it is located about 30 minutes from the city center
           </p>
         </article>
+        <Suspense fallback={<FallBackLoading />}>
+          <DynamicAwards />
+        </Suspense>
         <article>
           <h2 className={styled.articleHeading}>Benefits of Pre-Booking Your Transportation</h2>
           <p>
@@ -247,7 +250,6 @@ export default function puertoPlataAirportTransportation() {
           </p>
         </article>
       </Container>
-      {/* <DynamicAwards /> */}
     </>
   );
 }

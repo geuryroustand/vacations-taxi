@@ -15,9 +15,9 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
   suspense: true
 });
 
-// const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-//   suspense: true
-// });
+const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+  suspense: true
+});
 
 export default function dominicanRepublicAirportTransfers() {
   return (
@@ -67,6 +67,9 @@ export default function dominicanRepublicAirportTransfers() {
             make your journey as beautiful as your destination.
           </p>
         </article>
+        <Suspense fallback={<FallBackLoading />}>
+          <DynamicAwards />
+        </Suspense>
         <article>
           <h2 className={styled.articleHeading}>Premier Dominican Airport Transfers</h2>
           <p>

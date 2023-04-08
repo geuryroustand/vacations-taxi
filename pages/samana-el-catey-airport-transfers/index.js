@@ -15,9 +15,9 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
   suspense: true
 });
 
-// const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-//   suspense: true
-// });
+const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+  suspense: true
+});
 
 export default function samanaAirportTransfers() {
   return (
@@ -78,6 +78,9 @@ export default function samanaAirportTransfers() {
             destination.
           </p>
         </article>
+        <Suspense fallback={<FallBackLoading />}>
+          <DynamicAwards />
+        </Suspense>
         <article>
           <h2 className={styled.articleHeading}>
             Benefits of Pre-Booking Samana Airport Transfers
@@ -248,7 +251,6 @@ export default function samanaAirportTransfers() {
           </p>
         </article>
       </Container>
-      {/* <DynamicAwards /> */}
     </>
   );
 }

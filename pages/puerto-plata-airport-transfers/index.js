@@ -15,9 +15,9 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
   suspense: true
 });
 
-// const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-//   suspense: true
-// });
+const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+  suspense: true
+});
 
 export default function puertoPlataAirport() {
   return (
@@ -63,6 +63,9 @@ export default function puertoPlataAirport() {
             provide tips on how to choose the best service for your needs.
           </p>
         </article>
+        <Suspense fallback={<FallBackLoading />}>
+          <DynamicAwards />
+        </Suspense>
         <article>
           <h2 className={styled.articleHeading}>How to Book Your Puerto Plata Airport Transfer</h2>
           <p>
@@ -254,7 +257,6 @@ export default function puertoPlataAirport() {
           </p>
         </article>
       </Container>
-      {/* <DynamicAwards /> */}
     </>
   );
 }

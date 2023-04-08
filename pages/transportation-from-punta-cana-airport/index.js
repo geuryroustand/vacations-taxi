@@ -15,9 +15,9 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
   suspense: true
 });
 
-// const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-//   suspense: true
-// });
+const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+  suspense: true
+});
 
 export default function transportFromPuntaCanaAirportToResort() {
   return (
@@ -64,7 +64,6 @@ export default function transportFromPuntaCanaAirportToResort() {
             passengers per year. The airport has two terminals and offers flights to and from many
             destinations around the world
           </p>
-
           <h2 className={styled.articleHeading}>
             Different modes of transportation from Punta Cana Airport to your resort
           </h2>
@@ -80,6 +79,10 @@ export default function transportFromPuntaCanaAirportToResort() {
             <li>Public transportation</li>
           </ul>
         </article>
+
+        <Suspense fallback={<FallBackLoading />}>
+          <DynamicAwards />
+        </Suspense>
         <article>
           <h2 className={styled.articleHeading}>Benefits of using shuttle services</h2>
           <p>
@@ -255,7 +258,6 @@ export default function transportFromPuntaCanaAirportToResort() {
           <p>Book your transportation now with our and start your Punta Cana vacation off right!</p>
         </article>
       </Container>
-      {/* <DynamicAwards /> */}
     </>
   );
 }

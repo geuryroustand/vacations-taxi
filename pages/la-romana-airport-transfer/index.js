@@ -15,9 +15,9 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
   suspense: true
 });
 
-// const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-//   suspense: true
-// });
+const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+  suspense: true
+});
 
 export default function laRomanaAirportTransfer() {
   return (
@@ -78,6 +78,9 @@ export default function laRomanaAirportTransfer() {
             refreshments.
           </p>
         </article>
+        <Suspense fallback={<FallBackLoading />}>
+          <DynamicAwards />
+        </Suspense>
         <article>
           <h2 className={styled.articleHeading}>
             The Benefits of Using a La Romana Airport Transfer Service
@@ -285,7 +288,6 @@ export default function laRomanaAirportTransfer() {
           </p>
         </article>
       </Container>
-      {/* <DynamicAwards /> */}
     </>
   );
 }

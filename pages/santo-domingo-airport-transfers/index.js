@@ -15,9 +15,9 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
   suspense: true
 });
 
-// const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-//   suspense: true
-// });
+const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+  suspense: true
+});
 
 export default function santoDomingoAirportTransfers() {
   return (
@@ -69,6 +69,7 @@ export default function santoDomingoAirportTransfers() {
             population of over 3 million people. The city is served by Las Américas International
             Airport (SDQ), which is located about 30 minutes from the city center.
           </p>
+
           <p>
             There are several options for getting from the airport to your final destination,
             including public transportation, taxis, and private transfers. While public
@@ -83,6 +84,10 @@ export default function santoDomingoAirportTransfers() {
             private airport transfers.
           </p>
         </article>
+
+        <Suspense fallback={<FallBackLoading />}>
+          <DynamicAwards />
+        </Suspense>
         <article>
           <h2 className={styled.articleHeading}>Santo Domingo Airport Transportation Options</h2>
           <p>
@@ -194,7 +199,6 @@ export default function santoDomingoAirportTransfers() {
           </p>
         </article>
       </Container>
-      {/* <DynamicAwards /> */}
     </>
   );
 }

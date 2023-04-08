@@ -19,9 +19,9 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
 //   suspense: true
 // });
 
-// const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-//   suspense: true
-// });
+const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+  suspense: true
+});
 
 export default function puntaCanaAirportTransfers() {
   return (
@@ -68,9 +68,11 @@ export default function puntaCanaAirportTransfers() {
             with public transportation.
           </p>
         </article>
+        <Suspense fallback={<FallBackLoading />}>
+          {/* <DynamicHowWork /> */}
+          <DynamicAwards />
+        </Suspense>
 
-        {/* <DynamicHowWork /> */}
-        {/* <DynamicAwards /> */}
         <article>
           <h2 className={styled.articleHeading}>
             Why Punta Cana Airport Transfers are important for your travel plans?
