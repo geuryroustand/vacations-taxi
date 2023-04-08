@@ -20,45 +20,6 @@ const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted")
 //   suspense: true
 // });
 
-function PagesForSEO({ locationFound }) {
-  const { article1, article2, desc, heading1, keywords, title } = locationFound;
-  const keywordSplit = keywords.split(",");
-
-  const firstKeyWord = keywordSplit[0];
-  const secondKeyWord = keywordSplit[1];
-  const thirdKeyWord = keywordSplit[2];
-
-  return (
-    <>
-      <MyHead
-        title={title}
-        desc={desc}
-        keyword={keywords}
-        canonicalURL={heading1.replaceAll(" ", "-").toLowerCase()}
-      />
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader heading1={heading1} heading1Paragraph={desc} />
-        <DynamicTrusted
-          altAirPlane={firstKeyWord}
-          altCreditCart={secondKeyWord}
-          altPayment={thirdKeyWord}
-        />
-      </Suspense>
-      <Container className={styled.articleContainer}>
-        <article>
-          <h2 className={styled.articleHeading}>{article1.title}</h2>
-          <p>{article1.paragraph}.</p>
-        </article>
-        <article>
-          <h2 className={styled.articleHeading}>{article2.title}</h2>
-          <p>{article2.paragraph}.</p>
-        </article>
-      </Container>
-      {/* <DynamicAwards /> */}
-    </>
-  );
-}
-
 export async function getStaticProps({ params }) {
   const PROD = process.env.NODE_ENV === "production";
   const response = await fetch(
@@ -121,6 +82,45 @@ export async function getStaticPaths() {
 
     // fallback: true
   };
+}
+
+function PagesForSEO({ locationFound }) {
+  const { article1, article2, desc, heading1, keywords, title } = locationFound;
+  const keywordSplit = keywords.split(",");
+
+  const firstKeyWord = keywordSplit[0];
+  const secondKeyWord = keywordSplit[1];
+  const thirdKeyWord = keywordSplit[2];
+
+  return (
+    <>
+      <MyHead
+        title={title}
+        desc={desc}
+        keyword={keywords}
+        canonicalURL={heading1.replaceAll(" ", "-").toLowerCase()}
+      />
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader heading1={heading1} heading1Paragraph={desc} />
+        <DynamicTrusted
+          altAirPlane={firstKeyWord}
+          altCreditCart={secondKeyWord}
+          altPayment={thirdKeyWord}
+        />
+      </Suspense>
+      <Container className={styled.articleContainer}>
+        <article>
+          <h2 className={styled.articleHeading}>{article1.title}</h2>
+          <p>{article1.paragraph}.</p>
+        </article>
+        <article>
+          <h2 className={styled.articleHeading}>{article2.title}</h2>
+          <p>{article2.paragraph}.</p>
+        </article>
+      </Container>
+      {/* <DynamicAwards /> */}
+    </>
+  );
 }
 
 export default PagesForSEO;
