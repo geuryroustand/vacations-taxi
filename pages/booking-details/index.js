@@ -133,7 +133,8 @@ function BookingDetails() {
         <BookingStepProcess />
       </Container>
       <Container className={styled.bookingDetailsContainer}>
-        <Suspense fallback={<FallBackLoading />}>
+        <h1>hi</h1>
+        {/* <Suspense fallback={<FallBackLoading />}>
           <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />
           <div className={styled.cartAndPassengerDetail}>
             <Suspense fallback={<FallBackLoading />}>
@@ -141,7 +142,7 @@ function BookingDetails() {
               <DynamicPassenger />
             </Suspense>
           </div>
-        </Suspense>
+        </Suspense> */}
       </Container>
     </div>
   );
