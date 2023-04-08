@@ -15,13 +15,13 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
   suspense: true
 });
 
-const DynamicHowWork = dynamic(() => import("../../src/Components/HowWork/HowWork"), {
-  suspense: true
-});
+// const DynamicHowWork = dynamic(() => import("../../src/Components/HowWork/HowWork"), {
+//   suspense: true
+// });
 
-const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-  suspense: true
-});
+// const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+//   suspense: true
+// });
 
 export default function puntaCanaAirportTransfers() {
   return (
