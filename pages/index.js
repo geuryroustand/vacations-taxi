@@ -58,7 +58,9 @@ export default function Home() {
       </Head>
       {/* <!-- Google tag (gtag.js) --> */}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-9JT5V14EVY"
+        src={`https://www.googletagmanager.com/gtag/js?id=${
+          process.env.NODE_ENV !== "development" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+        }`}
         strategy="lazyOnload"
       />
       <Script id="google-analytics" strategy="lazyOnload">
@@ -67,7 +69,9 @@ export default function Home() {
         function gtag(){window.dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-9JT5V14EVY');
+        gtag('config', 'https://www.googletagmanager.com/gtag/js?id=${
+          process.env.NODE_ENV !== "development" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+        }');
       `}
       </Script>
       <Suspense fallback={<FallBackLoading />}>

@@ -1,7 +1,15 @@
-.awards h2 {
+.awards {
+  margin: 4rem auto;
+}
+
+.awardsWithBorder {
+  background-color: var(--five-color);
+  padding: 2rem;
+  border-radius: 10%;
+}
+
+.awards strong {
   text-align: center;
-  font-size: 2.18rem;
+  font-size: 1.6rem;
   line-height: 2.68rem;
-  text-align: center;
-  padding: 5.75rem 0 3.18rem;
 }
