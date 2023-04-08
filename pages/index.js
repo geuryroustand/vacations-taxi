@@ -29,7 +29,7 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 export default function Home() {
   // persistor.purge();
   return (
-    <>
+    <div>
       <Head>
         {/* Facebook Meta Tag */}
 
@@ -96,6 +96,6 @@ export default function Home() {
         <DynamicAwards />
         <DynamicFaq /> */}
       </Suspense>
-    </>
+    </div>
   );
 }
