@@ -58,7 +58,7 @@ export default function Home() {
         />
       </Head>
       {/* <!-- Google tag (gtag.js) --> */}
-      <Script
+      {/* <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${
           process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
         }`}
@@ -74,7 +74,7 @@ export default function Home() {
           process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
         }');
       `}
-      </Script>
+      </Script> */}
 
       {/* <Header
         heading1="Reliable, low cost airport transfers"
