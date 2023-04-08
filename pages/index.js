@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -73,8 +74,8 @@ export default function Home() {
         }');
       `}
       </Script>
-
-      <Suspense fallback={<FallBackLoading />}>
+      <h1>hi</h1>
+      {/* <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="Reliable, low cost airport transfers"
           heading1Paragraph="Easy airport transfers to and from your accommodation"
@@ -88,7 +89,7 @@ export default function Home() {
         <DynamicHowWork />
         <DynamicAwards />
         <DynamicFaq />
-      </Suspense>
+      </Suspense> */}
     </>
   );
 }
