@@ -74,22 +74,22 @@ export default function Home() {
         }');
       `}
       </Script>
-      <h1>hi</h1>
-      {/* <Suspense fallback={<FallBackLoading />}>
+
+      <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="Reliable, low cost airport transfers"
           heading1Paragraph="Easy airport transfers to and from your accommodation"
         />
 
-        <DynamicTrusted
+        {/* <DynamicTrusted
           altAirPlane="Dominican Airport Transfers Services"
           altCreditCart="PUJ Punta cana Airport Transfer"
           altPayment="SDQ Santo Domingo Airport Transfers"
         />
         <DynamicHowWork />
         <DynamicAwards />
-        <DynamicFaq />
-      </Suspense> */}
+        <DynamicFaq /> */}
+      </Suspense>
     </>
   );
 }
