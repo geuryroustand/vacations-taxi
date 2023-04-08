@@ -1,19 +1,19 @@
-import React, { Suspense } from "react";
+// import React, { Suspense } from "react";
+// import dynamic from "next/dynamic";
 
-import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+// import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
-  suspense: true
-});
+// const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
+//   suspense: true
+// });
 
-const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
-  suspense: true
-});
+// const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
+//   suspense: true
+// });
 
 // const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
 //   suspense: true
@@ -43,7 +43,7 @@ export default function samanaAirportTransfers() {
         "
         canonicalURL="samana-el-catey-airport-transfers"
       />
-      <Suspense fallback={<FallBackLoading />}>
+      {/* <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="Maximizing Your Vacation Time: The Benefits of Pre-Booking Samana Airport Transfers"
           heading1Paragraph="Are you planning a vacation to the beautiful Samana Peninsula? Samana is known for its stunning beaches, lush vegetation, and breathtaking waterfalls. But before you can start enjoying all that the region has to offer, you have to figure out how to get from the airport to your hotel. This is where pre-booking a Samana airport transfer can make all the difference."
@@ -53,7 +53,7 @@ export default function samanaAirportTransfers() {
           altCreditCart="samana airport transportation"
           altPayment="samana airport shuttle"
         />
-      </Suspense>
+      </Suspense> */}
 
       <Container className={styled.articleContainer}>
         <article>

@@ -1,19 +1,19 @@
-import React, { Suspense } from "react";
+// import React, { Suspense } from "react";
+// import dynamic from "next/dynamic";
 
-import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+// import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
-  suspense: true
-});
+// const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
+//   suspense: true
+// });
 
-const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
-  suspense: true
-});
+// const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
+//   suspense: true
+// });
 
 // const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
 //   suspense: true
@@ -39,7 +39,7 @@ export default function seoPage() {
         airport shuttle punta cana"
         canonicalURL="punta-cana-airport-transportation"
       />
-      <Suspense fallback={<FallBackLoading />}>
+      {/* <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="Navigating Punta Cana Airport Transportation: Tips and Tricks for a Stress-Free Arrival"
           heading1Paragraph="Are you planning a trip to Punta Cana and feeling overwhelmed by the prospect of navigating the transportation options upon your arrival at the airport? Don't worry; you're not alone. Punta Cana is a popular tourist destination, and with that comes a variety of transportation options that can be confusing for first-time visitors. In this article, we will discuss the different types of Punta Cana airport transportation, the benefits of using a professional transportation service, how to choose the best Punta Cana airport shuttle, tips for booking Punta Cana car service, and reliable Punta Cana transportation services to ensure a stress-free arrival."
@@ -49,7 +49,7 @@ export default function seoPage() {
           altCreditCart="Airport shuttle punta cana"
           altPayment="transportation to punta cana airport"
         />
-      </Suspense>
+      </Suspense> */}
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>

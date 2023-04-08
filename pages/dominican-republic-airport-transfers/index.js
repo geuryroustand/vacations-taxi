@@ -1,19 +1,20 @@
-import React, { Suspense } from "react";
+// import React, { Suspense } from "react";
 
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+// import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
-  suspense: true
-});
+// const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
+//   suspense: true
+// });
 
-const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
-  suspense: true
-});
+// const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
+//   suspense: true
+// });
 
 // const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
 //   suspense: true
@@ -41,7 +42,7 @@ export default function dominicanRepublicAirportTransfers() {
         "
         canonicalURL="dominican-republic-airport-transfers"
       />
-      <Suspense fallback={<FallBackLoading />}>
+      {/* <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="Dominican Republic Airport Transfers"
           heading1Paragraph="Your delightful journey starts with us- Book your Dominican airport transfer with Vacations Taxis!"
@@ -51,7 +52,7 @@ export default function dominicanRepublicAirportTransfers() {
           altCreditCart="shuttle central dominican republic"
           altPayment="dominican republic airport transfers"
         />
-      </Suspense>
+      </Suspense> */}
 
       <Container className={styled.articleContainer}>
         <article>

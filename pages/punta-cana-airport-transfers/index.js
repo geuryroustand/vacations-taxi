@@ -1,19 +1,20 @@
-import React, { Suspense } from "react";
+// import React, { Suspense } from "react";
 
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
+
 import Container from "react-bootstrap/Container";
 
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+// import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
-  suspense: true
-});
+// const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
+//   suspense: true
+// });
 
-const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
-  suspense: true
-});
+// const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
+//   suspense: true
+// });
 
 // const DynamicHowWork = dynamic(() => import("../../src/Components/HowWork/HowWork"), {
 //   suspense: true
@@ -44,7 +45,7 @@ export default function puntaCanaAirportTransfers() {
         canonicalURL="punta-cana-airport-transfers"
       />
 
-      <Suspense fallback={<FallBackLoading />}>
+      {/* <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="Why Punta Cana Airport Transfers Should Be a Top Priority for Your Travel Plans?"
           heading1Paragraph="As someone who has traveled to Punta Cana, I can attest to the importance of airport transfers. It's a beautiful destination with lots to see and do, but getting to and from the airport can be a hassle. That's why Punta Cana airport transfers should be a top priority for your travel plans. In this article, we'll explore why airport transfers are important, the benefits of private and luxury transfers, how to choose the right transfer service, and more."
@@ -54,7 +55,7 @@ export default function puntaCanaAirportTransfers() {
           altCreditCart="Punta Cana Private Airport transfers"
           altPayment="Punta Cana Luxury Airport Transfers"
         />
-      </Suspense>
+      </Suspense> */}
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>Introduction to Punta Cana Airport Transfers</h2>

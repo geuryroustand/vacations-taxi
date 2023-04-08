@@ -1,19 +1,19 @@
-import React, { Suspense } from "react";
+// import React, { Suspense } from "react";
+// import dynamic from "next/dynamic";
 
-import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+// import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
-  suspense: true
-});
+// const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
+//   suspense: true
+// });
 
-const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
-  suspense: true
-});
+// const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
+//   suspense: true
+// });
 
 // const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
 //   suspense: true
@@ -44,7 +44,7 @@ export default function santoDomingoAirportTransfers() {
         airport transportation santo domingo dominican republic,"
         canonicalURL="santo-domingo-airport-transfers"
       />
-      <Suspense fallback={<FallBackLoading />}>
+      {/* <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="The Ultimate Guide to Santo Domingo Airport Transfers"
           heading1Paragraph="If you're planning a trip to Santo Domingo, the capital city of the Dominican Republic, you'll likely be flying into the Las Américas International Airport. Once you arrive, you'll need to find a way to get to your hotel or other destination. While there are several options available, including taxis and public transportation, one of the most convenient and comfortable ways to get around is by using a private airport transfer service."
@@ -54,7 +54,7 @@ export default function santoDomingoAirportTransfers() {
           altCreditCart="santo domingo airport taxi"
           altPayment="santo domingo airport transfers"
         />
-      </Suspense>
+      </Suspense> */}
 
       <Container className={styled.articleContainer}>
         <article>
