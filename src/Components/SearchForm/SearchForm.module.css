@@ -4,6 +4,8 @@
   background: var(--primary-color);
   padding: 1rem;
   border-radius: 10px;
+  min-width: 1rem;
+  min-height: 1rem;
 }
 
 .searchForm {
