@@ -23,7 +23,7 @@ export default function laRomanaAirportTransfer() {
     <>
       <MyHead
         title="La Romana Airport Transfer Service | Shuttle & Transportation"
-        desc="Make your trip to La Romana, Dominican Republic hassle-free with our airport transfer service.Book now for a convenient and comfortable ride to your destination"
+        desc="Make your trip to La Romana, hassle-free with our airport transfer service. Book now for a convenient and comfortable ride to your destination."
         keyword="la romana airport transfer,
         airport shuttle la romana,
         la romana airport transportation,

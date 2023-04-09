@@ -23,7 +23,7 @@ export default function samanaAirportTransfers() {
     <>
       <MyHead
         title="Samana Airport Taxis & Transfers | Book Online Now"
-        desc="Save time and money by booking your Samana airport transfer with us. Reliable and affordable airport taxis & transfers from El Catey International Airport (AZS)"
+        desc="Save time and money by booking your Samana airport transfer with us. Reliable and affordable airport taxis & transfers from El Catey International Airport"
         keyword="samana airport transfers,
         taxi samana dominican republic,
         taxi samana,

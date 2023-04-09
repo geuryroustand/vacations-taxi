@@ -22,8 +22,8 @@ export default function transportFromPuntaCanaAirportToResort() {
   return (
     <>
       <MyHead
-        title="Private Transfer from Punta Cana Airport to Your Resort"
-        desc="Enjoy a comfortable and convenient private airport transfer from Punta Cana Airport to your resort. Choose your pickup time and destination. Book now and save!"
+        title="Transportation From Punta Cana Airport"
+        desc="Enjoy comfortable and convenient transportation from Punta Cana Airport to your resort. Choose your pickup time and destination. Book now and save!"
         keyword="transport from punta cana airport to resort,
         shuttle from punta cana airport to resort,
         transportation from punta cana airport to majestic mirage,
