@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState, Suspense, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
@@ -11,7 +10,6 @@ import format from "date-fns/format";
 
 import Image from "next/image";
 import styled from "./SearchForm.module.css";
-import FallBackLoading from "../Loading/FallBackLoading";
 import SearchOptions from "../SearchOptions/SearchOptions";
 
 const DynamicModalBoots = dynamic(() => import("../Modal/Modal"), {
@@ -301,7 +299,6 @@ const SearchForm = ({ isClicked }) => {
   };
 
   return (
-    // <Suspense fallback={<FallBackLoading />}>
     <Form className={styled.form} validated={validated} noValidate onSubmit={submitData}>
       <div className={styled.searchForm}>
         <DynamicSearchFormInput
@@ -469,7 +466,6 @@ const SearchForm = ({ isClicked }) => {
         // }
       />
     </Form>
-    // </Suspense>
   );
 };
 

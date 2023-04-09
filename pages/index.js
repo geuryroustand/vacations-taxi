@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -73,22 +74,22 @@ export default function Home() {
         }');
       `}
       </Script>
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader
-          heading1="Reliable, low cost airport transfers"
-          heading1Paragraph="Easy airport transfers to and from your accommodation"
-        />
+      {/* <Suspense fallback={<FallBackLoading />}> */}
+      <DynamicHeader
+        heading1="Reliable, low cost airport transfers"
+        heading1Paragraph="Easy airport transfers to and from your accommodation"
+      />
 
-        <DynamicTrusted
-          altAirPlane="Dominican Airport Transfers Services"
-          altCreditCart="PUJ Punta cana Airport Transfer"
-          altPayment="SDQ Santo Domingo Airport Transfers"
-        />
+      <DynamicTrusted
+        altAirPlane="Dominican Airport Transfers Services"
+        altCreditCart="PUJ Punta cana Airport Transfer"
+        altPayment="SDQ Santo Domingo Airport Transfers"
+      />
 
-        <DynamicHowWork />
-        <DynamicAwards />
-        <DynamicFaq />
-      </Suspense>
+      <DynamicHowWork />
+      <DynamicAwards />
+      <DynamicFaq />
+      {/* </Suspense> */}
     </>
   );
 }
