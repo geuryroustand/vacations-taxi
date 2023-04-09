@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
-import React, { Suspense } from "react";
+import React from "react";
 
 import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
@@ -43,7 +41,7 @@ export default function transportFromPuntaCanaAirportToResort() {
         majestic elegance punta cana airport shuttle"
         canonicalURL="transportation-from-punta-cana-airport"
       />
-      {/* <Suspense fallback={<FallBackLoading />}> */}
+
       <DynamicHeader
         heading1="The Ultimate Guide to Hassle-free Transport from Punta Cana Airport to Your Resort"
         heading1Paragraph="Punta Cana is a popular tourist destination in the Dominican Republic, known for its beautiful beaches, warm weather, and luxurious resorts. When you arrive at Punta Cana airport, you'll want to make sure you have a comfortable and hassle-free way to get to your resort. In this guide, we'll explore the different modes of transportation available from Punta Cana airport to your resort, including the benefits of using shuttle services and private transportation. We'll also provide tips for booking transportation and making your transport experience as smooth as possible."
@@ -53,7 +51,6 @@ export default function transportFromPuntaCanaAirportToResort() {
         altCreditCart="shuttle from punta cana airport to resort"
         altPayment="private transportation from punta cana airport to hotel"
       />
-      {/* </Suspense> */}
 
       <Container className={styled.articleContainer}>
         <article>
@@ -81,9 +78,8 @@ export default function transportFromPuntaCanaAirportToResort() {
           </ul>
         </article>
 
-        {/* <Suspense fallback={<FallBackLoading />}> */}
         <DynamicAwards />
-        {/* </Suspense> */}
+
         <article>
           <h2 className={styled.articleHeading}>Benefits of using shuttle services</h2>
           <p>

@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
-import React, { Suspense } from "react";
+import React from "react";
 
 import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
@@ -42,7 +40,6 @@ export default function dominicanRepublicAirportTransfers() {
         "
         canonicalURL="dominican-republic-airport-transfers"
       />
-      {/* <Suspense fallback={<FallBackLoading />}> */}
       <DynamicHeader
         heading1="Dominican Republic Airport Transfers"
         heading1Paragraph="Your delightful journey starts with us- Book your Dominican airport transfer with Vacations Taxis!"
@@ -52,7 +49,6 @@ export default function dominicanRepublicAirportTransfers() {
         altCreditCart="shuttle central dominican republic"
         altPayment="dominican republic airport transfers"
       />
-      {/* </Suspense> */}
 
       <Container className={styled.articleContainer}>
         <article>
@@ -68,9 +64,7 @@ export default function dominicanRepublicAirportTransfers() {
             make your journey as beautiful as your destination.
           </p>
         </article>
-        {/* <Suspense fallback={<FallBackLoading />}> */}
         <DynamicAwards />
-        {/* </Suspense> */}
         <article>
           <h2 className={styled.articleHeading}>Premier Dominican Airport Transfers</h2>
           <p>

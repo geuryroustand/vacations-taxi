@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
-import React, { Suspense } from "react";
+import React from "react";
 
 import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
@@ -38,7 +36,7 @@ export default function puertoPlataAirportTransportation() {
         puerto plata transportation from airport,"
         canonicalURL="puerto-plata-airport-transportation"
       />
-      {/* <Suspense fallback={<FallBackLoading />}> */}
+
       <DynamicHeader
         heading1="The Ultimate Guide to Puerto Plata Airport Transportation: Tips and Tricks to Make Your Journey Smooth"
         heading1Paragraph="As an often traveler to Puerto Plata Dominican Republic, I have discovered that transportation to and from the airport can be a hassle. The good news is that with proper planning, you can avoid stress and make your journey to the beautiful city of Puerto Plata smooth and enjoyable. In this ultimate guide, I will share with you some tips and tricks to make your transportation experience hassle-free."
@@ -48,7 +46,6 @@ export default function puertoPlataAirportTransportation() {
         altCreditCart="transportation from sti to puerto plata"
         altPayment="transportation from puerto plata airport to resort"
       />
-      {/* </Suspense> */}
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>
@@ -63,9 +60,7 @@ export default function puertoPlataAirportTransportation() {
             Puerto Plata, and it is located about 30 minutes from the city center
           </p>
         </article>
-        {/* <Suspense fallback={<FallBackLoading />}> */}
         <DynamicAwards />
-        {/* </Suspense> */}
         <article>
           <h2 className={styled.articleHeading}>Benefits of Pre-Booking Your Transportation</h2>
           <p>
