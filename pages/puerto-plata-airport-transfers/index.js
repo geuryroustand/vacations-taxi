@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Suspense } from "react";
 
 import dynamic from "next/dynamic";
@@ -34,17 +35,17 @@ export default function puertoPlataAirport() {
         puerto plata airport shuttle"
         canonicalURL="puerto-plata-airport-transfers"
       />
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader
-          heading1="The Ultimate Guide to Puerto Plata Airport Transfers: How to Find the Best Shuttle Service"
-          heading1Paragraph="As a frequent traveler, I have found that one of the most stressful aspects of any trip is figuring out transportation to and from the airport. This is especially true when traveling to a new destination. That is why I have put together this ultimate guide to Puerto Plata airport transfers to help fellow travelers navigate the process and find the best shuttle service available."
-        />
-        <DynamicTrusted
-          altAirPlane="puerto plata airport transfers"
-          altCreditCart="airport shuttle puerto plata"
-          altPayment="puerto plata shuttle"
-        />
-      </Suspense>
+      {/* <Suspense fallback={<FallBackLoading />}> */}
+      <DynamicHeader
+        heading1="The Ultimate Guide to Puerto Plata Airport Transfers: How to Find the Best Shuttle Service"
+        heading1Paragraph="As a frequent traveler, I have found that one of the most stressful aspects of any trip is figuring out transportation to and from the airport. This is especially true when traveling to a new destination. That is why I have put together this ultimate guide to Puerto Plata airport transfers to help fellow travelers navigate the process and find the best shuttle service available."
+      />
+      <DynamicTrusted
+        altAirPlane="puerto plata airport transfers"
+        altCreditCart="airport shuttle puerto plata"
+        altPayment="puerto plata shuttle"
+      />
+      {/* </Suspense> */}
 
       <Container className={styled.articleContainer}>
         <article>
@@ -63,9 +64,9 @@ export default function puertoPlataAirport() {
             provide tips on how to choose the best service for your needs.
           </p>
         </article>
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicAwards />
-        </Suspense>
+        {/* <Suspense fallback={<FallBackLoading />}> */}
+        <DynamicAwards />
+        {/* </Suspense> */}
         <article>
           <h2 className={styled.articleHeading}>How to Book Your Puerto Plata Airport Transfer</h2>
           <p>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Suspense } from "react";
 
 import dynamic from "next/dynamic";
@@ -41,17 +42,17 @@ export default function dominicanRepublicAirportTransfers() {
         "
         canonicalURL="dominican-republic-airport-transfers"
       />
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader
-          heading1="Dominican Republic Airport Transfers"
-          heading1Paragraph="Your delightful journey starts with us- Book your Dominican airport transfer with Vacations Taxis!"
-        />
-        <DynamicTrusted
-          altAirPlane="dominican airport transfers"
-          altCreditCart="shuttle central dominican republic"
-          altPayment="dominican republic airport transfers"
-        />
-      </Suspense>
+      {/* <Suspense fallback={<FallBackLoading />}> */}
+      <DynamicHeader
+        heading1="Dominican Republic Airport Transfers"
+        heading1Paragraph="Your delightful journey starts with us- Book your Dominican airport transfer with Vacations Taxis!"
+      />
+      <DynamicTrusted
+        altAirPlane="dominican airport transfers"
+        altCreditCart="shuttle central dominican republic"
+        altPayment="dominican republic airport transfers"
+      />
+      {/* </Suspense> */}
 
       <Container className={styled.articleContainer}>
         <article>
@@ -67,9 +68,9 @@ export default function dominicanRepublicAirportTransfers() {
             make your journey as beautiful as your destination.
           </p>
         </article>
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicAwards />
-        </Suspense>
+        {/* <Suspense fallback={<FallBackLoading />}> */}
+        <DynamicAwards />
+        {/* </Suspense> */}
         <article>
           <h2 className={styled.articleHeading}>Premier Dominican Airport Transfers</h2>
           <p>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Suspense } from "react";
 
 import dynamic from "next/dynamic";
@@ -44,17 +45,17 @@ export default function santoDomingoAirportTransfers() {
         airport transportation santo domingo dominican republic,"
         canonicalURL="santo-domingo-airport-transfers"
       />
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader
-          heading1="The Ultimate Guide to Santo Domingo Airport Transfers"
-          heading1Paragraph="If you're planning a trip to Santo Domingo, the capital city of the Dominican Republic, you'll likely be flying into the Las Américas International Airport. Once you arrive, you'll need to find a way to get to your hotel or other destination. While there are several options available, including taxis and public transportation, one of the most convenient and comfortable ways to get around is by using a private airport transfer service."
-        />
-        <DynamicTrusted
-          altAirPlane="santo domingo airport transportation"
-          altCreditCart="santo domingo airport taxi"
-          altPayment="santo domingo airport transfers"
-        />
-      </Suspense>
+      {/* <Suspense fallback={<FallBackLoading />}> */}
+      <DynamicHeader
+        heading1="The Ultimate Guide to Santo Domingo Airport Transfers"
+        heading1Paragraph="If you're planning a trip to Santo Domingo, the capital city of the Dominican Republic, you'll likely be flying into the Las Américas International Airport. Once you arrive, you'll need to find a way to get to your hotel or other destination. While there are several options available, including taxis and public transportation, one of the most convenient and comfortable ways to get around is by using a private airport transfer service."
+      />
+      <DynamicTrusted
+        altAirPlane="santo domingo airport transportation"
+        altCreditCart="santo domingo airport taxi"
+        altPayment="santo domingo airport transfers"
+      />
+      {/* </Suspense> */}
 
       <Container className={styled.articleContainer}>
         <article>
@@ -85,9 +86,9 @@ export default function santoDomingoAirportTransfers() {
           </p>
         </article>
 
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicAwards />
-        </Suspense>
+        {/* <Suspense fallback={<FallBackLoading />}> */}
+        <DynamicAwards />
+        {/* </Suspense> */}
         <article>
           <h2 className={styled.articleHeading}>Santo Domingo Airport Transportation Options</h2>
           <p>

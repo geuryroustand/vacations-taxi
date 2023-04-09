@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Suspense } from "react";
 
 import dynamic from "next/dynamic";
@@ -48,17 +49,17 @@ export default function laRomanaAirportTransfer() {
         canonicalURL="la-romana-airport-transfer"
       />
 
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader
-          heading1="The Best La Romana Airport Transfer Services for Stress-Free Travel"
-          heading1Paragraph="If you're planning a trip to La Romana, Dominican Republic, getting to and from the airport can be stressful. However, with the right La Romana airport transfer service, you can ensure a smooth and stress-free travel experience. In this article, we'll explore the best La Romana airport transfer services available, their benefits, and how to choose the right one for you."
-        />
-        <DynamicTrusted
-          altAirPlane="la romana airport transfer"
-          altCreditCart="airport shuttle la romana"
-          altPayment="la romana airport transportation"
-        />
-      </Suspense>
+      {/* <Suspense fallback={<FallBackLoading />}> */}
+      <DynamicHeader
+        heading1="The Best La Romana Airport Transfer Services for Stress-Free Travel"
+        heading1Paragraph="If you're planning a trip to La Romana, Dominican Republic, getting to and from the airport can be stressful. However, with the right La Romana airport transfer service, you can ensure a smooth and stress-free travel experience. In this article, we'll explore the best La Romana airport transfer services available, their benefits, and how to choose the right one for you."
+      />
+      <DynamicTrusted
+        altAirPlane="la romana airport transfer"
+        altCreditCart="airport shuttle la romana"
+        altPayment="la romana airport transportation"
+      />
+      {/* </Suspense> */}
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>Introduction to La Romana Airport Transfer</h2>
@@ -78,9 +79,9 @@ export default function laRomanaAirportTransfer() {
             refreshments.
           </p>
         </article>
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicAwards />
-        </Suspense>
+        {/* <Suspense fallback={<FallBackLoading />}> */}
+        <DynamicAwards />
+        {/* </Suspense> */}
         <article>
           <h2 className={styled.articleHeading}>
             The Benefits of Using a La Romana Airport Transfer Service
