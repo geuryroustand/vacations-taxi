@@ -46,6 +46,7 @@
   font-size: 15px;
   line-height: 18px;
   max-width: 40rem;
+  min-height: 10rem;
 }
 
 /* .oneWay-btn {
@@ -78,10 +79,12 @@
   color: var(--secondary-color);
   background: var(--primary-color);
   border: none;
+  min-height: 2.6rem;
 }
 
 .btn-selected {
   height: 2.6rem;
+  min-height: 2.6rem;
   width: 6.8rem;
   margin-top: 2rem;
   margin-right: 1rem;
