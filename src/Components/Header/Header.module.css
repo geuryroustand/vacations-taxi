@@ -3,6 +3,7 @@
   /* background: url("/images/hero-small.JPG") no-repeat center center/cover; */
 
   height: 100%;
+  min-height: 100%;
   position: relative;
   color: white;
   padding-bottom: 2rem;
