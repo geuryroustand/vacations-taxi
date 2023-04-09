@@ -4,9 +4,9 @@ import { Suspense } from "react";
 import FallBackLoading from "../Loading/FallBackLoading";
 import styled from "./TripAdVisor.module.css";
 
-// const DynamicCertificateOfExcellence = dynamic(() => import("./CertificateOfExcellence"), {
-//   suspense: true
-// });
+const DynamicCertificateOfExcellence = dynamic(() => import("./CertificateOfExcellence"), {
+  suspense: true
+});
 
 const DynamicReviewSnippets = dynamic(() => import("./ReviewSnippets"), {
   suspense: true
@@ -16,7 +16,7 @@ const TripAdVisor = () => {
   return (
     <div className={styled.tripAdVisor}>
       <Suspense fallback={<FallBackLoading />}>
-        {/* <DynamicCertificateOfExcellence /> */}
+        <DynamicCertificateOfExcellence />
         <DynamicReviewSnippets />
       </Suspense>
     </div>

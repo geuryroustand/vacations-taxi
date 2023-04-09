@@ -38,6 +38,7 @@
   line-height: 2.62rem;
   max-width: 50rem;
   color: var(--third-color);
+  min-height: 1rem;
 }
 
 .heading1Paragraph {
