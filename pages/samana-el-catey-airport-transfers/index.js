@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Suspense } from "react";
 
 import dynamic from "next/dynamic";
@@ -43,17 +44,17 @@ export default function samanaAirportTransfers() {
         "
         canonicalURL="samana-el-catey-airport-transfers"
       />
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader
-          heading1="Maximizing Your Vacation Time: The Benefits of Pre-Booking Samana Airport Transfers"
-          heading1Paragraph="Are you planning a vacation to the beautiful Samana Peninsula? Samana is known for its stunning beaches, lush vegetation, and breathtaking waterfalls. But before you can start enjoying all that the region has to offer, you have to figure out how to get from the airport to your hotel. This is where pre-booking a Samana airport transfer can make all the difference."
-        />
-        <DynamicTrusted
-          altAirPlane="samana airport transfers"
-          altCreditCart="samana airport transportation"
-          altPayment="samana airport shuttle"
-        />
-      </Suspense>
+      {/* <Suspense fallback={<FallBackLoading />}> */}
+      <DynamicHeader
+        heading1="Maximizing Your Vacation Time: The Benefits of Pre-Booking Samana Airport Transfers"
+        heading1Paragraph="Are you planning a vacation to the beautiful Samana Peninsula? Samana is known for its stunning beaches, lush vegetation, and breathtaking waterfalls. But before you can start enjoying all that the region has to offer, you have to figure out how to get from the airport to your hotel. This is where pre-booking a Samana airport transfer can make all the difference."
+      />
+      <DynamicTrusted
+        altAirPlane="samana airport transfers"
+        altCreditCart="samana airport transportation"
+        altPayment="samana airport shuttle"
+      />
+      {/* </Suspense> */}
 
       <Container className={styled.articleContainer}>
         <article>
@@ -78,9 +79,9 @@ export default function samanaAirportTransfers() {
             destination.
           </p>
         </article>
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicAwards />
-        </Suspense>
+        {/* <Suspense fallback={<FallBackLoading />}> */}
+        <DynamicAwards />
+        {/* </Suspense> */}
         <article>
           <h2 className={styled.articleHeading}>
             Benefits of Pre-Booking Samana Airport Transfers
