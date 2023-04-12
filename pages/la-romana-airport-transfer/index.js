@@ -41,7 +41,7 @@ export default function laRomanaAirportTransfer() {
         transportation punta cana to la romana,"
         canonicalURL="la-romana-airport-transfer"
       />
-      <Suspense fallback={FallBackLoading}>
+      <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="The Best La Romana Airport Transfer Services for Stress-Free Travel"
           heading1Paragraph="If you're planning a trip to La Romana, Dominican Republic, getting to and from the airport can be stressful. However, with the right La Romana airport transfer service, you can ensure a smooth and stress-free travel experience. In this article, we'll explore the best La Romana airport transfer services available, their benefits, and how to choose the right one for you."
