@@ -22,6 +22,7 @@ const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Truste
 // });
 
 const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+  ssr: true,
   suspense: true,
   loading: () => <FallBackLoading />
 });
