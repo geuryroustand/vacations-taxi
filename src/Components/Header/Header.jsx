@@ -12,7 +12,9 @@ import SearchForm from "../SearchForm/SearchForm";
 import FallBackLoading from "../Loading/FallBackLoading";
 
 const DynamicHeading = dynamic(() => import("../Heading/Heading"), {
-  suspense: true
+  ssr: true,
+  suspense: true,
+  loading: () => <FallBackLoading />
 });
 
 const Header = ({ heading1, heading1Paragraph }) => {

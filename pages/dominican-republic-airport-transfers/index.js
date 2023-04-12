@@ -274,7 +274,6 @@ export default function dominicanRepublicAirportTransfers() {
           </article>
         </Container>
       </Suspense>
-      {/* <DynamicAwards /> */}
     </>
   );
 }

@@ -18,7 +18,7 @@ const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards")
   suspense: true
 });
 
-export default function seoPage() {
+export default function puntaCanaAirportTransportation() {
   return (
     <>
       <MyHead
