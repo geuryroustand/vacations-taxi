@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState } from "react";
 
 import dynamic from "next/dynamic";
 
@@ -7,14 +7,12 @@ import Button from "react-bootstrap/Button";
 
 import styled from "./Header.module.css";
 
-import SearchForm from "../SearchForm/SearchForm";
+// import SearchForm from "../SearchForm/SearchForm";
 
-import FallBackLoading from "../Loading/FallBackLoading";
+// import FallBackLoading from "../Loading/FallBackLoading";
 
-const DynamicHeading = dynamic(() => import("../Heading/Heading"), {
-  ssr: true,
-  suspense: true,
-  loading: () => <FallBackLoading />
+const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"), {
+  suspense: true
 });
 
 const Header = ({ heading1, heading1Paragraph }) => {
@@ -24,9 +22,7 @@ const Header = ({ heading1, heading1Paragraph }) => {
     <header className={styled.hero}>
       <Container>
         <article>
-          <Suspense fallback={<FallBackLoading />}>
-            <DynamicHeading style={styled.heading1} headingText={heading1} />
-          </Suspense>
+          <h1 className={styled.heading1}>{heading1} </h1>
           <p className={styled.heading1Paragraph}>{heading1Paragraph} </p>
         </article>
         <Button
@@ -40,7 +36,7 @@ const Header = ({ heading1, heading1Paragraph }) => {
           Return
         </Button>
 
-        <SearchForm isClicked={isClicked} />
+        <DynamicSearchForm isClicked={isClicked} />
       </Container>
     </header>
   );

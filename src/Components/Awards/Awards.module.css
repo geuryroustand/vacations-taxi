@@ -1,8 +1,5 @@
 .awards {
   margin: 4rem auto;
-}
-
-.awardsWithBorder {
   background-color: var(--five-color);
   padding: 2rem;
   border-radius: 9.93rem 0px 12.5rem 0px;
