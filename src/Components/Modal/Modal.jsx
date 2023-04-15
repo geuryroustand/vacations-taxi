@@ -7,11 +7,11 @@ import dynamic from "next/dynamic";
 import FallBackLoading from "../Loading/FallBackLoading";
 
 const DynamicSearchFormInput = dynamic(() => import("../SearchFormInput/SearchFormInput"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
 
 const DynamicSearchOptions = dynamic(() => import("../SearchOptions/SearchOptions"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
 
 const ModalBoots = ({

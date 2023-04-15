@@ -5,18 +5,17 @@ import Container from "react-bootstrap/Container";
 
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
-import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 
 const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
 
 const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
 
 const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
 
 export default function puertoPlataAirportTransportation() {

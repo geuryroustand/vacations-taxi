@@ -11,20 +11,19 @@ import format from "date-fns/format";
 import Image from "next/image";
 import styled from "./SearchForm.module.css";
 import SearchOptions from "../SearchOptions/SearchOptions";
-import FallBackLoading from "../Loading/FallBackLoading";
 
 const DynamicModalBoots = dynamic(() => import("../Modal/Modal"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
 
 const DynamicSearchFormInput = dynamic(() => import("../SearchFormInput/SearchFormInput"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
 
 const DynamicDatePickerSearchForm = dynamic(
   () => import("../DatePickerSearchForm/DatePickerSearchForm"),
   {
-    loading: () => <FallBackLoading />
+    suspense: true
   }
 );
 
@@ -174,11 +173,11 @@ const SearchForm = ({ isClicked }) => {
 
   const searchLocation = debounce(async () => {
     if (
-      (searchedTerm.valueTyped?.length > 2 &&
+      (searchedTerm.valueTyped?.length > 3 &&
         searchedTerm.valueTyped === inputPickUpReference.current.value) ||
-      (searchedTerm.valueTyped?.length > 2 &&
+      (searchedTerm.valueTyped?.length > 3 &&
         searchedTerm.valueTyped === inputDropOffReference.current.value) ||
-      (searchedTerm.valueTyped?.length > 2 &&
+      (searchedTerm.valueTyped?.length > 3 &&
         searchedTerm.valueTyped === modalInputReference.current?.value)
     ) {
       try {

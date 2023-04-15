@@ -1,24 +1,25 @@
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 
 // import { persistor } from "../src/redux/store";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
+
 const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
+
 const DynamicHowWork = dynamic(() => import("../src/Components/HowWork/HowWork"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
 const DynamicFaq = dynamic(() => import("../src/Components/Faq/Faq"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
 const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
-  loading: () => <FallBackLoading />
+  suspense: true
 });
 
 export default function Home() {
@@ -75,11 +76,13 @@ export default function Home() {
         heading1="Reliable, low cost airport transfers"
         heading1Paragraph="Easy airport transfers to and from your accommodation"
       />
+
       <DynamicTrusted
         altAirPlane="Dominican Airport Transfers Services"
         altCreditCart="PUJ Punta cana Airport Transfer"
         altPayment="SDQ Santo Domingo Airport Transfers"
       />
+
       <DynamicHowWork />
       <DynamicAwards />
       <DynamicFaq />
