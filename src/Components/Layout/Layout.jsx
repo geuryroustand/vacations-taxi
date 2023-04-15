@@ -1,22 +1,22 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import dynamic from "next/dynamic";
 import FallBackLoading from "../Loading/FallBackLoading";
 
 const DynamicFooter = dynamic(() => import("../Footer/Footer"), {
-  suspense: true
+  loading: () => <FallBackLoading />
 });
 const DynamicNavigation = dynamic(() => import("../Navigation/Navigation"), {
-  suspense: true
+  loading: () => <FallBackLoading />
 });
 
 const Layout = ({ children }) => {
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
       <DynamicNavigation />
       <main className="main">{children}</main>
       <DynamicFooter />
-    </Suspense>
+    </>
   );
 };
 

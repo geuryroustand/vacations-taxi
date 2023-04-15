@@ -5,17 +5,18 @@ import Container from "react-bootstrap/Container";
 
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
+import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 
 const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
-  suspense: true
+  loading: () => <FallBackLoading />
 });
 
 const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
-  suspense: true
+  loading: () => <FallBackLoading />
 });
 
 const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-  suspense: true
+  loading: () => <FallBackLoading />
 });
 
 export default function puntaCanaAirportTransportation() {

@@ -1,24 +1,21 @@
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 
 import FallBackLoading from "../Loading/FallBackLoading";
 import styled from "./TripAdVisor.module.css";
 
 const DynamicCertificateOfExcellence = dynamic(() => import("./CertificateOfExcellence"), {
-  suspense: true
+  loading: () => <FallBackLoading />
 });
 
 const DynamicReviewSnippets = dynamic(() => import("./ReviewSnippets"), {
-  suspense: true
+  loading: () => <FallBackLoading />
 });
 
 const TripAdVisor = () => {
   return (
     <div className={styled.tripAdVisor}>
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicCertificateOfExcellence />
-        <DynamicReviewSnippets />
-      </Suspense>
+      <DynamicCertificateOfExcellence />
+      <DynamicReviewSnippets />
     </div>
   );
 };
