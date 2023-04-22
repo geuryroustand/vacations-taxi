@@ -1,72 +1,45 @@
-/* eslint-disable unicorn/prevent-abbreviations */
-/* eslint-disable unicorn/no-null */
-/* eslint-disable no-unsafe-optional-chaining */
-/* eslint-disable no-unused-vars */
-
 import React, { Suspense, useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
+import Button from "react-bootstrap/Button";
 import styled from "./bookingDetails.module.css";
 import { allFlightInfo } from "../../src/redux/flightInfoSlice";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 import Loading from "../../src/Components/Loading/Loading";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import MyHead from "../../src/Components/MyHead/MyHead";
-// import { persistor } from "../../src/redux/store";
 
-const DynamicBookingSummary = dynamic(
-  () => import("../../src/Components/BookingSummary/BookingSummary"),
-  {
-    suspense: true
-  }
+const DynamicBookingSummary = dynamic(() =>
+  import("../../src/Components/BookingSummary/BookingSummary")
 );
 
-const DynamicCarList = dynamic(() => import("../../src/Components/CarList/CarList"), {
-  suspense: true
-});
+const DynamicCarList = dynamic(() => import("../../src/Components/CarList/CarList"));
 
-const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Passenger"), {
-  suspense: true
-});
+const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Passenger"));
+
+const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"));
 
 function BookingDetails() {
-  // persistor.purge();
-  const [isLoading, setIsLoading] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [showSearchForm, setShowSearchForm] = useState(false);
   const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
 
   const router = useRouter();
-
-  // const {
-  //   dropOffDate,
-  //   dropOffPassenger,
-  //   dropOffReturn,
-  //   dropOffTime,
-
-  //   pickUpDate,
-  //   pickUpPassenger,
-  //   pickUpReturn,
-  //   pickUpTime,
-  //   roundtrip,
-
-  //   pickUp,
-  //   dropOff
-  // } = router?.query;
-
   const dispatch = useDispatch();
 
   // TODO  fixed the problem when fetch and the price its not find
   const getData = async () => {
     setIsLoading(true);
+    setShowSearchForm(false);
 
     if (!router?.query?.pickUp && !router?.query?.dropOff) {
       setIsLoading(true);
       return;
     }
     const PROD = process.env.NODE_ENV === "production";
-    const res = await fetch(
+    const response = await fetch(
       `${
         PROD
           ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/addPrices?pickUp=${
@@ -78,9 +51,9 @@ function BookingDetails() {
       }`
     );
 
-    if (res.ok) {
+    if (response.ok) {
       setIsLoading(false);
-      const data = await res.json();
+      const data = await response.json();
 
       dispatch(allFlightInfo({ ...router.query, ...data }));
     }
@@ -102,47 +75,32 @@ function BookingDetails() {
     );
   }
 
-  // let flightInfo;
-
-  // if (router.query.roundtrip) {
-  //   flightInfo = {
-  //     pickUp: dataInfo?.pickUp,
-  //     dropOff: dataInfo?.dropOff,
-
-  //     arrivalDate: router?.query?.pickUpDate,
-  //     arrivalAt: `At ${router.query?.pickUpTime}`,
-
-  //     departureDate: router.query?.dropOffDate,
-  //     departureAt: `At ${router.query?.dropOffTime}`,
-  //     passengers: router.query?.dropOffPassenger,
-
-  //     priceTaxi1: dataInfo?.priceTaxi1,
-  //     priceTaxi2: dataInfo?.priceTaxi2,
-  //     priceTaxi3: dataInfo?.priceTaxi3,
-  //     priceTaxi4: dataInfo?.priceTaxi4
-  //   };
-  // }
-
   return (
     <div className={styled.bookingDetails}>
       <MyHead
         title={`${pickUp || ""}  ${pickUp && dropOff ? "to" : ""} ${dropOff || ""}`}
         noIndex
       />
-      <Container>
-        <BookingStepProcess />
-      </Container>
-      <Container className={styled.bookingDetailsContainer}>
-        <Suspense fallback={<FallBackLoading />}>
+      <Suspense fallback={<FallBackLoading />}>
+        <Container>
+          <BookingStepProcess />
+
+          {showSearchForm && <DynamicHeader />}
+
+          {!showSearchForm && (
+            <Button onClick={() => setShowSearchForm(true)} className={styled.editBtn}>
+              Edit trip
+            </Button>
+          )}
+        </Container>
+        <Container className={styled.bookingDetailsContainer}>
           <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />
           <div className={styled.cartAndPassengerDetail}>
-            <Suspense fallback={<FallBackLoading />}>
-              <DynamicCarList />
-              <DynamicPassenger />
-            </Suspense>
+            <DynamicCarList />
+            <DynamicPassenger />
           </div>
-        </Suspense>
-      </Container>
+        </Container>
+      </Suspense>
     </div>
   );
 }

@@ -35,6 +35,7 @@ const Passenger = () => {
     event.preventDefault();
     if (!form.checkValidity() === false) {
       dispatch(bookingInfo(passengerInfo));
+
       router.push("/payment-details");
     }
 

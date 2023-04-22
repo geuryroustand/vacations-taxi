@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Suspense } from "react";
 
 import dynamic from "next/dynamic";
@@ -12,11 +13,13 @@ const DynamicNavigation = dynamic(() => import("../Navigation/Navigation"), {
 
 const Layout = ({ children }) => {
   return (
-    <Suspense fallback={<FallBackLoading />}>
+    <>
+      {/* <Suspense fallback={<FallBackLoading />}> */}
       <DynamicNavigation />
       <main className="main">{children}</main>
       <DynamicFooter />
-    </Suspense>
+      {/* </Suspense> */}
+    </>
   );
 };
 

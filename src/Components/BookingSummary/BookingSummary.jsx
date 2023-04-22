@@ -19,7 +19,6 @@ const BookingSummary = ({ bookingDetailsWith }) => {
     dropOffDate,
     dropOffTime,
     pickUpPassenger,
-    priceTaxi1,
     roundtrip
   } = flightInfo || {};
 
@@ -61,7 +60,7 @@ const BookingSummary = ({ bookingDetailsWith }) => {
           <p>Passengers</p>
           <h2>{pickUpPassenger}</h2>
           <p>Total Price</p>
-          <h2>$ {totalPrice || +priceTaxi1}</h2>
+          <h2>${totalPrice}</h2>
         </section>
       </Client>
     </HydrationProvider>

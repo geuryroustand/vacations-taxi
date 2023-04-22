@@ -40,3 +40,8 @@
     width: 70%;
   }
 }
+
+.editBtn {
+  background-color: var(--secondary-darkest-color);
+  border-color: var(--secondary-darkest-color);
+}

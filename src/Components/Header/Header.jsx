@@ -21,10 +21,13 @@ const Header = ({ heading1, heading1Paragraph }) => {
   return (
     <header className={styled.hero}>
       <Container>
-        <article>
-          <h1 className={styled.heading1}>{heading1} </h1>
-          <p className={styled.heading1Paragraph}>{heading1Paragraph} </p>
-        </article>
+        {heading1 && heading1Paragraph !== "" && (
+          <article>
+            <h1 className={styled.heading1}>{heading1}</h1>
+            <p className={styled.heading1Paragraph}>{heading1Paragraph} </p>
+          </article>
+        )}
+
         <Button
           onClick={() => setIsClicked(false)}
           className={isClicked ? styled["btn-selected"] : styled["btn-oneWay"]}>
