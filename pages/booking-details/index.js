@@ -61,7 +61,7 @@ function BookingDetails() {
 
   useEffect(() => {
     getData();
-  }, [router.query.pickUp, router.query.dropOff]);
+  }, [router.query.pickUp, router.query.dropOff, router.query.roundtrip]);
 
   if (isLoading) {
     return (
