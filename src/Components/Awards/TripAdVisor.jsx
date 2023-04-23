@@ -4,13 +4,9 @@ import { Suspense } from "react";
 import styled from "./TripAdVisor.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
 
-const DynamicCertificateOfExcellence = dynamic(() => import("./CertificateOfExcellence"), {
-  ssr: true
-});
+const DynamicCertificateOfExcellence = dynamic(() => import("./CertificateOfExcellence"));
 
-const DynamicReviewSnippets = dynamic(() => import("./ReviewSnippets"), {
-  ssr: true
-});
+const DynamicReviewSnippets = dynamic(() => import("./ReviewSnippets"));
 
 const TripAdVisor = () => {
   return (
