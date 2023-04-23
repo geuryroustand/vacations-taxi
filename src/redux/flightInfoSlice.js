@@ -20,6 +20,7 @@ const flightInfoSlice = createSlice({
     },
     allFlightInfo(state, action) {
       state.flightInfo = action.payload;
+      state.totalPrice = state.flightInfo.priceTaxi1;
     },
     bookingInfo(state, action) {
       const totalPrice = state.totalPrice || state.flightInfo.priceTaxi1;

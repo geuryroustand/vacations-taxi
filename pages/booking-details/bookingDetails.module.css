@@ -29,6 +29,10 @@
   }
 }
 
+.cartAndPassengerDetail {
+  min-height: min-content;
+}
+
 /* @media (min-width: 45em) {
   .cartAndPassengerDetail {
     width: 90%;
@@ -39,4 +43,9 @@
   .cartAndPassengerDetail {
     width: 70%;
   }
+}
+
+.editBtn {
+  background-color: var(--secondary-darkest-color);
+  border-color: var(--secondary-darkest-color);
 }

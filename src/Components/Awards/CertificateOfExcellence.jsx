@@ -1,7 +1,7 @@
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import Script from "next/script";
-import React from "react";
 
+const Image = dynamic(() => import("next/image"), { ssr: false });
 const CertificateOfExcellence = () => {
   return (
     <div style={{ marginBottom: "auto" }}>

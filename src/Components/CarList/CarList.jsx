@@ -92,8 +92,6 @@ const CarList = () => {
   }, [priceTaxi1, priceTaxi2, priceTaxi3, priceTaxi4]);
 
   const wrapperReference = useRef(null);
-
-  // dispatch(updateTotalPrice({ totalPrice: priceTaxi1 }));
   const cartSelected = (index, price) => {
     dispatch(updateTotalPrice({ totalPrice: price }));
     setTaxiSelected(index);

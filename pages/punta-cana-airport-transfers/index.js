@@ -7,25 +7,11 @@ import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 
-const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
-  suspense: true,
-  loading: () => <FallBackLoading />
-});
+const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"));
 
-const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
-  suspense: true,
-  loading: () => <FallBackLoading />
-});
+const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"));
 
-// const DynamicHowWork = dynamic(() => import("../../src/Components/HowWork/HowWork"), {
-//   suspense: true
-// });
-
-const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
-  ssr: true,
-  suspense: true,
-  loading: () => <FallBackLoading />
-});
+const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"));
 
 export default function puntaCanaAirportTransfers() {
   return (
@@ -47,7 +33,7 @@ export default function puntaCanaAirportTransfers() {
         "
         canonicalURL="punta-cana-airport-transfers"
       />
-      <Suspense>
+      <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="Why Punta Cana Airport Transfers Should Be a Top Priority for Your Travel Plans?"
           heading1Paragraph="As someone who has traveled to Punta Cana, I can attest to the importance of airport transfers. It's a beautiful destination with lots to see and do, but getting to and from the airport can be a hassle. That's why Punta Cana airport transfers should be a top priority for your travel plans. In this article, we'll explore why airport transfers are important, the benefits of private and luxury transfers, how to choose the right transfer service, and more."

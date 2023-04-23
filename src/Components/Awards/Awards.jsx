@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import styled from "./Awards.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
 
-const DynamicTripAdVisor = dynamic(() => import("./TripAdVisor"));
+const DynamicTripAdVisor = dynamic(() => import("./TripAdVisor"), { ssr: true });
 
 const Awards = () => {
   return (

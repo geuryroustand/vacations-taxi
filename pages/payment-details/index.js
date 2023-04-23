@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
@@ -14,20 +13,17 @@ import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingS
 import { persistor } from "../../src/redux/store";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicBookingSummary = dynamic(
-  () => import("../../src/Components/BookingSummary/BookingSummary"),
-  {
-    suspense: true
-  }
+const DynamicBookingSummary = dynamic(() =>
+  import("../../src/Components/BookingSummary/BookingSummary")
 );
 
-const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Payment"), {
-  suspense: true
-});
+const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Payment"));
 
 function paymentDetails() {
   const { bookingInfo } = useSelector((state) => state.flightInfoReducer);
+
   const router = useRouter();
+
   const [validated, setValidated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -104,7 +100,6 @@ function paymentDetails() {
         <Container className={styled.paymentDetailsContainer}>
           <Suspense fallback={<FallBackLoading />}>
             <DynamicBookingSummary />
-
             <DynamicPayment />
           </Suspense>
         </Container>

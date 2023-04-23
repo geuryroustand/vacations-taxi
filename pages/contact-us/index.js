@@ -8,9 +8,7 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "./contactUs.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicContactForm = dynamic(() => import("../../src/Components/contactForm/ContactForm"), {
-  suspense: true
-});
+const DynamicContactForm = dynamic(() => import("../../src/Components/contactForm/ContactForm"));
 
 function contactUs() {
   return (
