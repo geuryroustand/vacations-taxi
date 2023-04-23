@@ -29,6 +29,10 @@
   }
 }
 
+.cartAndPassengerDetail {
+  min-height: min-content;
+}
+
 /* @media (min-width: 45em) {
   .cartAndPassengerDetail {
     width: 90%;

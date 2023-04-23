@@ -13,16 +13,11 @@ import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingS
 import { persistor } from "../../src/redux/store";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicBookingSummary = dynamic(
-  () => import("../../src/Components/BookingSummary/BookingSummary"),
-  {
-    suspense: true
-  }
+const DynamicBookingSummary = dynamic(() =>
+  import("../../src/Components/BookingSummary/BookingSummary")
 );
 
-const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Payment"), {
-  suspense: true
-});
+const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Payment"));
 
 function paymentDetails() {
   const { bookingInfo } = useSelector((state) => state.flightInfoReducer);

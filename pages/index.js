@@ -1,26 +1,20 @@
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import { Suspense } from "react";
+import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 
 // import { persistor } from "../src/redux/store";
 
-const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
-  suspense: true
-});
+const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"));
 
-const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"), {
-  suspense: true
-});
+const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"));
 
-const DynamicHowWork = dynamic(() => import("../src/Components/HowWork/HowWork"), {
-  suspense: true
-});
-const DynamicFaq = dynamic(() => import("../src/Components/Faq/Faq"), {
-  suspense: true
-});
-const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
-  suspense: true
-});
+const DynamicHowWork = dynamic(() => import("../src/Components/HowWork/HowWork"));
+
+const DynamicFaq = dynamic(() => import("../src/Components/Faq/Faq"));
+
+const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"));
 
 export default function Home() {
   // persistor.purge();
@@ -71,21 +65,22 @@ export default function Home() {
         }');
       `}
       </Script>
+      <Suspense fallback={<FallBackLoading />}>
+        <DynamicHeader
+          heading1="Reliable, low cost airport transfers"
+          heading1Paragraph="Easy airport transfers to and from your accommodation"
+        />
 
-      <DynamicHeader
-        heading1="Reliable, low cost airport transfers"
-        heading1Paragraph="Easy airport transfers to and from your accommodation"
-      />
+        <DynamicTrusted
+          altAirPlane="Dominican Airport Transfers Services"
+          altCreditCart="PUJ Punta cana Airport Transfer"
+          altPayment="SDQ Santo Domingo Airport Transfers"
+        />
 
-      <DynamicTrusted
-        altAirPlane="Dominican Airport Transfers Services"
-        altCreditCart="PUJ Punta cana Airport Transfer"
-        altPayment="SDQ Santo Domingo Airport Transfers"
-      />
-
-      <DynamicHowWork />
-      <DynamicAwards />
-      <DynamicFaq />
+        <DynamicHowWork />
+        <DynamicAwards />
+        <DynamicFaq />
+      </Suspense>
     </>
   );
 }

@@ -8,13 +8,9 @@ import styled from "./locationsName.module.css";
 
 import MyHead from "../src/Components/MyHead/MyHead";
 
-const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
-  suspense: true
-});
+const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"));
 
-const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"), {
-  suspense: true
-});
+const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"));
 
 // const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 //   suspense: true
