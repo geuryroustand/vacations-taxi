@@ -1,0 +1,13 @@
+.postsContainer {
+  margin: 5rem auto;
+}
+
+.postsHeading {
+  margin-bottom: 5rem;
+}
+
+.postsCard {
+  width: 20rem;
+  background-color: var(--five-color);
+  cursor: pointer;
+}

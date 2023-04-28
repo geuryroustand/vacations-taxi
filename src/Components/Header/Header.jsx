@@ -16,7 +16,7 @@ const Header = ({ heading1, heading1Paragraph }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
-    <header className={styled.hero}>
+    <div className={styled.hero}>
       <Container>
         {heading1 && heading1Paragraph !== "" && (
           <article>
@@ -39,7 +39,7 @@ const Header = ({ heading1, heading1Paragraph }) => {
           <DynamicSearchForm isClicked={isClicked} />
         </Suspense>
       </Container>
-    </header>
+    </div>
   );
 };
 
