@@ -50,6 +50,7 @@ const Footer = () => {
             <Link href="/contact-us">Help Center</Link>
             <Link href="/privacy-notice"> Privacy Notice</Link>
             <Link href="/terms-and-conditions">Terms and Conditions</Link>
+            <Link href="/blogs">Blogs</Link>
           </li>
         </ul>
 

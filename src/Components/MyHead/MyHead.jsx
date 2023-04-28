@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 
-const MyHead = ({ title, desc, keyword, noIndex, canonicalURL }) => {
+const MyHead = ({ title, desc, keyword, noIndex, canonicalURL, openGraphImg }) => {
   return (
     <Head>
       {title && <title>{title}</title>}
@@ -20,7 +20,14 @@ const MyHead = ({ title, desc, keyword, noIndex, canonicalURL }) => {
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={desc} />
-      <meta property="og:image" content="https://www.vacationstaxis.com/images/openGraph.jpg" />
+      <meta
+        property="og:image"
+        content={
+          openGraphImg
+            ? `https://www.vacationstaxis.com/images/${openGraphImg}`
+            : "https://www.vacationstaxis.com/images/openGraph.jpg"
+        }
+      />
 
       {/* Twitter Meta Tag */}
 
@@ -31,7 +38,11 @@ const MyHead = ({ title, desc, keyword, noIndex, canonicalURL }) => {
       <meta property="twitter:description" content={desc} />
       <meta
         property="twitter:image"
-        content="https://www.vacationstaxis.com/images/openGraph.jpg"
+        content={
+          openGraphImg
+            ? `https://www.vacationstaxis.com/images/${openGraphImg}`
+            : "https://www.vacationstaxis.com/images/openGraph.jpg"
+        }
       />
     </Head>
   );
