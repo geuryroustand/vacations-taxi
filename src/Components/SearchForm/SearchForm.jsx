@@ -167,11 +167,11 @@ const SearchForm = ({ isClicked }) => {
 
   const searchLocation = debounce(async () => {
     if (
-      (searchedTerm.valueTyped?.length > 3 &&
+      (searchedTerm.valueTyped?.length > 2 &&
         searchedTerm.valueTyped === inputPickUpReference.current.value) ||
-      (searchedTerm.valueTyped?.length > 3 &&
+      (searchedTerm.valueTyped?.length > 2 &&
         searchedTerm.valueTyped === inputDropOffReference.current.value) ||
-      (searchedTerm.valueTyped?.length > 3 &&
+      (searchedTerm.valueTyped?.length > 2 &&
         searchedTerm.valueTyped === modalInputReference.current?.value)
     ) {
       try {
@@ -291,7 +291,6 @@ const SearchForm = ({ isClicked }) => {
       setShowDropOffSearchedResult(!showDropOffSearchedResult);
     }
   };
-
   return (
     <Form className={styled.form} validated={validated} noValidate onSubmit={submitData}>
       <Suspense fallback={<FallBackLoading />}>
@@ -428,10 +427,11 @@ const SearchForm = ({ isClicked }) => {
               setPickUpAndDropTime={setCurrentDropOffTime}
               labelPickDate="departure date"
               labelPickTime="departure pick time"
-              getPassenger={(event) =>
+              defaultValue={passenger.pickUpPassenger}
+              getPassenger={() =>
                 setPassenger({
                   ...passenger,
-                  dropOffPassenger: event.target.value
+                  dropOffPassenger: passenger.pickUpPassenger
                 })
               }
             />
@@ -444,22 +444,24 @@ const SearchForm = ({ isClicked }) => {
           </Button>
         )}
 
-        <DynamicModalBoots
-          inputReference={modalInputReference}
-          showModal={showModal}
-          closeModal={closeModal}
-          modalInputValues={modalInputValues}
-          locationsFetch={locationsFetch}
-          onChange={onChange}
-          onClickedSearchedResult={onClickedSearchedResult}
-          // name={searchedTerm.pickUp.length === 1 ? "pickUp" : ""}
-          // searchedTerm.dropOff.length === 1 && "dropOff"
+        {!isDesktopOrLaptopOrTable && (
+          <DynamicModalBoots
+            inputReference={modalInputReference}
+            showModal={showModal}
+            closeModal={closeModal}
+            modalInputValues={modalInputValues}
+            locationsFetch={locationsFetch}
+            onChange={onChange}
+            onClickedSearchedResult={onClickedSearchedResult}
+            // name={searchedTerm.pickUp.length === 1 ? "pickUp" : ""}
+            // searchedTerm.dropOff.length === 1 && "dropOff"
 
-          // searchedTerm={
-          //   searchedTerm.pickUp
-          //   // (searchedTerm.dropOff.length === 1 && searchedTerm.dropOff)
-          // }
-        />
+            // searchedTerm={
+            //   searchedTerm.pickUp
+            //   // (searchedTerm.dropOff.length === 1 && searchedTerm.dropOff)
+            // }
+          />
+        )}
       </Suspense>
     </Form>
   );

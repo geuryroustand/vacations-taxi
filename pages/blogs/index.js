@@ -23,7 +23,7 @@ export default function Blogs() {
   ]);
 
   const groupedPosts = [...posts]
-    .map((post, index) => {
+    .map((_, index) => {
       if (index % 3 === 0) {
         return posts.slice(index, index + 3);
       }
@@ -36,7 +36,7 @@ export default function Blogs() {
     <>
       <MyHead title="Blogs" noIndex canonicalURL="blogs" />
       <Container className={styled.postsContainer}>
-        <h1 className={styled.postsHeading}>Travel Tips</h1>
+        <h1 className={styled.postsHeading}>Travel Tips:</h1>
         {groupedPosts.map((group) => (
           <Row key={`${group}`}>
             {group.map((post) => (
