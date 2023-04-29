@@ -15,8 +15,8 @@ function DatePickerSearchForm({
 
   pickUpAndDropTime,
   setPickUpAndDropTime,
-
-  getPassenger
+  getPassenger,
+  defaultValue
 }) {
   return (
     <div className={styled.date}>
@@ -109,6 +109,7 @@ function DatePickerSearchForm({
 
           <label htmlFor="passenger">Passenger </label>
           <select
+            defaultValue={defaultValue}
             name="passenger"
             id="passenger"
             className={styled["select-passenger"]}

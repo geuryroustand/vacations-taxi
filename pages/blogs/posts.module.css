@@ -7,7 +7,12 @@
 }
 
 .postsCard {
-  width: 20rem;
   background-color: var(--five-color);
   cursor: pointer;
+}
+
+@media (min-width: 62em) {
+  .postsCard {
+    width: 20rem;
+  }
 }
