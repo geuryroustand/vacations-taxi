@@ -12,7 +12,7 @@ export default function Blog() {
       <MyHead
         openGraphImg="post1.jpg"
         title="Exploring the Benefits of Planning Your Airport Transfer Ahead of Time"
-        canonicalURL="/exploring-the-benefits-of-planning-your-airport-transfer-ahead-of-time"
+        canonicalURL="blogs/exploring-the-benefits-of-planning-your-airport-transfer-ahead-of-time"
         desc="Are you planning to travel to a new destination soon? One of the most important things to consider is how you will get to and from the airport."
       />
       <Container className={styled.postContainer}>
