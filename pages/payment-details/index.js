@@ -25,7 +25,7 @@ function paymentDetails() {
 
   const [validated, setValidated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showThankYouMessage, setShowThankYouMessage] = useState(true);
+  const [showThankYouMessage, setShowThankYouMessage] = useState(false);
 
   useEffect(() => {
     const mainElement = document.querySelector(".main");
