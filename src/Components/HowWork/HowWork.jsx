@@ -7,7 +7,7 @@ import styled from "./HowWork.module.css";
 const HowWork = () => {
   return (
     <section className={styled.howWork} id="how-we-work">
-      <h2>How it work?</h2>
+      <h2>How Does It Work?</h2>
       <Container className={styled.howWorkContainer}>
         <div className={styled.howWorkContext}>
           <Image
@@ -16,7 +16,7 @@ const HowWork = () => {
             height="107.12px"
             alt="AZS Samana Airport Transfers"
           />
-          <h3>Book Online</h3>
+          <h3>Book</h3>
           <p />
         </div>
 
@@ -27,7 +27,7 @@ const HowWork = () => {
             height="107.12px"
             alt="PUJ Punta Cana Airport Taxi Services"
           />
-          <h3>Arrive location</h3>
+          <h3>Arrive</h3>
           <p />
         </div>
 
@@ -38,7 +38,7 @@ const HowWork = () => {
             height="107.12px"
             alt="POP Puerto Plata Airport Transfers"
           />
-          <h3>Meet your driver</h3>
+          <h3>Meet Your Driver</h3>
         </div>
       </Container>
     </section>

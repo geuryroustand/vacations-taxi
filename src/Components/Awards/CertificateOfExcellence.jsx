@@ -5,7 +5,7 @@ const Image = dynamic(() => import("next/image"), { ssr: false });
 const CertificateOfExcellence = () => {
   return (
     <div style={{ marginBottom: "auto" }}>
-      <strong> Award</strong>
+      <strong>Awards</strong>
       <div
         style={{ paddingTop: "1.5rem" }}
         id="TA_certificateOfExcellence205"

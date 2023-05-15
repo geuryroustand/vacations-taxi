@@ -9,3 +9,29 @@
     gap: 1rem;
   }
 }
+
+.showThankYouAlertMessage {
+  display: flex !important;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  color: white;
+  margin-top: 3rem;
+}
+
+.mainElement {
+  min-height: 60vh;
+}
+
+@media (min-width: 45em) {
+  .mainElement {
+    min-height: 30vh;
+  }
+}
+
+@media (min-width: 62em) {
+  .showThankYouAlertMessage {
+    width: 50rem;
+    margin: 0 auto;
+    margin-top: 3rem;
+  }
+}

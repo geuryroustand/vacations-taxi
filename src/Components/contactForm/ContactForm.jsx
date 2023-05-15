@@ -162,7 +162,7 @@ const ContactForm = () => {
           <div className={styled.address}>
             <Image src="/images/email.svg" width="30px" height="30px" alt="location" />
             <p>
-              <a href="mailto:vacationstaxis@gmail.com">vacationstaxis@gmail.com</a> <br />
+              <a href="mailto:info@vacationstaxis.com">info@vacationstaxis.com</a> <br />
             </p>
           </div>
         </address>

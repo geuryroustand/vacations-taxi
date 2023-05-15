@@ -67,7 +67,7 @@ export default function Home() {
       </Script>
       <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
-          heading1="Reliable, low cost airport transfers"
+          heading1="Reliable, Low Cost Airport Transfers"
           heading1Paragraph="Easy airport transfers to and from your accommodation"
         />
 

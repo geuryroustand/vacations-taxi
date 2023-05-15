@@ -55,7 +55,9 @@ export default function termsAndConditions() {
 
         <p>
           You can exercise these rights by contacting us at{" "}
-          <a href="mailto:privacy@vacationstaxis.com">privacy@vacationstaxis.com.</a>
+          <b>
+            <a href="mailto:privacy@vacationstaxis.com">privacy@vacationstaxis.com.</a>
+          </b>
         </p>
         <h2>Data Security</h2>
         <p>
@@ -83,9 +85,10 @@ export default function termsAndConditions() {
         <p>
           If you have any questions or concerns about our privacy practices, please do not hesitate
           to contact us at{" "}
-          <a className="ms-4" href="mailto:privacy@vacationstaxis.com">
-            privacy@vacationstaxis.com.
-          </a>
+          <b>
+            {" "}
+            <a href="mailto:privacy@vacationstaxis.com">privacy@vacationstaxis.com.</a>
+          </b>
         </p>
       </div>
     </Container>

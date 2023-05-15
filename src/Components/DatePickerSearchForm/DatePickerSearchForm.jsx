@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
+import Form from "react-bootstrap/Form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from "next/image";
@@ -105,16 +105,14 @@ function DatePickerSearchForm({
           />
         </div>
         <div className={styled.passenger}>
-          <Image src="/images/user.svg" width="20px" height="20px" alt="user" />
+          <Image src="/images/user.svg" width="25px" height="25px" alt="user" />
 
-          <label htmlFor="passenger">Passenger </label>
-          <select
+          <Form.Select
+            aria-label="Passengers"
             defaultValue={defaultValue}
-            name="passenger"
-            id="passenger"
             className={styled["select-passenger"]}
-            required
             onChange={getPassenger}>
+            <option>Passengers</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -131,7 +129,7 @@ function DatePickerSearchForm({
             <option value="14">14</option>
             <option value="15">15</option>
             <option value="16">16</option>
-          </select>
+          </Form.Select>
         </div>
       </div>
     </div>
