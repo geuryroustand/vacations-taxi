@@ -3,11 +3,11 @@ import { NextResponse, NextRequest } from "next/server";
 // This function can be marked `async` if using `await` inside
 export function middleware(request = NextRequest) {
   const searchParameters = new URLSearchParams(request.nextUrl.search);
+  const checkMongoIDRegExp = /^[\dA-Fa-f]{24}$/;
 
   if (request.nextUrl.pathname.startsWith("/booking-details")) {
     const pickUp = searchParameters.get("pickUp");
     const dropOff = searchParameters.get("dropOff");
-    const checkMongoIDRegExp = /^[\dA-Fa-f]{24}$/;
 
     if (!checkMongoIDRegExp.test(pickUp && dropOff))
       return NextResponse.redirect(new URL("/", request.url));
@@ -16,7 +16,6 @@ export function middleware(request = NextRequest) {
   if (request.nextUrl.pathname.startsWith("/payment-details")) {
     const pickUp = searchParameters.get("pickUp");
     const dropOff = searchParameters.get("dropOff");
-    const checkMongoIDRegExp = /^[\dA-Fa-f]{24}$/;
 
     if (!checkMongoIDRegExp.test(pickUp && dropOff))
       return NextResponse.redirect(new URL("/", request.url));
