@@ -2,8 +2,6 @@ import { NextResponse, NextRequest } from "next/server";
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request = NextRequest) {
-  // NextResponse.redirect(new URL("/home", request.url));
-
   const searchParameters = new URLSearchParams(request.nextUrl.search);
 
   if (request.nextUrl.pathname.startsWith("/booking-details")) {
