@@ -7,6 +7,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import styled from "./Navigation.module.css";
 
+// TODO: Change the color to white of lines inside the dropdown
+
 const Navigation = () => {
   return (
     <header>
@@ -90,6 +92,8 @@ const Navigation = () => {
                 <NavDropdown title="Company" id="offcanvasNavbarDropdown-expand-lg-company">
                   <NavDropdown.Item href="/about-us">About Us</NavDropdown.Item>
                   <NavDropdown.Divider />
+                  <NavDropdown.Item href="/blogs">Blogs</NavDropdown.Item>
+                  <NavDropdown.Divider />
                   <NavDropdown.Item href="/privacy-notice">Privacy Notice</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="/terms-and-conditions">
@@ -97,7 +101,6 @@ const Navigation = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href="/contact-us">Help Center</Nav.Link>
-                <Nav.Link href="/blogs">Blogs</Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
