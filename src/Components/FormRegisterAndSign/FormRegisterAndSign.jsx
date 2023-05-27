@@ -1,0 +1,31 @@
+import React from "react";
+import { ImFacebook2 } from "react-icons/im";
+import { FcGoogle } from "react-icons/fc";
+import styled from "./FormRegisterAndSign.module.css";
+
+const FormRegisterAndSign = ({ heading, facebookBtnText, googleBtnText, children }) => {
+  return (
+    <div className={styled.main}>
+      <h1 className={styled.heading}>{heading}</h1>
+      <a
+        href="https://vacationstaxi.herokuapp.com/users/googleLogin"
+        type="submit"
+        className={`${styled.googleBtn}  ${styled.socialBtn}`}>
+        <FcGoogle className={styled.icons} />
+        {googleBtnText}
+      </a>
+      <a
+        href="https://vacationstaxi.herokuapp.com/users/facebookLogin"
+        className={`${styled.facebookIcon}  ${styled.socialBtn}`}
+        type="submit">
+        <ImFacebook2 className={styled.icons} />
+        {facebookBtnText}
+      </a>
+      <hr />
+      <p className={styled.or}>or</p>
+      {children}
+    </div>
+  );
+};
+
+export default FormRegisterAndSign;

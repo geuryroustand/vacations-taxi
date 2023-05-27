@@ -11,7 +11,9 @@ module.exports = {
     "/privacy-notice",
     "/about-us",
     "/404",
-    "/blogs"
+    "/blogs",
+    "/login",
+    "/register"
   ],
   robotsTxtOptions: {
     policies: [
@@ -23,6 +25,8 @@ module.exports = {
       { userAgent: "*", disallow: "/about-us" },
       { userAgent: "*", disallow: "/404" },
       { userAgent: "*", disallow: "/blogs" },
+      { userAgent: "*", disallow: "/login" },
+      { userAgent: "*", disallow: "/register" },
       { userAgent: "*", allow: "/blogs/" },
       { userAgent: "*", allow: "/" }
     ]
