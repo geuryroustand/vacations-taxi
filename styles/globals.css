@@ -15,6 +15,11 @@
   border: var(--primary-color) solid !important ;
 }
 
+.navbar-toggler .navbar-toggler-icon {
+  background-color: rgba(253, 253, 253, 0.16) !important;
+  border-radius: 3px;
+}
+
 .dropdown-item {
   color: black !important;
 }

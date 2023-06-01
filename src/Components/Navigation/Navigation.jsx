@@ -5,9 +5,15 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
+
 import styled from "./Navigation.module.css";
+import Profile from "../Profile/Profile";
 
 // TODO: Change the color to white of lines inside the dropdown
+// TODO: car-sharing URL and carSharing link
+
+// When the user click on car sharing link will be transfer to
+// a search form and will short it a list of posts
 
 const Navigation = () => {
   return (
@@ -19,6 +25,8 @@ const Navigation = () => {
               <span className={styled["logo-vacations-text"]}>Vacations</span>Taxis.com
             </Navbar.Brand>
           </Link>
+          <Profile moveToLeftTable showDrownDownProfile id="drownDownMobileAndTable" />
+
           <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" />
           <Navbar.Offcanvas
             id="offcanvasNavbar-expand-lg"
@@ -31,6 +39,7 @@ const Navigation = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Profile showDrownDownInTable id="drownDownBigScreen" />
                 <NavDropdown title="Top locations" id="offcanvasNavbarDropdown-expand-lg-top">
                   <NavDropdown.Item href="/punta-cana-airport-transfers">
                     Punta Cana Airport (PUJ)
