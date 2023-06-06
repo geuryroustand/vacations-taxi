@@ -52,8 +52,7 @@ export default function Home() {
         src={`https://www.googletagmanager.com/gtag/js?id=${
           process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
         }`}
-        strategy="worker"
-        // strategy="lazyOnload"
+        strategy="lazyOnload"
       />
 
       {/* <Script id="google-analytics" strategy="lazyOnload">
@@ -70,8 +69,7 @@ export default function Home() {
 
       <Script
         id="google-analytics"
-        strategy="worker"
-        // strategy="lazyOnload"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
         window.dataLayer = window.dataLayer || [];
