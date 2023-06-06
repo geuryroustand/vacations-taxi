@@ -59,8 +59,9 @@ function MyApp({ Component, pageProps }) {
             </Head>
             {/* <!-- TRUENDO Privacy Center --> */}
             <Script
-              strategy="worker"
+              strategy="lazyOnload"
               id="truendoAutoBlock"
+              // type="text/partytown"
               type="text/javascript"
               src="https://cdn.priv.center/pc/truendo_cmp.pid.js"
               data-siteid="9c95c2f3-c18c-49ce-b8dd-1e5c04cb32b2"
