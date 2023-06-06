@@ -35,7 +35,6 @@
   },
   "devDependencies": {
     "@axe-core/react": "^4.4.3",
-    "@builder.io/partytown": "^0.8.0",
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@next/bundle-analyzer": "^13.1.6",
     "autoprefixer": "^10.4.13",
