@@ -34,9 +34,9 @@
     "reduxjs-toolkit-persist": "^7.2.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^13.1.6",
     "@axe-core/react": "^4.4.3",
     "@fullhuman/postcss-purgecss": "^5.0.0",
+    "@next/bundle-analyzer": "^13.1.6",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.20.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -65,5 +65,8 @@
       "npm run lint",
       "prettier --write"
     ]
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
