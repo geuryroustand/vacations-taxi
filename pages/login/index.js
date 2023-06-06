@@ -9,6 +9,8 @@ import Form from "react-bootstrap/Form";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
+// TODO need to do the fetch and add form validation
+
 const DynamicAgreeConditions = dynamic(() =>
   import("../../src/Components/AgreeConditions/AgreeConditions")
 );

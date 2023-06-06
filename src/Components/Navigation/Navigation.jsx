@@ -10,10 +10,8 @@ import styled from "./Navigation.module.css";
 import Profile from "../Profile/Profile";
 
 // TODO: Change the color to white of lines inside the dropdown
-// TODO: car-sharing URL and carSharing link
 
-// When the user click on car sharing link will be transfer to
-// a search form and will short it a list of posts
+// TODO: Post a trip URL , the URL can be call requests
 
 const Navigation = () => {
   return (
@@ -40,6 +38,15 @@ const Navigation = () => {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Profile showDrownDownInTable id="drownDownBigScreen" />
+                <NavDropdown title="Car Sharing" id="offcanvasNavbarDropdown-expand-lg-car-sharing">
+                  <Link href="/car-sharing">
+                    <NavDropdown.Item href="/car-sharing">Find a ride</NavDropdown.Item>
+                  </Link>
+                  <NavDropdown.Divider />
+                  <Link href="/requests">
+                    <NavDropdown.Item href="/requests">Post a trip</NavDropdown.Item>
+                  </Link>
+                </NavDropdown>
                 <NavDropdown title="Top locations" id="offcanvasNavbarDropdown-expand-lg-top">
                   <NavDropdown.Item href="/punta-cana-airport-transfers">
                     Punta Cana Airport (PUJ)
@@ -98,6 +105,7 @@ const Navigation = () => {
                     La Isabela Airport (JBQ)
                   </NavDropdown.Item>
                 </NavDropdown>
+
                 <NavDropdown title="Company" id="offcanvasNavbarDropdown-expand-lg-company">
                   <NavDropdown.Item href="/about-us">About Us</NavDropdown.Item>
                   <NavDropdown.Divider />
