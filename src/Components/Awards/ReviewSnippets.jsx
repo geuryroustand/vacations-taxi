@@ -1,5 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 
 const Image = dynamic(() => import("next/image"), { ssr: false });
 
@@ -25,12 +26,18 @@ const ReviewSnippets = () => {
           </li>
         </ul>
       </div>
-      <script
-        defer
+      <Script
+        strategy="worker"
         src="https://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=506&amp;locationId=10500716&amp;lang=en_US&amp;rating=true&amp;nreviews=5&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=false&amp;border=true&amp;display_version=2"
         data-loadtrk
         onLoad={() => "this.loadtrk=true"}
       />
+      {/* <script
+        defer
+        src="https://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=506&amp;locationId=10500716&amp;lang=en_US&amp;rating=true&amp;nreviews=5&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=false&amp;border=true&amp;display_version=2"
+        data-loadtrk
+        onLoad={() => "this.loadtrk=true"}
+      /> */}
     </div>
   );
 };
