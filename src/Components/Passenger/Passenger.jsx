@@ -36,7 +36,10 @@ const Passenger = () => {
     if (!form.checkValidity() === false) {
       dispatch(bookingInfo(passengerInfo));
 
-      router.push("/payment-details");
+      router.push({
+        pathname: "/payment-details",
+        query: { ...router.query, ...passengerInfo }
+      });
     }
 
     setValidated(true);
