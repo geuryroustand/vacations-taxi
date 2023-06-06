@@ -58,14 +58,14 @@ function MyApp({ Component, pageProps }) {
               <meta name="theme-color" content="#ffffff" />
             </Head>
             {/* <!-- TRUENDO Privacy Center --> */}
-            <Script
+            {/* <Script
               strategy="lazyOnload"
               id="truendoAutoBlock"
               // type="text/partytown"
               type="text/javascript"
               src="https://cdn.priv.center/pc/truendo_cmp.pid.js"
               data-siteid="9c95c2f3-c18c-49ce-b8dd-1e5c04cb32b2"
-            />
+            /> */}
             {/* <!-- End TRUENDO Privacy Center --> */}
             <Component {...pageProps} />
           </Layout>
