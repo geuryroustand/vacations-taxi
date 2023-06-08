@@ -34,7 +34,7 @@ const Car = ({
         <span>Up to {totalSuitCases} suitcases</span>
       </div>
 
-      <Image src={`/images/${cartTypeImage}`} width="194.4" height="93.73" alt="standard card" />
+      <Image src={`/images/${cartTypeImage}`} width="194" height="94" alt="standard card" />
 
       <div className={styled.list}>
         <Image src="/images/check.svg" width="20" height="20" alt="free Cancellation" />

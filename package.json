@@ -65,8 +65,5 @@
       "npm run lint",
       "prettier --write"
     ]
-  },
-  "engines": {
-    "node": "18.x"
   }
 }
