@@ -14,7 +14,7 @@ export const Why = ({ svgName, alt, width, height, title, paragraph, className }
           width={`${width}`}
           height={`${height}`}
           title="Flight tracking"
-          className="first "
+          className="first"
         />
       </div>
       <div className={styled.content}>

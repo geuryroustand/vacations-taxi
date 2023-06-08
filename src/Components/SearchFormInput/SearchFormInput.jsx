@@ -27,7 +27,7 @@ const SearchFormInput = ({
   return (
     <>
       <Form.Group className={`${styled["form-control"]} ${isEmpty}`} controlId={id}>
-        <Image src="/images/location.svg" width="18px" height="18px" alt="location" />
+        <Image src="/images/location.svg" width="18" height="18" alt="location" />
         <div className={styled.formControl}>
           <Form.Label className="visually-hidden"> {label} </Form.Label>
           <Form.Control
@@ -55,7 +55,7 @@ const SearchFormInput = ({
       {/* <Form.Group
         className={`${styled["form-control"]} ${isEmpty}`}
         controlId="formBasicDestination2">
-        <Image src="/images/location.svg" width="18px" height="18px" alt="location" />
+        <Image src="/images/location.svg" width="18" height="18" alt="location" />
 
         <div className={styled.formControl}>
           <Form.Label className="visually-hidden">{labelDrop} </Form.Label>
