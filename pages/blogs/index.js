@@ -43,7 +43,7 @@ export default function Blogs() {
               <Col key={post.id} style={{ paddingBottom: "1.3rem" }}>
                 <Link href={`/blogs/${post.slug}`}>
                   <Card className={styled.postsCard}>
-                    <Image src="/images/post1.jpg" width="345px" height="247px" alt="contact us" />
+                    <Image src="/images/post1.jpg" width="345" height="247" alt="contact us" />
                     <Card.Body>
                       <Card.Title>
                         <Card.Title>{post.title}</Card.Title>

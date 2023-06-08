@@ -21,7 +21,7 @@ function DatePickerSearchForm({
   return (
     <div className={styled.date}>
       <div className={styled.calender}>
-        <Image src="/images/calendar.svg" width="20px" height="20px" alt="calendar" />
+        <Image src="/images/calendar.svg" width="20" height="20" alt="calendar" />
         <label className="visually-hidden" htmlFor="date-picker">
           {labelPickDate}
         </label>
@@ -67,7 +67,7 @@ function DatePickerSearchForm({
 
       <div className={styled.passengerAndPickTime}>
         <div className={styled.pickTime}>
-          <Image src="/images/Clock.svg" width="20px" height="20px" alt="calendar" />
+          <Image src="/images/Clock.svg" width="20" height="20" alt="calendar" />
           <label className="visually-hidden" htmlFor="pickTime">
             {labelPickTime}
           </label>
@@ -105,7 +105,7 @@ function DatePickerSearchForm({
           />
         </div>
         <div className={styled.passenger}>
-          <Image src="/images/user.svg" width="25px" height="25px" alt="user" />
+          <Image src="/images/user.svg" width="25" height="25" alt="user" />
 
           <Form.Select
             aria-label="Passengers"

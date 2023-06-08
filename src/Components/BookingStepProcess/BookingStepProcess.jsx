@@ -13,13 +13,13 @@ const BookingStepProcess = () => {
     <div className={styled.bookingStepProcess}>
       <p className={`${styled.step} ${styled.process}`}>1</p>
       <p>
-        <Image src="/images/arrow.svg" width="100%" height="25px" alt="arrow" />
+        <Image src="/images/arrow.svg" width="100%" height="25" alt="arrow" />
       </p>
 
       <p className={`${styled.step} ${stepTwo}  `}>2</p>
 
       {/* <p>
-        <Image src="/images/arrow.svg" width="100%" height="25px" alt="arrow" />
+        <Image src="/images/arrow.svg" width="100%" height="25" alt="arrow" />
       </p> */}
 
       {/* <p className={`${styled.step} ${stepThree} `}>3</p> */}

@@ -10,8 +10,8 @@ const Trusted = ({ altAirPlane, altCreditCart, altPayment }) => {
         <Why
           svgName="airplane.svg"
           alt={altAirPlane ?? "Airplane"}
-          width="32px"
-          height="32px"
+          width="32"
+          height="32"
           title="Flight Tracking"
           paragraph="Your driver tracks your flight and waits for you if its delayed"
           className="first"
@@ -19,8 +19,8 @@ const Trusted = ({ altAirPlane, altCreditCart, altPayment }) => {
         <Why
           svgName="credit-card.svg"
           alt={altCreditCart ?? "credit card"}
-          width="32px"
-          height="32px"
+          width="32"
+          height="32"
           title="One Clear Price"
           paragraph="Your price is confirmed upfront – no extra costs, no cash required"
           className="second"
@@ -28,8 +28,8 @@ const Trusted = ({ altAirPlane, altCreditCart, altPayment }) => {
         <Why
           svgName="payment.svg"
           alt={altPayment ?? "Payment"}
-          width="32px"
-          height="32px"
+          width="32"
+          height="32"
           title="Tried & Trusted"
           paragraph="We work with professional drivers and have 24/7 customer care"
           className="third"
