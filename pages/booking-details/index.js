@@ -15,6 +15,8 @@ const DynamicBookingSummary = dynamic(() =>
   import("../../src/Components/BookingSummary/BookingSummary")
 );
 
+// TODO remove the local storage
+
 const DynamicCarList = dynamic(() => import("../../src/Components/CarList/CarList"));
 
 const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Passenger"));
