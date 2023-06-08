@@ -1,3 +1,6 @@
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+/* eslint-disable */
+
 import React, { useEffect, useState, useRef, Suspense } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";

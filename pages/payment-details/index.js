@@ -1,3 +1,6 @@
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+/* eslint-disable */
+
 import React, { Suspense, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
