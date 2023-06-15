@@ -35,13 +35,13 @@ const Navigation = () => {
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Profile showDrownDownInTable id="drownDownBigScreen" />
                 <NavDropdown title="Car Sharing" id="offcanvasNavbarDropdown-expand-lg-car-sharing">
-                  <Link href="/car-sharing">
-                    <NavDropdown.Item href="/car-sharing">Find a ride</NavDropdown.Item>
-                  </Link>
+                  {/* <Link href="/car-sharing"> */}
+                  <NavDropdown.Item href="/find">Find a ride</NavDropdown.Item>
+                  {/* </Link> */}
                   <NavDropdown.Divider />
-                  <Link href="/requests">
-                    <NavDropdown.Item href="/requests">Post a trip</NavDropdown.Item>
-                  </Link>
+                  {/* <Link href="/requests"> */}
+                  <NavDropdown.Item href="/offer-seats">Post a trip</NavDropdown.Item>
+                  {/* </Link> */}
                 </NavDropdown>
                 <NavDropdown title="Top locations" id="offcanvasNavbarDropdown-expand-lg-top">
                   <NavDropdown.Item href="/punta-cana-airport-transfers">
