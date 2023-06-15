@@ -38,7 +38,7 @@ const Payment = () => {
             value="card"
             required
           />
-          <Image src="/images/creditCards.svg" width="195.89px" height="18px" alt="location" />
+          <Image src="/images/creditCards.svg" width="195.89" height="18" alt="location" />
         </div> */}
 
         <div>

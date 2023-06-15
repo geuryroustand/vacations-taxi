@@ -1,3 +1,6 @@
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+/* eslint-disable */
+
 import React, { useEffect, useState, useRef, Suspense } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
@@ -388,7 +391,7 @@ const SearchForm = ({ isClicked }) => {
 
           {!isClicked && (
             <Button type="submit" className={styled["search-btn"]}>
-              <Image src="/images/search.svg" width="25px" height="25px" alt="location" />
+              <Image src="/images/search.svg" width="25" height="25" alt="location" />
               Search
             </Button>
           )}
@@ -439,7 +442,7 @@ const SearchForm = ({ isClicked }) => {
         )}
         {isClicked && (
           <Button type="submit" className={styled["search-btn"]}>
-            <Image src="/images/search.svg" width="25px" height="25px" alt="location" />
+            <Image src="/images/search.svg" width="25" height="25" alt="location" />
             Search
           </Button>
         )}

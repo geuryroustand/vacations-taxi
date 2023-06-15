@@ -32,7 +32,7 @@ export default function Blog() {
           <div className={styled.postImgs}>
             <Image
               src="/images/post1.jpg"
-              layout="fill"
+              fill
               alt="Exploring the Benefits of Planning Your Airport Transfer Ahead of Time"
             />
           </div>

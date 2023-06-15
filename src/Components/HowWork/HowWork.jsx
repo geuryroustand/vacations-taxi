@@ -12,8 +12,8 @@ const HowWork = () => {
         <div className={styled.howWorkContext}>
           <Image
             src="/images/car.svg"
-            width="107.12px"
-            height="107.12px"
+            width="107"
+            height="107"
             alt="AZS Samana Airport Transfers"
           />
           <h3>Book</h3>
@@ -23,8 +23,8 @@ const HowWork = () => {
         <div className={styled.howWorkContext}>
           <Image
             src="/images/locationHowWork.svg"
-            width="107.12px"
-            height="107.12px"
+            width="107"
+            height="107"
             alt="PUJ Punta Cana Airport Taxi Services"
           />
           <h3>Arrive</h3>
@@ -34,8 +34,8 @@ const HowWork = () => {
         <div className={styled.howWorkContext}>
           <Image
             src="/images/driver.svg"
-            width="107.12px"
-            height="107.12px"
+            width="107"
+            height="107"
             alt="POP Puerto Plata Airport Transfers"
           />
           <h3>Meet Your Driver</h3>

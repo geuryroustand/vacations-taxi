@@ -40,10 +40,10 @@ export default function Blogs() {
         {groupedPosts.map((group) => (
           <Row key={`${group}`}>
             {group.map((post) => (
-              <Col key={post.id} style={{ paddingBottom: "1.3rem" }}>
-                <Link href={`/blogs/${post.slug}`}>
+              <Col key={post.id} className={styled.cardColumn}>
+                <Link className={styled.cardLink} href={`/blogs/${post.slug}`}>
                   <Card className={styled.postsCard}>
-                    <Image src="/images/post1.jpg" width="345px" height="247px" alt="contact us" />
+                    <Image src="/images/post1.jpg" width="345" height="247" alt={post.title} />
                     <Card.Body>
                       <Card.Title>
                         <Card.Title>{post.title}</Card.Title>

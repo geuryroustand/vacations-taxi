@@ -65,6 +65,23 @@ export default function Home() {
         }');
       `}
       </Script>
+
+      {/* <Script
+        id="google-analytics"
+        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{
+          __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'https://www.googletagmanager.com/gtag/js?id=${
+          process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+        }');
+      `
+        }}
+      /> */}
+
       <Suspense fallback={<FallBackLoading />}>
         <DynamicHeader
           heading1="Reliable, Low Cost Airport Transfers"

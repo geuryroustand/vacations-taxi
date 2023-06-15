@@ -25,44 +25,34 @@ const Car = ({
   return (
     <button type="button" id={id} className={addClass} onClick={cartSelected}>
       <div className={styled.list}>
-        <Image src="/images/people.svg" width="20px" height="20px" alt="total of people" />
+        <Image src="/images/people.svg" width="20" height="20" alt="total of people" />
         <span>Up to {totalPassengers} passengers</span>
       </div>
 
       <div className={styled.list}>
-        <Image src="/images/suitcase.svg" width="20px" height="20px" alt="total of people" />
+        <Image src="/images/suitcase.svg" width="20" height="20" alt="total of people" />
         <span>Up to {totalSuitCases} suitcases</span>
       </div>
 
-      <Image
-        src={`/images/${cartTypeImage}`}
-        width="194.4px"
-        height="93.73px"
-        alt="standard card"
-      />
+      <Image src={`/images/${cartTypeImage}`} width="194" height="94" alt="standard card" />
 
       <div className={styled.list}>
-        <Image src="/images/check.svg" width="20px" height="20px" alt="free Cancellation" />
+        <Image src="/images/check.svg" width="20" height="20" alt="free Cancellation" />
         <span>FREE Cancellation</span>
       </div>
 
       <div className={styled.list}>
-        <Image src="/images/airplane.svg" width="20px" height="20px" alt="Flight tracking" />
+        <Image src="/images/airplane.svg" width="20" height="20" alt="Flight tracking" />
         <span>Flight tracking</span>
       </div>
 
       <div className={styled.list}>
-        <Image src="/images/noHidden.svg" width="20px" height="20px" alt="No hidden costs" />
+        <Image src="/images/noHidden.svg" width="20" height="20" alt="No hidden costs" />
         <span>No hidden costs</span>
       </div>
 
       <div className={styled.list}>
-        <Image
-          src="/images/trusted.svg"
-          width="20px"
-          height="20px"
-          alt="Tried and trusted drivers"
-        />
+        <Image src="/images/trusted.svg" width="20" height="20" alt="Tried and trusted drivers" />
         <span>Tried and trusted drivers</span>
       </div>
 

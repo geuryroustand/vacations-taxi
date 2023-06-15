@@ -135,12 +135,12 @@ const ContactForm = () => {
 
       <div>
         <div className={styled.contactImg}>
-          <Image src="/images/contactForm.svg" width="345px" height="247px" alt="contact us" />
+          <Image src="/images/contactForm.svg" width="345" height="247" alt="contact us" />
         </div>
 
         <address>
           <div className={styled.address}>
-            <Image src="/images/locationContact.svg" width="30px" height="30px" alt="location" />
+            <Image src="/images/locationContact.svg" width="30" height="30" alt="location" />
             <p>
               Avenida La Marina Malecón, s/n; PO Box: 32000 – Santa Barbara de Samana – Samana
               Province - Dominican Republic
@@ -148,7 +148,7 @@ const ContactForm = () => {
           </div>
 
           <div className={styled.address}>
-            <Image src="/images/tel.svg" width="30px" height="30px" alt="location" />
+            <Image src="/images/tel.svg" width="30" height="30" alt="location" />
             <p>
               <a href="tel:+18094536714">+1 (809) 453-6714 (DR)</a> <br />
               <a
@@ -160,7 +160,7 @@ const ContactForm = () => {
           </div>
 
           <div className={styled.address}>
-            <Image src="/images/email.svg" width="30px" height="30px" alt="location" />
+            <Image src="/images/email.svg" width="30" height="30" alt="location" />
             <p>
               <a href="mailto:info@vacationstaxis.com">info@vacationstaxis.com</a> <br />
             </p>

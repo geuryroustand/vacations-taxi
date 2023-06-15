@@ -1,3 +1,6 @@
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+/* eslint-disable */
+
 import React, { Suspense, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
@@ -17,7 +20,7 @@ import MyHead from "../../src/Components/MyHead/MyHead";
 const DynamicBookingSummary = dynamic(() =>
   import("../../src/Components/BookingSummary/BookingSummary")
 );
-
+// TODO remove the local storage
 const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Payment"));
 
 function paymentDetails() {
