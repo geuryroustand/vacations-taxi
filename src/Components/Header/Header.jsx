@@ -12,6 +12,7 @@ import styled from "./Header.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
 
 const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"));
+
 const Header = ({ heading1, heading1Paragraph }) => {
   const [isClicked, setIsClicked] = useState(false);
 

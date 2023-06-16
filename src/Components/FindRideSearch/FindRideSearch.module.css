@@ -1,0 +1,22 @@
+.main {
+  background-color: var(--secondary-color);
+  color: white;
+  padding-bottom: 1.5rem;
+  padding-top: 3rem;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading h1 {
+  font-size: 3rem;
+}
+
+.heading p {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}

@@ -36,7 +36,7 @@ const Navigation = () => {
                 <Profile showDrownDownInTable id="drownDownBigScreen" />
                 <NavDropdown title="Car Sharing" id="offcanvasNavbarDropdown-expand-lg-car-sharing">
                   {/* <Link href="/car-sharing"> */}
-                  <NavDropdown.Item href="/find">Find a ride</NavDropdown.Item>
+                  <NavDropdown.Item href="/find-car-sharing">Find a ride</NavDropdown.Item>
                   {/* </Link> */}
                   <NavDropdown.Divider />
                   {/* <Link href="/requests"> */}
