@@ -1,0 +1,48 @@
+.main {
+  background-color: var(--five-color);
+}
+
+.heading {
+  font-size: 2.18rem;
+  line-height: 2.68rem;
+  text-align: center;
+  padding: 4rem 0 3.18rem;
+  margin-bottom: 2.5rem;
+}
+
+.icons {
+  font-size: 1.5rem;
+}
+
+.rounderIcons {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.first {
+  /* background-color: var(--first-icon-bg); */
+  background-color: #808000;
+}
+
+.second {
+  background-color: #008080;
+  /* background-color: var(--second-icon-bg); */
+}
+
+.second svg {
+  fill: white;
+}
+.third {
+  background-color: #ffb6c1;
+}
+
+.fourth {
+  background-color: var(--secondary-color);
+}
+
+.fourth svg {
+  fill: white;
+}
