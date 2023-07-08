@@ -17,11 +17,16 @@ import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingS
 import { persistor } from "../../src/redux/store";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicBookingSummary = dynamic(() =>
-  import("../../src/Components/BookingSummary/BookingSummary")
+const DynamicBookingSummary = dynamic(
+  () => import("../../src/Components/BookingSummary/BookingSummary"),
+  {
+    loading: () => <FallBackLoading />
+  }
 );
 // TODO remove the local storage
-const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Payment"));
+const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Payment"), {
+  loading: () => <FallBackLoading />
+});
 
 function paymentDetails() {
   const { bookingInfo } = useSelector((state) => state.flightInfoReducer);
@@ -108,10 +113,8 @@ function paymentDetails() {
           <BookingStepProcess />
         </Container>
         <Container className={styled.paymentDetailsContainer}>
-          <Suspense fallback={<FallBackLoading />}>
-            <DynamicBookingSummary />
-            <DynamicPayment />
-          </Suspense>
+          <DynamicBookingSummary />
+          <DynamicPayment />
         </Container>
       </Form>
     </>

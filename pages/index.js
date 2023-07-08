@@ -1,20 +1,30 @@
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { Suspense } from "react";
+
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 
 // import { persistor } from "../src/redux/store";
 
-const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"));
+const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
+  loading: () => <FallBackLoading />
+});
 
-const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"));
+const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"), {
+  loading: () => <FallBackLoading />
+});
 
-const DynamicHowWork = dynamic(() => import("../src/Components/HowWork/HowWork"));
+const DynamicHowWork = dynamic(() => import("../src/Components/HowWork/HowWork"), {
+  loading: () => <FallBackLoading />
+});
 
-const DynamicFaq = dynamic(() => import("../src/Components/Faq/Faq"));
+const DynamicFaq = dynamic(() => import("../src/Components/Faq/Faq"), {
+  loading: () => <FallBackLoading />
+});
 
-const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"));
+const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
+  loading: () => <FallBackLoading />
+});
 
 export default function Home() {
   // persistor.purge();
@@ -82,22 +92,20 @@ export default function Home() {
         }}
       /> */}
 
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader
-          heading1="Reliable, Low Cost Airport Transfers"
-          heading1Paragraph="Easy airport transfers to and from your accommodation"
-        />
+      <DynamicHeader
+        heading1="Reliable, Low Cost Airport Transfers"
+        heading1Paragraph="Easy airport transfers to and from your accommodation"
+      />
 
-        <DynamicTrusted
-          altAirPlane="Dominican Airport Transfers Services"
-          altCreditCart="PUJ Punta cana Airport Transfer"
-          altPayment="SDQ Santo Domingo Airport Transfers"
-        />
+      <DynamicTrusted
+        altAirPlane="Dominican Airport Transfers Services"
+        altCreditCart="PUJ Punta cana Airport Transfer"
+        altPayment="SDQ Santo Domingo Airport Transfers"
+      />
 
-        <DynamicHowWork />
-        <DynamicAwards />
-        <DynamicFaq />
-      </Suspense>
+      <DynamicHowWork />
+      <DynamicAwards />
+      <DynamicFaq />
     </>
   );
 }

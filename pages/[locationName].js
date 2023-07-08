@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 
 import Container from "react-bootstrap/Container";
 
@@ -8,9 +7,13 @@ import styled from "./locationsName.module.css";
 
 import MyHead from "../src/Components/MyHead/MyHead";
 
-const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"));
+const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
+  loading: () => <FallBackLoading />
+});
 
-const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"));
+const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"), {
+  loading: () => <FallBackLoading />
+});
 
 // const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 //   suspense: true
@@ -32,14 +35,13 @@ function PagesForSEO({ locationFound }) {
         keyword={keywords}
         canonicalURL={heading1.replaceAll(" ", "-").toLowerCase()}
       />
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader heading1={heading1} heading1Paragraph={desc} />
-        <DynamicTrusted
-          altAirPlane={firstKeyWord}
-          altCreditCart={secondKeyWord}
-          altPayment={thirdKeyWord}
-        />
-      </Suspense>
+
+      <DynamicHeader heading1={heading1} heading1Paragraph={desc} />
+      <DynamicTrusted
+        altAirPlane={firstKeyWord}
+        altCreditCart={secondKeyWord}
+        altPayment={thirdKeyWord}
+      />
       <Container className={styled.articleContainer}>
         <article>
           <h2 className={styled.articleHeading}>{article1.title}</h2>
