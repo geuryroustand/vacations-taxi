@@ -121,20 +121,19 @@ const CarList = () => {
 
       <div className={styled.cartWrapper} ref={wrapperReference}>
         {cartList.map((cart, index) => (
-          <div key={cart.id}>
-            <DynamicCar
-              id={cart.id}
-              cartSelected={() => cartSelected(index, cart.price)}
-              totalPassengers={cart.passengers}
-              totalSuitCases={cart.suitcases}
-              cartTypeImage={cart.image}
-              totalPrice={cart.price}
-              oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
-              selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
-              selectedTextClassName={index === taxiSelected ?? taxiSelected}
-              selectedTaxiClassName={index === taxiSelected ? "selectedCart" : ""}
-            />
-          </div>
+          <DynamicCar
+            key={cart.id}
+            id={cart.id}
+            cartSelected={() => cartSelected(index, cart.price)}
+            totalPassengers={cart.passengers}
+            totalSuitCases={cart.suitcases}
+            cartTypeImage={cart.image}
+            totalPrice={cart.price}
+            oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
+            selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
+            selectedTextClassName={index === taxiSelected ?? taxiSelected}
+            selectedTaxiClassName={index === taxiSelected ? "selectedCart" : ""}
+          />
         ))}
       </div>
 
