@@ -81,7 +81,7 @@ function paymentDetails() {
             "A problem occurred while we were processing your reservation. Please try again or contact us to help you."
           );
 
-        router.push({
+        router.replace({
           pathname: "/booking-confirmation",
           query: { ...cleanEmpty }
         });
