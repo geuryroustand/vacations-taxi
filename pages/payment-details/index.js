@@ -3,7 +3,7 @@
 
 import React, { Suspense, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-
+import { useRouter } from "next/router";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -34,6 +34,8 @@ function paymentDetails() {
   const [validated, setValidated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showThankYouMessage, setShowThankYouMessage] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     const mainElement = document.querySelector(".main");
@@ -78,10 +80,15 @@ function paymentDetails() {
           throw new Error(
             "A problem occurred while we were processing your reservation. Please try again or contact us to help you."
           );
-        setIsLoading(false);
+
+        router.push({
+          pathname: "/booking-confirmation",
+          query: { ...cleanEmpty }
+        });
+        // setIsLoading(false);
         // const getDestinations = await response.json();
         // router.replace("/");
-        setShowThankYouMessage(true);
+        // setShowThankYouMessage(true);
         persistor.purge();
       } catch (error) {
         setIsLoading(false);
@@ -105,7 +112,7 @@ function paymentDetails() {
     );
   }
 
-  return !showThankYouMessage ? (
+  return (
     <>
       <MyHead title="Payment" noIndex />
       <Form className={styled.paymentDetails} noValidate validated={validated} onSubmit={sendInfo}>
@@ -118,41 +125,43 @@ function paymentDetails() {
         </Container>
       </Form>
     </>
-  ) : (
-    <>
-      <MyHead title="Confirmation" noIndex />
-      <Container>
-        <Alert className={styled.showThankYouAlertMessage} variant="success">
-          <Alert.Heading> Important: Please Check Spam/Junk Folder</Alert.Heading>
-          <p>
-            Thank you for choosing our airport transfer service! We want to ensure that your journey
-            begins smoothly, and to that end, we will be sending you an email confirmation shortly
-            after booking. However, due to email filters and settings, it&apos;s possible that our
-            message might end up in your spam or junk folder.
-          </p>
-
-          <p className="mb-0">
-            To avoid any inconvenience, we kindly request you to take a moment to check your
-            spam/junk folder.
-          </p>
-          <p>
-            If you haven&apos;t received our email confirmation within 1 hour, or if you encounter
-            any other issues, please don&apos;t hesitate to contact our customer support team at{" "}
-            <a href="tel:+13608607857 ">+1 (360) 860-7857 (USA)</a> or via email at{" "}
-            <a href="mailto:info@vacationstaxis.com">info@vacationstaxis.com</a>. We&apos;re here to
-            assist you and ensure your airport transfer experience is hassle-free.
-          </p>
-          <hr />
-          <p>
-            Thank you once again for choosing our services. We look forward to serving you and
-            providing a comfortable and convenient airport transfer.
-          </p>
-        </Alert>
-
-        <Link href="/">Go back to the Home Page</Link>
-      </Container>
-    </>
   );
+
+  // : (
+  //   <>
+  //     <MyHead title="Confirmation" noIndex />
+  //     <Container>
+  //       <Alert className={styled.showThankYouAlertMessage} variant="success">
+  //         <Alert.Heading> Important: Please Check Spam/Junk Folder</Alert.Heading>
+  //         <p>
+  //           Thank you for choosing our airport transfer service! We want to ensure that your journey
+  //           begins smoothly, and to that end, we will be sending you an email confirmation shortly
+  //           after booking. However, due to email filters and settings, it&apos;s possible that our
+  //           message might end up in your spam or junk folder.
+  //         </p>
+
+  //         <p className="mb-0">
+  //           To avoid any inconvenience, we kindly request you to take a moment to check your
+  //           spam/junk folder.
+  //         </p>
+  //         <p>
+  //           If you haven&apos;t received our email confirmation within 1 hour, or if you encounter
+  //           any other issues, please don&apos;t hesitate to contact our customer support team at{" "}
+  //           <a href="tel:+13608607857 ">+1 (360) 860-7857 (USA)</a> or via email at{" "}
+  //           <a href="mailto:info@vacationstaxis.com">info@vacationstaxis.com</a>. We&apos;re here to
+  //           assist you and ensure your airport transfer experience is hassle-free.
+  //         </p>
+  //         <hr />
+  //         <p>
+  //           Thank you once again for choosing our services. We look forward to serving you and
+  //           providing a comfortable and convenient airport transfer.
+  //         </p>
+  //       </Alert>
+
+  //       <Link href="/">Go back to the Home Page</Link>
+  //     </Container>
+  //   </>
+  // );
 }
 
 export default paymentDetails;
