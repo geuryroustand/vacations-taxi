@@ -13,7 +13,8 @@ module.exports = {
     "/404",
     "/blogs",
     "/login",
-    "/register"
+    "/register",
+    "/booking-confirmation"
   ],
   robotsTxtOptions: {
     policies: [
@@ -27,6 +28,7 @@ module.exports = {
       { userAgent: "*", disallow: "/blogs" },
       { userAgent: "*", disallow: "/login" },
       { userAgent: "*", disallow: "/register" },
+      { userAgent: "*", disallow: "/booking-confirmation" },
       { userAgent: "*", allow: "/blogs/" },
       { userAgent: "*", allow: "/" }
     ]

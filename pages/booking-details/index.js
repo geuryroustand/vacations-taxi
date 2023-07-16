@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,17 +11,26 @@ import Loading from "../../src/Components/Loading/Loading";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
-const DynamicBookingSummary = dynamic(() =>
-  import("../../src/Components/BookingSummary/BookingSummary")
+const DynamicBookingSummary = dynamic(
+  () => import("../../src/Components/BookingSummary/BookingSummary"),
+  {
+    loading: () => <FallBackLoading />
+  }
 );
 
 // TODO remove the local storage
 
-const DynamicCarList = dynamic(() => import("../../src/Components/CarList/CarList"));
+const DynamicCarList = dynamic(() => import("../../src/Components/CarList/CarList"), {
+  loading: () => <FallBackLoading />
+});
 
-const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Passenger"));
+const DynamicPassenger = dynamic(() => import("../../src/Components/Passenger/Passenger"), {
+  loading: () => <FallBackLoading />
+});
 
-const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"));
+const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
+  loading: () => <FallBackLoading />
+});
 
 function BookingDetails() {
   const [isLoading, setIsLoading] = useState(false);
@@ -89,26 +98,25 @@ function BookingDetails() {
         title={`${pickUp || ""}  ${pickUp && dropOff ? "to" : ""} ${dropOff || ""}`}
         noIndex
       />
-      <Suspense fallback={<FallBackLoading />}>
-        <Container>
-          <BookingStepProcess />
 
-          {showSearchForm && <DynamicHeader />}
+      <Container>
+        <BookingStepProcess />
 
-          {!showSearchForm && (
-            <Button onClick={() => setShowSearchForm(true)} className={styled.editBtn}>
-              Edit trip
-            </Button>
-          )}
-        </Container>
-        <Container className={styled.bookingDetailsContainer}>
-          <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />
-          <div className={styled.cartAndPassengerDetail}>
-            <DynamicCarList />
-            <DynamicPassenger />
-          </div>
-        </Container>
-      </Suspense>
+        {showSearchForm && <DynamicHeader />}
+
+        {!showSearchForm && (
+          <Button onClick={() => setShowSearchForm(true)} className={styled.editBtn}>
+            Edit trip
+          </Button>
+        )}
+      </Container>
+      <Container className={styled.bookingDetailsContainer}>
+        <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />
+        <div className={styled.cartAndPassengerDetail}>
+          <DynamicCarList />
+          <DynamicPassenger />
+        </div>
+      </Container>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { useState } from "react";
 
 import dynamic from "next/dynamic";
 
@@ -11,8 +11,9 @@ import styled from "./Header.module.css";
 
 import FallBackLoading from "../Loading/FallBackLoading";
 
-const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"));
-
+const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"), {
+  loading: () => <FallBackLoading />
+});
 const Header = ({ heading1, heading1Paragraph }) => {
   const [isClicked, setIsClicked] = useState(false);
 
@@ -36,9 +37,8 @@ const Header = ({ heading1, heading1Paragraph }) => {
           className={isClicked ? styled["btn-oneWay"] : styled["btn-selected"]}>
           Return
         </Button>
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicSearchForm isClicked={isClicked} />
-        </Suspense>
+
+        <DynamicSearchForm isClicked={isClicked} />
       </Container>
     </div>
   );

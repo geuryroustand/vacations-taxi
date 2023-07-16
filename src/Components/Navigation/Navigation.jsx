@@ -24,7 +24,7 @@ const Navigation = () => {
           <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" />
           <Navbar.Offcanvas
             id="offcanvasNavbar-expand-lg"
-            aria-labelledby="offcanvasNavbarLabel-expand-lg"
+            aria-labelledby="offcanvasNavbarLabel-expand-lg-info"
             placement="end">
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg-info">

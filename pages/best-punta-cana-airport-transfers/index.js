@@ -1,16 +1,20 @@
-import React, { Suspense } from "react";
-
 import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 
-const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"));
+const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
+  loading: () => <FallBackLoading />
+});
 
-const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"));
+const DynamicTrusted = dynamic(() => import("../../src/Components/Trusted/Trusted"), {
+  loading: () => <FallBackLoading />
+});
 
-const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"));
+const DynamicAwards = dynamic(() => import("../../src/Components/Awards/Awards"), {
+  loading: () => <FallBackLoading />
+});
 
 export default function puertoPlataAirport() {
   return (
@@ -36,98 +40,95 @@ export default function puertoPlataAirport() {
         "
         canonicalURL="best-punta-cana-airport-transfers"
       />
-      <Suspense fallback={<FallBackLoading />}>
-        <DynamicHeader
-          heading1="Experience Hassle-free Travel with the Best Punta Cana Airport Transfers"
-          heading1Paragraph="Are you planning a trip to Punta Cana and worried about transportation from the airport to your hotel? Well, worry no more because Punta Cana airport transfers are your solution to a hassle-free travel experience. With several options available, it can be challenging to choose the right one for you. This article will guide you through the benefits of using the best Punta Cana airport transfers, factors to consider when choosing one, and why vacationsTaxis is the best"
-        />
-        <DynamicTrusted
-          altAirPlane="best punta cana airport transfers"
-          altCreditCart="best transportation from punta cana airport to resort"
-          altPayment="excellence punta cana shuttle"
-        />
+      <DynamicHeader
+        heading1="Experience Hassle-free Travel with the Best Punta Cana Airport Transfers"
+        heading1Paragraph="Are you planning a trip to Punta Cana and worried about transportation from the airport to your hotel? Well, worry no more because Punta Cana airport transfers are your solution to a hassle-free travel experience. With several options available, it can be challenging to choose the right one for you. This article will guide you through the benefits of using the best Punta Cana airport transfers, factors to consider when choosing one, and why vacationsTaxis is the best"
+      />
+      <DynamicTrusted
+        altAirPlane="best punta cana airport transfers"
+        altCreditCart="best transportation from punta cana airport to resort"
+        altPayment="excellence punta cana shuttle"
+      />
 
-        <Container className={styled.articleContainer}>
-          <article>
-            <h2 className={styled.articleHeading}>
-              Introduction to Best Punta Cana Airport Transfers
-            </h2>
+      <Container className={styled.articleContainer}>
+        <article>
+          <h2 className={styled.articleHeading}>
+            Introduction to Best Punta Cana Airport Transfers
+          </h2>
 
-            <p>
-              Punta Cana International Airport is the most popular airport in the Dominican
-              Republic, serving millions of tourists every year. As a popular tourist destination,
-              it&apos;s essential to have reliable airport transfers to ensure tourists have a
-              comfortable and stress-free travel experience. Airport transfers in Punta Cana are
-              private transportation services that take you from the airport to your hotel and back.
-              We offer a convenient and safe way to travel, especially if you&apos;re new to the
-              area.
-            </p>
-          </article>
-          <DynamicAwards />
+          <p>
+            Punta Cana International Airport is the most popular airport in the Dominican Republic,
+            serving millions of tourists every year. As a popular tourist destination, it&apos;s
+            essential to have reliable airport transfers to ensure tourists have a comfortable and
+            stress-free travel experience. Airport transfers in Punta Cana are private
+            transportation services that take you from the airport to your hotel and back. We offer
+            a convenient and safe way to travel, especially if you&apos;re new to the area.
+          </p>
+        </article>
+        <DynamicAwards />
 
-          <article>
-            <h2 className={styled.articleHeading}>
-              Benefits of Using the Best Punta Cana Airport Transfers
-            </h2>
-            <p>
-              Using the best Punta Cana airport transfers comes with several benefits. Firstly, it
-              saves you time and money. Public transportation can be time-consuming, and you may end
-              up paying more for a taxi if you don&apos;t negotiate the fare in advance. With
-              airport transfers, you&apos;ll have a pre-arranged pick-up and drop-off, ensuring you
-              arrive at your destination promptly and without any extra charges.
-            </p>
+        <article>
+          <h2 className={styled.articleHeading}>
+            Benefits of Using the Best Punta Cana Airport Transfers
+          </h2>
+          <p>
+            Using the best Punta Cana airport transfers comes with several benefits. Firstly, it
+            saves you time and money. Public transportation can be time-consuming, and you may end
+            up paying more for a taxi if you don&apos;t negotiate the fare in advance. With airport
+            transfers, you&apos;ll have a pre-arranged pick-up and drop-off, ensuring you arrive at
+            your destination promptly and without any extra charges.
+          </p>
 
-            <p>
-              Secondly, airport transfers are safe and reliable. Most airport transfer companies are
-              licensed and insured, giving you peace of mind during your travel. They also have
-              experienced drivers who are knowledgeable about the area, ensuring you arrive at your
-              destination safely.
-            </p>
-            <p>
-              Lastly, airport transfers are comfortable and convenient. Most airport transfer
-              companies have a fleet of vehicles to choose from, depending on your preferences and
-              group size. They also offer door-to-door services, ensuring you don&lsquo;t have to
-              carry your luggage around or navigate through unfamiliar streets.
-            </p>
-          </article>
+          <p>
+            Secondly, airport transfers are safe and reliable. Most airport transfer companies are
+            licensed and insured, giving you peace of mind during your travel. They also have
+            experienced drivers who are knowledgeable about the area, ensuring you arrive at your
+            destination safely.
+          </p>
+          <p>
+            Lastly, airport transfers are comfortable and convenient. Most airport transfer
+            companies have a fleet of vehicles to choose from, depending on your preferences and
+            group size. They also offer door-to-door services, ensuring you don&lsquo;t have to
+            carry your luggage around or navigate through unfamiliar streets.
+          </p>
+        </article>
 
-          <article>
-            <h2 className={styled.articleHeading}>
-              Factors to Consider When Choosing Airport Transfers in Punta Cana
-            </h2>
-            <p>
-              When choosing airport transfers in Punta Cana, there are several factors to consider.
-              Firstly, consider the reputation of the company. Check reviews and testimonials from
-              previous customers to ensure you&apos;re choosing a reliable and reputable company.
-            </p>
+        <article>
+          <h2 className={styled.articleHeading}>
+            Factors to Consider When Choosing Airport Transfers in Punta Cana
+          </h2>
+          <p>
+            When choosing airport transfers in Punta Cana, there are several factors to consider.
+            Firstly, consider the reputation of the company. Check reviews and testimonials from
+            previous customers to ensure you&apos;re choosing a reliable and reputable company.
+          </p>
 
-            <p>
-              Secondly, consider the cost. While airport transfers may be more expensive than public
-              transportation, ensure you&apos;re getting value for your money. Compare prices from
-              different companies and choose one that offers reasonable prices without compromising
-              on the quality of service.
-            </p>
+          <p>
+            Secondly, consider the cost. While airport transfers may be more expensive than public
+            transportation, ensure you&apos;re getting value for your money. Compare prices from
+            different companies and choose one that offers reasonable prices without compromising on
+            the quality of service.
+          </p>
 
-            <p>
-              Lastly, consider the vehicle type and size. Ensure the company has a fleet of vehicles
-              to choose from, depending on your group size and preferences. If you&lsquo;re
-              traveling with a large group or have excess luggage, choose a company that offers
-              spacious vehicles.
-            </p>
-          </article>
+          <p>
+            Lastly, consider the vehicle type and size. Ensure the company has a fleet of vehicles
+            to choose from, depending on your group size and preferences. If you&lsquo;re traveling
+            with a large group or have excess luggage, choose a company that offers spacious
+            vehicles.
+          </p>
+        </article>
 
-          <article>
-            <h2 className={styled.articleHeading}>
-              Excellence Punta Cana Transportation and Shuttle from Punta Cana Airport
-            </h2>
-            <p>
-              We offer private transportation services from the airport to Excellence Hotel in Punta
-              Cana and back, ensuring you arrive at your destination safely and comfortably. We also
-              offer a VIP service, ensuring you arrive at your destination in style.
-            </p>
-          </article>
-        </Container>
-      </Suspense>
+        <article>
+          <h2 className={styled.articleHeading}>
+            Excellence Punta Cana Transportation and Shuttle from Punta Cana Airport
+          </h2>
+          <p>
+            We offer private transportation services from the airport to Excellence Hotel in Punta
+            Cana and back, ensuring you arrive at your destination safely and comfortably. We also
+            offer a VIP service, ensuring you arrive at your destination in style.
+          </p>
+        </article>
+      </Container>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, Suspense } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
@@ -8,7 +8,7 @@ import FallBackLoading from "../Loading/FallBackLoading";
 import styled from "./CarList.module.css";
 
 const DynamicCar = dynamic(() => import("../Car/Car"), {
-  suspense: true
+  loading: () => <FallBackLoading />
 });
 
 const CarList = () => {
@@ -121,20 +121,19 @@ const CarList = () => {
 
       <div className={styled.cartWrapper} ref={wrapperReference}>
         {cartList.map((cart, index) => (
-          <Suspense key={cart.id} fallback={<FallBackLoading />}>
-            <DynamicCar
-              id={cart.id}
-              cartSelected={() => cartSelected(index, cart.price)}
-              totalPassengers={cart.passengers}
-              totalSuitCases={cart.suitcases}
-              cartTypeImage={cart.image}
-              totalPrice={cart.price}
-              oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
-              selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
-              selectedTextClassName={index === taxiSelected ?? taxiSelected}
-              selectedTaxiClassName={index === taxiSelected ? "selectedCart" : ""}
-            />
-          </Suspense>
+          <DynamicCar
+            key={cart.id}
+            id={cart.id}
+            cartSelected={() => cartSelected(index, cart.price)}
+            totalPassengers={cart.passengers}
+            totalSuitCases={cart.suitcases}
+            cartTypeImage={cart.image}
+            totalPrice={cart.price}
+            oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
+            selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
+            selectedTextClassName={index === taxiSelected ?? taxiSelected}
+            selectedTaxiClassName={index === taxiSelected ? "selectedCart" : ""}
+          />
         ))}
       </div>
 
