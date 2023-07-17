@@ -13,6 +13,7 @@ import styled from "./TrustedShareRide.module.css";
 const TrustedShareRide = () => {
   const featureItems = [
     {
+      id: 1,
       rounderColor: styled.first,
       icon: <FiDollarSign className={styled.icons} />,
       title: "Cost-effective",
@@ -20,6 +21,7 @@ const TrustedShareRide = () => {
         "By sharing the ride with fellow travelers headed in the same direction, you split the cost, making it an economical choice."
     },
     {
+      id: 2,
       rounderColor: styled.second,
       icon: <BsClockHistory className={styled.icons} />,
       title: "Convenience",
@@ -27,6 +29,7 @@ const TrustedShareRide = () => {
         "Our intuitive search feature allows you to quickly find available shared rides that align with your flight schedule and destination."
     },
     {
+      id: 3,
       rounderColor: styled.third,
       icon: <LuSofa className={styled.icons} />,
       title: "Comfort",
@@ -34,6 +37,7 @@ const TrustedShareRide = () => {
         "Travel in comfortable vehicles, equipped with modern amenities, and enjoy a smooth journey."
     },
     {
+      id: 4,
       rounderColor: styled.fourth,
       icon: <BsShieldCheck className={styled.icons} />,
       title: "Reliability",
@@ -48,7 +52,7 @@ const TrustedShareRide = () => {
       <Container>
         <Row>
           {featureItems.map((item) => (
-            <Col key={Math.random()} xs={12} sm={6} lg={3}>
+            <Col key={item.id} xs={12} md={6} lg={3}>
               <div className={`${item.rounderColor} ${styled.rounderIcons}`}>{item.icon}</div>
               <h3>{item.title}</h3>
               <p>{item.description}</p>

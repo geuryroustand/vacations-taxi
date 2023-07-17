@@ -87,7 +87,7 @@ const SharedCarsList = () => {
     <Container>
       <Row className={styled.main}>
         {locations.map((locationGroup) => (
-          <Col key={locationGroup.area} xs={12} sm={6} lg={3}>
+          <Col key={locationGroup.area} xs={12} md={6} lg={3}>
             <h3 className={styled.heading}>
               Carpool <p>in {locationGroup.area}</p>
             </h3>

@@ -1,17 +1,18 @@
 import dynamic from "next/dynamic";
-import React, { Suspense } from "react";
 
 import Container from "react-bootstrap/Container";
 import styled from "./FindRideSearch.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
 
-const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"));
+const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"), {
+  loading: () => <FallBackLoading />
+});
 
 function FindRideSearch() {
   return (
     <div className={styled.main}>
       <Container>
-        <Suspense fallback={<FallBackLoading />}>
+        <>
           <div className={styled.heading}>
             <h1>Find a Ride</h1>
             <p>
@@ -20,7 +21,7 @@ function FindRideSearch() {
             </p>
           </div>
           <DynamicSearchForm />
-        </Suspense>
+        </>
       </Container>
     </div>
   );
