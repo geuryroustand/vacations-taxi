@@ -1,0 +1,30 @@
+.discountShowCaseBg {
+  background: rgb(2, 0, 36);
+  background: -moz-linear-gradient(
+    21deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 53, 128, 1) 40%,
+    rgba(0, 35, 109, 1) 85%
+  );
+  background: -webkit-linear-gradient(
+    21deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 53, 128, 1) 40%,
+    rgba(0, 35, 109, 1) 85%
+  );
+  background: linear-gradient(
+    21deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 53, 128, 1) 40%,
+    rgba(0, 35, 109, 1) 85%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00236d",GradientType=1);
+  color: white;
+  font-size: 1.2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+}

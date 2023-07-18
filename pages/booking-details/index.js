@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
+
 import Container from "react-bootstrap/Container";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import dynamic from "next/dynamic";
 import Button from "react-bootstrap/Button";
+
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+import { useDispatch, useSelector } from "react-redux";
+
 import styled from "./bookingDetails.module.css";
 import { allFlightInfo } from "../../src/redux/flightInfoSlice";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
