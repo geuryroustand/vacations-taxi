@@ -8,12 +8,13 @@ import dynamic from "next/dynamic";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import styled from "./bookingDetails.module.css";
 import { allFlightInfo } from "../../src/redux/flightInfoSlice";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 import Loading from "../../src/Components/Loading/Loading";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import MyHead from "../../src/Components/MyHead/MyHead";
+
+import styled from "./bookingDetails.module.css";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -25,6 +26,7 @@ const DynamicBookingSummary = dynamic(
 // TODO remove the local storage
 
 const DynamicCarList = dynamic(() => import("../../src/Components/CarList/CarList"), {
+  ssr: false,
   loading: () => <FallBackLoading />
 });
 
@@ -69,8 +71,12 @@ function BookingDetails() {
     if (response.ok) {
       setIsLoading(false);
       const data = await response.json();
-
-      dispatch(allFlightInfo({ ...router.query, ...data }));
+      dispatch(
+        allFlightInfo({
+          ...router.query,
+          ...data
+        })
+      );
     }
   };
 
@@ -116,6 +122,7 @@ function BookingDetails() {
       </Container>
       <Container className={styled.bookingDetailsContainer}>
         <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />
+
         <div className={styled.cartAndPassengerDetail}>
           <DynamicCarList />
           <DynamicPassenger />

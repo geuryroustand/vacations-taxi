@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import styled from "./Car.module.css";
 
@@ -6,7 +5,8 @@ const Car = ({
   totalPassengers,
   totalSuitCases,
   cartTypeImage,
-  totalPrice,
+  originalPrice,
+  discountPrice,
   oneWayOrRoundTrip,
   cartSelected,
   id,
@@ -55,10 +55,19 @@ const Car = ({
         <Image src="/images/trusted.svg" width="20" height="20" alt="Tried and trusted drivers" />
         <span>Tried and trusted drivers</span>
       </div>
-
-      <div className={styled.list}>
-        <p>Total Price:</p>
-        <h3>$ {totalPrice}</h3>
+      <div>
+        {originalPrice && (
+          <div className={styled.list}>
+            <p>Regular Price:</p>
+            <h3 className={styled.originalPrice}>$ {originalPrice}</h3>
+          </div>
+        )}
+        {discountPrice && (
+          <div className={styled.list}>
+            <p>Discounted Price:</p>
+            <h3>$ {discountPrice}</h3>
+          </div>
+        )}
       </div>
 
       <div className={styled.list}>
