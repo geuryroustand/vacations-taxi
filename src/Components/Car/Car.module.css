@@ -23,6 +23,7 @@
 
 .list {
   display: flex;
+  align-items: center;
 }
 
 .list *:nth-child(-n + 5) {
@@ -43,4 +44,8 @@
 .selectedTextClass {
   color: var(--secondary-color);
   font-weight: bold;
+}
+
+.originalPrice {
+  text-decoration: line-through;
 }

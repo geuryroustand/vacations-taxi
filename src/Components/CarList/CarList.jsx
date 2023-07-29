@@ -8,8 +8,13 @@ import FallBackLoading from "../Loading/FallBackLoading";
 import styled from "./CarList.module.css";
 
 const DynamicCar = dynamic(() => import("../Car/Car"), {
+  ssr: false,
   loading: () => <FallBackLoading />
 });
+
+const applyTenPercentDiscount = (price) => {
+  return price - price * 0.1; // 10% discount
+};
 
 const CarList = () => {
   const dispatch = useDispatch();
@@ -22,7 +27,7 @@ const CarList = () => {
   const [cartList, setCartList] = useState([
     {
       id: "cart1",
-      price: priceTaxi1,
+      originalPrice: priceTaxi1,
       passengers: 4,
       suitcases: 4,
       image: "standard.webp",
@@ -30,7 +35,7 @@ const CarList = () => {
     },
     {
       id: "cart2",
-      price: priceTaxi2,
+      originalPrice: priceTaxi2,
       passengers: 6,
       suitcases: 6,
       image: "minivan6.jpg",
@@ -38,7 +43,7 @@ const CarList = () => {
     },
     {
       id: "cart3",
-      price: priceTaxi3,
+      originalPrice: priceTaxi3,
       passengers: 8,
       suitcases: 8,
       image: "minivan8.png",
@@ -46,7 +51,7 @@ const CarList = () => {
     },
     {
       id: "cart4",
-      price: priceTaxi4,
+      originalPrice: priceTaxi4,
       passengers: 16,
       suitcases: 16,
       image: "minivan16.jpg",
@@ -55,10 +60,12 @@ const CarList = () => {
   ]);
 
   useEffect(() => {
+    dispatch(updateTotalPrice({ totalPrice: applyTenPercentDiscount(priceTaxi1) }));
     setCartList([
       {
         id: "cart1",
-        price: priceTaxi1,
+        originalPrice: priceTaxi1,
+        discountPrice: applyTenPercentDiscount(priceTaxi1),
         passengers: 4,
         suitcases: 4,
         image: "standard.webp",
@@ -66,7 +73,8 @@ const CarList = () => {
       },
       {
         id: "cart2",
-        price: priceTaxi2,
+        originalPrice: priceTaxi2,
+        discountPrice: applyTenPercentDiscount(priceTaxi2),
         passengers: 6,
         suitcases: 6,
         image: "minivan6.jpg",
@@ -74,7 +82,8 @@ const CarList = () => {
       },
       {
         id: "cart3",
-        price: priceTaxi3,
+        originalPrice: priceTaxi3,
+        discountPrice: applyTenPercentDiscount(priceTaxi3),
         passengers: 8,
         suitcases: 8,
         image: "minivan8.png",
@@ -82,7 +91,8 @@ const CarList = () => {
       },
       {
         id: "cart4",
-        price: priceTaxi4,
+        originalPrice: priceTaxi4,
+        discountPrice: applyTenPercentDiscount(priceTaxi4),
         passengers: 16,
         suitcases: 16,
         image: "minivan16.jpg",
@@ -124,11 +134,12 @@ const CarList = () => {
           <DynamicCar
             key={cart.id}
             id={cart.id}
-            cartSelected={() => cartSelected(index, cart.price)}
+            cartSelected={() => cartSelected(index, cart.discountPrice)}
             totalPassengers={cart.passengers}
             totalSuitCases={cart.suitcases}
             cartTypeImage={cart.image}
-            totalPrice={cart.price}
+            originalPrice={cart.originalPrice}
+            discountPrice={cart.discountPrice}
             oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
             selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
             selectedTextClassName={index === taxiSelected ?? taxiSelected}

@@ -1,10 +1,10 @@
-import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
+import DiscountShowcase from "../DiscountShowcase/DiscountShowcase";
 import styled from "./Navigation.module.css";
 import Profile from "../Profile/Profile";
 
@@ -15,6 +15,7 @@ import Profile from "../Profile/Profile";
 const Navigation = () => {
   return (
     <header>
+      <DiscountShowcase />
       <Navbar className={styled["navbar-bg"]} expand="lg">
         <Container>
           <Navbar.Brand className={styled["logo-main"]} href="/">
