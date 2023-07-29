@@ -1,3 +1,5 @@
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
 import RideShareDetails from "../../src/Components/RideShareDetails/RideShareDetails";
@@ -7,7 +9,7 @@ import MyHead from "../../src/Components/MyHead/MyHead";
 
 export default function ridesDetails() {
   return (
-    <div>
+    <div className={styled.main}>
       <MyHead title="Punta Cana Airport to Bahia Principe Punta Cana" noIndex />
       <Container>
         <div className={styled.textContainer}>
@@ -16,8 +18,14 @@ export default function ridesDetails() {
           </h1>
           <p>Punta Cana Airport to Bahia</p>
         </div>
-        <RideShareDetails />
-        <UserComments />
+        <Row>
+          <Col>
+            <RideShareDetails />
+          </Col>
+          <Col>
+            <UserComments />
+          </Col>
+        </Row>
       </Container>
     </div>
   );

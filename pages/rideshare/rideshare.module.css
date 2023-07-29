@@ -33,6 +33,16 @@
   font-weight: 700;
 }
 
+@media (min-width: 62em) {
+  .textContainer h1 {
+    font-size: 2.6rem;
+  }
+
+  .textContainer p {
+    font-size: 1.4rem;
+  }
+}
+
 .details {
   color: var(--secondary-darkest-color);
   font-weight: bold;
