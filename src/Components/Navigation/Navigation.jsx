@@ -33,7 +33,7 @@ const Navigation = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Profile showDrownDownInTable id="drownDownBigScreen" />
+                <Profile id="drownDownBigScreen" />
                 <NavDropdown title="Car Sharing" id="offcanvasNavbarDropdown-expand-lg-car-sharing">
                   {/* <Link href="/car-sharing"> */}
                   <NavDropdown.Item href="/find-car-sharing">Find a rideshare</NavDropdown.Item>

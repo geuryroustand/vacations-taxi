@@ -1,0 +1,69 @@
+.cardTripDetailsMain {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  list-style: none;
+}
+.link {
+  text-decoration: none;
+  color: black;
+}
+.cardTripDetails {
+  padding: 1rem;
+  margin-bottom: 1.3rem;
+}
+.heading {
+  color: var(--secondary-darkest-color);
+  font-size: 1rem;
+}
+.cardTripDetailsInfo {
+  border-bottom: 0.1rem solid var(--fourth-color);
+  border-top: 0.1rem solid var(--fourth-color);
+
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 1rem 0;
+}
+
+@media (min-width: 45em) {
+  .cardTripDetailsInfo {
+    flex-direction: row;
+    gap: 6rem;
+  }
+}
+
+.cardTripDetailsProfile {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (min-width: 45em) {
+  .cardTripDetailsProfile {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+}
+.profileImgAndName {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+@media (min-width: 45em) {
+  .profileImgAndName {
+    flex-direction: column;
+  }
+}
+.cardTripDetailsProfile img {
+  border-radius: 50%;
+}
+
+.cardTripDetailsProfile p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.passenger {
+  color: var(--secondary-darkest-color);
+}

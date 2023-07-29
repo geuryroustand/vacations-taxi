@@ -1,0 +1,14 @@
+.tripDetails {
+  display: flex;
+  gap: 3rem;
+  margin-top: 1.5rem;
+}
+.boldInfo {
+  color: var(--secondary-darkest-color);
+
+  font-size: 1rem;
+  font-weight: 500;
+}
+.fontBiggest {
+  font-size: 1.2rem;
+}
