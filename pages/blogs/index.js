@@ -38,7 +38,7 @@ export default function Blogs() {
       <Container className={styled.postsContainer}>
         <h1 className={styled.postsHeading}>Travel Tips:</h1>
         {groupedPosts.map((group) => (
-          <Row key={`${group}`}>
+          <Row key={group}>
             {group.map((post) => (
               <Col key={post.id} className={styled.cardColumn}>
                 <Link className={styled.cardLink} href={`/blogs/${post.slug}`}>

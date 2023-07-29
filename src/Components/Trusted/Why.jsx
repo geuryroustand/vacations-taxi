@@ -10,9 +10,9 @@ export const Why = ({ svgName, alt, width, height, title, paragraph, className }
       <div className={pickClass}>
         <Image
           src={`/images/${svgName}`}
-          alt={`${alt}`}
-          width={`${width}`}
-          height={`${height}`}
+          alt={alt}
+          width={width}
+          height={height}
           title="Flight tracking"
           className="first"
         />

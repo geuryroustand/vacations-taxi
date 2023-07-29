@@ -5,8 +5,8 @@ const MyHead = ({ title, desc, keyword, noIndex, canonicalURL, openGraphImg }) =
   return (
     <Head>
       {title && <title>{title}</title>}
-      {desc && <meta name="description" content={`${desc}`} />}
-      {keyword && <meta name="keywords" content={`${keyword}`} />}
+      {desc && <meta name="description" content={desc} />}
+      {keyword && <meta name="keywords" content={keyword} />}
       <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
       <link
         rel="canonical"
