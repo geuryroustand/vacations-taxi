@@ -80,7 +80,7 @@ export default function Home() {
 
       <Script
         id="google-analytics"
-        strategy="worker"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
         window.dataLayer = window.dataLayer || [];
