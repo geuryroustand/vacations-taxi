@@ -41,7 +41,9 @@ const Navigation = () => {
                   {/* </Link> */}
                   <NavDropdown.Divider />
                   {/* <Link href="/requests"> */}
-                  <NavDropdown.Item href="/offer-seats">Post a trip</NavDropdown.Item>
+                  <NavDropdown.Item href="/posts-and-requests">
+                    Post & request a trip
+                  </NavDropdown.Item>
                   {/* </Link> */}
                 </NavDropdown>
                 <NavDropdown title="Top locations" id="offcanvasNavbarDropdown-expand-lg-top">
