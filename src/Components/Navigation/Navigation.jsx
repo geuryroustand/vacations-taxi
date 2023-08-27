@@ -6,6 +6,11 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 
 // import DiscountShowcase from "../DiscountShowcase/DiscountShowcase";
 import styled from "./Navigation.module.css";
+import Profile from "../Profile/Profile";
+
+// TODO: Change the color to white of lines inside the dropdown
+
+// TODO: Post a trip URL , the URL can be call requests
 
 const Navigation = () => {
   return (
@@ -97,8 +102,11 @@ const Navigation = () => {
                     La Isabela Airport (JBQ)
                   </NavDropdown.Item>
                 </NavDropdown>
+
                 <NavDropdown title="Company" id="offcanvasNavbarDropdown-expand-lg-company">
                   <NavDropdown.Item href="/about-us">About Us</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="/blogs">Blogs</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="/privacy-notice">Privacy Notice</NavDropdown.Item>
                   <NavDropdown.Divider />
@@ -107,7 +115,6 @@ const Navigation = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href="/contact-us">Help Center</Nav.Link>
-                <Nav.Link href="/blogs">Blogs</Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

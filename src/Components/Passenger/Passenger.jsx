@@ -68,7 +68,7 @@ const Passenger = () => {
               onChange={getPassengerInfo}
             />
             <Form.Control.Feedback type="invalid">
-              Please enter your fist name
+              Please enter your first name
             </Form.Control.Feedback>
           </Form.Group>
 

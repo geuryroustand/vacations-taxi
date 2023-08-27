@@ -1,0 +1,59 @@
+.main {
+  max-width: 24rem;
+  margin: 0 auto;
+}
+
+.heading {
+  margin: 2.5rem 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 62em) {
+  .heading {
+    font-size: 2rem;
+    text-align: start;
+  }
+}
+
+.socialBtn {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  border-radius: 0.62rem;
+}
+
+.googleBtn {
+  background-color: transparent;
+  color: black;
+
+  border: 3px solid #f0a500;
+}
+.googleBtn:hover {
+  color: black;
+  border-color: var(--secondary-color);
+}
+
+.icons {
+  font-size: 25px;
+}
+
+.facebookIcon {
+  color: white;
+  background-color: #0073d2;
+  border: 3px solid;
+}
+.facebookIcon:hover {
+  opacity: 0.9;
+  background-color: transparent;
+}
+
+.or {
+  text-align: center;
+  font-size: 1.3rem;
+}
