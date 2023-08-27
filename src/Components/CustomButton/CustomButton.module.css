@@ -1,0 +1,8 @@
+.btn {
+  width: 100%;
+  background-color: var(--secondary-color);
+  border: none;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

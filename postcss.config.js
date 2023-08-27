@@ -35,7 +35,9 @@ module.exports = {
             /^invalid-feedback/,
             /^react-datepicker__portal/,
             /^react-datepicker/,
-            /^PhoneInput/
+            /^PhoneInput/,
+            /^row/,
+            /^col/
           ]
         },
         keyframes: true
