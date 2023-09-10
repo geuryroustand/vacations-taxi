@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 import Script from "next/script";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
-import { useEffect } from "react";
 
 // import { persistor } from "../src/redux/store";
 
