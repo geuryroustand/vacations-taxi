@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { Suspense, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
 import Container from "react-bootstrap/Container";
@@ -21,13 +22,13 @@ const DynamicFormRegisterAndSign = dynamic(() =>
 const DynamicFormGroup = dynamic(() => import("../../src/Components/FormGroup/FormGroup"));
 
 function register() {
+  const router = useRouter();
+
   const [validated, setValidated] = useState(false);
   const [validationErrors, setValidationErrors] = useState({ message: "" });
 
   const [loginInfo, setLoginInfo] = useState({
-    fistName: "",
-    lastName: "",
-    userName: "",
+    username: "",
     email: "",
     password: ""
   });
@@ -67,6 +68,8 @@ function register() {
         if (response.ok) {
           const data = await response.json();
           setCookieToken(data);
+          setLoginInfo({ username: "", email: "", password: "" });
+          router.push("/");
         } else {
           const errorResponse = await response.json();
           const { details, message } = errorResponse.error;
@@ -104,28 +107,6 @@ function register() {
           facebookBtnText="Sign up with Facebook"
           googleBtnText="Sign up with Google">
           <Form noValidate validated={validated} onSubmit={onSubmit}>
-            {/* <DynamicFormGroup
-              label="Enter your first name"
-              id="formName"
-              placeholder="Enter first name"
-              type="text"
-              name="firstName"
-              onChange={onChange}
-              required
-              errorMessage="Please provide a name."
-            />
-
-            <DynamicFormGroup
-              label="Enter your last name"
-              id="lastName"
-              placeholder="Enter last name"
-              type="text"
-              name="lastName"
-              onChange={onChange}
-              required
-              errorMessage="Please provide a last name."
-            /> */}
-
             <DynamicFormGroup
               label="Enter a username"
               id="username"
@@ -136,6 +117,7 @@ function register() {
               required
               errorMessage={validationErrors.username || "Please provide a unique username."}
               isInvalid={!!validationErrors.username}
+              value={loginInfo.username}
             />
 
             <DynamicFormGroup
@@ -153,6 +135,7 @@ function register() {
                 "Please provide a valid email."
               }
               isInvalid={!!validationErrors.email || !!validationErrors.message}
+              value={loginInfo.email}
             />
 
             <DynamicFormGroup
@@ -165,6 +148,7 @@ function register() {
               required
               errorMessage={validationErrors.password || "Please provide a password."}
               isInvalid={!!validationErrors.password}
+              value={loginInfo.password}
             />
             <DynamicCustomButton buttonType="submit" buttonText="Continue" />
           </Form>

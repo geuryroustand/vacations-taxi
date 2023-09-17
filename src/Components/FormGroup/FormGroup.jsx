@@ -12,7 +12,8 @@ const FormGroup = ({
   onChange,
   errorMessage,
   required,
-  isInvalid
+  isInvalid,
+  value
 }) => {
   return (
     <Form.Group className="mb-3" controlId={id}>
@@ -25,6 +26,7 @@ const FormGroup = ({
         name={name}
         required={required}
         isInvalid={isInvalid}
+        value={value}
       />
       {formButtonText && <Form.Text className="text-muted">{formButtonText}</Form.Text>}
 
