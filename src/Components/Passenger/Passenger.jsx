@@ -29,6 +29,8 @@ const Passenger = () => {
   });
 
   const { roundtrip } = useSelector((state) => state.flightInfoReducer.flightInfo) || {};
+  const { flightInfo } = useSelector((state) => state.flightInfoReducer) || {};
+  const { totalPrice } = useSelector((state) => state.flightInfoReducer) || {};
 
   const sendData = (event) => {
     const form = event.currentTarget;
@@ -38,7 +40,7 @@ const Passenger = () => {
 
       router.push({
         pathname: "/payment-details",
-        query: { ...router.query, ...passengerInfo }
+        query: { ...router.query, ...flightInfo, ...passengerInfo, totalPrice }
       });
     }
 

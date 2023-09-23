@@ -14,7 +14,7 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import Loading from "../../src/Components/Loading/Loading";
 import styled from "./paymentDetails.module.css";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
-import { persistor } from "../../src/redux/store";
+
 import MyHead from "../../src/Components/MyHead/MyHead";
 
 const DynamicBookingSummary = dynamic(
@@ -80,16 +80,12 @@ function paymentDetails() {
           throw new Error(
             "A problem occurred while we were processing your reservation. Please try again or contact us to help you."
           );
+        router.replace("/booking-confirmation");
 
-        router.replace({
-          pathname: "/booking-confirmation",
-          query: { ...cleanEmpty }
-        });
         // setIsLoading(false);
         // const getDestinations = await response.json();
         // router.replace("/");
         // setShowThankYouMessage(true);
-        persistor.purge();
       } catch (error) {
         setIsLoading(false);
         console.log(error);

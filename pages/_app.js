@@ -7,14 +7,10 @@ import "../styles/globals.css";
 
 import ReactDOM from "react-dom";
 import React from "react";
-// import SSRProvider from "react-bootstrap/SSRProvider";
 import Script from "next/script";
 
 import { Provider } from "react-redux";
 import Head from "next/head";
-
-// import { PersistGate } from "reduxjs-toolkit-persist/integration/react";
-// eslint-disable-next-line no-unused-vars
 
 import Layout from "../src/Components/Layout/Layout";
 
@@ -33,8 +29,6 @@ function MyApp({ Component, pageProps }) {
       />
 
       <Provider store={store}>
-        {/* <SSRProvider> */}
-        {/* <PersistGate loading="Loading" persistor={persistor}> */}
         <Layout>
           <Head>
             <title>Book A Taxi Online | Airport Transportation</title>
@@ -69,8 +63,6 @@ function MyApp({ Component, pageProps }) {
           {/* <!-- End TRUENDO Privacy Center --> */}
           <Component {...pageProps} />
         </Layout>
-        {/* </PersistGate> */}
-        {/* </SSRProvider> */}
       </Provider>
     </>
   );

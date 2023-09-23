@@ -3,7 +3,6 @@ import React, { Suspense, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 
@@ -43,7 +42,7 @@ function register() {
   const onSubmit = async (event) => {
     const form = event.currentTarget;
     event.preventDefault();
-    event.stopPropagation();
+
     if (!form.checkValidity() === false) {
       try {
         const PROD = process.env.NODE_ENV === "production";

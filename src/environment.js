@@ -1,1 +1,0 @@
-export const { NEXT_PUBLIC_STRIPE_SECRET, NEXT_PUBLIC_API_STRAPI_DEV_URL } = process.env;

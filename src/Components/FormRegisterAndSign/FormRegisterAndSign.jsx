@@ -2,7 +2,7 @@ import React from "react";
 import { ImFacebook2 } from "react-icons/im";
 import { FcGoogle } from "react-icons/fc";
 import styled from "./FormRegisterAndSign.module.css";
-import { NEXT_PUBLIC_API_STRAPI_DEV_URL } from "../../environment";
+import { NEXT_PUBLIC_API_STRAPI_DEV_URL } from "../../../environment";
 
 const FormRegisterAndSign = ({ heading, facebookBtnText, googleBtnText, children }) => {
   return (

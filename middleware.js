@@ -16,9 +16,8 @@ export function middleware(request = NextRequest) {
   if (request.nextUrl.pathname.startsWith("/payment-details")) {
     const pickUp = searchParameters.get("pickUp");
     const dropOff = searchParameters.get("dropOff");
-
-    if (!checkMongoIDRegExp.test(pickUp && dropOff))
-      return NextResponse.redirect(new URL("/", request.url));
+    // || !checkMongoIDRegExp.test(pickUp && dropOff)
+    if (pickUp === "" && dropOff === "") return NextResponse.redirect(new URL("/", request.url));
   }
 
   return NextResponse.next();

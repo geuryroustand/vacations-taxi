@@ -1,16 +1,20 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // import Image from "next/image";
+import { useRouter } from "next/router";
+
+import { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
 // eslint-disable-next-line import/no-unresolved
 import { Client, HydrationProvider } from "react-hydration-provider";
 
 import styled from "./Payment.module.css";
-import { bookingInfo } from "../../redux/flightInfoSlice";
+import { allFlightInfo, bookingInfo, updateTotalPrice } from "../../redux/flightInfoSlice";
 
 const Payment = () => {
+  const router = useRouter();
   const flightInfoReducer = useSelector((state) => state.flightInfoReducer) || {};
   const dispatch = useDispatch();
   const { totalPrice } = flightInfoReducer.bookingInfo || {};
@@ -21,6 +25,15 @@ const Payment = () => {
     setPaymentMethod(event.target.value);
     dispatch(bookingInfo({ [event.target.name]: event.target.value }));
   };
+
+  useEffect(() => {
+    if (!totalPrice) {
+      delete router.query.priceTaxi1;
+      dispatch(allFlightInfo(router.query));
+      dispatch(updateTotalPrice({ totalPrice: router.query.totalPrice }));
+      dispatch(bookingInfo(router.query));
+    }
+  }, [router.query]);
 
   return (
     <HydrationProvider>
