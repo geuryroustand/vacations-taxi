@@ -16,9 +16,6 @@ export const removeCookieToken = () => {
   Cookies.remove("jwt");
 };
 
-export const getCookieToken = (data) => {
-  if (typeof window === "undefined") return;
-  Cookies.get("id", data.user.id);
-  Cookies.get("username", data.user.username);
-  Cookies.get("jwt", data.jwt);
+export const getCookieToken = () => {
+  return typeof window === "undefined" ? undefined : Cookies.get("jwt");
 };

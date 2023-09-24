@@ -6,6 +6,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
+import { useGetUserQuery } from "../src/redux/fetchApiSlice";
 
 // import { persistor } from "../src/redux/store";
 
@@ -30,8 +31,12 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 });
 
 export default function Home() {
-  // persistor.purge();
   const router = useRouter();
+
+  const { data } = useGetUserQuery();
+
+  console.log(data);
+
   const queryParameters = new URLSearchParams(router.query);
 
   useEffect(() => {
