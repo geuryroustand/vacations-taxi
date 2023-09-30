@@ -2,7 +2,6 @@ import React, { Suspense, useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -12,8 +11,6 @@ import MyHead from "../../src/Components/MyHead/MyHead";
 import { setCookieToken } from "../../src/Helper/auth";
 import Loading from "../../src/Components/Loading/Loading";
 import { useUserLoginMutation } from "../../src/redux/fetchApiSlice";
-
-// TODO need to do the fetch and add form validation
 
 const DynamicAgreeConditions = dynamic(() =>
   import("../../src/Components/AgreeConditions/AgreeConditions")
@@ -26,8 +23,6 @@ const DynamicFormRegisterAndSign = dynamic(() =>
 const DynamicFormGroup = dynamic(() => import("../../src/Components/FormGroup/FormGroup"));
 
 function login() {
-  const router = useRouter();
-
   const [loginInfo, setLoginInfo] = useState({
     identifier: "",
     password: ""
@@ -64,7 +59,7 @@ function login() {
 
   if (data && !isError) {
     setCookieToken(data);
-    router.replace("/");
+    window.location = "/";
   }
 
   useEffect(() => {

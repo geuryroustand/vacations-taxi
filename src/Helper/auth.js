@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-// import Router from "next/router";
+import Router from "next/router";
 
 export const setCookieToken = (data) => {
   if (typeof window === "undefined") return;
@@ -14,8 +14,14 @@ export const removeCookieToken = () => {
   Cookies.remove("id");
   Cookies.remove("username");
   Cookies.remove("jwt");
+  Router.reload();
 };
-
+export const removeCookieTokenWithOutReload = () => {
+  if (typeof window === "undefined") return;
+  Cookies.remove("id");
+  Cookies.remove("username");
+  Cookies.remove("jwt");
+};
 export const getCookieToken = () => {
   return typeof window === "undefined" ? undefined : Cookies.get("jwt");
 };

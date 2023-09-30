@@ -1,12 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getCookieToken } from "../Helper/auth";
 
 const baseUrl =
   process.env.NODE_ENV === "production"
     ? `${process.env.NEXT_PUBLIC_API_STRAPI_PROD_URL}`
     : `${process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL}`;
-
-const cookieToken = getCookieToken();
 
 export const fetchApiSlice = createApi({
   reducerPath: "fetchApi",
@@ -26,13 +23,14 @@ export const fetchApiSlice = createApi({
   }),
   endpoints: (builder) => ({
     getUser: builder.query({
-      query: () => ({
-        url: "users/me",
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${cookieToken}`
+      query: (cookieToken) =>
+        cookieToken && {
+          url: "users/me",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${cookieToken}`
+          }
         }
-      })
 
       // providesTags: ["Users"]
     }),
