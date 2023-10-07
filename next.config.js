@@ -2,7 +2,7 @@
 // eslint-disable-next-line unicorn/prefer-module
 const { i18n } = require("./next-i18next.config");
 
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
@@ -13,7 +13,8 @@ module.exports = {
       }
     ],
     formats: ["image/avif", "image/webp"]
-  }
+  },
+  i18n
 };
 
 module.exports = nextConfig;

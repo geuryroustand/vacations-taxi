@@ -13,6 +13,8 @@ import Script from "next/script";
 import { Provider } from "react-redux";
 import Head from "next/head";
 
+import { appWithTranslation } from "next-i18next";
+
 // import { PersistGate } from "reduxjs-toolkit-persist/integration/react";
 // eslint-disable-next-line no-unused-vars
 

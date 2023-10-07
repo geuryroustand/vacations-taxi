@@ -15,9 +15,8 @@ import FallBackLoading from "../Loading/FallBackLoading";
 const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"), {
   loading: () => <FallBackLoading />
 });
-const Header = ({ heading1, heading1Paragraph }) => {
+const Header = ({ heading1, heading1Paragraph, oneWay, roundTrip }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const { t } = useTranslation("home");
 
   return (
     <div className={styled.hero}>
@@ -32,12 +31,12 @@ const Header = ({ heading1, heading1Paragraph }) => {
         <Button
           onClick={() => setIsClicked(false)}
           className={isClicked ? styled["btn-selected"] : styled["btn-oneWay"]}>
-          {t("oneWay")}
+          {oneWay}
         </Button>
         <Button
           onClick={() => setIsClicked(true)}
           className={isClicked ? styled["btn-oneWay"] : styled["btn-selected"]}>
-          {t("return")}
+          {roundTrip}
         </Button>
 
         <DynamicSearchForm isClicked={isClicked} />

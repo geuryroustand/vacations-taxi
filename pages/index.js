@@ -2,7 +2,11 @@ import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 
+// import { useTranslation } from "next-i18next";
+// import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
+// import { useEffect } from "react";
 
 // import { persistor } from "../src/redux/store";
 
@@ -26,9 +30,10 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
   loading: () => <FallBackLoading />
 });
 
-export default function Home() {
-  const { t } = useTranslation();
+export default function Home({ oneWay, roundTrip, headingOne, paragraph, trusted }) {
+  // const { t } = useTranslation();
   // persistor.purge();
+
   return (
     <>
       <Head>
@@ -95,14 +100,17 @@ export default function Home() {
       />
 
       <DynamicHeader
-        heading1="Reliable, Low Cost Airport Transfers"
-        heading1Paragraph="Easy airport transfers to and from your accommodation"
+        heading1={headingOne}
+        heading1Paragraph={paragraph}
+        oneWay={oneWay}
+        roundTrip={roundTrip}
       />
 
       <DynamicTrusted
         altAirPlane="Dominican Airport Transfers Services"
         altCreditCart="PUJ Punta cana Airport Transfer"
         altPayment="SDQ Santo Domingo Airport Transfers"
+        trusted={trusted}
       />
 
       <DynamicHowWork />
@@ -113,9 +121,13 @@ export default function Home() {
 }
 
 export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["home", "howWork", "faq", "footer"]))
-    }
-  };
+  const response = await fetch(`http://0.0.0.0:1337/api/home-page?populate=*&locale=${locale}`);
+  if (!response.ok) {
+    throw new Error(`Fetch failed with status ${response.status}`);
+  }
+  const seoLocations = await response.json();
+
+  const { oneWay, roundTrip, headingOne, paragraph, trusted } = seoLocations.data.attributes;
+
+  return { props: { oneWay, roundTrip, headingOne, paragraph, trusted } };
 }

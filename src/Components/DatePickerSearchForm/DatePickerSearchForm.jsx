@@ -2,10 +2,10 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useTranslation } from "next-i18next";
+// import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import es from "date-fns/locale/es";
+// import es from "date-fns/locale/es";
 
 import styled from "./DatePickerSearchForm.module.css";
 
@@ -21,9 +21,9 @@ function DatePickerSearchForm({
   getPassenger,
   defaultValue
 }) {
-  const { t } = useTranslation("home");
+  // const { t } = useTranslation("home");
   const { locale } = useRouter();
-  registerLocale("es", es);
+  // registerLocale("es", es);
   return (
     <div className={styled.date}>
       <div className={styled.calender}>
@@ -85,7 +85,7 @@ function DatePickerSearchForm({
             showTimeSelectOnly
             showTimeSelect
             timeIntervals={10}
-            timeCaption={t("timeCaption")}
+            // timeCaption={t("timeCaption")}
             timeFormat="HH:mm"
             dateFormat="h:mm aa"
             // showTimeInput

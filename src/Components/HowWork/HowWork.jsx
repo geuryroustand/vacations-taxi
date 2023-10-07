@@ -1,12 +1,12 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Image from "next/image";
-import { useTranslation } from "next-i18next";
+// import { useTranslation } from "next-i18next";
 
 import styled from "./HowWork.module.css";
 
 const HowWork = () => {
-  const { t } = useTranslation("howWork");
+  // const { t } = useTranslation("howWork");
   return (
     <section className={styled.howWork} id="how-we-work">
       <h2>How Does It Work?</h2>

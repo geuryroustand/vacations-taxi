@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import { useMediaQuery } from "react-responsive";
 import debounce from "lodash/debounce";
 import format from "date-fns/format";
-import { useTranslation } from "next-i18next";
+// import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import styled from "./SearchForm.module.css";
 import SearchOptions from "../SearchOptions/SearchOptions";
@@ -30,7 +30,7 @@ const DynamicDatePickerSearchForm = dynamic(
 );
 
 const SearchForm = ({ isClicked }) => {
-  const { t } = useTranslation("home");
+  // const { t } = useTranslation("home");
 
   const isDesktopOrLaptopOrTable =
     typeof window !== "undefined"

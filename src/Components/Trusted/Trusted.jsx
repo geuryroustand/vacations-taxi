@@ -1,48 +1,48 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
-import { useTranslation } from "next-i18next";
+// import { useTranslation } from "next-i18next";
 
 import { Why } from "./Why";
 import styled from "./Trusted.module.css";
 
-const Trusted = ({ altAirPlane, altCreditCart, altPayment }) => {
-  const { t } = useTranslation("home");
+const Trusted = ({ altAirPlane, altCreditCart, altPayment, trusted }) => {
+  // const { t } = useTranslation("home");
 
-  const [whyInfo] = useState([
-    {
-      svgName: "airplane.svg",
-      alt: altAirPlane,
-      width: "32px",
-      height: "32px",
-      title: t("trustedTitle1"),
-      paragraph: t("trustedParagraph1"),
-      className: "first"
-    },
+  // const [whyInfo] = useState([
+  //   {
+  //     svgName: "airplane.svg",
+  //     alt: altAirPlane,
+  //     width: 32,
+  //     height: 32,
+  //     title: t("trustedTitle1"),
+  //     paragraph: t("trustedParagraph1"),
+  //     className: "first"
+  //   },
 
-    {
-      svgName: "credit-card.svg",
-      alt: altCreditCart,
-      width: "32px",
-      height: "32px",
-      title: t("trustedTitle2"),
-      paragraph: t("trustedParagraph2"),
-      className: "second"
-    },
-    {
-      svgName: "payment.svg",
-      alt: altPayment,
-      width: "32px",
-      height: "32px",
-      title: t("trustedTitle3"),
-      paragraph: t("trustedParagraph3"),
-      className: "third"
-    }
-  ]);
+  //   {
+  //     svgName: "credit-card.svg",
+  //     alt: altCreditCart,
+  //     width: 32,
+  //     height: 32,
+  //     title: t("trustedTitle2"),
+  //     paragraph: t("trustedParagraph2"),
+  //     className: "second"
+  //   },
+  //   {
+  //     svgName: "payment.svg",
+  //     alt: altPayment,
+  //     width: 32,
+  //     height: 32,
+  //     title: t("trustedTitle3"),
+  //     paragraph: t("trustedParagraph3"),
+  //     className: "third"
+  //   }
+  // ]);
   return (
     <section className={styled.trusted}>
       <Container className={styled.content}>
-        {whyInfo.map((why) => (
-          <Why key={why.title} {...why} />
+        {trusted.map((why) => (
+          <Why key={why.id} {...why} />
         ))}
 
         {/* <Why
