@@ -1,5 +1,6 @@
 .articleContainer {
   padding-top: 5rem;
+  min-height: 100%;
 }
 
 .articleContainer article {
@@ -7,8 +8,12 @@
   margin: 0 auto;
 }
 
+.faqs h2 {
+  font-size: 1.3rem;
+}
+
 .articleHeading {
-  font-size: 2rem;
+  font-size: 1.3rem;
   text-align: center;
   padding-bottom: 2rem;
 }

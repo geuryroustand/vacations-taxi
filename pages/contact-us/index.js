@@ -1,4 +1,3 @@
-import React, { Suspense } from "react";
 import Container from "react-bootstrap/Container";
 
 import { useTranslation } from "next-i18next";
@@ -11,7 +10,7 @@ import styled from "./contactUs.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
 const DynamicContactForm = dynamic(() => import("../../src/Components/contactForm/ContactForm"), {
-  suspense: true
+  loading: () => <FallBackLoading />
 });
 
 function contactUs() {
@@ -21,9 +20,7 @@ function contactUs() {
       <MyHead title={t("pageTitle")} noIndex />
 
       <Container className={styled.contactFormWrapper}>
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicContactForm />
-        </Suspense>
+        <DynamicContactForm />
       </Container>
       <p className={styled.formBgTop} />
     </div>

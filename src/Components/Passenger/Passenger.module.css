@@ -1,5 +1,6 @@
 .form {
   margin-top: 1rem;
+  min-height: min-content;
 }
 
 .passenger {

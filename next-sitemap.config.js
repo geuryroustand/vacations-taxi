@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 // eslint-disable-next-line unicorn/prefer-module
 module.exports = {
-  siteUrl: "https://www.vacationstaxis.com",
+  siteUrl: "https://www.vacationstaxis.com/",
   generateRobotsTxt: true,
   exclude: [
     "/booking-details",
@@ -10,7 +10,9 @@ module.exports = {
     "/contact-us",
     "/privacy-notice",
     "/about-us",
-    "/404"
+    "/404",
+    "/blogs",
+    "/booking-confirmation"
   ],
   robotsTxtOptions: {
     policies: [
@@ -21,6 +23,9 @@ module.exports = {
       { userAgent: "*", disallow: "/privacy-notice" },
       { userAgent: "*", disallow: "/about-us" },
       { userAgent: "*", disallow: "/404" },
+      { userAgent: "*", disallow: "/blogs" },
+      { userAgent: "*", disallow: "/booking-confirmation" },
+      { userAgent: "*", allow: "/blogs/" },
       { userAgent: "*", allow: "/" }
     ]
   }

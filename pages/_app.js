@@ -7,8 +7,8 @@ import "../styles/globals.css";
 
 import ReactDOM from "react-dom";
 import React from "react";
-import SSRProvider from "react-bootstrap/SSRProvider";
-import { appWithTranslation } from "next-i18next";
+// import SSRProvider from "react-bootstrap/SSRProvider";
+import Script from "next/script";
 
 import { Provider } from "react-redux";
 import Head from "next/head";
@@ -19,25 +19,35 @@ import Head from "next/head";
 import Layout from "../src/Components/Layout/Layout";
 
 import store from "../src/redux/store";
+import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider store={store}>
-      <SSRProvider>
+    <>
+      <Script
+        strategy="lazyOnload"
+        id="organization-jsonLD"
+        type="application/ld+json"
+        key="organization-jsonLD"
+        dangerouslySetInnerHTML={addOrganizationJsonLd()}
+      />
+
+      <Provider store={store}>
+        {/* <SSRProvider> */}
         {/* <PersistGate loading="Loading" persistor={persistor}> */}
         <Layout>
           <Head>
-            <title>Airport Transfers and Taxi Services all over Dominican Republic</title>
+            <title>Book A Taxi Online | Airport Transportation</title>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta
               name="description"
-              content="VacationsTaxis- Offers Safe and Affordably Private Airport Taxi Service & Transfers from SDQ Santo Domingo Airport transfers, PUJ Punta Cana Airport Transfers, POP Puerto Plata Airport Transfers, LRM La Romana Airports Transfers, AZS Samana Aiport Transfer, STI Santiago Airport Transfers to all hotels all over the Dominican Republic."
+              content="Book a taxi online for easy airport transfers to/from your accommodation. Various taxi transportation services. Tried & trusted. Flight tracking. 24/7 support."
             />
             <meta
               name="keywords"
-              content="Dominican Airport Transfers Services,PUJ Punta cana Airport Transfer,AZS Samana Airport Transfers,SDQ Santo Domingo Airport Transfers, POP Puerto Plata Airport Transfers, STI Santiago Airport Transfer"
+              content="VacationsTaxis, Vacations Taxis, Vacations Taxis Dominican Republic, book a taxi,book taxi online, taxi transportation,online cab booking,book airport taxi, taxi ride to airport,online taxi service,cab ride to airport,taxi transportation near me,taxi transportation services,airport car service,airport transportation near me , airport transportation services,airport ride service,airport transfer service, private airport transfer service,best private airport transfer "
             />
-
+            <link rel="canonical" href="https://www.vacationstaxis.com/" key="canonical" />
             <meta name="robots" content="index, follow" />
             <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
             <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
@@ -47,11 +57,22 @@ function MyApp({ Component, pageProps }) {
             <meta name="msapplication-TileColor" content="#da532c" />
             <meta name="theme-color" content="#ffffff" />
           </Head>
+          {/* <!-- TRUENDO Privacy Center --> */}
+          {/* <Script
+              strategy="lazyOnload"
+              id="truendoAutoBlock"
+              // type="text/partytown"
+              type="text/javascript"
+              src="https://cdn.priv.center/pc/truendo_cmp.pid.js"
+              data-siteid="9c95c2f3-c18c-49ce-b8dd-1e5c04cb32b2"
+            /> */}
+          {/* <!-- End TRUENDO Privacy Center --> */}
           <Component {...pageProps} />
         </Layout>
         {/* </PersistGate> */}
-      </SSRProvider>
-    </Provider>
+        {/* </SSRProvider> */}
+      </Provider>
+    </>
   );
 }
 

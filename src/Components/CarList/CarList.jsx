@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, Suspense } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
@@ -8,8 +8,13 @@ import FallBackLoading from "../Loading/FallBackLoading";
 import styled from "./CarList.module.css";
 
 const DynamicCar = dynamic(() => import("../Car/Car"), {
-  suspense: true
+  ssr: false,
+  loading: () => <FallBackLoading />
 });
+
+const applyTenPercentDiscount = (price) => {
+  return price - price * 0.1; // 10% discount
+};
 
 const CarList = () => {
   const dispatch = useDispatch();
@@ -22,7 +27,7 @@ const CarList = () => {
   const [cartList, setCartList] = useState([
     {
       id: "cart1",
-      price: priceTaxi1,
+      originalPrice: priceTaxi1,
       passengers: 4,
       suitcases: 4,
       image: "standard.webp",
@@ -30,7 +35,7 @@ const CarList = () => {
     },
     {
       id: "cart2",
-      price: priceTaxi2,
+      originalPrice: priceTaxi2,
       passengers: 6,
       suitcases: 6,
       image: "minivan6.jpg",
@@ -38,7 +43,7 @@ const CarList = () => {
     },
     {
       id: "cart3",
-      price: priceTaxi3,
+      originalPrice: priceTaxi3,
       passengers: 8,
       suitcases: 8,
       image: "minivan8.png",
@@ -46,7 +51,7 @@ const CarList = () => {
     },
     {
       id: "cart4",
-      price: priceTaxi4,
+      originalPrice: priceTaxi4,
       passengers: 16,
       suitcases: 16,
       image: "minivan16.jpg",
@@ -55,10 +60,12 @@ const CarList = () => {
   ]);
 
   useEffect(() => {
+    dispatch(updateTotalPrice({ totalPrice: applyTenPercentDiscount(priceTaxi1) }));
     setCartList([
       {
         id: "cart1",
-        price: priceTaxi1,
+        originalPrice: priceTaxi1,
+        discountPrice: applyTenPercentDiscount(priceTaxi1),
         passengers: 4,
         suitcases: 4,
         image: "standard.webp",
@@ -66,7 +73,8 @@ const CarList = () => {
       },
       {
         id: "cart2",
-        price: priceTaxi2,
+        originalPrice: priceTaxi2,
+        discountPrice: applyTenPercentDiscount(priceTaxi2),
         passengers: 6,
         suitcases: 6,
         image: "minivan6.jpg",
@@ -74,7 +82,8 @@ const CarList = () => {
       },
       {
         id: "cart3",
-        price: priceTaxi3,
+        originalPrice: priceTaxi3,
+        discountPrice: applyTenPercentDiscount(priceTaxi3),
         passengers: 8,
         suitcases: 8,
         image: "minivan8.png",
@@ -82,7 +91,8 @@ const CarList = () => {
       },
       {
         id: "cart4",
-        price: priceTaxi4,
+        originalPrice: priceTaxi4,
+        discountPrice: applyTenPercentDiscount(priceTaxi4),
         passengers: 16,
         suitcases: 16,
         image: "minivan16.jpg",
@@ -92,8 +102,6 @@ const CarList = () => {
   }, [priceTaxi1, priceTaxi2, priceTaxi3, priceTaxi4]);
 
   const wrapperReference = useRef(null);
-
-  // dispatch(updateTotalPrice({ totalPrice: priceTaxi1 }));
   const cartSelected = (index, price) => {
     dispatch(updateTotalPrice({ totalPrice: price }));
     setTaxiSelected(index);
@@ -123,20 +131,20 @@ const CarList = () => {
 
       <div className={styled.cartWrapper} ref={wrapperReference}>
         {cartList.map((cart, index) => (
-          <Suspense key={cart.id} fallback={<FallBackLoading />}>
-            <DynamicCar
-              id={cart.id}
-              cartSelected={() => cartSelected(index, cart.price)}
-              totalPassengers={cart.passengers}
-              totalSuitCases={cart.suitcases}
-              cartTypeImage={cart.image}
-              totalPrice={cart.price}
-              oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
-              selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
-              selectedTextClassName={index === taxiSelected ?? taxiSelected}
-              selectedTaxiClassName={index === taxiSelected ? "selectedCart" : ""}
-            />
-          </Suspense>
+          <DynamicCar
+            key={cart.id}
+            id={cart.id}
+            cartSelected={() => cartSelected(index, cart.discountPrice)}
+            totalPassengers={cart.passengers}
+            totalSuitCases={cart.suitcases}
+            cartTypeImage={cart.image}
+            originalPrice={cart.originalPrice}
+            discountPrice={cart.discountPrice}
+            oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
+            selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
+            selectedTextClassName={index === taxiSelected ?? taxiSelected}
+            selectedTaxiClassName={index === taxiSelected ? "selectedCart" : ""}
+          />
         ))}
       </div>
 

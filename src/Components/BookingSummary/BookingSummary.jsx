@@ -7,8 +7,7 @@ import { HydrationProvider, Client } from "react-hydration-provider";
 import styled from "./BookingSummary.module.css";
 
 const BookingSummary = ({ bookingDetailsWith }) => {
-  const { flightInfoReducer } = useSelector((state) => state) || {};
-
+  const flightInfoReducer = useSelector((state) => state.flightInfoReducer || {});
   const { totalPrice, flightInfo, bookingInfo } = flightInfoReducer;
 
   const {
@@ -19,7 +18,6 @@ const BookingSummary = ({ bookingDetailsWith }) => {
     dropOffDate,
     dropOffTime,
     pickUpPassenger,
-    priceTaxi1,
     roundtrip
   } = flightInfo || {};
 
@@ -34,7 +32,6 @@ const BookingSummary = ({ bookingDetailsWith }) => {
           <h2 className={styled.headingBorder}>{dropOff}</h2> <p>Arrival Trip</p>
           <div className={styled.headingBorder}>
             <h2>{pickUpDate}</h2>
-
             <h2>At {pickUpTime}</h2>
           </div>
           {roundtrip && (
@@ -61,7 +58,7 @@ const BookingSummary = ({ bookingDetailsWith }) => {
           <p>Passengers</p>
           <h2>{pickUpPassenger}</h2>
           <p>Total Price</p>
-          <h2>$ {totalPrice || +priceTaxi1}</h2>
+          <h2>${totalPrice}</h2>
         </section>
       </Client>
     </HydrationProvider>

@@ -13,23 +13,29 @@ const Footer = () => {
       <Container>
         <ul className={styled.footerUl}>
           <li className={styled.footerList}>
-            <h3 className={styled.heading}>{t("heading1")}</h3>
-            <Link href={t("link1")}>{t("link1Text")}</Link>
-            <Link href={t("link2")}>{t("link2Text")}</Link>
-            <Link href={t("link3")}>{t("link3Text")}</Link>
-            <Link href={t("link4")}>{t("link4Text")}</Link>
-            <Link href={t("link5")}>{t("link5Text")}</Link>
-            <Link href={t("link6")}>{t("link6Text")}</Link>
-            <Link href={t("link7")}>{t("link7Text")}</Link>
+            <h3 className={styled.heading}>Top locations</h3>
+            <Link href="/punta-cana-airport-transfers">Punta Cana Airport (PUJ)</Link>
+            <Link href="/santo-domingo-airport-transfers">Santo Domingo Airport (SDQ)</Link>
+            <Link href="/puerto-plata-airport-transfers">Puerto Plata Airport (POP)</Link>
+            <Link href="/samana-el-catey-airport-transfers">Samana Airport (AZS) </Link>
+            <Link href="/la-romana-airport-transfer">La Romana Airport (LRM) </Link>
+            <Link href="/">Santiago Cibao Airport (STI) </Link>
+            <Link href="/la-isabela-airport-transfers-and-taxis">La Isabela Airport (JBQ)</Link>
 
-            <a href={t("link8")} rel="noreferrer" target="_blank" className="sr-only">
-              {t("link8Text")}
+            <a href="/transportation-from-punta-cana-airport" target="_blank" className="sr-only">
+              Transportation from Punta Cana Airport
             </a>
-            <a href={t("link9")} rel="noreferrer" target="_blank" className="sr-only">
-              {t("link9Text")}
+            <a href="/punta-cana-airport-transportation" target="_blank" className="sr-only">
+              Punta cana airport transportation
             </a>
-            <a href={t("link10")} rel="noreferrer" target="_blank" className="sr-only">
-              {t("link10Text")}
+            <a href="/best-punta-cana-airport-transfers" target="_blank" className="sr-only">
+              Best Punta Cana airport transfers
+            </a>
+            <a href="/dominican-republic-airport-transfers" target="_blank" className="sr-only">
+              Dominican Airport Transfers
+            </a>
+            <a href="/puerto-plata-airport-transportation" target="_blank" className="sr-only">
+              Puerto Plata Airport Transportation
             </a>
           </li>
 
@@ -40,11 +46,12 @@ const Footer = () => {
           </li> */}
 
           <li className={styled.footerList}>
-            <h3 className={styled.heading}>{t("heading2")}</h3>
-            <Link href={t("link11")}>{t("link11Text")}</Link>
-            <Link href={t("link12")}>{t("link12Text")}</Link>
-            <Link href={t("link13")}>{t("link13Text")}</Link>
-            <Link href={t("link14")}>{t("link14Text")}</Link>
+            <h3 className={styled.heading}>Company</h3>
+            <Link href="/about-us">About Us</Link>
+            <Link href="/contact-us">Help Center</Link>
+            <Link href="/privacy-notice"> Privacy Notice</Link>
+            <Link href="/terms-and-conditions">Terms and Conditions</Link>
+            <Link href="/blogs">Blogs</Link>
           </li>
         </ul>
 
@@ -92,7 +99,7 @@ const Footer = () => {
         </div>
 
         <p className={styled.copyright}>
-          {t("copyright")} &copy; vacationsTaxi.com&trade;. {t("rights")}
+          Copyright &copy; vacationsTaxi.com&trade;. All rights reserved.
         </p>
       </Container>
     </footer>

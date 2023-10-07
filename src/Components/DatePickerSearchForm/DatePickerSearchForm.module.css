@@ -99,7 +99,6 @@
 .passenger {
   display: flex;
   align-items: center;
-
   width: 48%;
   height: 2.81rem;
   background-color: var(--third-color);

@@ -2,58 +2,145 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Image from "next/image";
-import { useTranslation } from "next-i18next";
+import Link from "next/link";
 import styled from "./ContactForm.module.css";
 
 const ContactForm = () => {
   const [validated, setValidated] = useState(false);
-  const { t } = useTranslation("contactUs");
-  const submitInfo = (event) => {
+  const [infoSent, setInfoSent] = useState(false);
+
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    message: "",
+    name: ""
+  });
+  const [message, setMessage] = useState([]);
+
+  const submitInfo = async (event) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
+    if (!form.checkValidity() === false) {
+      try {
+        const PROD = process.env.NODE_ENV === "production";
+
+        const response = await fetch(
+          `${
+            PROD
+              ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/contact-us`
+              : `${process.env.NEXT_PUBLIC_API_DEV_URL}/contact-us`
+          }`,
+
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(inputValue)
+          }
+        );
+
+        if (!response.ok) {
+          const errors = await response.json();
+          setValidated(true);
+          throw errors;
+        }
+        setInfoSent(true);
+        setMessage([]);
+
+        // TODO no show the form after submit it
+      } catch (error) {
+        setMessage(...error.error);
+      }
     }
 
     setValidated(true);
   };
 
+  const getUserInputValue = (event) => {
+    setInputValue({
+      ...inputValue,
+      [event.target.name]: event.target.value
+    });
+  };
+
   return (
     <div className={styled.contact}>
-      <Form className={styled.form} noValidate validated={validated} onSubmit={submitInfo}>
-        <h1>{t("heading1")} </h1>
-        <h2>{t("heading2")}</h2>
-        <Form.Group className="mb-3" controlId="controlInputName">
-          <Form.Label>{t("name")}</Form.Label>
-          <Form.Control type="text" required placeholder={t("name")} />
-          <Form.Control.Feedback type="invalid">{t("nameFeedBack")}</Form.Control.Feedback>
-        </Form.Group>
+      {infoSent ? (
+        <div>
+          <p className={styled.message}>
+            Your message has been sent, we will contact you as soon as possible.
+          </p>
+          <Link href="/">Go back to home</Link>
+        </div>
+      ) : (
+        <Form className={styled.form} noValidate validated={validated} onSubmit={submitInfo}>
+          <h1>Get In Touch</h1>
+          <h2>We are here to help you! How can we help you?</h2>
+          <Form.Group className="mb-3" controlId="controlInputName">
+            <Form.Label>Enter your name</Form.Label>
+            <Form.Control
+              onChange={getUserInputValue}
+              value={inputValue.name}
+              name="name"
+              type="text"
+              required
+              placeholder="Enter your name"
+            />
+            <Form.Control.Feedback type="invalid">Please provide your name.</Form.Control.Feedback>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="controlInputEmail">
-          <Form.Label>{t("email")}</Form.Label>
-          <Form.Control type="email" placeholder={t("emailPlaceholder")} required />
-          <Form.Control.Feedback type="invalid">{t("emailFeedBack")}</Form.Control.Feedback>
-          <Form.Text className="text-muted">{t("emailShareText")}</Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="controlInputTexArea">
-          <Form.Label>{t("textareaLabel")}</Form.Label>
-          <Form.Control required as="textarea" rows={3} />
-          <Form.Control.Feedback type="invalid">{t("textareaFeedBack")}</Form.Control.Feedback>
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="controlInputEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              onChange={getUserInputValue}
+              name="email"
+              type="email"
+              value={inputValue.email}
+              placeholder="jhon@gmail.com"
+              required
+            />
+            {message.param === "email" ? (
+              <p className="invalid-feedbackShow">{message?.msg}</p>
+            ) : (
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid email.
+              </Form.Control.Feedback>
+            )}
+            <Form.Text className="text-muted">
+              We ll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="controlInputTexArea">
+            <Form.Label>Your message</Form.Label>
+            <Form.Control
+              onChange={getUserInputValue}
+              name="message"
+              required
+              value={inputValue.message}
+              as="textarea"
+              rows={3}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please provide your request.
+            </Form.Control.Feedback>
+          </Form.Group>
 
-        <Button className={styled.submitBtn} type="submit">
-          {t("buttonText")}
-        </Button>
-      </Form>
+          <Button className={styled.submitBtn} type="submit">
+            Submit
+          </Button>
+        </Form>
+      )}
 
       <div>
         <div className={styled.contactImg}>
-          <Image src="/images/contactForm.svg" width="345px" height="247px" alt="contact us" />
+          <Image src="/images/contactForm.svg" width="345" height="247" alt="contact us" />
         </div>
 
         <address>
           <div className={styled.address}>
-            <Image src="/images/locationContact.svg" width="30px" height="30px" alt="location" />
+            <Image src="/images/locationContact.svg" width="30" height="30" alt="location" />
             <p>
               Avenida La Marina Malecón, s/n; PO Box: 32000 – Santa Barbara de Samana – Samana
               Province - Dominican Republic
@@ -61,15 +148,19 @@ const ContactForm = () => {
           </div>
 
           <div className={styled.address}>
-            <Image src="/images/tel.svg" width="30px" height="30px" alt="location" />
+            <Image src="/images/tel.svg" width="30" height="30" alt="location" />
             <p>
-              <a href="tel:+809 864-1053">+1 (809) 864-1053 (DR)</a> <br />
-              <a href="tel:+2392055572">+1 (239) 205-5572 (USA)</a>
+              <a href="tel:+18094536714">+1 (809) 453-6714 (DR)</a> <br />
+              <a
+                href="tel:+13608607857
+">
+                +1 (360) 860-7857 (USA)
+              </a>
             </p>
           </div>
 
           <div className={styled.address}>
-            <Image src="/images/email.svg" width="30px" height="30px" alt="location" />
+            <Image src="/images/email.svg" width="30" height="30" alt="location" />
             <p>
               <a href="mailto:info@vacationstaxis.com">info@vacationstaxis.com</a> <br />
             </p>

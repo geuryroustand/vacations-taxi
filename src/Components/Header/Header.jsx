@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState } from "react";
 
 import dynamic from "next/dynamic";
 
@@ -8,26 +8,26 @@ import { useTranslation } from "next-i18next";
 
 import styled from "./Header.module.css";
 
-import SearchForm from "../SearchForm/SearchForm";
+// import SearchForm from "../SearchForm/SearchForm";
 
 import FallBackLoading from "../Loading/FallBackLoading";
 
-const DynamicHeading = dynamic(() => import("../Heading/Heading"), {
-  suspense: true
+const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"), {
+  loading: () => <FallBackLoading />
 });
-
-const Header = ({ heading1, heading2 }) => {
+const Header = ({ heading1, heading1Paragraph }) => {
   const [isClicked, setIsClicked] = useState(false);
   const { t } = useTranslation("home");
 
   return (
-    <header className={styled.hero}>
+    <div className={styled.hero}>
       <Container>
-        <Suspense fallback={<FallBackLoading />}>
-          <DynamicHeading style={styled["main-heading"]} headingText={heading1} />
-        </Suspense>
-
-        <h2 className={styled["sub-heading"]}>{heading2}</h2>
+        {heading1 && heading1Paragraph !== "" && (
+          <article>
+            <h1 className={styled.heading1}>{heading1}</h1>
+            <p className={styled.heading1Paragraph}>{heading1Paragraph} </p>
+          </article>
+        )}
 
         <Button
           onClick={() => setIsClicked(false)}
@@ -40,9 +40,9 @@ const Header = ({ heading1, heading2 }) => {
           {t("return")}
         </Button>
 
-        <SearchForm isClicked={isClicked} />
+        <DynamicSearchForm isClicked={isClicked} />
       </Container>
-    </header>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
-import DatePicker, { registerLocale } from "react-datepicker";
+import Form from "react-bootstrap/Form";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -18,8 +18,8 @@ function DatePickerSearchForm({
 
   pickUpAndDropTime,
   setPickUpAndDropTime,
-
-  getPassenger
+  getPassenger,
+  defaultValue
 }) {
   const { t } = useTranslation("home");
   const { locale } = useRouter();
@@ -27,7 +27,7 @@ function DatePickerSearchForm({
   return (
     <div className={styled.date}>
       <div className={styled.calender}>
-        <Image src="/images/calendar.svg" width="20px" height="20px" alt="calendar" />
+        <Image src="/images/calendar.svg" width="20" height="20" alt="calendar" />
         <label className="visually-hidden" htmlFor="date-picker">
           {labelPickDate}
         </label>
@@ -74,7 +74,7 @@ function DatePickerSearchForm({
 
       <div className={styled.passengerAndPickTime}>
         <div className={styled.pickTime}>
-          <Image src="/images/Clock.svg" width="20px" height="20px" alt="calendar" />
+          <Image src="/images/Clock.svg" width="20" height="20" alt="calendar" />
           <label className="visually-hidden" htmlFor="pickTime">
             {labelPickTime}
           </label>
@@ -112,15 +112,14 @@ function DatePickerSearchForm({
           />
         </div>
         <div className={styled.passenger}>
-          <Image src="/images/user.svg" width="20px" height="20px" alt="user" />
+          <Image src="/images/user.svg" width="25" height="25" alt="user" />
 
-          <label htmlFor="passenger">{t("passengers")}</label>
-          <select
-            name="passenger"
-            id="passenger"
+          <Form.Select
+            aria-label="Passengers"
+            defaultValue={defaultValue}
             className={styled["select-passenger"]}
-            required
             onChange={getPassenger}>
+            <option>Passengers</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -137,7 +136,7 @@ function DatePickerSearchForm({
             <option value="14">14</option>
             <option value="15">15</option>
             <option value="16">16</option>
-          </select>
+          </Form.Select>
         </div>
       </div>
     </div>

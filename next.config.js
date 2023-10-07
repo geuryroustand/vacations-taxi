@@ -11,25 +11,12 @@ module.exports = {
         protocol: "https",
         hostname: "**.tripadvisor.com"
       }
-    ]
-  },
-  i18n,
-  reloadOnPrerender: process.env.NODE_ENV === "development",
-  async rewrites() {
-    return [
-      {
-        source: "/es/quienes-somos",
-        destination: "/about-us",
-        locale: false
-      },
-      {
-        source: "/es/contacte-con-nosotros",
-        destination: "/contact-us",
-        locale: false
-      }
-    ];
+    ],
+    formats: ["image/avif", "image/webp"]
   }
 };
+
+module.exports = nextConfig;
 
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({
 //   enabled: process.env.ANALYZE === "true",
