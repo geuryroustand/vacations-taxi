@@ -5,73 +5,13 @@ import Container from "react-bootstrap/Container";
 import { Why } from "./Why";
 import styled from "./Trusted.module.css";
 
-const Trusted = ({ altAirPlane, altCreditCart, altPayment, trusted }) => {
-  // const { t } = useTranslation("home");
-
-  // const [whyInfo] = useState([
-  //   {
-  //     svgName: "airplane.svg",
-  //     alt: altAirPlane,
-  //     width: 32,
-  //     height: 32,
-  //     title: t("trustedTitle1"),
-  //     paragraph: t("trustedParagraph1"),
-  //     className: "first"
-  //   },
-
-  //   {
-  //     svgName: "credit-card.svg",
-  //     alt: altCreditCart,
-  //     width: 32,
-  //     height: 32,
-  //     title: t("trustedTitle2"),
-  //     paragraph: t("trustedParagraph2"),
-  //     className: "second"
-  //   },
-  //   {
-  //     svgName: "payment.svg",
-  //     alt: altPayment,
-  //     width: 32,
-  //     height: 32,
-  //     title: t("trustedTitle3"),
-  //     paragraph: t("trustedParagraph3"),
-  //     className: "third"
-  //   }
-  // ]);
+const Trusted = ({ trusted }) => {
   return (
     <section className={styled.trusted}>
       <Container className={styled.content}>
-        {trusted.map((why) => (
+        {trusted?.map((why) => (
           <Why key={why.id} {...why} />
         ))}
-
-        {/* <Why
-          svgName="airplane.svg"
-          alt={altAirPlane ?? "Airplane"}
-          width="32"
-          height="32"
-          title="Flight Tracking"
-          paragraph="Your driver tracks your flight and waits for you if its delayed"
-          className="first"
-        />
-        <Why
-          svgName="credit-card.svg"
-          alt={altCreditCart ?? "credit card"}
-          width="32"
-          height="32"
-          title="One Clear Price"
-          paragraph="Your price is confirmed upfront – no extra costs, no cash required"
-          className="second"
-        />
-        <Why
-          svgName="payment.svg"
-          alt={altPayment ?? "Payment"}
-          width="32"
-          height="32"
-          title="Tried & Trusted"
-          paragraph="We work with professional drivers and have 24/7 customer care"
-          className="third"
-        /> */}
       </Container>
     </section>
   );
