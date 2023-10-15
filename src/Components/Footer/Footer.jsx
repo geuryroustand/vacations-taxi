@@ -8,6 +8,7 @@ import styled from "./Footer.module.css";
 
 const Footer = () => {
   const { t } = useTranslation("footer");
+  // TODO need to add the santiago airport content
   return (
     <footer className={styled.footer}>
       <Container>

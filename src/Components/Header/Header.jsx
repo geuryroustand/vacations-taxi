@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import { useTranslation } from "next-i18next";
+// import { useTranslation } from "next-i18next";
 
 import styled from "./Header.module.css";
 

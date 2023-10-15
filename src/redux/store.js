@@ -1,56 +1,23 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
-import {
-  persistReducer,
-  persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER
-} from "reduxjs-toolkit-persist";
-import storage from "reduxjs-toolkit-persist/lib/storage";
-
 import flightInfoReducer from "./flightInfoSlice";
-
-const persistConfig = {
-  key: "root",
-  storage
-};
+import { fetchApiSlice } from "./fetchApiSlice";
 
 const reducers = combineReducers({
-  flightInfoReducer
+  flightInfoReducer,
+  [fetchApiSlice.reducerPath]: fetchApiSlice.reducer
 });
-
-const persistedReducer = persistReducer(persistConfig, reducers);
 
 const middleware =
   process.env.NODE_ENV === "development"
-    ? (getDefaultMiddleware) => [
-        ...getDefaultMiddleware({
-          serializableCheck: {
-            /* ignore persistance actions */
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-          }
-        }),
-        logger
-      ]
-    : (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-          serializableCheck: {
-            /* ignore persistance actions */
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-          }
-        });
+    ? (getDefaultMiddleware) => [...getDefaultMiddleware(), logger, fetchApiSlice.middleware]
+    : (getDefaultMiddleware) => getDefaultMiddleware();
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: reducers,
   devTools: process.env.NODE_ENV !== "production",
   middleware
 });
 
 export default store;
-
-export const persistor = persistStore(store);

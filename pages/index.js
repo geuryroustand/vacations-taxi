@@ -6,6 +6,7 @@ import Head from "next/head";
 // import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
+
 // import { useEffect } from "react";
 
 // import { persistor } from "../src/redux/store";
@@ -30,7 +31,15 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
   loading: () => <FallBackLoading />
 });
 
-export default function Home({ oneWay, roundTrip, headingOne, paragraph, trusted }) {
+export default function Home({
+  oneWay,
+  roundTrip,
+  headingOne,
+  paragraph,
+  trusted,
+  howItWorkHeading,
+  howItWork
+}) {
   // const { t } = useTranslation();
   // persistor.purge();
 
@@ -106,14 +115,9 @@ export default function Home({ oneWay, roundTrip, headingOne, paragraph, trusted
         roundTrip={roundTrip}
       />
 
-      <DynamicTrusted
-        altAirPlane="Dominican Airport Transfers Services"
-        altCreditCart="PUJ Punta cana Airport Transfer"
-        altPayment="SDQ Santo Domingo Airport Transfers"
-        trusted={trusted}
-      />
+      <DynamicTrusted trusted={trusted} />
 
-      <DynamicHowWork />
+      <DynamicHowWork howItWorkHeading={howItWorkHeading} howItWork={howItWork} />
       <DynamicAwards />
       <DynamicFaq />
     </>
@@ -127,7 +131,10 @@ export async function getStaticProps({ locale }) {
   }
   const seoLocations = await response.json();
 
-  const { oneWay, roundTrip, headingOne, paragraph, trusted } = seoLocations.data.attributes;
+  const { oneWay, roundTrip, headingOne, paragraph, trusted, howItWorkHeading, howItWork } =
+    seoLocations.data.attributes;
 
-  return { props: { oneWay, roundTrip, headingOne, paragraph, trusted } };
+  return {
+    props: { oneWay, roundTrip, headingOne, paragraph, trusted, howItWorkHeading, howItWork }
+  };
 }
