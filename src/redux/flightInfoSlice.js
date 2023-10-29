@@ -1,13 +1,14 @@
+/* eslint-disable unicorn/no-null */
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  totalPrice: undefined,
-  cartSelectedText: undefined,
-  flightInfo: undefined,
-  bookingInfo: undefined,
-  paymentMethod: undefined,
-  agreedTermsAndConditions: undefined
+  totalPrice: null,
+  cartSelectedText: null,
+  flightInfo: null,
+  bookingInfo: null,
+  paymentMethod: null,
+  agreedTermsAndConditions: null
 };
 
 const flightInfoSlice = createSlice({

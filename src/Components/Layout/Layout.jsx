@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
+
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+
 import FallBackLoading from "../Loading/FallBackLoading";
-import { useGetTranslationQuery } from "../../redux/fetchApiSlice";
 
 const DynamicFooter = dynamic(() => import("../Footer/Footer"), {
   loading: () => <FallBackLoading />
@@ -10,15 +13,33 @@ const DynamicNavigation = dynamic(() => import("../Navigation/Navigation"), {
 });
 
 const Layout = ({ children }) => {
-  const { data } = useGetTranslationQuery();
+  const { locale } = useRouter();
+  const queryKey = `getTranslation("${locale}")`;
 
-  console.log(data);
+  const { Company, Footer, topLocations, TopLocations, company, helpCenter, blogs } = useSelector(
+    (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
+  );
 
   return (
     <>
-      <DynamicNavigation />
+      <DynamicNavigation
+        helpCenter={helpCenter}
+        blogs={blogs}
+        companyHeading={company}
+        topLocationHeading={topLocations}
+        topLocations={TopLocations}
+        company={Company}
+      />
       <main className="main">{children}</main>
-      <DynamicFooter />
+      <DynamicFooter
+        footer={Footer}
+        companyHeading={company}
+        company={Company}
+        topLocationHeading={topLocations}
+        topLocations={TopLocations}
+        helpCenter={helpCenter}
+        blogs={blogs}
+      />
     </>
   );
 };

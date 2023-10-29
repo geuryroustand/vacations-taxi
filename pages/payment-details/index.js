@@ -23,7 +23,7 @@ const DynamicBookingSummary = dynamic(
     loading: () => <FallBackLoading />
   }
 );
-// TODO remove the local storage
+// TODO remove the local storage and disable the navigation and payment
 const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Payment"), {
   loading: () => <FallBackLoading />
 });

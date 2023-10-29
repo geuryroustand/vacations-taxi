@@ -1,22 +1,30 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-// import { useTranslation } from "next-i18next";
 
 import styled from "./Header.module.css";
-
-// import SearchForm from "../SearchForm/SearchForm";
 
 import FallBackLoading from "../Loading/FallBackLoading";
 
 const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"), {
   loading: () => <FallBackLoading />
 });
-const Header = ({ heading1, heading1Paragraph, oneWay, roundTrip }) => {
+const Header = ({ heading1, heading1Paragraph }) => {
   const [isClicked, setIsClicked] = useState(false);
+
+  const { locale } = useRouter();
+  const queryKey = `getTranslation("${locale}")`;
+
+  const { oneWayAndRoundTrip, bookingSearch } = useSelector(
+    (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
+  );
+
+  const { oneWay, return: roundTrip } = oneWayAndRoundTrip;
 
   return (
     <div className={styled.hero}>
@@ -39,7 +47,7 @@ const Header = ({ heading1, heading1Paragraph, oneWay, roundTrip }) => {
           {roundTrip}
         </Button>
 
-        <DynamicSearchForm isClicked={isClicked} />
+        <DynamicSearchForm bookingSearch={bookingSearch} isClicked={isClicked} />
       </Container>
     </div>
   );

@@ -6,6 +6,8 @@ import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 import styled from "./locationsName.module.css";
 
 import MyHead from "../src/Components/MyHead/MyHead";
+import { getTranslation } from "../src/redux/fetchApiSlice";
+import store from "../src/redux/store";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
@@ -14,10 +16,6 @@ const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
 const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"), {
   loading: () => <FallBackLoading />
 });
-
-// const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
-//   suspense: true
-// });
 
 function PagesForSEO({ locationFound }) {
   const { article1, article2, desc, heading1, keywords, title } = locationFound;
@@ -52,36 +50,8 @@ function PagesForSEO({ locationFound }) {
           <p>{article2.paragraph}.</p>
         </article>
       </Container>
-      {/* <DynamicAwards /> */}
     </>
   );
-}
-
-export async function getStaticProps({ params }) {
-  const PROD = process.env.NODE_ENV === "production";
-  const response = await fetch(
-    `${
-      PROD
-        ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/seoLocations`
-        : `${process.env.NEXT_PUBLIC_API_DEV_URL}/seoLocations`
-    }`
-  );
-  const seoLocations = await response.json();
-
-  const locationFound = seoLocations.find(
-    (location) => location.heading1.replaceAll(" ", "-").toLowerCase() === params.locationName
-  );
-
-  // if (!locationFound) {
-  //   return {
-  //     notFound: true
-  //   };
-  // }
-
-  return {
-    props: { locationFound },
-    revalidate: 10
-  };
 }
 
 // Pre generated paths
@@ -120,5 +90,41 @@ export async function getStaticPaths() {
     // fallback: true
   };
 }
+
+const fetchTranslationData = async (dispatch, locale) => {
+  await dispatch(getTranslation.initiate(locale));
+};
+
+export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale, params }) => {
+  // storeValue.dispatch(getTranslation.initiate("en"));
+  const { dispatch } = storeValue;
+  if (locale) {
+    await fetchTranslationData(dispatch, locale);
+  }
+  const PROD = process.env.NODE_ENV === "production";
+  const response = await fetch(
+    `${
+      PROD
+        ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/seoLocations`
+        : `${process.env.NEXT_PUBLIC_API_DEV_URL}/seoLocations`
+    }`
+  );
+  const seoLocations = await response.json();
+
+  const locationFound = seoLocations.find(
+    (location) => location.heading1.replaceAll(" ", "-").toLowerCase() === params.locationName
+  );
+
+  // if (!locationFound) {
+  //   return {
+  //     notFound: true
+  //   };
+  // }
+
+  return {
+    props: { locationFound },
+    revalidate: 10
+  };
+});
 
 export default PagesForSEO;

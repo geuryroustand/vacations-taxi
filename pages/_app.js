@@ -20,10 +20,12 @@ import { appWithTranslation } from "next-i18next";
 
 import Layout from "../src/Components/Layout/Layout";
 
-import store from "../src/redux/store";
+import wrapper from "../src/redux/store";
 import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, ...rest }) {
+  const { store, props } = wrapper.useWrappedStore(rest);
+
   return (
     <>
       <Script
@@ -69,7 +71,7 @@ function MyApp({ Component, pageProps }) {
               data-siteid="9c95c2f3-c18c-49ce-b8dd-1e5c04cb32b2"
             /> */}
           {/* <!-- End TRUENDO Privacy Center --> */}
-          <Component {...pageProps} />
+          <Component {...props.pageProps} />
         </Layout>
         {/* </PersistGate> */}
         {/* </SSRProvider> */}

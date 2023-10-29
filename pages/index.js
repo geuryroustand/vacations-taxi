@@ -2,14 +2,9 @@ import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 
-// import { useTranslation } from "next-i18next";
-// import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
-
-// import { useEffect } from "react";
-
-// import { persistor } from "../src/redux/store";
+import store from "../src/redux/store";
+import { getTranslation } from "../src/redux/fetchApiSlice";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
@@ -40,9 +35,6 @@ export default function Home({
   howItWorkHeading,
   howItWork
 }) {
-  // const { t } = useTranslation();
-  // persistor.purge();
-
   return (
     <>
       <Head>
@@ -124,11 +116,22 @@ export default function Home({
   );
 }
 
-export async function getStaticProps({ locale }) {
+const fetchTranslationData = async (dispatch, locale) => {
+  await dispatch(getTranslation.initiate(locale));
+};
+
+export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
+  // storeValue.dispatch(getTranslation.initiate("en"));
+  const { dispatch } = storeValue;
+  if (locale) {
+    await fetchTranslationData(dispatch, locale);
+  }
+
   const response = await fetch(`http://0.0.0.0:1337/api/home-page?populate=*&locale=${locale}`);
   if (!response.ok) {
     throw new Error(`Fetch failed with status ${response.status}`);
   }
+
   const seoLocations = await response.json();
 
   const { oneWay, roundTrip, headingOne, paragraph, trusted, howItWorkHeading, howItWork } =
@@ -137,4 +140,4 @@ export async function getStaticProps({ locale }) {
   return {
     props: { oneWay, roundTrip, headingOne, paragraph, trusted, howItWorkHeading, howItWork }
   };
-}
+});
