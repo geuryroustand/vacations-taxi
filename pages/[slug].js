@@ -100,7 +100,7 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ loca
       `${
         PROD
           ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/seoLocations`
-          : `http://0.0.0.0:1337/api/seo-locations?locale=${localeParameters}&filters[slug][$eq]=${slug}`
+          : `http://0.0.0.0:1337/api/seo-locations?locale=${localeParameters}&filters[slug][$eq]=${slug}&populate[seo][populate]=all`
       }`
     );
 
