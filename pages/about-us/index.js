@@ -1,28 +1,42 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import MyHead from "../../src/Components/MyHead/MyHead";
 
-export default function aboutUs() {
-  const { t } = useTranslation("aboutUs");
+import Markdown from "react-markdown";
+import MyHead from "../../src/Components/MyHead/MyHead";
+import store from "../../src/redux/store";
+import { getTranslation } from "../../src/redux/fetchApiSlice";
+
+export default function aboutUs({ data }) {
+  const { attributes } = data;
   return (
     <Container className="mt-5">
-      <MyHead title={t("pageTitle")} noIndex />
-
-      <h1>{t("heading")}</h1>
-      <p>{t("paragraph1")}</p>
-      <p>{t("paragraph2")}</p>
-      <p>{t("paragraph3")}</p>
-      <p>{t("paragraph4")}</p>
+      <MyHead title={attributes.pageTitle} noIndex />
+      <Markdown>{attributes.content}</Markdown>
     </Container>
   );
 }
 
-export async function getStaticProps({ locale }) {
+const fetchTranslationData = async (dispatch, locale) => {
+  await dispatch(getTranslation.initiate(locale));
+};
+
+export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
+  const { dispatch } = storeValue;
+  if (locale) {
+    await fetchTranslationData(dispatch, locale);
+  }
+
+  const response = await fetch(`http://0.0.0.0:1337/api/about-us?locale=${locale}`);
+  if (!response.ok) {
+    throw new Error(`Fetch failed with status ${response.status}`);
+  }
+
+  const aboutUsData = await response.json();
+
+  const { data } = aboutUsData;
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["footer", "aboutUs"]))
+      data
     }
   };
-}
+});

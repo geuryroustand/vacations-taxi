@@ -8,6 +8,8 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 
 import styled from "./contactUs.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
+import { getTranslation } from "../../src/redux/fetchApiSlice";
+import store from "../../src/redux/store";
 
 const DynamicContactForm = dynamic(() => import("../../src/Components/contactForm/ContactForm"), {
   loading: () => <FallBackLoading />
@@ -29,10 +31,20 @@ function contactUs() {
 
 export default contactUs;
 
-export async function getStaticProps({ locale }) {
+const fetchTranslationData = async (dispatch, locale) => {
+  await dispatch(getTranslation.initiate(locale));
+};
+
+export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
+  // storeValue.dispatch(getTranslation.initiate("en"));
+  const { dispatch } = storeValue;
+  if (locale) {
+    await fetchTranslationData(dispatch, locale);
+  }
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ["footer", "contactUs"]))
     }
   };
-}
+});

@@ -24,15 +24,21 @@ export const fetchApiSlice = createApi({
       query: (locale) => ({
         url: `common-content?locale=${locale}&populate[TopLocations][populate]=&populate[Company][populate]=&populate[Footer][populate]=*&populate[helpCenter][populate]=&populate[blogs][populate]=&populate[bookingSearch][populate]=&populate[faq][populate]&populate[oneWayAndRoundTrip][populate]=&populate[award][populate]`,
         method: "GET"
+      }),
+      keepUnusedDataFor: Number.POSITIVE_INFINITY
+    }),
+    getContent: builder.query({
+      query: (locale) => ({
+        url: `about-us?locale=${locale}`,
+        method: "GET"
       })
-      // keepUnusedDataFor: Number.POSITIVE_INFINITY
     })
   })
 });
 
 // Export hooks for usage in functional components
 
-export const { useGetTranslationQuery, endpoints } = fetchApiSlice;
+export const { useGetTranslationQuery, useGetContentQuery, endpoints } = fetchApiSlice;
 
 // export endpoints for use in SSR
-export const { getTranslation } = endpoints;
+export const { getTranslation, getContent } = endpoints;

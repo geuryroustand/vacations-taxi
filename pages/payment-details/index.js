@@ -14,8 +14,10 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import Loading from "../../src/Components/Loading/Loading";
 import styled from "./paymentDetails.module.css";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
-import { persistor } from "../../src/redux/store";
+// import { persistor } from "../../src/redux/store";
 import MyHead from "../../src/Components/MyHead/MyHead";
+import store from "../../src/redux/store";
+import { getTranslation } from "../../src/redux/fetchApiSlice";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -89,7 +91,7 @@ function paymentDetails() {
         // const getDestinations = await response.json();
         // router.replace("/");
         // setShowThankYouMessage(true);
-        persistor.purge();
+        // persistor.purge();
       } catch (error) {
         setIsLoading(false);
         console.log(error);
@@ -165,3 +167,15 @@ function paymentDetails() {
 }
 
 export default paymentDetails;
+
+const fetchTranslationData = async (dispatch, locale) => {
+  await dispatch(getTranslation.initiate(locale));
+};
+
+export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
+  // storeValue.dispatch(getTranslation.initiate("en"));
+  const { dispatch } = storeValue;
+  if (locale) {
+    await fetchTranslationData(dispatch, locale);
+  }
+});

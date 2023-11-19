@@ -14,7 +14,10 @@ const nextConfig = {
     ],
     formats: ["image/avif", "image/webp"]
   },
-  i18n
+  i18n: {
+    locales: ["en", "es"],
+    defaultLocale: "en"
+  }
 };
 
 module.exports = nextConfig;

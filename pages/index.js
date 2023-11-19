@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/consistent-function-scoping */
+/* eslint-disable no-unused-vars */
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -120,6 +122,7 @@ const fetchTranslationData = async (dispatch, locale) => {
   await dispatch(getTranslation.initiate(locale));
 };
 
+// eslint-disable-next-line no-unused-vars
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
   // storeValue.dispatch(getTranslation.initiate("en"));
   const { dispatch } = storeValue;
@@ -135,7 +138,7 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ loca
   const seoLocations = await response.json();
 
   const { oneWay, roundTrip, headingOne, paragraph, trusted, howItWorkHeading, howItWork } =
-    seoLocations.data.attributes;
+    seoLocations.data.attributes || {};
 
   return {
     props: { oneWay, roundTrip, headingOne, paragraph, trusted, howItWorkHeading, howItWork }

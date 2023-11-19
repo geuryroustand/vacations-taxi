@@ -15,6 +15,8 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
 import styled from "./bookingDetails.module.css";
+import { getTranslation } from "../../src/redux/fetchApiSlice";
+import store from "../../src/redux/store";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -133,3 +135,15 @@ function BookingDetails() {
 }
 
 export default BookingDetails;
+
+const fetchTranslationData = async (dispatch, locale) => {
+  await dispatch(getTranslation.initiate(locale));
+};
+
+export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
+  // storeValue.dispatch(getTranslation.initiate("en"));
+  const { dispatch } = storeValue;
+  if (locale) {
+    await fetchTranslationData(dispatch, locale);
+  }
+});
