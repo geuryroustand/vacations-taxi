@@ -1,4 +1,3 @@
-import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 
@@ -57,41 +56,6 @@ export default function Home() {
           content="https://www.vacationstaxis.com/images/openGraph.jpg"
         />
       </Head>
-      {/* <!-- Google tag (gtag.js) --> */}
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${
-          process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
-        }`}
-        strategy="lazyOnload"
-      />
-
-      {/* <Script id="google-analytics" strategy="worker">
-        {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){window.dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'https://www.googletagmanager.com/gtag/js?id=${
-          process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
-        }');
-      `}
-      </Script> */}
-
-      <Script
-        id="google-analytics"
-        strategy="lazyOnload"
-        dangerouslySetInnerHTML={{
-          __html: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){window.dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'https://www.googletagmanager.com/gtag/js?id=${
-          process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
-        }');
-      `
-        }}
-      />
 
       <DynamicHeader
         heading1="Reliable, Low Cost Airport Transfers"
