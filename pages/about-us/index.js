@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-
 import Markdown from "react-markdown";
+
 import MyHead from "../../src/Components/MyHead/MyHead";
 import store from "../../src/redux/store";
 import { getTranslation } from "../../src/redux/fetchApiSlice";

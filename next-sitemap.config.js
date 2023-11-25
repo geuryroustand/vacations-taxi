@@ -3,6 +3,17 @@
 module.exports = {
   siteUrl: "https://www.vacationstaxis.com/",
   generateRobotsTxt: true,
+
+  alternateRefs: [
+    {
+      href: "https://www.vacationstaxis.com/",
+      hreflang: "es"
+    },
+    {
+      href: "https://www.vacationstaxis.com/",
+      hreflang: "en"
+    }
+  ],
   exclude: [
     "/booking-details",
     "/payment-details",
