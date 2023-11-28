@@ -1,5 +1,6 @@
-/* eslint-disable no-unused-vars */
 import dynamic from "next/dynamic";
+import Script from "next/script";
+
 import Markdown from "react-markdown";
 import Container from "react-bootstrap/Container";
 
@@ -9,6 +10,7 @@ import styled from "./locationsName.module.css";
 import MyHead from "../src/Components/MyHead/MyHead";
 import { getTranslation } from "../src/redux/fetchApiSlice";
 import store from "../src/redux/store";
+import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
@@ -18,19 +20,30 @@ const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted")
   loading: () => <FallBackLoading />
 });
 
-function PagesForSEO({ description2, description1, description3, seo, paths }) {
-  // const { article1, article2, desc, heading1, keywords, title } = locationFound;
-  // const keywordSplit = keywords.split(",");
-
-  // const firstKeyWord = keywordSplit[0];
-  // const secondKeyWord = keywordSplit[1];
-  // const thirdKeyWord = keywordSplit[2];
-
-  console.log(seo);
+const Article = ({ content }) => {
   const articleHeading = ({ children }) => <h2 className={styled.articleHeading}>{children}</h2>;
-  const { canonicalURL, keywords, metaDescription, metaTitle, structuredData } = seo;
+
+  return (
+    <article>
+      <Markdown components={{ h2: articleHeading }}>{content}</Markdown>
+    </article>
+  );
+};
+
+function PagesForSEO({ description2, description1, description3, seo, paths, trusted }) {
+  const { canonicalURL, keywords, metaDescription, metaTitle, structuredData = [] } = seo;
   return (
     <>
+      {structuredData.map((jsonLD, index) => (
+        <Script
+          strategy="lazyOnload"
+          id={`organization-jsonLD-${index}`}
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-array-index-key
+          key={`organization-jsonLD-${index}`}
+          dangerouslySetInnerHTML={addOrganizationJsonLd(jsonLD)}
+        />
+      ))}
       <MyHead
         title={metaTitle}
         desc={metaDescription}
@@ -38,49 +51,64 @@ function PagesForSEO({ description2, description1, description3, seo, paths }) {
         canonicalURL={canonicalURL}
         paths={paths}
       />
-      <DynamicHeader desc={description1} />;
-      {/* <DynamicTrusted
-        altAirPlane="dominican airport transfers"
-        altCreditCart="shuttle central dominican republic"
-        altPayment="dominican republic airport transfers"
-      /> */}
+      <DynamicHeader desc={description1} />
+      <DynamicTrusted trusted={trusted} />
       <Container className={styled.articleContainer}>
-        <article>
-          <Markdown components={{ h2: articleHeading }}>{description2}</Markdown>
-        </article>
-        <article>
-          <Markdown components={{ h2: articleHeading }}>{description3}</Markdown>
-        </article>
+        <Article content={description2} />
+        <Article content={description3} />
       </Container>
     </>
   );
 }
 
+const fetchData = async (url) => {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Fetch failed with status ${response.status}`);
+  }
+
+  return response.json();
+};
+
+const extractPaths = (item) => {
+  const mainLanguageSlug = item.attributes.slug;
+  const mainLanguageLocale = item.attributes.locale;
+
+  const localizationsLanguages = item.attributes.localizations.data.map((localization) => ({
+    locale: localization.attributes.locale,
+    slug: localization.attributes.slug
+  }));
+
+  const topLevelPath = { params: { slug: mainLanguageSlug }, locale: mainLanguageLocale };
+
+  const languagePaths = localizationsLanguages.map(({ locale, slug }) => ({
+    params: { slug },
+    locale
+  }));
+
+  return [topLevelPath, ...languagePaths];
+};
+const PROD = process.env.NODE_ENV === "production";
+const baseURL = PROD
+  ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+  : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
+
 export async function getStaticPaths() {
-  const response = await fetch("http://0.0.0.0:1337/api/seo-locations?populate=localizations");
-  const { data } = await response.json();
+  try {
+    const { data } = await fetchData(`${baseURL}/seo-locations?populate=localizations`);
+    const paths = data.flatMap((element) => extractPaths(element));
 
-  const paths = data.flatMap((item) => {
-    const mainLanguageSlug = item.attributes.slug;
-    const mainLanguageLocale = item.attributes.locale;
-
-    const localizationsLanguages = item.attributes.localizations.data.map((localization) => ({
-      locale: localization.attributes.locale,
-      slug: localization.attributes.slug
-    }));
-    const topLevelPath = { params: { slug: mainLanguageSlug }, locale: mainLanguageLocale };
-
-    const languagePaths = localizationsLanguages.map(({ locale, slug }) => ({
-      params: { slug },
-      locale
-    }));
-
-    return [topLevelPath, ...languagePaths];
-  });
-  return {
-    paths,
-    fallback: false
-  };
+    return {
+      paths,
+      fallback: false
+    };
+  } catch {
+    return {
+      paths: [],
+      fallback: false
+    };
+  }
 }
 
 const fetchTranslationData = async (dispatch, locale) => {
@@ -88,55 +116,31 @@ const fetchTranslationData = async (dispatch, locale) => {
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ params, locale }) => {
-  const { dispatch } = storeValue;
-  if (locale) {
-    await fetchTranslationData(dispatch, locale);
-  }
-  const PROD = process.env.NODE_ENV === "production";
-
   try {
+    const { dispatch } = storeValue;
+    if (locale) {
+      await fetchTranslationData(dispatch, locale);
+    }
+
     const { slug } = params;
 
-    const response = await fetch(
-      `${
-        PROD
-          ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/seoLocations`
-          : `http://0.0.0.0:1337/api/seo-locations?locale=${locale}&filters[slug][$eq]=${slug}&populate[seo][populate]=all`
-      }`
+    const response = await fetchData(
+      `${baseURL}/seo-locations?locale=${locale}&filters[slug][$eq]=${slug}&populate[seo][populate]=all`
     );
+    const content = response.data[0].attributes;
 
-    const { data } = await response.json();
+    const { description2, description1, description3, seo } = content;
 
-    const content = { ...data };
+    const responsePaths = await fetchData(`${baseURL}/seo-locations?populate=localizations`);
+    const paths = responsePaths.data.flatMap((element) => extractPaths(element));
 
-    const { attributes } = content[0];
+    const responseTrusted = await fetchData(`${baseURL}/home-page?populate=*&locale=${locale}`);
 
-    const { description2, description1, description3, seo } = attributes;
+    if (!responseTrusted.data) {
+      throw new Error("No trusted data found.");
+    }
 
-    const responsePaths = await fetch(
-      "http://0.0.0.0:1337/api/seo-locations?populate=localizations"
-    );
-    const { data: dataPath } = await responsePaths.json();
-
-    const paths = dataPath.flatMap((item) => {
-      const mainLanguageSlug = item.attributes.slug;
-      const mainLanguageLocale = item.attributes.locale;
-
-      const localizationsLanguages = item.attributes.localizations.data.map((localization) => ({
-        locale: localization.attributes.locale,
-        slug: localization.attributes.slug
-      }));
-      const topLevelPath = { slug: mainLanguageSlug, locale: mainLanguageLocale };
-
-      const languagePaths = localizationsLanguages.map(
-        ({ locale: localePath, slug: slugPath }) => ({
-          slug: slugPath,
-          locale: localePath
-        })
-      );
-
-      return [topLevelPath, ...languagePaths];
-    });
+    const { trusted } = responseTrusted.data.attributes || {};
 
     return {
       props: {
@@ -144,7 +148,8 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ para
         description1,
         description3,
         seo,
-        paths
+        paths,
+        trusted
       }
       // revalidate: 3600 // Re-generate this page after 1 hour (can be adjusted as needed)
     };

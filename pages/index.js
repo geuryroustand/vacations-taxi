@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/consistent-function-scoping */
-/* eslint-disable no-unused-vars */
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -7,6 +5,7 @@ import Head from "next/head";
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 import store from "../src/redux/store";
 import { getTranslation } from "../src/redux/fetchApiSlice";
+import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
@@ -31,14 +30,21 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 export default function Home({
   oneWay,
   roundTrip,
-  headingOne,
-  paragraph,
+  description,
   trusted,
   howItWorkHeading,
   howItWork
 }) {
   return (
     <>
+      <Script
+        strategy="lazyOnload"
+        id="organization-jsonLD"
+        type="application/ld+json"
+        key="organization-jsonLD"
+        dangerouslySetInnerHTML={addOrganizationJsonLd()}
+      />
+
       <Head>
         {/* Facebook Meta Tag */}
 
@@ -102,12 +108,7 @@ export default function Home({
         }}
       />
 
-      <DynamicHeader
-        heading1={headingOne}
-        heading1Paragraph={paragraph}
-        oneWay={oneWay}
-        roundTrip={roundTrip}
-      />
+      <DynamicHeader desc={description} oneWay={oneWay} roundTrip={roundTrip} />
 
       <DynamicTrusted trusted={trusted} />
 
@@ -122,9 +123,7 @@ const fetchTranslationData = async (dispatch, locale) => {
   await dispatch(getTranslation.initiate(locale));
 };
 
-// eslint-disable-next-line no-unused-vars
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
-  // storeValue.dispatch(getTranslation.initiate("en"));
   const { dispatch } = storeValue;
   if (locale) {
     await fetchTranslationData(dispatch, locale);
@@ -137,10 +136,10 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ loca
 
   const seoLocations = await response.json();
 
-  const { oneWay, roundTrip, headingOne, paragraph, trusted, howItWorkHeading, howItWork } =
+  const { oneWay, roundTrip, description, trusted, howItWorkHeading, howItWork } =
     seoLocations.data.attributes || {};
 
   return {
-    props: { oneWay, roundTrip, headingOne, paragraph, trusted, howItWorkHeading, howItWork }
+    props: { oneWay, roundTrip, description, trusted, howItWorkHeading, howItWork }
   };
 });
