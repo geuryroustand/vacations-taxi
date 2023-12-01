@@ -11,6 +11,7 @@ import MyHead from "../src/Components/MyHead/MyHead";
 import { getTranslation } from "../src/redux/fetchApiSlice";
 import store from "../src/redux/store";
 import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
+import { baseURL, fetchData } from "../src/Helper/fetchData";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
@@ -61,16 +62,6 @@ function PagesForSEO({ description2, description1, description3, seo, paths, tru
   );
 }
 
-const fetchData = async (url) => {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error(`Fetch failed with status ${response.status}`);
-  }
-
-  return response.json();
-};
-
 const extractPaths = (item) => {
   const mainLanguageSlug = item.attributes.slug;
   const mainLanguageLocale = item.attributes.locale;
@@ -89,10 +80,6 @@ const extractPaths = (item) => {
 
   return [topLevelPath, ...languagePaths];
 };
-const PROD = process.env.NODE_ENV === "production";
-const baseURL = PROD
-  ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
-  : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
 
 export async function getStaticPaths() {
   try {

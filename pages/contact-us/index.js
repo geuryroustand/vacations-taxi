@@ -1,28 +1,52 @@
+import dynamic from "next/dynamic";
 import Container from "react-bootstrap/Container";
 
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import dynamic from "next/dynamic";
-
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
-
 import styled from "./contactUs.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 import { getTranslation } from "../../src/redux/fetchApiSlice";
 import store from "../../src/redux/store";
+import { baseURL, fetchData } from "../../src/Helper/fetchData";
 
 const DynamicContactForm = dynamic(() => import("../../src/Components/contactForm/ContactForm"), {
   loading: () => <FallBackLoading />
 });
 
-function contactUs() {
-  const { t } = useTranslation("contactUs");
+function contactUs({
+  headingOne,
+  headingTwo,
+  name,
+  nameFeedback,
+  email,
+  emailFeedback,
+  shareEmail,
+  textArea,
+  textAreaFeedBack,
+  submit,
+  sentText,
+  goBackText,
+  title,
+  slug
+}) {
   return (
     <div className={styled.contactForm}>
-      <MyHead title={t("pageTitle")} noIndex />
+      <MyHead title={title} noIndex canonicalURL={slug} />
 
       <Container className={styled.contactFormWrapper}>
-        <DynamicContactForm />
+        <DynamicContactForm
+          headingOne={headingOne}
+          headingTwo={headingTwo}
+          name={name}
+          nameFeedback={nameFeedback}
+          email={email}
+          emailFeedback={emailFeedback}
+          shareEmail={shareEmail}
+          textArea={textArea}
+          textAreaFeedBack={textAreaFeedBack}
+          submit={submit}
+          sentText={sentText}
+          goBackText={goBackText}
+        />
       </Container>
       <p className={styled.formBgTop} />
     </div>
@@ -36,15 +60,46 @@ const fetchTranslationData = async (dispatch, locale) => {
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
-  // storeValue.dispatch(getTranslation.initiate("en"));
   const { dispatch } = storeValue;
   if (locale) {
     await fetchTranslationData(dispatch, locale);
   }
 
+  const { data } = await fetchData(`${baseURL}/contact-us?locale=${locale}`);
+
+  const {
+    headingOne,
+    headingTwo,
+    name,
+    nameFeedback,
+    email,
+    emailFeedback,
+    shareEmail,
+    textArea,
+    textAreaFeedBack,
+    submit,
+    sentText,
+    goBackText,
+    title,
+    slug
+  } = data.attributes;
+
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["footer", "contactUs"]))
+      headingOne,
+      headingTwo,
+      name,
+      nameFeedback,
+      email,
+      emailFeedback,
+      shareEmail,
+      textArea,
+      textAreaFeedBack,
+      submit,
+      sentText,
+      goBackText,
+      title,
+      slug
     }
   };
 });
