@@ -19,8 +19,8 @@
   font-family: "SF Pro Display";
   font-style: normal;
   font-weight: 700;
-  font-size: 22px;
-  line-height: 26px;
+  font-size: 1.37rem;
+  line-height: 1.62rem;
 }
 
 .paymentWithCard {
@@ -36,7 +36,7 @@
 
 .paymentBtn {
   width: 100%;
-  height: 54.63px;
+  height: 3.41rem;
 
   border: none;
   margin: 0 auto;
@@ -48,10 +48,10 @@
 
 @media (min-width: 62em) {
   .payment {
-    height: 378px;
+    height: 23.62rem;
   }
   .paymentBtn {
-    width: 200px;
+    width: 15rem;
   }
 }
 

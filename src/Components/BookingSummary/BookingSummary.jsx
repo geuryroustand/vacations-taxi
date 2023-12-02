@@ -14,7 +14,7 @@ const BookingSummary = ({ bookingDetailsWith }) => {
   const { locale } = useRouter();
   const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
-  const { headingOne, from, to, arrival, departure, passenger, total } = useSelector(
+  const { headingOne, from, to, arrival, departure, passenger, total, passengerInfo } = useSelector(
     (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
   );
 
@@ -56,7 +56,7 @@ const BookingSummary = ({ bookingDetailsWith }) => {
           )}
           {firstName && lastName && (
             <div>
-              <p>Passengers information</p>
+              <p>{passengerInfo}</p>
               <div className={styled.headingBorder}>
                 <h3>
                   {firstName} {lastName}

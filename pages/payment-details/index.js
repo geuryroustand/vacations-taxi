@@ -38,9 +38,16 @@ function paymentDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const [showThankYouMessage, setShowThankYouMessage] = useState(false);
 
-  const { locale, replace } = useRouter();
-
+  const { replace, locale } = useRouter();
   const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
+
+  const {
+    payment,
+    paymentLoadingTitle,
+    paymentSpinnerTitle,
+    paymentAccessibilityTitle,
+    paymentTitle
+  } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
 
   useEffect(() => {
     const mainElement = document.querySelector(".main");
@@ -107,10 +114,10 @@ function paymentDetails() {
   if (isLoading) {
     return (
       <>
-        <MyHead title="Booking..." noIndex canonicalURL="payment-details" />
+        <MyHead title={paymentLoadingTitle} noIndex />
         <Loading
-          spinnerTitle="We are processing your reservation."
-          accessibilityTitle="We are processing your reservation"
+          spinnerTitle={paymentSpinnerTitle}
+          accessibilityTitle={paymentAccessibilityTitle}
         />
         ;
       </>
@@ -119,14 +126,14 @@ function paymentDetails() {
 
   return (
     <>
-      <MyHead title="Payment" noIndex />
+      <MyHead title={paymentTitle} noIndex />
       <Form className={styled.paymentDetails} noValidate validated={validated} onSubmit={sendInfo}>
         <Container>
           <BookingStepProcess />
         </Container>
         <Container className={styled.paymentDetailsContainer}>
           <DynamicBookingSummary />
-          <DynamicPayment />
+          <DynamicPayment payment={payment} />
         </Container>
       </Form>
     </>
