@@ -17,7 +17,8 @@ import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingS
 // import { persistor } from "../../src/redux/store";
 import MyHead from "../../src/Components/MyHead/MyHead";
 import store from "../../src/redux/store";
-import { getTranslation } from "../../src/redux/fetchApiSlice";
+import { getContent, getTranslation } from "../../src/redux/fetchApiSlice";
+import { baseURL } from "../../src/Helper/fetchData";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -37,7 +38,9 @@ function paymentDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const [showThankYouMessage, setShowThankYouMessage] = useState(false);
 
-  const router = useRouter();
+  const { locale, replace } = useRouter();
+
+  const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
   useEffect(() => {
     const mainElement = document.querySelector(".main");
@@ -83,7 +86,7 @@ function paymentDetails() {
             "A problem occurred while we were processing your reservation. Please try again or contact us to help you."
           );
 
-        router.replace({
+        replace({
           pathname: "/booking-confirmation",
           query: { ...cleanEmpty }
         });
@@ -170,6 +173,7 @@ export default paymentDetails;
 
 const fetchTranslationData = async (dispatch, locale) => {
   await dispatch(getTranslation.initiate(locale));
+  await dispatch(getContent.initiate(`${baseURL}/booking-detail?locale=${locale}&populate=*`));
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {

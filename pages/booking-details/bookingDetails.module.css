@@ -6,7 +6,7 @@
 
 @media (min-width: 62em) {
   .bookingDetails {
-    padding-bottom: 26.5rem;
+    padding-bottom: 28rem;
   }
 }
 
@@ -32,13 +32,6 @@
 .cartAndPassengerDetail {
   min-height: min-content;
 }
-
-/* @media (min-width: 45em) {
-  .cartAndPassengerDetail {
-    width: 90%;
-  }
-} */
-
 @media (min-width: 62em) {
   .cartAndPassengerDetail {
     width: 70%;

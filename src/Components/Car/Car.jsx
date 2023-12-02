@@ -12,7 +12,8 @@ const Car = ({
   id,
   selectedText,
   selectedTaxiClassName,
-  selectedTextClassName
+  selectedTextClassName,
+  cards
 }) => {
   const addClass = selectedTaxiClassName
     ? ` ${styled.car} ${selectedTaxiClassName}`
@@ -22,49 +23,65 @@ const Car = ({
     ? `${styled.selectedText} ${styled.selectedTextClass}`
     : `${styled.selectedText}`;
 
+  const {
+    passenger,
+    suitcase,
+    upTo,
+    cancellation,
+    flight,
+    noHidden,
+    regularPrice,
+    discountedPrice,
+    trusted
+  } = cards;
+
   return (
     <button type="button" id={id} className={addClass} onClick={cartSelected}>
       <div className={styled.list}>
         <Image src="/images/people.svg" width={20} height={20} alt="total of people" />
-        <span>Up to {totalPassengers} passengers</span>
+        <span>
+          {upTo} {totalPassengers} {passenger}
+        </span>
       </div>
 
       <div className={styled.list}>
         <Image src="/images/suitcase.svg" width={20} height={20} alt="total of people" />
-        <span>Up to {totalSuitCases} suitcases</span>
+        <span>
+          {upTo} {totalSuitCases} {suitcase}
+        </span>
       </div>
 
-      <Image src={`/images/${cartTypeImage}`} width={20} height={20} alt="standard card" />
+      <Image src={`/images/${cartTypeImage}`} width={194} height={94} alt="standard card" />
 
       <div className={styled.list}>
-        <Image src="/images/check.svg" width={20} height={20} alt="free Cancellation" />
-        <span>FREE Cancellation</span>
-      </div>
-
-      <div className={styled.list}>
-        <Image src="/images/airplane.svg" width={20} height={20} alt="Flight tracking" />
-        <span>Flight tracking</span>
+        <Image src="/images/check.svg" width={20} height={20} alt={cancellation} />
+        <span>{cancellation}</span>
       </div>
 
       <div className={styled.list}>
-        <Image src="/images/noHidden.svg" width={20} height={20} alt="No hidden costs" />
-        <span>No hidden costs</span>
+        <Image src="/images/airplane.svg" width={20} height={20} alt={flight} />
+        <span>{flight}</span>
       </div>
 
       <div className={styled.list}>
-        <Image src="/images/trusted.svg" width={20} height={20} alt="Tried and trusted drivers" />
-        <span>Tried and trusted drivers</span>
+        <Image src="/images/noHidden.svg" width={20} height={20} alt={noHidden} />
+        <span>{noHidden}</span>
+      </div>
+
+      <div className={styled.list}>
+        <Image src="/images/trusted.svg" width={20} height={20} alt={trusted} />
+        <span>{trusted} </span>
       </div>
       <div>
         {originalPrice && (
           <div className={styled.list}>
-            <p>Regular Price:</p>
+            <p>{regularPrice}</p>
             <h3 className={styled.originalPrice}>$ {originalPrice}</h3>
           </div>
         )}
         {discountPrice && (
           <div className={styled.list}>
-            <p>Discounted Price:</p>
+            <p>{discountedPrice}</p>
             <h3>$ {discountPrice}</h3>
           </div>
         )}

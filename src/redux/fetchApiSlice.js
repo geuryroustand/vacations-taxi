@@ -28,10 +28,11 @@ export const fetchApiSlice = createApi({
       keepUnusedDataFor: Number.POSITIVE_INFINITY
     }),
     getContent: builder.query({
-      query: (locale) => ({
-        url: `about-us?locale=${locale}`,
+      query: (url) => ({
+        url: `${url}`,
         method: "GET"
-      })
+      }),
+      keepUnusedDataFor: Number.POSITIVE_INFINITY
     })
   })
 });

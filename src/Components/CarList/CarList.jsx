@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 import { updateTotalPrice } from "../../redux/flightInfoSlice";
 import FallBackLoading from "../Loading/FallBackLoading";
 import styled from "./CarList.module.css";
+import { baseURL } from "../../Helper/fetchData";
 
 const DynamicCar = dynamic(() => import("../Car/Car"), {
   ssr: false,
@@ -23,6 +26,13 @@ const CarList = () => {
     useSelector((state) => state?.flightInfoReducer?.flightInfo) || {};
 
   const [taxiSelected, setTaxiSelected] = useState(0);
+  const { locale } = useRouter();
+  const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
+
+  const { cards } = useSelector(
+    (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
+  );
+  const { oneWay, roundTrip, selectText, selectedText } = cards;
 
   const [cartList, setCartList] = useState([
     {
@@ -31,7 +41,7 @@ const CarList = () => {
       passengers: 4,
       suitcases: 4,
       image: "standard.webp",
-      selectedText: "Selected vehicle"
+      selectedText
     },
     {
       id: "cart2",
@@ -39,7 +49,7 @@ const CarList = () => {
       passengers: 6,
       suitcases: 6,
       image: "minivan6.jpg",
-      selectedText: "Select this vehicle"
+      selectedText: selectText
     },
     {
       id: "cart3",
@@ -47,7 +57,7 @@ const CarList = () => {
       passengers: 8,
       suitcases: 8,
       image: "minivan8.png",
-      selectedText: "Select this vehicle"
+      selectedText: selectText
     },
     {
       id: "cart4",
@@ -55,7 +65,7 @@ const CarList = () => {
       passengers: 16,
       suitcases: 16,
       image: "minivan16.jpg",
-      selectedText: "Select this vehicle"
+      selectedText: selectText
     }
   ]);
 
@@ -69,7 +79,7 @@ const CarList = () => {
         passengers: 4,
         suitcases: 4,
         image: "standard.webp",
-        selectedText: "Selected vehicle"
+        selectedText
       },
       {
         id: "cart2",
@@ -78,7 +88,7 @@ const CarList = () => {
         passengers: 6,
         suitcases: 6,
         image: "minivan6.jpg",
-        selectedText: "Select this vehicle"
+        selectedText: selectText
       },
       {
         id: "cart3",
@@ -87,7 +97,7 @@ const CarList = () => {
         passengers: 8,
         suitcases: 8,
         image: "minivan8.png",
-        selectedText: "Select this vehicle"
+        selectedText: selectText
       },
       {
         id: "cart4",
@@ -96,7 +106,7 @@ const CarList = () => {
         passengers: 16,
         suitcases: 16,
         image: "minivan16.jpg",
-        selectedText: "Select this vehicle"
+        selectedText: selectText
       }
     ]);
   }, [priceTaxi1, priceTaxi2, priceTaxi3, priceTaxi4]);
@@ -140,10 +150,11 @@ const CarList = () => {
             cartTypeImage={cart.image}
             originalPrice={cart.originalPrice}
             discountPrice={cart.discountPrice}
-            oneWayOrRoundTrip={roundtrip ? "RoundTrip" : "One way"}
-            selectedText={index === taxiSelected ? "Selected vehicle" : "Select this vehicle"}
+            oneWayOrRoundTrip={roundtrip ? roundTrip : oneWay}
+            selectedText={index === taxiSelected ? selectedText : selectText}
             selectedTextClassName={index === taxiSelected ?? taxiSelected}
             selectedTaxiClassName={index === taxiSelected ? "selectedCart" : ""}
+            cards={cards}
           />
         ))}
       </div>
