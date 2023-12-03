@@ -16,9 +16,15 @@ const Layout = ({ children }) => {
   const { locale } = useRouter();
   const queryKey = `getTranslation("${locale}")`;
 
-  const { Company, Footer, topLocations, TopLocations, company, helpCenter, blogs } = useSelector(
-    (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
-  );
+  const {
+    Company = [],
+    Footer = [],
+    topLocations = [],
+    TopLocations = [],
+    company = "",
+    helpCenter = {},
+    blogs = {}
+  } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
 
   return (
     <>

@@ -26,7 +26,7 @@ const Header = ({ desc }) => {
     (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
   );
 
-  const { oneWay = "", return: roundTrip = "" } = oneWayAndRoundTrip;
+  const { oneWay = "", return: roundTrip = "" } = oneWayAndRoundTrip || {};
 
   const heading1 = ({ children }) => <h1 className={styled.heading1}>{children}</h1>;
 
