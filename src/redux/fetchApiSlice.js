@@ -1,17 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
-
-const baseUrl = process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
-
-// process.env.NODE_ENV === "production"
-//   ? `${process.env.NEXT_PUBLIC_API_STRAPI_PROD_URL}`
-//   : `${process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL}`;
+import { baseURL } from "../Helper/fetchData";
 
 // Todo remove the keepUnusedDataFor
 export const fetchApiSlice = createApi({
   reducerPath: "fetchApi",
   baseQuery: fetchBaseQuery({
-    baseUrl
+    baseUrl: baseURL
   }),
   // eslint-disable-next-line consistent-return
   extractRehydrationInfo(action) {
