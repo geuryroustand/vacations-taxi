@@ -6,6 +6,7 @@ import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 import store from "../src/redux/store";
 import { getTranslation } from "../src/redux/fetchApiSlice";
 import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
+import { baseURL, fetchData } from "../src/Helper/fetchData";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
@@ -128,16 +129,10 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ loca
   if (locale) {
     await fetchTranslationData(dispatch, locale);
   }
-
-  const response = await fetch(`http://0.0.0.0:1337/api/home-page?populate=*&locale=${locale}`);
-  if (!response.ok) {
-    throw new Error(`Fetch failed with status ${response.status}`);
-  }
-
-  const seoLocations = await response.json();
+  const { data } = await fetchData(`${baseURL}/home-page?populate=*&locale=${locale}`);
 
   const { oneWay, roundTrip, description, trusted, howItWorkHeading, howItWork } =
-    seoLocations.data.attributes || {};
+    data.attributes || {};
 
   return {
     props: { oneWay, roundTrip, description, trusted, howItWorkHeading, howItWork }
