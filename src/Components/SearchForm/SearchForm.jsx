@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-negated-condition */
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
@@ -8,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import { useMediaQuery } from "react-responsive";
 import debounce from "lodash/debounce";
 import format from "date-fns/format";
-// import { useTranslation } from "next-i18next";
+
 import Image from "next/image";
 import styled from "./SearchForm.module.css";
 import SearchOptions from "../SearchOptions/SearchOptions";
@@ -30,9 +29,8 @@ const DynamicDatePickerSearchForm = dynamic(
 );
 
 const SearchForm = ({ isClicked, bookingSearch }) => {
-  // const { t } = useTranslation("home");
-
   const isDesktopOrLaptopOrTable =
+    // eslint-disable-next-line unicorn/no-negated-condition
     typeof window !== "undefined"
       ? useMediaQuery({
           query: "(min-width:48rem)"
@@ -98,14 +96,14 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
   }, [isClicked, currentDropOffDate, currentDropOffTime]);
 
   const {
-    isEmptyFeedbackPickUp,
-    isEmptyFeedbackDropOff,
-    inputPickUpPlaceHolder,
-    inputDropOffPlaceHolder,
-    passengers,
-    searchBtn,
-    pickUpText
-  } = bookingSearch;
+    isEmptyFeedbackPickUp = "",
+    isEmptyFeedbackDropOff = "",
+    inputPickUpPlaceHolder = "",
+    inputDropOffPlaceHolder = "",
+    passengers = "",
+    searchBtn: searchButton = "",
+    pickUpText = ""
+  } = bookingSearch || {};
 
   const [validated, setValidated] = useState(false);
 
@@ -410,7 +408,7 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
         {!isClicked && (
           <Button type="submit" className={styled["search-btn"]}>
             <Image src="/images/search.svg" width="25" height="25" alt="location" />
-            {searchBtn}
+            {searchButton}
           </Button>
         )}
       </div>

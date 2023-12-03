@@ -116,7 +116,7 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ para
     );
     const content = response.data[0].attributes;
 
-    const { description2, description1, description3, seo } = content;
+    const { description2 = "", description1 = "", description3 = "", seo = {} } = content || {};
 
     const responsePaths = await fetchData(`${baseURL}/seo-locations?populate=localizations`);
     const paths = responsePaths.data.flatMap((element) => extractPaths(element));
