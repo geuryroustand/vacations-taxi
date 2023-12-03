@@ -49,9 +49,13 @@ function BookingDetails() {
   const { locale } = useRouter();
   const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
-  const { title, slug, loadingSpinner, loadingSpinnerAccessibility, editButton } = useSelector(
-    (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
-  );
+  const {
+    title = "",
+    slug = "",
+    loadingSpinner = "",
+    loadingSpinnerAccessibility = "",
+    editButton = ""
+  } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
 
   const router = useRouter();
   const dispatch = useDispatch();

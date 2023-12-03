@@ -21,7 +21,7 @@ const TripAdVisor = () => {
   const { award } = useSelector(
     (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
   );
-  const { awardHeading, tripAdvisorHeading } = award;
+  const { awardHeading = "", tripAdvisorHeading = "" } = award || {};
 
   return (
     <div className={styled.tripAdVisor}>

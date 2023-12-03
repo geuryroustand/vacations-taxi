@@ -32,7 +32,7 @@ const CarList = () => {
   const { cards } = useSelector(
     (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
   );
-  const { oneWay, roundTrip, selectText, selectedText } = cards;
+  const { oneWay = "", roundTrip = "", selectText = "", selectedText = "" } = cards || {};
 
   const [cartList, setCartList] = useState([
     {

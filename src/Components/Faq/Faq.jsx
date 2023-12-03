@@ -12,7 +12,7 @@ const Faq = () => {
   const { locale } = useRouter();
   const queryKey = `getTranslation("${locale}")`;
 
-  const { faqHeading, faq } = useSelector(
+  const { faqHeading = "", faq = [] } = useSelector(
     (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
   );
 

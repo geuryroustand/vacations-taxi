@@ -20,28 +20,28 @@ const Passenger = () => {
   const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
   const {
-    passengerDetails,
-    flightDetails,
-    passengerDetailsHeading,
-    flightDetailHeading,
-    confirmationVoucher,
-    request,
-    requestPlacerHolder,
-    continueButton
+    passengerDetails = {},
+    flightDetails = {},
+    passengerDetailsHeading = "",
+    flightDetailHeading = "",
+    confirmationVoucher = "",
+    request = "",
+    requestPlacerHolder = "",
+    continueButton = ""
   } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
 
   const {
-    firstName,
-    lastName,
-    email,
-    phoneNumberText,
-    firstNameInvalidFeedback,
-    lastNameInvalidFeedback,
-    emailInvalidFeedback,
-    emailPlacerHolder
-  } = passengerDetails;
+    firstName = "",
+    lastName = "",
+    email = "",
+    phoneNumberText = "",
+    firstNameInvalidFeedback = "",
+    lastNameInvalidFeedback = "",
+    emailInvalidFeedback = "",
+    emailPlacerHolder = ""
+  } = passengerDetails || {};
 
-  const { arrivalAirline, departureAirline, flightNumber } = flightDetails;
+  const { arrivalAirline = "", departureAirline = "", flightNumber = "" } = flightDetails || {};
 
   const [passengerInfo, setPassengerInfo] = useState({
     firstName: "",
