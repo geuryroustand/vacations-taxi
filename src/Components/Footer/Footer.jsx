@@ -36,24 +36,26 @@ const Footer = ({
         <ul className={styled.footerUl}>
           <li className={styled.footerList}>
             <h3 className={styled.heading}>{topLocationHeading}</h3>
-            {topLocations?.map(({ id, label, link, hidden }) => (
-              <Link key={id} href={link} className={hidden ? "sr-only" : ""}>
-                {label}
-              </Link>
-            ))}
+            {topLocations &&
+              topLocations?.map(({ id, label, link, hidden }) => (
+                <Link key={id} href={link} className={hidden ? "sr-only" : ""}>
+                  {label}
+                </Link>
+              ))}
           </li>
 
           <li className={styled.footerList}>
             <h3 className={styled.heading}>{companyHeading}</h3>
 
-            {company?.map(({ id, label, link }) => (
-              <Link key={id} href={link}>
-                {label}
-              </Link>
-            ))}
+            {company &&
+              company?.map(({ id, label, link }) => (
+                <Link key={id} href={link}>
+                  {label}
+                </Link>
+              ))}
 
-            <Link href={helpCenter?.link}>{helpCenter?.label}</Link>
-            <Link href={blogs?.link}>{blogs?.label}</Link>
+            <Link href={helpCenter?.link || "/"}>{helpCenter?.label}</Link>
+            <Link href={blogs?.link || "/"}>{blogs?.label}</Link>
           </li>
         </ul>
 

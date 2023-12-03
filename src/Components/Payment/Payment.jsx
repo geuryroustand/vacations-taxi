@@ -85,11 +85,11 @@ const Payment = ({ payment }) => {
 
         <p>
           {accepting}
-          <Link target="_blank" href="/terms-and-conditions" className={styled.termsAndConditions}>
+          <Link href="/terms-and-conditions" target="_blank" className={styled.termsAndConditions}>
             {terms}
           </Link>
           {and}
-          <Link target="_blank" href="/privacy-notice" className={styled.termsAndConditions}>
+          <Link href="/privacy-notice" target="_blank" className={styled.termsAndConditions}>
             {privacy}
           </Link>
         </p>

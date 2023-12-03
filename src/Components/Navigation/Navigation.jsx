@@ -42,30 +42,34 @@ const Navigation = ({
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <NavDropdown title={topLocationHeading} id="offcanvasNavbarDropdown-expand-lg-top">
-                  {topLocations?.map(({ id, label, link, hidden }, index) => (
-                    <div key={id}>
-                      {index !== 0 && (
-                        <NavDropdown.Divider style={hidden ? { display: "none" } : {}} />
-                      )}
-                      <NavDropdown.Item
-                        className={hidden && "sr-only"}
-                        href={`${localeLink}${link}`}>
-                        {label}
-                      </NavDropdown.Item>
-                    </div>
-                  ))}
+                  {topLocations &&
+                    topLocations?.map(({ id, label, link, hidden }, index) => (
+                      <div key={id}>
+                        {index !== 0 && (
+                          <NavDropdown.Divider style={hidden ? { display: "none" } : {}} />
+                        )}
+                        <NavDropdown.Item
+                          className={hidden && "sr-only"}
+                          href={`${localeLink}${link}`}>
+                          {label}
+                        </NavDropdown.Item>
+                      </div>
+                    ))}
                 </NavDropdown>
                 <NavDropdown title={companyHeading} id="offcanvasNavbarDropdown-expand-lg-company">
-                  {company?.map(({ id, label, link, hidden }, index) => (
-                    <div key={id}>
-                      {index !== 0 && <NavDropdown.Divider style={hidden && { display: "none" }} />}
-                      <NavDropdown.Item
-                        className={hidden && "sr-only"}
-                        href={`${localeLink}${link}`}>
-                        {label}
-                      </NavDropdown.Item>
-                    </div>
-                  ))}
+                  {company &&
+                    company?.map(({ id, label, link, hidden }, index) => (
+                      <div key={id}>
+                        {index !== 0 && (
+                          <NavDropdown.Divider style={hidden && { display: "none" }} />
+                        )}
+                        <NavDropdown.Item
+                          className={hidden && "sr-only"}
+                          href={`${localeLink}${link}`}>
+                          {label}
+                        </NavDropdown.Item>
+                      </div>
+                    ))}
                 </NavDropdown>
                 <Nav.Link href={`${localeLink}${helpCenter?.link}`}>{helpCenter?.label}</Nav.Link>
                 <Nav.Link href={`${localeLink}${blogs?.link}`}>{blogs?.label}</Nav.Link>
