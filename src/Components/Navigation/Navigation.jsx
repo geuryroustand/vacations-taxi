@@ -25,7 +25,7 @@ const Navigation = ({
       <DiscountShowcase />
       <Navbar className={styled["navbar-bg"]} expand="lg">
         <Container>
-          <Navbar.Brand className={styled["logo-main"]} href="/">
+          <Navbar.Brand className={styled["logo-main"]} href={localeLink || "/"}>
             <span className={styled["logo-vacations-text"]}>Vacations</span>Taxis.com
           </Navbar.Brand>
 

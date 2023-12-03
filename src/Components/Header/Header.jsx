@@ -29,6 +29,7 @@ const Header = ({ desc }) => {
   const { oneWay, return: roundTrip } = oneWayAndRoundTrip;
 
   const heading1 = ({ children }) => <h1 className={styled.heading1}>{children}</h1>;
+
   const heading1Paragraph = ({ children }) => (
     <p className={styled.heading1Paragraph}>{children}</p>
   );
@@ -37,12 +38,6 @@ const Header = ({ desc }) => {
     <div className={styled.hero}>
       <Container>
         <Markdown components={{ h1: heading1, p: heading1Paragraph }}>{desc}</Markdown>
-        {/* {heading1 && heading1Paragraph !== "" && (
-          <article>
-            <h1 className={styled.heading1}>{heading1}</h1>
-            <p className={styled.heading1Paragraph}>{heading1Paragraph} </p>
-          </article>
-        )} */}
 
         <Button
           onClick={() => setIsClicked(false)}

@@ -31,8 +31,8 @@ module.exports = {
     "es/404",
     "/500",
     "es/500",
-    "/blogs",
-    "es/blogs",
+    "/blog",
+    "es/blog",
     "/booking-confirmation",
     "es/booking-confirmation"
   ],
@@ -52,12 +52,12 @@ module.exports = {
       { userAgent: "*", disallow: "es/about-us" },
       { userAgent: "*", disallow: "/404" },
       { userAgent: "*", disallow: "es/404" },
-      { userAgent: "*", disallow: "/blogs" },
-      { userAgent: "*", disallow: "es/blogs" },
+      { userAgent: "*", disallow: "/blog" },
+      { userAgent: "*", disallow: "es/blog" },
       { userAgent: "*", disallow: "/booking-confirmation" },
       { userAgent: "*", disallow: "es/booking-confirmation" },
-      { userAgent: "*", allow: "/blogs/" },
-      { userAgent: "*", allow: "es/blogs/" },
+      { userAgent: "*", allow: "/blog/" },
+      { userAgent: "*", allow: "es/blog/" },
       { userAgent: "*", allow: "/" }
     ]
   }
