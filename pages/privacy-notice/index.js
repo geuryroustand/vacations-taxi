@@ -29,7 +29,7 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ loca
   }
   const { data } = await fetchData(`${baseURL}/privacy-notice?locale=${locale}`);
 
-  const { description, title, slug } = data.attributes;
+  const { description = "", title = "", slug = "" } = data.attributes || {};
 
   return {
     props: {

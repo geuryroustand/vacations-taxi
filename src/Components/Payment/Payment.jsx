@@ -16,19 +16,19 @@ const Payment = ({ payment }) => {
   const [paymentMethod, setPaymentMethod] = useState("");
 
   const {
-    heading,
-    selectPayment,
-    paymentCardDesc,
-    paymentCashDesc,
-    paymentCash,
-    agreeLabel,
-    agreeFeedBack,
-    accepting,
-    terms,
-    and,
-    privacy,
-    pay,
-    book
+    heading = "",
+    selectPayment = "",
+    paymentCardDesc = "",
+    paymentCashDesc = "",
+    paymentCash = "",
+    agreeLabel = "",
+    agreeFeedBack = "",
+    accepting = "",
+    terms = "",
+    and = "",
+    privacy = "",
+    pay = "",
+    book = ""
   } = payment;
   const getPayMethod = (event) => {
     setPaymentMethod(event.target.value);
