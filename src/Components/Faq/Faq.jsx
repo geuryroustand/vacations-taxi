@@ -16,11 +16,6 @@ const Faq = () => {
     (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
   );
 
-  const languageLinks = {
-    en: "/contact-us",
-    es: "/contactanos"
-  };
-  const contactLink = languageLinks[locale] || "/contact-us";
   return (
     <section className={styled.faq}>
       <h2 className={styled.heading}>{faqHeading}</h2>
@@ -32,7 +27,7 @@ const Faq = () => {
                 <Accordion.Header>{question}</Accordion.Header>
                 {index === faq.length - 1 ? (
                   <Accordion.Body>
-                    <Link href={contactLink} target="_blank">
+                    <Link href="/contact-us" target="_blank">
                       {answer}
                     </Link>
                   </Accordion.Body>

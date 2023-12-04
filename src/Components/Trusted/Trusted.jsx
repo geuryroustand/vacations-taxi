@@ -1,8 +1,5 @@
-import React from "react";
 import Container from "react-bootstrap/Container";
-// import { useTranslation } from "next-i18next";
-
-import { Why } from "./Why";
+import Why from "./Why";
 import styled from "./Trusted.module.css";
 
 const Trusted = ({ trusted }) => {

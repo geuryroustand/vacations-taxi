@@ -6,8 +6,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
-import DiscountShowcase from "../DiscountShowcase/DiscountShowcase";
 import styled from "./Navigation.module.css";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navigation = ({
   companyHeading,
@@ -20,9 +20,9 @@ const Navigation = ({
   const { locale } = useRouter();
 
   const localeLink = locale === "en" ? "" : `/${locale}`;
+
   return (
     <header>
-      <DiscountShowcase />
       <Navbar className={styled["navbar-bg"]} expand="lg">
         <Container>
           <Navbar.Brand className={styled["logo-main"]} href={localeLink || "/"}>
@@ -41,6 +41,8 @@ const Navigation = ({
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
+                <LanguageSwitcher />
+
                 <NavDropdown title={topLocationHeading} id="offcanvasNavbarDropdown-expand-lg-top">
                   {topLocations &&
                     topLocations?.map(({ id, label, link, hidden }, index) => (

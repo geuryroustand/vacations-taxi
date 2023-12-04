@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import styled from "./Why.module.css";
 
-// eslint-disable-next-line import/prefer-default-export
-export const Why = ({ svgName, iconAlt, width, height, title, paragraph, className }) => {
+const Why = ({ svgName, iconAlt, width, height, title, paragraph, className }) => {
   const pickClass = `${styled.svg} ${styled[`${className}`]}`;
+
   return (
     <div className={styled.why}>
       <div className={pickClass}>
@@ -23,3 +23,5 @@ export const Why = ({ svgName, iconAlt, width, height, title, paragraph, classNa
     </div>
   );
 };
+
+export default Why;

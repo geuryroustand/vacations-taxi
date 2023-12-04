@@ -4,7 +4,6 @@ import React from "react";
 
 const MyHead = ({ title, desc, keyword, noIndex, canonicalURL, openGraphImg, paths = [] }) => {
   const { locale: language } = useRouter();
-
   return (
     <Head>
       {title && <title>{title}</title>}
@@ -26,7 +25,7 @@ const MyHead = ({ title, desc, keyword, noIndex, canonicalURL, openGraphImg, pat
         />
       )}
 
-      {paths.map(({ slug, locale }) => (
+      {paths.map(({ params: { slug }, locale }) => (
         <React.Fragment key={locale}>
           <link
             rel="alternate"

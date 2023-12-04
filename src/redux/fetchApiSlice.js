@@ -2,6 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
 import { baseURL } from "../Helper/fetchData";
 
+// const dev = process.env.NODE_ENV === "production";
+
 // Todo remove the keepUnusedDataFor
 export const fetchApiSlice = createApi({
   reducerPath: "fetchApi",
@@ -19,8 +21,8 @@ export const fetchApiSlice = createApi({
       query: (locale) => ({
         url: `common-content?locale=${locale}&populate[TopLocations][populate]=&populate[Company][populate]=&populate[Footer][populate]=*&populate[helpCenter][populate]=&populate[blogs][populate]=&populate[bookingSearch][populate]=&populate[faq][populate]&populate[oneWayAndRoundTrip][populate]=&populate[award][populate]`,
         method: "GET"
-      })
-      // keepUnusedDataFor: Number.POSITIVE_INFINITY
+      }),
+      keepUnusedDataFor: Number.POSITIVE_INFINITY
     }),
     getContent: builder.query({
       query: (url) => ({
