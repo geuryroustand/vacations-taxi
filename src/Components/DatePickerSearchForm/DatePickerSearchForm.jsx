@@ -18,6 +18,8 @@ function DatePickerSearchForm({
   getPassenger,
   defaultValue
 }) {
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() + 2);
   return (
     <div className={styled.date}>
       <div className={styled.calender}>
@@ -39,7 +41,7 @@ function DatePickerSearchForm({
           // onChange={dateSelect}
           // timeClassName={handleColor}
           minDate={new Date()}
-          maxDate={new Date("02-29-2024")}
+          maxDate={maxDate}
           showPopperArrow={false}
           showMonthDropdown
           showYearDropdown
