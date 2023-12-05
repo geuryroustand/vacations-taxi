@@ -6,6 +6,7 @@ import store from "../src/redux/store";
 import { getTranslation } from "../src/redux/fetchApiSlice";
 import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
 import { baseURL, fetchData } from "../src/Helper/fetchData";
+import Script from "next/script";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
