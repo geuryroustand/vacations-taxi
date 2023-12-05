@@ -2,8 +2,10 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
-
-// import { persistor } from "../src/redux/store";
+import store from "../src/redux/store";
+import { getTranslation } from "../src/redux/fetchApiSlice";
+import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
+import { baseURL, fetchData } from "../src/Helper/fetchData";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
@@ -25,10 +27,24 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
   loading: () => <FallBackLoading />
 });
 
-export default function Home() {
-  // persistor.purge();
+export default function Home({
+  oneWay,
+  roundTrip,
+  description,
+  trusted,
+  howItWorkHeading,
+  howItWork
+}) {
   return (
     <>
+      <Script
+        strategy="lazyOnload"
+        id="organization-jsonLD"
+        type="application/ld+json"
+        key="organization-jsonLD"
+        dangerouslySetInnerHTML={addOrganizationJsonLd()}
+      />
+
       <Head>
         {/* Facebook Meta Tag */}
 
@@ -57,20 +73,32 @@ export default function Home() {
         />
       </Head>
 
-      <DynamicHeader
-        heading1="Reliable, Low Cost Airport Transfers"
-        heading1Paragraph="Easy airport transfers to and from your accommodation"
-      />
+      <DynamicHeader desc={description} oneWay={oneWay} roundTrip={roundTrip} />
 
-      <DynamicTrusted
-        altAirPlane="Dominican Airport Transfers Services"
-        altCreditCart="PUJ Punta cana Airport Transfer"
-        altPayment="SDQ Santo Domingo Airport Transfers"
-      />
+      <DynamicTrusted trusted={trusted} />
 
-      <DynamicHowWork />
+      <DynamicHowWork howItWorkHeading={howItWorkHeading} howItWork={howItWork} />
       <DynamicAwards />
       <DynamicFaq />
     </>
   );
 }
+
+const fetchTranslationData = async (dispatch, locale) => {
+  await dispatch(getTranslation.initiate(locale));
+};
+
+export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
+  const { dispatch } = storeValue;
+  if (locale) {
+    await fetchTranslationData(dispatch, locale);
+  }
+  const { data } = await fetchData(`${baseURL}/home-page?populate=*&locale=${locale}`);
+
+  const { oneWay, roundTrip, description, trusted, howItWorkHeading, howItWork } =
+    data.attributes || {};
+
+  return {
+    props: { oneWay, roundTrip, description, trusted, howItWorkHeading, howItWork }
+  };
+});

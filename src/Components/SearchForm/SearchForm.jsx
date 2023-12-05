@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-negated-condition */
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
@@ -29,8 +28,9 @@ const DynamicDatePickerSearchForm = dynamic(
   }
 );
 
-const SearchForm = ({ isClicked }) => {
+const SearchForm = ({ isClicked, bookingSearch }) => {
   const isDesktopOrLaptopOrTable =
+    // eslint-disable-next-line unicorn/no-negated-condition
     typeof window !== "undefined"
       ? useMediaQuery({
           query: "(min-width:48rem)"
@@ -94,6 +94,16 @@ const SearchForm = ({ isClicked }) => {
       });
     }
   }, [isClicked, currentDropOffDate, currentDropOffTime]);
+
+  const {
+    isEmptyFeedbackPickUp = "",
+    isEmptyFeedbackDropOff = "",
+    inputPickUpPlaceHolder = "",
+    inputDropOffPlaceHolder = "",
+    passengers = "",
+    searchBtn: searchButton = "",
+    pickUpText = ""
+  } = bookingSearch || {};
 
   const [validated, setValidated] = useState(false);
 
@@ -304,19 +314,19 @@ const SearchForm = ({ isClicked }) => {
       <div className={styled.searchForm}>
         <DynamicSearchFormInput
           inputReference={inputPickUpReference}
-          label="Enter pick-up location"
-          placeHolder="Enter pick-up location"
+          label={inputPickUpPlaceHolder}
+          placeHolder={inputPickUpPlaceHolder}
           name="pickUp"
           id="formBasicPickLocation1"
-          isEmptyFeedback="Please provide a pick-up location"
+          isEmptyFeedback={isEmptyFeedbackPickUp}
           required
           validated={validated}
           onClickInput={() =>
             !isDesktopOrLaptopOrTable &&
             searchInputClicked({
-              title: "Pick-up location",
-              label: "Enter pick-up location",
-              placeHolder: "Enter pick-up location",
+              title: inputPickUpPlaceHolder,
+              label: inputPickUpPlaceHolder,
+              placeHolder: inputPickUpPlaceHolder,
               optionToShow: "pickUp"
             })
           }
@@ -339,19 +349,19 @@ const SearchForm = ({ isClicked }) => {
 
         <DynamicSearchFormInput
           inputReference={inputDropOffReference}
-          label="Enter drop location"
-          placeHolder="Enter drop location "
+          label={inputDropOffPlaceHolder}
+          placeHolder={inputDropOffPlaceHolder}
           name="dropOff"
           id="formBasicDropLocation1"
-          isEmptyFeedback="Please provide a drop-off location"
+          isEmptyFeedback={isEmptyFeedbackDropOff}
           required
           validated={validated}
           onClickInput={() =>
             !isDesktopOrLaptopOrTable &&
             searchInputClicked({
-              title: "Drop-off location",
-              label: "Enter drop location ",
-              placeHolder: "Enter pick-up location",
+              title: inputDropOffPlaceHolder,
+              label: inputDropOffPlaceHolder,
+              placeHolder: inputDropOffPlaceHolder,
               optionToShow: "dropOff"
             })
           }
@@ -379,6 +389,8 @@ const SearchForm = ({ isClicked }) => {
         /> */}
 
         <DynamicDatePickerSearchForm
+          passengers={passengers}
+          pickUpText={pickUpText}
           pickUpAndDropDate={currentPickUpDate}
           setPickUpAndDropDate={setCurrentPickUpDate}
           pickUpAndDropTime={currentPickUpTime}
@@ -396,7 +408,7 @@ const SearchForm = ({ isClicked }) => {
         {!isClicked && (
           <Button type="submit" className={styled["search-btn"]}>
             <Image src="/images/search.svg" width="25" height="25" alt="location" />
-            Search
+            {searchButton}
           </Button>
         )}
       </div>
@@ -412,22 +424,22 @@ const SearchForm = ({ isClicked }) => {
           /> */}
 
           <DynamicSearchFormInput
-            label="Enter drop location"
-            placeHolder="Enter drop location"
-            isEmptyFeedback="Please provide a pick-up location"
+            label={inputDropOffPlaceHolder}
+            placeHolder={inputDropOffPlaceHolder}
             disabled
             searchedTerm={searchedTerm.dropOffSearchedTermClicked ? searchedTerm.dropOff : ""}
           />
 
           <DynamicSearchFormInput
-            label="Enter pick-up location"
-            placeHolder="Enter pick-up location"
-            isEmptyFeedback="Please provide a drop-off location"
+            label={inputPickUpPlaceHolder}
+            placeHolder={inputPickUpPlaceHolder}
             disabled
             searchedTerm={searchedTerm.pickUpSearchedTermClicked ? searchedTerm.pickUp : ""}
           />
 
           <DynamicDatePickerSearchForm
+            pickUpText={pickUpText}
+            passengers={passengers}
             pickUpAndDropDate={currentDropOffDate}
             setPickUpAndDropDate={setCurrentDropOffDate}
             pickUpAndDropTime={currentDropOffTime}

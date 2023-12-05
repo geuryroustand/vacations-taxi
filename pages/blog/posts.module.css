@@ -1,0 +1,52 @@
+.postsContainer {
+  margin: 5rem auto;
+}
+
+.postsHeading {
+  margin-bottom: 5rem;
+}
+.cardColumn {
+  padding-bottom: 1.3rem;
+}
+.postsCard img {
+  width: auto;
+}
+
+@media (min-width: 62em) {
+  .cardLink {
+    width: 25rem;
+    display: inline-block;
+  }
+}
+
+.postsCard {
+  background-color: var(--five-color);
+  cursor: pointer;
+}
+
+.postHeading {
+  max-width: 50rem;
+  margin: 5rem auto 4rem;
+  font-size: 3.3rem;
+}
+
+.postImgs {
+  width: 100%;
+  height: 20rem;
+}
+
+@media (min-width: 62em) {
+  .postImgs {
+    height: 32rem;
+  }
+}
+
+.postContentCenter:not(:nth-of-type(2)):not(:nth-last-of-type(3)),
+.postContentCenterHeading {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.postContentCenterHeading {
+  padding: 1.5rem 0;
+}

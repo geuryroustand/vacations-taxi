@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 
 import { useDispatch, useSelector } from "react-redux";
 
+import { baseURL } from "../../src/Helper/fetchData";
 import { allFlightInfo } from "../../src/redux/flightInfoSlice";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 import Loading from "../../src/Components/Loading/Loading";
@@ -15,6 +16,8 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import MyHead from "../../src/Components/MyHead/MyHead";
 
 import styled from "./bookingDetails.module.css";
+import { getContent, getTranslation } from "../../src/redux/fetchApiSlice";
+import store from "../../src/redux/store";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -42,6 +45,17 @@ function BookingDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const [showSearchForm, setShowSearchForm] = useState(false);
   const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
+
+  const { locale } = useRouter();
+  const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
+
+  const {
+    title = "",
+    slug = "",
+    loadingSpinner = "",
+    loadingSpinnerAccessibility = "",
+    editButton = ""
+  } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -93,11 +107,8 @@ function BookingDetails() {
   if (isLoading) {
     return (
       <>
-        <MyHead title="Searching..." noIndex canonicalURL="booking-details" />
-        <Loading
-          spinnerTitle="We are searching you the best price..."
-          accessibilityTitle="We are searching the best price for you"
-        />
+        <MyHead title={title} noIndex canonicalURL={slug} />
+        <Loading spinnerTitle={loadingSpinner} accessibilityTitle={loadingSpinnerAccessibility} />
       </>
     );
   }
@@ -116,7 +127,7 @@ function BookingDetails() {
 
         {!showSearchForm && (
           <Button onClick={() => setShowSearchForm(true)} className={styled.editBtn}>
-            Edit trip
+            {editButton}
           </Button>
         )}
       </Container>
@@ -133,3 +144,16 @@ function BookingDetails() {
 }
 
 export default BookingDetails;
+
+const fetchTranslationData = async (dispatch, locale) => {
+  await dispatch(getTranslation.initiate(locale));
+  await dispatch(getContent.initiate(`${baseURL}/booking-detail?locale=${locale}&populate=*`));
+};
+
+export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
+  // storeValue.dispatch(getTranslation.initiate("en"));
+  const { dispatch } = storeValue;
+  if (locale) {
+    await fetchTranslationData(dispatch, locale);
+  }
+});

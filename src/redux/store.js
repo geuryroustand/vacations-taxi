@@ -1,56 +1,53 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import logger from "redux-logger";
-
-import {
-  persistReducer,
-  persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER
-} from "reduxjs-toolkit-persist";
-import storage from "reduxjs-toolkit-persist/lib/storage";
+import { HYDRATE, createWrapper } from "next-redux-wrapper";
 
 import flightInfoReducer from "./flightInfoSlice";
-
-const persistConfig = {
-  key: "root",
-  storage
-};
+import { fetchApiSlice } from "./fetchApiSlice";
 
 const reducers = combineReducers({
-  flightInfoReducer
+  flightInfoReducer,
+  [fetchApiSlice.reducerPath]: fetchApiSlice.reducer
 });
-
-const persistedReducer = persistReducer(persistConfig, reducers);
 
 const middleware =
   process.env.NODE_ENV === "development"
-    ? (getDefaultMiddleware) => [
-        ...getDefaultMiddleware({
-          serializableCheck: {
-            /* ignore persistance actions */
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-          }
-        }),
-        logger
-      ]
-    : (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-          serializableCheck: {
-            /* ignore persistance actions */
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-          }
-        });
+    ? (getDefaultMiddleware) => [...getDefaultMiddleware(), logger, fetchApiSlice.middleware]
+    : (getDefaultMiddleware) => getDefaultMiddleware();
 
-const store = configureStore({
-  reducer: persistedReducer,
-  devTools: process.env.NODE_ENV !== "production",
-  middleware
-});
+// const store = configureStore({
+//   reducer: reducers,
+//   devTools: process.env.NODE_ENV !== "production",
+//   middleware
+// });
+// const masterReducer = (state, action) => {
+//   if (action.type === HYDRATE) {
+//     const nextState = {
+//       ...state
+//     };
+//     return action.payload[reducerPath];
+//   }
+//   return reducers(state, action);
+// };
 
-export default store;
+const masterReducer = (state, action) => {
+  if (action.type === HYDRATE) {
+    const nextState = {
+      ...state
+    };
+    return {
+      ...nextState, // Use nextState to merge the current state
+      [fetchApiSlice.reducerPath]: action.payload[fetchApiSlice.reducerPath]
+    };
+  }
+  return reducers(state, action);
+};
 
-export const persistor = persistStore(store);
+export const makeStore = () =>
+  configureStore({
+    reducer: masterReducer,
+    devTools: process.env.NODE_ENV !== "production",
+    middleware
+  });
+
+export default createWrapper(makeStore, { debug: true });

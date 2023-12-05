@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 import styled from "../locationsName.module.css";
 import MyHead from "../../src/Components/MyHead/MyHead";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
+import { getTranslation } from "../../src/redux/fetchApiSlice";
+import store from "../../src/redux/store";
 
 const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
@@ -281,3 +283,15 @@ export default function laRomanaAirportTransfer() {
     </>
   );
 }
+
+const fetchTranslationData = async (dispatch, locale) => {
+  await dispatch(getTranslation.initiate(locale));
+};
+
+export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
+  // storeValue.dispatch(getTranslation.initiate("en"));
+  const { dispatch } = storeValue;
+  if (locale) {
+    await fetchTranslationData(dispatch, locale);
+  }
+});
