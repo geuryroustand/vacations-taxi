@@ -1,6 +1,7 @@
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 import store from "../src/redux/store";
@@ -34,40 +35,55 @@ export default function Home({
   description,
   trusted,
   howItWorkHeading,
-  howItWork
+  howItWork,
+  seo
 }) {
+  const { keywords, metaDescription, metaTitle, structuredData = [] } = seo[0];
+
+  const { locale } = useRouter();
+
   return (
     <>
-      <Script
-        strategy="lazyOnload"
-        id="organization-jsonLD"
-        type="application/ld+json"
-        key="organization-jsonLD"
-        dangerouslySetInnerHTML={addOrganizationJsonLd()}
-      />
+      {structuredData.map((jsonLD, index) => (
+        <Script
+          strategy="lazyOnload"
+          id={`organization-jsonLD-${index}`}
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-array-index-key
+          key={`organization-jsonLD-${index}`}
+          dangerouslySetInnerHTML={addOrganizationJsonLd(jsonLD)}
+        />
+      ))}
 
       <Head>
+        {locale === "en" ? (
+          <link key="canonical" rel="canonical" href="https://www.vacationstaxis.com" />
+        ) : (
+          <link key="canonical" rel="canonical" href={`https://www.vacationstaxis.com/${locale}`} />
+        )}
+
+        <link rel="alternate" hrefLang="en" href="https://www.vacationstaxis.com" key="en" />
+        <link rel="alternate" hrefLang="es" href="https://www.vacationstaxis.com/es" key="es" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.vacationstaxis.com" />
+        <title>{metaTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content={keywords} />
+
         {/* Facebook Meta Tag */}
 
         <meta property="og:url" content="https://www.vacationstaxis.com/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Book A Taxi Online | Airport Transportation" />
-        <meta
-          property="og:description"
-          content="Book a taxi online for easy airport transfers to/from your accommodation. Various taxi transportation services. Tried & trusted. Flight tracking. 24/7 support."
-        />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
         <meta property="og:image" content="https://www.vacationstaxis.com/images/openGraph.jpg" />
 
         {/* Twitter Meta Tag */}
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="vacationstaxis.com" />
-        <meta property="twitter:url" content="https://www.vacationstaxis.com/" />
-        <meta property="twitter:title" content="Book A Taxi Online | Airport Transportation" />
-        <meta
-          property="twitter:description"
-          content="Book a taxi online for easy airport transfers to/from your accommodation. Various taxi transportation services. Tried & trusted. Flight tracking. 24/7 support."
-        />
+        <meta property="twitter:domain" content="https://www.vacationstaxis.com" />
+        <meta property="twitter:url" content="https://www.vacationstaxis.com" />
+        <meta property="twitter:title" content={metaTitle} />
+        <meta property="twitter:description" content={metaDescription} />
         <meta
           property="twitter:image"
           content="https://www.vacationstaxis.com/images/openGraph.jpg"
@@ -131,10 +147,10 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ loca
   }
   const { data } = await fetchData(`${baseURL}/home-page?populate=*&locale=${locale}`);
 
-  const { oneWay, roundTrip, description, trusted, howItWorkHeading, howItWork } =
+  const { oneWay, roundTrip, description, trusted, howItWorkHeading, howItWork, seo } =
     data.attributes || {};
 
   return {
-    props: { oneWay, roundTrip, description, trusted, howItWorkHeading, howItWork }
+    props: { oneWay, roundTrip, description, trusted, howItWorkHeading, howItWork, seo }
   };
 });

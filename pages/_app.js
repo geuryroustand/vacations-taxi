@@ -13,7 +13,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import Head from "next/head";
 
-import { appWithTranslation } from "next-i18next";
+// import { appWithTranslation } from "next-i18next";
 
 // import { PersistGate } from "reduxjs-toolkit-persist/integration/react";
 // eslint-disable-next-line no-unused-vars
@@ -86,4 +86,4 @@ if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
   axe(React, ReactDOM, 1000, config);
 }
 
-export default appWithTranslation(MyApp);
+export default MyApp;

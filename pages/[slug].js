@@ -20,6 +20,9 @@ const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
 const DynamicTrusted = dynamic(() => import("../src/Components/Trusted/Trusted"), {
   loading: () => <FallBackLoading />
 });
+const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
+  loading: () => <FallBackLoading />
+});
 
 const Article = ({ content }) => {
   const articleHeading = ({ children }) => <h2 className={styled.articleHeading}>{children}</h2>;
@@ -33,6 +36,7 @@ const Article = ({ content }) => {
 
 function PagesForSEO({ description2, description1, description3, seo, paths, trusted }) {
   const { canonicalURL, keywords, metaDescription, metaTitle, structuredData = [] } = seo;
+
   return (
     <>
       {structuredData.map((jsonLD, index) => (
@@ -56,6 +60,7 @@ function PagesForSEO({ description2, description1, description3, seo, paths, tru
       <DynamicTrusted trusted={trusted} />
       <Container className={styled.articleContainer}>
         <Article content={description2} />
+        <DynamicAwards />
         <Article content={description3} />
       </Container>
     </>
@@ -83,7 +88,7 @@ const extractPaths = (item) => {
 
 export async function getStaticPaths() {
   try {
-    const { data } = await fetchData(`${baseURL}/seo-locations?populate=localizations`);
+    const { data } = await fetchData(`${baseURL}/seo-locations?populate=*`);
     const paths = data.flatMap((element) => extractPaths(element));
 
     return {
@@ -112,15 +117,14 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ para
     const { slug } = params;
 
     const response = await fetchData(
-      `${baseURL}/seo-locations?locale=${locale}&filters[slug][$eq]=${slug}&populate[seo][populate]=all`
+      `${baseURL}/seo-locations?locale=${locale}&filters[slug][$eq]=${slug}&populate=*`
     );
     const content = response.data[0].attributes;
 
     const { description2 = "", description1 = "", description3 = "", seo = {} } = content || {};
 
-    const responsePaths = await fetchData(`${baseURL}/seo-locations?populate=localizations`);
-    const paths = responsePaths.data.flatMap((element) => extractPaths(element));
-
+    const paths = response.data.flatMap((element) => extractPaths(element));
+    // TODO The content of this fetch need to be add to the global endpoint
     const responseTrusted = await fetchData(`${baseURL}/home-page?populate=*&locale=${locale}`);
 
     if (!responseTrusted.data) {
