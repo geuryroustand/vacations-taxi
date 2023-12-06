@@ -2,10 +2,10 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 
 const Image = dynamic(() => import("next/image"), { ssr: false });
-const CertificateOfExcellence = () => {
+const CertificateOfExcellence = ({ heading }) => {
   return (
     <div style={{ marginBottom: "auto" }}>
-      <strong>Awards</strong>
+      <strong>{heading}</strong>
       <div
         style={{ paddingTop: "1.5rem" }}
         id="TA_certificateOfExcellence205"

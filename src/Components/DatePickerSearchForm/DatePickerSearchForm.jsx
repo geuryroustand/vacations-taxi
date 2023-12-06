@@ -1,8 +1,13 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
 import Image from "next/image";
+import { useRouter } from "next/router";
+import es from "date-fns/locale/es";
+import de from "date-fns/locale/de";
+import fr from "date-fns/locale/fr";
 
 import styled from "./DatePickerSearchForm.module.css";
 
@@ -16,8 +21,18 @@ function DatePickerSearchForm({
   pickUpAndDropTime,
   setPickUpAndDropTime,
   getPassenger,
-  defaultValue
+  defaultValue,
+  passengers,
+  pickUpText
 }) {
+  const { locale } = useRouter();
+  const localeMap = {
+    es,
+    de,
+    fr
+  };
+
+  registerLocale(locale, localeMap[locale]);
   return (
     <div className={styled.date}>
       <div className={styled.calender}>
@@ -26,6 +41,7 @@ function DatePickerSearchForm({
           {labelPickDate}
         </label>
         <DatePicker
+          locale={locale}
           id="date-picker"
           // showTimeSelect
 
@@ -72,15 +88,17 @@ function DatePickerSearchForm({
             {labelPickTime}
           </label>
           <DatePicker
+            locale={locale}
             id="pickTime"
             selected={pickUpAndDropTime}
             onChange={(date) => setPickUpAndDropTime(date)}
             showTimeSelectOnly
             showTimeSelect
             timeIntervals={10}
-            timeCaption="Pick-up time"
+            // timeCaption={t("timeCaption")}
             timeFormat="HH:mm"
             dateFormat="h:mm aa"
+            timeCaption={pickUpText}
             // showTimeInput
             // id="date-picker"
             // selected={dataToSend.arrivalDate}
@@ -108,11 +126,11 @@ function DatePickerSearchForm({
           <Image src="/images/user.svg" width="25" height="25" alt="user" />
 
           <Form.Select
-            aria-label="Passengers"
+            aria-label={passengers}
             defaultValue={defaultValue}
             className={styled["select-passenger"]}
             onChange={getPassenger}>
-            <option>Passengers</option>
+            <option>{passengers}</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

@@ -5,7 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "./ContactForm.module.css";
 
-const ContactForm = () => {
+const ContactForm = ({
+  headingOne,
+  headingTwo,
+  name,
+  nameFeedback,
+  email,
+  emailFeedback,
+  shareEmail,
+  textArea,
+  textAreaFeedBack,
+  submit,
+  sentText,
+  goBackText
+}) => {
   const [validated, setValidated] = useState(false);
   const [infoSent, setInfoSent] = useState(false);
 
@@ -69,30 +82,28 @@ const ContactForm = () => {
     <div className={styled.contact}>
       {infoSent ? (
         <div>
-          <p className={styled.message}>
-            Your message has been sent, we will contact you as soon as possible.
-          </p>
-          <Link href="/">Go back to home</Link>
+          <p className={styled.message}>{sentText}</p>
+          <Link href="/">{goBackText}</Link>
         </div>
       ) : (
         <Form className={styled.form} noValidate validated={validated} onSubmit={submitInfo}>
-          <h1>Get In Touch</h1>
-          <h2>We are here to help you! How can we help you?</h2>
+          <h1>{headingOne}</h1>
+          <h2>{headingTwo}</h2>
           <Form.Group className="mb-3" controlId="controlInputName">
-            <Form.Label>Enter your name</Form.Label>
+            <Form.Label>{name}</Form.Label>
             <Form.Control
               onChange={getUserInputValue}
               value={inputValue.name}
               name="name"
               type="text"
               required
-              placeholder="Enter your name"
+              placeholder={name}
             />
-            <Form.Control.Feedback type="invalid">Please provide your name.</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{nameFeedback}</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="controlInputEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>{email}</Form.Label>
             <Form.Control
               onChange={getUserInputValue}
               name="email"
@@ -104,16 +115,12 @@ const ContactForm = () => {
             {message.param === "email" ? (
               <p className="invalid-feedbackShow">{message?.msg}</p>
             ) : (
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid email.
-              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{emailFeedback}</Form.Control.Feedback>
             )}
-            <Form.Text className="text-muted">
-              We ll never share your email with anyone else.
-            </Form.Text>
+            <Form.Text className="text-muted">{shareEmail}</Form.Text>
           </Form.Group>
           <Form.Group className="mb-3" controlId="controlInputTexArea">
-            <Form.Label>Your message</Form.Label>
+            <Form.Label>{textArea}</Form.Label>
             <Form.Control
               onChange={getUserInputValue}
               name="message"
@@ -122,13 +129,11 @@ const ContactForm = () => {
               as="textarea"
               rows={3}
             />
-            <Form.Control.Feedback type="invalid">
-              Please provide your request.
-            </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{textAreaFeedBack}</Form.Control.Feedback>
           </Form.Group>
 
           <Button className={styled.submitBtn} type="submit">
-            Submit
+            {submit}
           </Button>
         </Form>
       )}
@@ -154,7 +159,7 @@ const ContactForm = () => {
               <a
                 href="tel:+13608607857
 ">
-                +1 (360) 860-7857 (USA)
+                +1 (703) 659-2119(USA)
               </a>
             </p>
           </div>

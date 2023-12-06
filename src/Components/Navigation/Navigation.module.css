@@ -5,17 +5,19 @@
   color: white;
 }
 .logo-main {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
 }
-
-@media (min-width: 45em) {
+@media (min-width: 60em) {
   .logo-main {
-    font-size: 1.9rem;
+    font-size: 1.87rem;
   }
 }
-
 .logo-vacations-text {
   color: #f0a500;
   font-weight: bold;
+}
+
+.languageSwitcherIcon {
+  margin-right: 0.4rem;
 }

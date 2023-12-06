@@ -1,26 +1,36 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-// import Image from "next/image";
 import { useRouter } from "next/router";
-
-import { useEffect, useState } from "react";
-
+import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-// eslint-disable-next-line import/no-unresolved
+import { useEffect, useState } from "react";
 import { Client, HydrationProvider } from "react-hydration-provider";
 
 import styled from "./Payment.module.css";
 import { allFlightInfo, bookingInfo, updateTotalPrice } from "../../redux/flightInfoSlice";
 
-const Payment = () => {
-  const router = useRouter();
+const Payment = ({ payment }) => {
   const flightInfoReducer = useSelector((state) => state.flightInfoReducer) || {};
   const dispatch = useDispatch();
   const { totalPrice } = flightInfoReducer.bookingInfo || {};
-
+  const router = useRouter();
   const [paymentMethod, setPaymentMethod] = useState("");
 
+  const {
+    heading = "",
+    selectPayment = "",
+    paymentCardDesc = "",
+    paymentCashDesc = "",
+    paymentCash = "",
+    agreeLabel = "",
+    agreeFeedBack = "",
+    accepting = "",
+    terms = "",
+    and = "",
+    privacy = "",
+    pay = "",
+    book = ""
+  } = payment;
   const getPayMethod = (event) => {
     setPaymentMethod(event.target.value);
     dispatch(bookingInfo({ [event.target.name]: event.target.value }));
@@ -38,8 +48,8 @@ const Payment = () => {
   return (
     <HydrationProvider>
       <div className={styled.payment}>
-        <h2 className={styled.paymentHeading}>Payment Details</h2>
-        <p>Select your payment method</p>
+        <h2 className={styled.paymentHeading}>{heading}</h2>
+        <p>{selectPayment}</p>
 
         {/* <div className={styled.paymentWithCard}>
           <Form.Check
@@ -61,28 +71,22 @@ const Payment = () => {
             value="effective"
             type="radio"
             id="effective"
-            label="Effective"
+            label={paymentCash}
             name="paymentMethod"
           />
         </div>
 
         {paymentMethod === "card" ? (
-          <p className={styled.paragraph}>
-            You can pay by debit or credit card. We will redirect you to the stripe page, once the
-            payment is done, you will be redirected to our website again.
-          </p>
+          <p className={styled.paragraph}>{paymentCardDesc}</p>
         ) : (
-          <p className={styled.paragraph}>
-            Please note that cash payments can only be made in cash for the total amount due once at
-            destination.
-          </p>
+          <p className={styled.paragraph}>{paymentCashDesc}</p>
         )}
 
         <Form.Group>
           <Form.Check
             required
-            label="Agree to terms and conditions"
-            feedback="You must agree before booking."
+            label={agreeLabel}
+            feedback={agreeFeedBack}
             feedbackType="invalid"
             id="agree"
             name="agreedTermsAndConditions"
@@ -90,18 +94,18 @@ const Payment = () => {
         </Form.Group>
 
         <p>
-          By clicking PAY & BOOK you are accepting our
-          <a target="_blank" href="/terms-and-conditions" className={styled.termsAndConditions}>
-            Terms and Conditions
-          </a>
-          and
-          <a target="_blank" href="/privacy-notice" className={styled.termsAndConditions}>
-            Privacy Notice
-          </a>
+          {accepting}
+          <Link href="/terms-and-conditions" target="_blank" className={styled.termsAndConditions}>
+            {terms}
+          </Link>
+          {and}
+          <Link href="/privacy-notice" target="_blank" className={styled.termsAndConditions}>
+            {privacy}
+          </Link>
         </p>
         <Client>
           <Button className={styled.paymentBtn} type="submit">
-            Pay ${totalPrice} & Book
+            {pay} ${totalPrice} & {book}
           </Button>
         </Client>
       </div>

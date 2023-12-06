@@ -3,10 +3,10 @@ import dynamic from "next/dynamic";
 
 const Image = dynamic(() => import("next/image"), { ssr: false });
 
-const ReviewSnippets = () => {
+const ReviewSnippets = ({ heading }) => {
   return (
     <div>
-      <strong>Our customers say in TripAdvisor</strong>
+      <strong>{heading}</strong>
       <div style={{ paddingTop: "1.5rem" }} id="TA_selfserveprop506" className="TA_selfserveprop">
         <ul id="A2LDzC" className="TA_links 0fJ6ZlNfu5">
           <li id="BWhP4ZbYIID" className="cXfWQqS">

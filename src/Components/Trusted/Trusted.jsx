@@ -1,39 +1,14 @@
-import React from "react";
 import Container from "react-bootstrap/Container";
-import { Why } from "./Why";
+import Why from "./Why";
 import styled from "./Trusted.module.css";
 
-const Trusted = ({ altAirPlane, altCreditCart, altPayment }) => {
+const Trusted = ({ trusted }) => {
   return (
     <section className={styled.trusted}>
       <Container className={styled.content}>
-        <Why
-          svgName="airplane.svg"
-          alt={altAirPlane ?? "Airplane"}
-          width="32"
-          height="32"
-          title="Flight Tracking"
-          paragraph="Your driver tracks your flight and waits for you if its delayed"
-          className="first"
-        />
-        <Why
-          svgName="credit-card.svg"
-          alt={altCreditCart ?? "credit card"}
-          width="32"
-          height="32"
-          title="One Clear Price"
-          paragraph="Your price is confirmed upfront – no extra costs, no cash required"
-          className="second"
-        />
-        <Why
-          svgName="payment.svg"
-          alt={altPayment ?? "Payment"}
-          width="32"
-          height="32"
-          title="Tried & Trusted"
-          paragraph="We work with professional drivers and have 24/7 customer care"
-          className="third"
-        />
+        {trusted?.map((why) => (
+          <Why key={why.id} {...why} />
+        ))}
       </Container>
     </section>
   );

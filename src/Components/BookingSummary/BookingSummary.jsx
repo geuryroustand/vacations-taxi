@@ -1,14 +1,29 @@
-import React from "react";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 // eslint-disable-next-line import/no-unresolved
 import { HydrationProvider, Client } from "react-hydration-provider";
 
 import styled from "./BookingSummary.module.css";
+import { baseURL } from "../../Helper/fetchData";
 
 const BookingSummary = ({ bookingDetailsWith }) => {
   const flightInfoReducer = useSelector((state) => state.flightInfoReducer || {});
   const { totalPrice, flightInfo, bookingInfo } = flightInfoReducer;
+
+  const { locale } = useRouter();
+  const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
+
+  const {
+    headingOne = "",
+    from = "",
+    to = "",
+    arrival = "",
+    departure = "",
+    passenger = "",
+    total = "",
+    passengerInfo = ""
+  } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
 
   const {
     pickUp,
@@ -27,16 +42,19 @@ const BookingSummary = ({ bookingDetailsWith }) => {
     <HydrationProvider>
       <Client>
         <section className={`${styled.bookingDetails} ${bookingDetailsWith} `}>
-          <h1>Your booking details</h1> <p>From</p> <h2>{pickUp}</h2>
-          <p>To</p>
-          <h2 className={styled.headingBorder}>{dropOff}</h2> <p>Arrival Trip</p>
+          <h1>{headingOne}</h1>
+          <p>{from}</p>
+          <h2>{pickUp}</h2>
+          <p>{to}</p>
+          <h2 className={styled.headingBorder}>{dropOff}</h2>
+          <p>{arrival}</p>
           <div className={styled.headingBorder}>
             <h2>{pickUpDate}</h2>
             <h2>At {pickUpTime}</h2>
           </div>
           {roundtrip && (
             <div>
-              <p>Departure Trip</p>
+              <p>{departure}</p>
               <div className={styled.headingBorder}>
                 <h2>{dropOffDate}</h2>
                 <h2>At {dropOffTime}</h2>
@@ -45,7 +63,7 @@ const BookingSummary = ({ bookingDetailsWith }) => {
           )}
           {firstName && lastName && (
             <div>
-              <p>Passengers information</p>
+              <p>{passengerInfo}</p>
               <div className={styled.headingBorder}>
                 <h3>
                   {firstName} {lastName}
@@ -55,9 +73,9 @@ const BookingSummary = ({ bookingDetailsWith }) => {
               </div>
             </div>
           )}
-          <p>Passengers</p>
+          <p>{passenger}</p>
           <h2>{pickUpPassenger}</h2>
-          <p>Total Price</p>
+          <p>{total}</p>
           <h2>${totalPrice}</h2>
         </section>
       </Client>

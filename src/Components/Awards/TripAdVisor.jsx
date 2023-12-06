@@ -1,4 +1,7 @@
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+
+import { useSelector } from "react-redux";
 
 import styled from "./TripAdVisor.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
@@ -12,10 +15,18 @@ const DynamicReviewSnippets = dynamic(() => import("./ReviewSnippets"), {
 });
 
 const TripAdVisor = () => {
+  const { locale } = useRouter();
+  const queryKey = `getTranslation("${locale}")`;
+
+  const { award } = useSelector(
+    (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
+  );
+  const { awardHeading = "", tripAdvisorHeading = "" } = award || {};
+
   return (
     <div className={styled.tripAdVisor}>
-      <DynamicCertificateOfExcellence />
-      <DynamicReviewSnippets />
+      <DynamicCertificateOfExcellence heading={awardHeading} />
+      <DynamicReviewSnippets heading={tripAdvisorHeading} />
     </div>
   );
 };

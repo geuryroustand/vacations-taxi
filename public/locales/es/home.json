@@ -1,0 +1,34 @@
+{
+  "heading1": "Traslados al aeropuerto confiables y de bajo costo",
+  "heading2": "Traslados sencillos desde/hacia el aeropuerto y su lugar de alojamiento",
+  "oneWay": "Una via",
+  "return": "Ida y vuelta",
+
+  "formPickUpLabel": "Indica el lugar de recogida",
+  "inputPickUpPlaceHolder": "Indica el lugar de recogida",
+  "inputPickUpName": "Recogida",
+  "isEmptyFeedbackPickUp": "Añade un lugar de recogida",
+  "modalTitlePickUp": "Lugar de recogida",
+
+  "formDropLabel": "Indica el destino",
+  "inputDropPlaceHolder": "Indica el destino",
+  "inputDropName": "dropOff",
+  "isEmptyFeedbackDrop": "Añade un lugar de destino",
+  "modalTitleDrop": "Lugar de destino",
+
+  "labelPickDate": "Fecha de llegada",
+  "labelPickTime": "Hora de recogida de llegada",
+  "labelPickDate": "Fecha de salida",
+  "labelPickTime": "Hora de recogida de salida",
+  "searchButton": "Buscar",
+  "passengers": "Pasajeros",
+  "timeCaption": "Recogida",
+
+  "trustedTitle1": "Seguimiento de vuelos",
+  "trustedParagraph1": "En caso de retrasos, nuestro conductor te estará esperando",
+  "trustedTitle2": "Precio único y fijo",
+  "trustedParagraph2": "Precio confirmado por adelantado: sin cargos adicionales",
+  "trustedTitle3": "Probado y confiable",
+  "trustedParagraph3": "Conductores experimentados y atención al cliente 24/7 para su tranquilidad",
+  "awards": "Premios"
+}

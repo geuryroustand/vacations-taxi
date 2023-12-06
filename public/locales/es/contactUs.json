@@ -1,0 +1,14 @@
+{
+  "pageTitle": "Contacte con nosotros",
+  "heading1": "Póngase en contacto",
+  "heading2": "Estamos aquí para ayudarle. ¿En qué podemos ayudarle?",
+  "name": "Introduzca su nombre",
+  "nameFeedBack": "Por favor, indique su nombre.",
+  "email": "Introduzca su correo electrónico",
+  "emailPlaceholder": "luis@gmail.com",
+  "emailFeedBack": "Indique un correo electrónico válido.",
+  "emailShareText": "Nunca compartiremos su correo electrónico con nadie.",
+  "textareaLabel": "Su mensaje",
+  "textareaFeedBack": "Indique su solicitud.",
+  "buttonText": "Enviar"
+}
