@@ -93,14 +93,8 @@ function paymentDetails() {
           pathname: "/booking-confirmation"
           // query: { ...cleanEmpty }
         });
-        // setIsLoading(false);
-        // const getDestinations = await response.json();
-        // router.replace("/");
-        // setShowThankYouMessage(true);
-        // persistor.purge();
-      } catch (error) {
+      } catch {
         setIsLoading(false);
-        console.log(error);
       }
     }
 

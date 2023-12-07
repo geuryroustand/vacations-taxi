@@ -1,36 +1,22 @@
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable global-require */
-/* eslint-disable unicorn/prefer-module */
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 
 import ReactDOM from "react-dom";
 import React from "react";
-// import SSRProvider from "react-bootstrap/SSRProvider";
-// import Script from "next/script";
 
 import { Provider } from "react-redux";
 import Head from "next/head";
 
-// import { appWithTranslation } from "next-i18next";
-
-// import { PersistGate } from "reduxjs-toolkit-persist/integration/react";
-// eslint-disable-next-line no-unused-vars
-
 import Layout from "../src/Components/Layout/Layout";
 
 import wrapper from "../src/redux/store";
-// import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
 
 function MyApp({ Component, ...rest }) {
   const { store, props } = wrapper.useWrappedStore(rest);
 
   return (
-    // <>
     <Provider store={store}>
-      {/* <SSRProvider> */}
-      {/* <PersistGate loading="Loading" persistor={persistor}> */}
       <Layout>
         <Head>
           <title>Book A Taxi Online | Airport Transportation</title>
@@ -65,10 +51,7 @@ function MyApp({ Component, ...rest }) {
         {/* <!-- End TRUENDO Privacy Center --> */}
         <Component {...props.pageProps} />
       </Layout>
-      {/* </PersistGate> */}
-      {/* </SSRProvider> */}
     </Provider>
-    // </>
   );
 }
 
@@ -82,6 +65,7 @@ const config = {
 };
 
 if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
+  // eslint-disable-next-line global-require, unicorn/prefer-module
   const axe = require("@axe-core/react");
   axe(React, ReactDOM, 1000, config);
 }

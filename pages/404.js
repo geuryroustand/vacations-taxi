@@ -10,7 +10,6 @@ const fetchTranslationData = async (dispatch, locale) => {
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
-  // storeValue.dispatch(getTranslation.initiate("en"));
   const { dispatch } = storeValue;
   if (locale) {
     await fetchTranslationData(dispatch, locale);
