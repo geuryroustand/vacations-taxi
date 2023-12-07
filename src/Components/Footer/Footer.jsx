@@ -51,8 +51,8 @@ const Footer = ({
           </p>
 
           {showLink && (
-            <Link className={styled.footerInfoLink} href={`blog${DRLink.link || ""}`}>
-              {DRLink.label || ""}
+            <Link className={styled.footerInfoLink} href={`blog${DRLink?.link || ""}`}>
+              {DRLink?.label || ""}
             </Link>
           )}
         </div>
