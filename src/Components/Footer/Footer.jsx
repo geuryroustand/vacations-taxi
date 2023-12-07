@@ -36,7 +36,7 @@ const Footer = ({
   const { allRights, copyright } = footer[0]?.CopyRight[0] || {};
   const socialLinks = footer[0]?.SocialLinks || [];
   const followUs = footer[0]?.followUs || "";
-  const { label: DRLabel, link: DRLinkFor } = DRLink;
+  const { label: DRLabel = "", link: DRLinkFor = "" } = DRLink || {};
   const {
     query: { slug }
   } = useRouter();
