@@ -36,12 +36,12 @@ const Footer = ({
   const { allRights, copyright } = footer[0]?.CopyRight[0] || {};
   const socialLinks = footer[0]?.SocialLinks || [];
   const followUs = footer[0]?.followUs || "";
-  const { label, link } = DRLink;
+  const { label: DRLabel, link: DRLinkFor } = DRLink;
   const {
     query: { slug }
   } = useRouter();
 
-  const showLink = `/${slug}` !== link;
+  const showLink = `/${slug}` !== DRLinkFor;
   return (
     <footer className={styled.footer}>
       <Container>
@@ -51,8 +51,8 @@ const Footer = ({
           </p>
 
           {showLink && (
-            <Link className={styled.footerInfoLink} href={`blog${link}`}>
-              {label}
+            <Link className={styled.footerInfoLink} href={`blog${DRLinkFor}`}>
+              {DRLabel}
             </Link>
           )}
         </div>
