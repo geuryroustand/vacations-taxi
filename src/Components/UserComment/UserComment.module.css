@@ -1,0 +1,14 @@
+.userComment {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid var(--fourth-color);
+  margin-top: 1.5rem;
+}
+.userComment img {
+  border-radius: 50%;
+}
+.userName {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  margin-bottom: 0;
+}

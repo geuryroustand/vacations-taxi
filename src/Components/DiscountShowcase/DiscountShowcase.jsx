@@ -12,7 +12,8 @@ function DiscountShowcase() {
   return (
     !showOffer && (
       <div className={styled.discountShowCaseBg}>
-        🎉 Special Travel Offer: Get 10% Off!🎉 Limited Sale!
+        🎉 Special Travel Offer: Get 10% Off!🎉
+        <span> Deal of Day!</span>
       </div>
     )
   );

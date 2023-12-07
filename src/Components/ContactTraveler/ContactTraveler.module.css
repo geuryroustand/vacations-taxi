@@ -1,0 +1,9 @@
+.form {
+  margin-top: 2rem;
+}
+
+.btnBg {
+  background-color: var(--secondary-color);
+  border: none;
+  width: 5rem;
+}

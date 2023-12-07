@@ -24,16 +24,16 @@ const Car = ({
     : `${styled.selectedText}`;
 
   const {
-    passenger,
-    suitcase,
-    upTo,
-    cancellation,
-    flight,
-    noHidden,
+    passenger = "",
+    suitcase = "",
+    upTo = "",
+    cancellation = "",
+    flight = "",
+    noHidden = "",
     regularPrice,
     discountedPrice,
-    trusted
-  } = cards;
+    trusted = ""
+  } = cards || {};
 
   return (
     <button type="button" id={id} className={addClass} onClick={cartSelected}>

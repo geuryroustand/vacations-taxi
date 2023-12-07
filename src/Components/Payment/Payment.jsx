@@ -1,18 +1,19 @@
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Client, HydrationProvider } from "react-hydration-provider";
 
 import styled from "./Payment.module.css";
-import { bookingInfo } from "../../redux/flightInfoSlice";
+import { allFlightInfo, bookingInfo, updateTotalPrice } from "../../redux/flightInfoSlice";
 
 const Payment = ({ payment }) => {
   const flightInfoReducer = useSelector((state) => state.flightInfoReducer) || {};
   const dispatch = useDispatch();
   const { totalPrice } = flightInfoReducer.bookingInfo || {};
-
+  const router = useRouter();
   const [paymentMethod, setPaymentMethod] = useState("");
 
   const {
@@ -34,6 +35,15 @@ const Payment = ({ payment }) => {
     setPaymentMethod(event.target.value);
     dispatch(bookingInfo({ [event.target.name]: event.target.value }));
   };
+
+  useEffect(() => {
+    if (!totalPrice) {
+      delete router.query.priceTaxi1;
+      dispatch(allFlightInfo(router.query));
+      dispatch(updateTotalPrice({ totalPrice: router.query.totalPrice }));
+      dispatch(bookingInfo(router.query));
+    }
+  }, [router.query]);
 
   return (
     <HydrationProvider>

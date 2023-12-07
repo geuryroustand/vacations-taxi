@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
 import { HYDRATE } from "next-redux-wrapper";
 import { baseURL } from "../Helper/fetchData";
 
@@ -30,13 +31,49 @@ export const fetchApiSlice = createApi({
         method: "GET"
       }),
       keepUnusedDataFor: Number.POSITIVE_INFINITY
+    }),
+    getUser: builder.query({
+      query: (cookieToken) =>
+        cookieToken && {
+          url: "users/me",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${cookieToken}`
+          }
+        }
+
+      // providesTags: ["Users"]
+    }),
+
+    registerUser: builder.mutation({
+      query: (user) => ({
+        url: "auth/local/register",
+        method: "POST",
+        body: user
+      })
+      // invalidatesTags: ["Users"]
+    }),
+    userLogin: builder.mutation({
+      query: (user) => ({
+        url: "auth/local",
+        method: "POST",
+        body: user
+      })
+      // invalidatesTags: ["Users"]
     })
   })
 });
 
 // Export hooks for usage in functional components
 
-export const { useGetTranslationQuery, useGetContentQuery, endpoints } = fetchApiSlice;
+export const {
+  useGetTranslationQuery,
+  useGetContentQuery,
+  useGetUserQuery,
+  useRegisterUserMutation,
+  useUserLoginMutation,
+  endpoints
+} = fetchApiSlice;
 
 // export endpoints for use in SSR
 export const { getTranslation, getContent } = endpoints;

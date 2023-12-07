@@ -1,20 +1,16 @@
-/* eslint-disable unicorn/no-abusive-eslint-disable */
-/* eslint-disable */
-
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
+
 import { useSelector } from "react-redux";
-import Link from "next/link";
 
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import Loading from "../../src/Components/Loading/Loading";
 import styled from "./paymentDetails.module.css";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
-// import { persistor } from "../../src/redux/store";
+
 import MyHead from "../../src/Components/MyHead/MyHead";
 import store from "../../src/redux/store";
 import { getContent, getTranslation } from "../../src/redux/fetchApiSlice";
@@ -33,14 +29,13 @@ const DynamicPayment = dynamic(() => import("../../src/Components/Payment/Paymen
 
 function paymentDetails() {
   const { bookingInfo } = useSelector((state) => state.flightInfoReducer);
+  const router = useRouter();
 
   const [validated, setValidated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showThankYouMessage, setShowThankYouMessage] = useState(false);
+  const [showThankYouMessage] = useState(false);
 
-  const { replace, locale } = useRouter();
-  const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
-
+  const queryKey = `getContent("${baseURL}/booking-detail?locale=${router.locale}&populate=*")`;
   const {
     payment = {},
     paymentLoadingTitle = "",
@@ -92,19 +87,14 @@ function paymentDetails() {
           throw new Error(
             "A problem occurred while we were processing your reservation. Please try again or contact us to help you."
           );
+        router.replace("/booking-confirmation");
 
-        replace({
-          pathname: "/booking-confirmation",
-          query: { ...cleanEmpty }
+        router.replace({
+          pathname: "/booking-confirmation"
+          // query: { ...cleanEmpty }
         });
-        // setIsLoading(false);
-        // const getDestinations = await response.json();
-        // router.replace("/");
-        // setShowThankYouMessage(true);
-        // persistor.purge();
-      } catch (error) {
+      } catch {
         setIsLoading(false);
-        console.log(error);
       }
     }
 
@@ -148,7 +138,6 @@ const fetchTranslationData = async (dispatch, locale) => {
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
-  // storeValue.dispatch(getTranslation.initiate("en"));
   const { dispatch } = storeValue;
   if (locale) {
     await fetchTranslationData(dispatch, locale);
