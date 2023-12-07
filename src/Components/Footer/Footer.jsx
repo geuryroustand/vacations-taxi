@@ -41,7 +41,7 @@ const Footer = ({
     query: { slug }
   } = useRouter();
 
-  const showLink = `/${slug}` !== DRLink.link;
+  const showLink = `/${slug}` !== DRLink?.link;
   return (
     <footer className={styled.footer}>
       <Container>
@@ -50,7 +50,7 @@ const Footer = ({
             <span className={styled.footerLogoSpan}>Vacations</span>Taxis
           </p>
 
-          {showLink && (
+          {showLink && DRLink && (
             <Link className={styled.footerInfoLink} href={`blog${DRLink?.link || ""}`}>
               {DRLink?.label || ""}
             </Link>
