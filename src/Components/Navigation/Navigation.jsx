@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
 import Container from "react-bootstrap/Container";
@@ -7,7 +8,11 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 import styled from "./Navigation.module.css";
-import LanguageSwitcher from "./LanguageSwitcher";
+import FallBackLoading from "../Loading/FallBackLoading";
+
+const DynamicLanguageSwitcher = dynamic(() => import("../LanguageSwitcher/LanguageSwitcher"), {
+  loading: () => <FallBackLoading />
+});
 
 const Navigation = ({
   companyHeading,
@@ -41,7 +46,7 @@ const Navigation = ({
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <LanguageSwitcher />
+                <DynamicLanguageSwitcher />
 
                 <NavDropdown title={topLocationHeading} id="offcanvasNavbarDropdown-expand-lg-top">
                   {topLocations &&

@@ -14,10 +14,6 @@
   }
 }
 .logo-vacations-text {
-  color: #f0a500;
+  color: var(--primary-color);
   font-weight: bold;
-}
-
-.languageSwitcherIcon {
-  margin-right: 0.4rem;
 }

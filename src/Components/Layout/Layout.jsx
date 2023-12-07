@@ -23,7 +23,8 @@ const Layout = ({ children }) => {
     TopLocations = [],
     company = "",
     helpCenter = {},
-    blogs = {}
+    blogs = {},
+    DRLink = {}
   } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
 
   return (
@@ -45,6 +46,7 @@ const Layout = ({ children }) => {
         topLocations={TopLocations}
         helpCenter={helpCenter}
         blogs={blogs}
+        DRLink={DRLink}
       />
     </>
   );

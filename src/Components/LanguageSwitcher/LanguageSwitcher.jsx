@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { MdLanguage } from "react-icons/md";
 
-import styled from "./Navigation.module.css";
+import styled from "./LanguageSwitcher.module.css";
 
 const getLanguageTitle = (language) => {
   return language === "en" ? "English" : "Español";
