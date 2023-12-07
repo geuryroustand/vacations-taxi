@@ -27,9 +27,9 @@ export default function Blogs({ data }) {
       <MyHead title="Blogs" noIndex canonicalURL="blogs" />
       <Container className={styled.postsContainer}>
         <h1 className={styled.postsHeading}>Travel Tips:</h1>
-        {groupedPosts.map((group) => (
+        {groupedPosts?.map((group) => (
           <Row key={group}>
-            {group.map(
+            {group?.map(
               ({
                 attributes: {
                   slug,

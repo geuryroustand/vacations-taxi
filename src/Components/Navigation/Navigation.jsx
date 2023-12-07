@@ -8,7 +8,6 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 
 import styled from "./Navigation.module.css";
 import LanguageSwitcher from "./LanguageSwitcher";
-import Profile from "../Profile/Profile";
 
 const Navigation = ({
   companyHeading,
@@ -42,7 +41,6 @@ const Navigation = ({
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Profile id="drownDownBigScreen" />
                 <LanguageSwitcher />
 
                 <NavDropdown title={topLocationHeading} id="offcanvasNavbarDropdown-expand-lg-top">
