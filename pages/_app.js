@@ -1,12 +1,13 @@
-/* eslint-disable import/no-extraneous-dependencies */
+import React from "react";
+import ReactDOM from "react-dom";
+
+import Script from "next/script";
+import Head from "next/head";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 
-import ReactDOM from "react-dom";
-import React from "react";
-
 import { Provider } from "react-redux";
-import Head from "next/head";
 
 import Layout from "../src/Components/Layout/Layout";
 
@@ -39,6 +40,48 @@ function MyApp({ Component, ...rest }) {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
         </Head>
+
+        {/* <!-- Google Tag Manager --> */}
+        <Script
+          id="google-tag-manager"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','${
+            process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID
+          }')
+           `
+          }}
+        />
+
+        {/* <!-- Google tag (gtag.js) --> */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${
+            process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+          }`}
+          strategy="lazyOnload"
+        />
+
+        <Script
+          id="google-analytics"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'https://www.googletagmanager.com/gtag/js?id=${
+          process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+        }');
+      `
+          }}
+        />
+
         {/* <!-- TRUENDO Privacy Center --> */}
         {/* <Script
               strategy="lazyOnload"
@@ -65,7 +108,7 @@ const config = {
 };
 
 if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
-  // eslint-disable-next-line global-require, unicorn/prefer-module
+  // eslint-disable-next-line global-require, unicorn/prefer-module, import/no-extraneous-dependencies
   const axe = require("@axe-core/react");
   axe(React, ReactDOM, 1000, config);
 }
