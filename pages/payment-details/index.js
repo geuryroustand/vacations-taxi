@@ -79,7 +79,7 @@ function paymentDetails() {
               "Content-Type": "application/json"
             },
 
-            body: JSON.stringify(cleanEmpty)
+            body: JSON.stringify({ ...cleanEmpty, locale: router.locale })
           }
         );
 
