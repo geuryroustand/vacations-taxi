@@ -19,6 +19,7 @@
 }
 .footerInfoLink {
   color: white;
+  padding-bottom: 1.4rem;
 }
 .footerUl {
   padding-top: 1.5rem;
@@ -67,6 +68,11 @@
   color: var(--third-color);
   padding-bottom: 1rem;
 }
+
+.footerList a:hover,
+.socialMediaList a:hover {
+  color: var(--primary-color);
+}
 .socialMediaList {
   list-style: none;
   padding-left: 0;
@@ -83,16 +89,23 @@
 
 .socialHeadingAndLanguages {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column-reverse;
+  gap: 4rem;
 }
 
 .footerLogo {
   font-size: 1.7rem;
-  padding: 1.6rem 0px;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 }
 
 @media (min-width: 60em) {
+  .socialHeadingAndLanguages {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .footerLogo {
     font-size: 2rem;
     padding: 4rem 0px;

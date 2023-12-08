@@ -55,7 +55,7 @@ export default function Blog({
       />
 
       <Container className={styled.postsContainer}>
-        <article>
+        <article className={styled.article}>
           <Markdown components={{ h1: heading1, img: imgNextImage, a: link, p, h2 }}>
             {description}
           </Markdown>

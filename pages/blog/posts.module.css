@@ -41,7 +41,7 @@
   }
 }
 
-.postContentCenter:not(:nth-of-type(2)):not(:nth-last-of-type(3)),
+.article p:not(:has(> img)),
 .postContentCenterHeading {
   max-width: 50rem;
   margin: 0 auto;
