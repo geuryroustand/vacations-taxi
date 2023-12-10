@@ -3,17 +3,6 @@
 module.exports = {
   siteUrl: "https://www.vacationstaxis.com/",
   generateRobotsTxt: true,
-
-  alternateRefs: [
-    {
-      href: "https://www.vacationstaxis.com/",
-      hreflang: "es"
-    }
-    // {
-    //   href: "https://www.vacationstaxis.com/",
-    //   hreflang: "en"
-    // }
-  ],
   exclude: [
     "/booking-details",
     "es/booking-details",
@@ -36,6 +25,66 @@ module.exports = {
     "/booking-confirmation",
     "es/booking-confirmation"
   ],
+  alternateRefs: [
+    {
+      href: "https://www.vacationstaxis.com/",
+      hreflang: "es"
+    }
+  ],
+  transform: async (config, path) => {
+    const multilingualPaths = [
+      {
+        path: "/punta-cana-airport-transfers",
+        lang: "es",
+        translatedPath: "/traslado-en-punta-cana"
+      },
+      {
+        path: "/",
+        lang: "es",
+        translatedPath: "/es"
+      },
+      {
+        path: "/santo-domingo-airport-transfers",
+        lang: "es",
+        translatedPath: "/aeropuerto-de-santo-domingo-las-americas"
+      },
+      {
+        path: "/puerto-plata-airport-transfers",
+        lang: "es",
+        translatedPath: "/aeropuerto-de-puerto-plata"
+      },
+      {
+        path: "/la-romana-airport-transfer",
+        lang: "es",
+        translatedPath: "/aeropuerto-la-romana"
+      }
+    ];
+
+    const currentPathDetails = multilingualPaths.find((item) => item.path === path);
+
+    if (currentPathDetails) {
+      return {
+        loc: `${config.siteUrl}${currentPathDetails.path}`,
+        changefreq: config.changefreq,
+        priority: config.priority,
+        lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+        alternateRefs: [
+          {
+            href: `${config.siteUrl}${currentPathDetails.translatedPath}`,
+            hreflang: currentPathDetails.lang
+          }
+        ]
+      };
+    }
+
+    return {
+      loc: `${config.siteUrl}${path}`,
+      changefreq: config.changefreq,
+      priority: config.priority,
+      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+      alternateRefs: config.alternateRefs ?? []
+    };
+  },
   robotsTxtOptions: {
     policies: [
       { userAgent: "*", disallow: "/booking-details" },
@@ -52,6 +101,8 @@ module.exports = {
       { userAgent: "*", disallow: "es/about-us" },
       { userAgent: "*", disallow: "/404" },
       { userAgent: "*", disallow: "es/404" },
+      { userAgent: "*", disallow: "/" },
+      { userAgent: "*", disallow: "es/500" },
       { userAgent: "*", disallow: "/blog" },
       { userAgent: "*", disallow: "es/blog" },
       { userAgent: "*", disallow: "/booking-confirmation" },
@@ -61,42 +112,4 @@ module.exports = {
       { userAgent: "*", allow: "/" }
     ]
   }
-  // transform: async (config, path) => {
-  //   console.log("==========Paths===========", path);
-  //   // Check if the path is among the paths fetched from your dynamic route
-  //   if (config.paths && config.paths.some((p) => path.startsWith(`/${p.params.slug}`))) {
-  //     // Logic for generating multilingual URLs based on the dynamic paths
-  //     const translations = [
-  //       { hreflang: "x-default", href: `https://www.vacationstaxis.com${path}` },
-  //       { hreflang: "en", href: `https://www.vacationstaxis.com/en${path}` },
-  //       { hreflang: "es", href: `https://www.vacationstaxis.com/es${path}` }
-  //       // Add other translations as needed
-  //     ];
-
-  //     // Construct the XHTML links for translations
-  //     const xhtmlLinks = translations.map(({ hreflang, href }) => ({
-  //       rel: "alternate",
-  //       hreflang,
-  //       href
-  //     }));
-
-  //     return {
-  //       loc: `https://www.vacationstaxis.com${path}`,
-  //       xhtmlLinks
-  //     };
-  //   }
-
-  //   // For default paths, use the default transformation
-  //   return {
-  //     loc: `https://www.vacationstaxis.com${path}`,
-  //     changefreq: config.changefreq,
-  //     priority: config.priority,
-  //     lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
-  //     alternateRefs: [
-  //       { rel: "alternate", hreflang: "x-default", href: `https://www.vacationstaxis.com${path}` },
-  //       { rel: "alternate", hreflang: "en", href: `https://www.vacationstaxis.com${path}` },
-  //       { rel: "alternate", hreflang: "es", href: `https://www.vacationstaxis.com/es${path}` }
-  //     ]
-  //   };
-  // }
 };

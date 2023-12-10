@@ -85,7 +85,7 @@ const Footer = ({
         <div className={styled.socialMedia}>
           <div className={styled.socialHeadingAndLanguages}>
             <h3 className={styled.socialMediaHeading}>{followUs}</h3>
-            <DynamicLanguageSwitcher />
+            <DynamicLanguageSwitcher id="footer" />
           </div>
           <ul className={styled.socialMediaList}>
             {socialLinks.map(({ iconName, id, link, platform }) => {

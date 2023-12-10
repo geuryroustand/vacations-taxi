@@ -2,9 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { useMediaQuery } from "react-responsive";
+
 import debounce from "lodash/debounce";
 import format from "date-fns/format";
 
@@ -12,6 +11,13 @@ import Image from "next/image";
 import styled from "./SearchForm.module.css";
 import SearchOptions from "../SearchOptions/SearchOptions";
 import FallBackLoading from "../Loading/FallBackLoading";
+
+const Form = dynamic(() => import("react-bootstrap/Form"), {
+  loading: () => <FallBackLoading />
+});
+const Button = dynamic(() => import("react-bootstrap/Button"), {
+  loading: () => <FallBackLoading />
+});
 
 const DynamicModalBoots = dynamic(() => import("../Modal/Modal"), {
   loading: () => <FallBackLoading />
@@ -260,24 +266,6 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
       valueTyped: event.target.value,
       [event.target.name]: event.target.value
     });
-
-    // searchLocation(event);
-
-    // if (!isDesktopOrLaptopOrTable && event.target.value !== "" && event.target.name === "pickUp") {
-    //   searchInputClicked({
-    //     title: "Pick-up location",
-    //     label: "Enter pick-up location",
-    //     placeHolder: "Enter pick-up location"
-    //   });
-    // }
-
-    // if (!isDesktopOrLaptopOrTable && event.target.value !== "" && event.target.name === "dropOff") {
-    //   searchInputClicked({
-    //     title: "Drop-off location",
-    //     label: "Enter drop location ",
-    //     placeHolder: "Enter pick-up location"
-    //   });
-    // }
 
     if (event.target.name === "pickUp") {
       setShowPickUpSearchedResult(true);

@@ -13,6 +13,7 @@ const CertificateOfExcellence = ({ heading }) => {
         <ul id="QOV4fvI" className="TA_links 4jTqnY">
           <li id="cWN8uWeN" className="RbFc52sklG">
             <a
+              aria-label="check our past customers review on TripAdvisor"
               title="TripAdvisor Certificate of Excellence for Vacations Taxis"
               rel="noreferrer"
               target="_blank"

@@ -15,13 +15,21 @@ const MyHead = ({ title, desc, keyword, noIndex, canonicalURL, openGraphImg, pat
         <link
           key="canonical"
           rel="canonical"
-          href={`https://www.vacationstaxis.com/${canonicalURL}`}
+          href={
+            canonicalURL
+              ? `https://www.vacationstaxis.com/${canonicalURL}`
+              : "`https://www.vacationstaxis.com"
+          }
         />
       ) : (
         <link
           key="canonical"
           rel="canonical"
-          href={`https://www.vacationstaxis.com/${language}/${canonicalURL}`}
+          href={
+            canonicalURL
+              ? `https://www.vacationstaxis.com/${language}/${canonicalURL}`
+              : `https://www.vacationstaxis.com/${language}`
+          }
         />
       )}
 
@@ -45,7 +53,14 @@ const MyHead = ({ title, desc, keyword, noIndex, canonicalURL, openGraphImg, pat
 
       {/* Facebook Meta Tag */}
 
-      <meta property="og:url" content={`https://www.vacationstaxis.com/${canonicalURL}`} />
+      <meta
+        property="og:url"
+        content={
+          canonicalURL
+            ? `https://www.vacationstaxis.com/${canonicalURL}`
+            : "https://www.vacationstaxis.com"
+        }
+      />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={desc} />
@@ -62,7 +77,14 @@ const MyHead = ({ title, desc, keyword, noIndex, canonicalURL, openGraphImg, pat
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="vacationstaxis.com" />
-      <meta property="twitter:url" content={`https://www.vacationstaxis.com/${canonicalURL}`} />
+      <meta
+        property="twitter:url"
+        content={
+          canonicalURL
+            ? `https://www.vacationstaxis.com/${canonicalURL}`
+            : "https://www.vacationstaxis.com"
+        }
+      />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={desc} />
       <meta

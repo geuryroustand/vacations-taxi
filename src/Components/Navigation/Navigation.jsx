@@ -46,7 +46,7 @@ const Navigation = ({
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <DynamicLanguageSwitcher />
+                <DynamicLanguageSwitcher id="header" />
 
                 <NavDropdown title={topLocationHeading} id="offcanvasNavbarDropdown-expand-lg-top">
                   {topLocations &&

@@ -9,7 +9,7 @@ import { baseURL, fetchData } from "../../src/Helper/fetchData";
 export default function BookingConFirmation({ description, title }) {
   return (
     <>
-      <MyHead title={title} noIndex />
+      <MyHead title={title} noIndex canonicalURL="booking-confirmation" />
       <BookingConfirmation desc={description} />;
     </>
   );

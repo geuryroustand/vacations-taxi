@@ -1,8 +1,14 @@
+import MyHead from "../src/Components/MyHead/MyHead";
 import { getTranslation } from "../src/redux/fetchApiSlice";
 import store from "../src/redux/store";
 
 export default function Custom404() {
-  return <h1>404 - Page Not Found</h1>;
+  return (
+    <>
+      <MyHead title="Not Found" noIndex />
+      <h1>404 - Page Not Found</h1>;
+    </>
+  );
 }
 
 const fetchTranslationData = async (dispatch, locale) => {

@@ -31,4 +31,4 @@ module.exports = nextConfig;
 //   enabled: process.env.ANALYZE === "true",
 //   openAnalyzer: true
 // });
-// module.exports = withBundleAnalyzer({});
+// module.exports = withBundleAnalyzer(nextConfig);

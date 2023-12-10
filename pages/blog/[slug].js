@@ -49,7 +49,7 @@ export default function Blog({
       <MyHead
         openGraphImg="post1.jpg"
         title={metaTitle}
-        canonicalURL={`blogs/${slugURL}`}
+        canonicalURL={`blog/${slugURL}`}
         desc={metaDescription}
         keyword={keywords && keywords}
       />

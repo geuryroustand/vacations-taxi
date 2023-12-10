@@ -13,7 +13,7 @@ const getLanguagePath = (language, pathname) => {
   return basePath;
 };
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = (id) => {
   const { locale, query, pathname } = useRouter();
 
   const currentLanguageTitle = getLanguageTitle(locale);
@@ -28,7 +28,7 @@ const LanguageSwitcher = () => {
             {currentLanguageTitle}
           </>
         }
-        id="offcanvasNavbarDropdown-expand-lg-languages">
+        id={`offcanvasNavbarDropdown-expand-lg-languages-${id}`}>
         <NavDropdown.Item href={getLanguagePath("en", pathname, query)}>English</NavDropdown.Item>
         <NavDropdown.Item href={getLanguagePath("es", pathname, query)}>Español</NavDropdown.Item>
       </NavDropdown>
