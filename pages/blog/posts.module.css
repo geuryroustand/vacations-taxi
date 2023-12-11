@@ -42,7 +42,8 @@
 }
 
 .article p:not(:has(> img)),
-.postContentCenterHeading {
+.postContentCenterHeading,
+.article ul {
   max-width: 50rem;
   margin: 0 auto;
 }

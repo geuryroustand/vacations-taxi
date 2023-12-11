@@ -46,14 +46,13 @@ export default function Blog({
             dangerouslySetInnerHTML={addOrganizationJsonLd(jsonLD)}
           />
         ))}
-      <MyHead
-        openGraphImg="post1.jpg"
-        title={metaTitle}
-        canonicalURL={`blog/${slugURL}`}
-        desc={metaDescription}
-        keyword={keywords && keywords}
-      />
 
+      <MyHead
+        title={metaTitle}
+        desc={metaDescription}
+        keyword={keywords}
+        canonicalURL={`blog/${slugURL}`}
+      />
       <Container className={styled.postsContainer}>
         <article className={styled.article}>
           <Markdown components={{ h1: heading1, img: imgNextImage, a: link, p, h2 }}>

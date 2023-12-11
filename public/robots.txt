@@ -1,0 +1,97 @@
+# *
+User-agent: *
+Disallow: /booking-details
+
+# *
+User-agent: *
+Disallow: es/booking-details
+
+# *
+User-agent: *
+Disallow: /payment-details
+
+# *
+User-agent: *
+Disallow: es/payment-details
+
+# *
+User-agent: *
+Disallow: /terms-and-conditions
+
+# *
+User-agent: *
+Disallow: es/terms-and-conditions
+
+# *
+User-agent: *
+Disallow: /contact-us
+
+# *
+User-agent: *
+Disallow: es/contact-us
+
+# *
+User-agent: *
+Disallow: /privacy-notice
+
+# *
+User-agent: *
+Disallow: es/privacy-notice
+
+# *
+User-agent: *
+Disallow: /about-us
+
+# *
+User-agent: *
+Disallow: es/about-us
+
+# *
+User-agent: *
+Disallow: /404
+
+# *
+User-agent: *
+Disallow: es/404
+
+# *
+User-agent: *
+Disallow: /
+
+# *
+User-agent: *
+Disallow: es/500
+
+# *
+User-agent: *
+Disallow: /blog
+
+# *
+User-agent: *
+Disallow: es/blog
+
+# *
+User-agent: *
+Disallow: /booking-confirmation
+
+# *
+User-agent: *
+Disallow: es/booking-confirmation
+
+# *
+User-agent: *
+Allow: /blog/
+
+# *
+User-agent: *
+Allow: es/blog/
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.vacationstaxis.com/
+
+# Sitemaps
+Sitemap: https://strapi.vacationstaxis.com/api/sitemap/index.xml
