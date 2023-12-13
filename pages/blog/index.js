@@ -54,7 +54,7 @@ export default function Blogs({ data }) {
                         <Card.Title>
                           <Card.Title>{title}</Card.Title>
                         </Card.Title>
-                        <Card.Text>{excerpt}</Card.Text>
+                        <Card.Text className={styled.truncate}>{excerpt}</Card.Text>
                       </Card.Body>
                     </Card>
                   </Link>
