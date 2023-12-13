@@ -19,7 +19,8 @@ export default function Blog({
   metaTitle,
   metaDescription,
   keywords,
-  structuredData
+  structuredData,
+  metaSocial = []
 }) {
   const imgNextImage = ({ alt, src }) => (
     <Image className={styled.postImgs} width={1200} height={500} src={src} alt={alt} />
@@ -52,6 +53,7 @@ export default function Blog({
         desc={metaDescription}
         keyword={keywords}
         canonicalURL={`blog/${slugURL}`}
+        metaSocial={metaSocial}
       />
       <Container className={styled.postsContainer}>
         <article className={styled.article}>
@@ -80,7 +82,7 @@ export const getServerSideProps = store.getServerSideProps(
         const { slug } = params;
 
         const { data } = await fetchData(
-          `${baseURL}/blogs?filters[slug][$eq]=${slug}&locale=${locale}&populate=*`
+          `${baseURL}/blogs?filters[slug][$eq]=${slug}&locale=${locale}&populate[seo][populate]=*`
         );
 
         if (!data || data.length === 0) {
@@ -90,7 +92,7 @@ export const getServerSideProps = store.getServerSideProps(
           };
         }
         const { description, slug: slugURL, seo } = data[0].attributes;
-        const { metaTitle, metaDescription, keywords, structuredData } = seo;
+        const { metaTitle, metaDescription, keywords, structuredData, metaSocial } = seo;
 
         return {
           props: {
@@ -99,7 +101,8 @@ export const getServerSideProps = store.getServerSideProps(
             metaTitle,
             metaDescription,
             keywords,
-            structuredData
+            structuredData,
+            metaSocial
           }
         };
       } catch (error) {

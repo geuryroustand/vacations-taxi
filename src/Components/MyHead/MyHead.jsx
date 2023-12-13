@@ -2,8 +2,20 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 
-const MyHead = ({ title, desc, keyword, noIndex, canonicalURL, openGraphImg, paths = [] }) => {
+const MyHead = ({
+  title,
+  desc,
+  keyword,
+  noIndex,
+  canonicalURL,
+  openGraphImg,
+  paths = [],
+  metaSocial = []
+}) => {
   const { locale: language } = useRouter();
+
+  const [facebook, twitter] = metaSocial;
+
   return (
     <Head>
       {title && <title>{title}</title>}
@@ -62,8 +74,8 @@ const MyHead = ({ title, desc, keyword, noIndex, canonicalURL, openGraphImg, pat
         }
       />
       <meta property="og:type" content="website" />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={desc} />
+      <meta property="og:title" content={metaSocial ? facebook?.title : title} />
+      <meta property="og:description" content={metaSocial ? facebook?.description : desc} />
       <meta
         property="og:image"
         content={
@@ -85,8 +97,8 @@ const MyHead = ({ title, desc, keyword, noIndex, canonicalURL, openGraphImg, pat
             : "https://www.vacationstaxis.com"
         }
       />
-      <meta property="twitter:title" content={title} />
-      <meta property="twitter:description" content={desc} />
+      <meta property="twitter:title" content={metaSocial ? twitter?.title : title} />
+      <meta property="twitter:description" content={metaSocial ? twitter?.description : desc} />
       <meta
         property="twitter:image"
         content={
