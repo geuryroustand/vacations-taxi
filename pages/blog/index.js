@@ -6,10 +6,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import styled from "./posts.module.css";
-import MyHead from "../../src/Components/MyHead/MyHead";
+
 import { getTranslation } from "../../src/redux/fetchApiSlice";
 import store from "../../src/redux/store";
 import { baseURL, fetchData } from "../../src/Helper/fetchData";
+import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
 export default function Blogs({ data }) {
   const groupedPosts = [...data]
@@ -24,7 +25,7 @@ export default function Blogs({ data }) {
 
   return (
     <>
-      <MyHead title="Blogs" noIndex canonicalURL="blog" />
+      <SeoHead title="Blogs" noIndex canonicalURL="blog" />
       <Container className={styled.postsContainer}>
         <h1 className={styled.postsHeading}>Travel Tips:</h1>
         {groupedPosts?.map((group) => (

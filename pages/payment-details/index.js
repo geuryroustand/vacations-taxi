@@ -10,8 +10,8 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import Loading from "../../src/Components/Loading/Loading";
 import styled from "./paymentDetails.module.css";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
+import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
-import MyHead from "../../src/Components/MyHead/MyHead";
 import store from "../../src/redux/store";
 import { getContent, getTranslation } from "../../src/redux/fetchApiSlice";
 import { baseURL } from "../../src/Helper/fetchData";
@@ -104,7 +104,7 @@ function paymentDetails() {
   if (isLoading) {
     return (
       <>
-        <MyHead title={paymentLoadingTitle} noIndex />
+        <SeoHead title={paymentLoadingTitle} noIndex />
         <Loading
           spinnerTitle={paymentSpinnerTitle}
           accessibilityTitle={paymentAccessibilityTitle}
@@ -116,7 +116,7 @@ function paymentDetails() {
 
   return (
     <>
-      <MyHead title={paymentTitle} noIndex />
+      <SeoHead title={paymentTitle} noIndex />
       <Form className={styled.paymentDetails} noValidate validated={validated} onSubmit={sendInfo}>
         <Container>
           <BookingStepProcess />

@@ -1,11 +1,11 @@
-import MyHead from "../src/Components/MyHead/MyHead";
+import SeoHead from "../src/Components/SeoHead/SeoHead";
 import { getTranslation } from "../src/redux/fetchApiSlice";
 import store from "../src/redux/store";
 
 export default function Custom500() {
   return (
     <>
-      <MyHead title="Server side error" noIndex />
+      <SeoHead title="Server side error" noIndex />
       <h1>500 - Server-side error occurred</h1>;
     </>
   );

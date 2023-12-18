@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "./contactUs.module.css";
-import MyHead from "../../src/Components/MyHead/MyHead";
+import SeoHead from "../../src/Components/SeoHead/SeoHead";
 import { getTranslation } from "../../src/redux/fetchApiSlice";
 import store from "../../src/redux/store";
 import { baseURL, fetchData } from "../../src/Helper/fetchData";
@@ -30,7 +30,7 @@ function contactUs({
 }) {
   return (
     <div className={styled.contactForm}>
-      <MyHead title={title} noIndex canonicalURL={slug} />
+      <SeoHead title={title} noIndex canonicalURL={slug} />
 
       <Container className={styled.contactFormWrapper}>
         <DynamicContactForm

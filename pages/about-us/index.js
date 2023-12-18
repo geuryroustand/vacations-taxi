@@ -2,15 +2,15 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Markdown from "react-markdown";
 
-import MyHead from "../../src/Components/MyHead/MyHead";
 import store from "../../src/redux/store";
 import { getTranslation } from "../../src/redux/fetchApiSlice";
 import { baseURL, fetchData } from "../../src/Helper/fetchData";
+import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
 export default function aboutUs({ content, title, slug }) {
   return (
     <Container className="mt-5">
-      <MyHead title={title} noIndex canonicalURL={slug} />
+      <SeoHead title={title} noIndex canonicalURL={slug} />
       <Markdown>{content}</Markdown>
     </Container>
   );

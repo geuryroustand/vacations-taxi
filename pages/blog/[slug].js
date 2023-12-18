@@ -6,12 +6,13 @@ import Container from "react-bootstrap/Container";
 import Markdown from "react-markdown";
 
 import styled from "./posts.module.css";
-import MyHead from "../../src/Components/MyHead/MyHead";
+
 import { getTranslation } from "../../src/redux/fetchApiSlice";
 import store from "../../src/redux/store";
 import { baseURL, fetchData } from "../../src/Helper/fetchData";
 import addOrganizationJsonLd from "../../src/Helper/addOrganizationJsonLd";
 import Loading from "../../src/Components/Loading/Loading";
+import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
 export default function Blog({
   description,
@@ -48,7 +49,7 @@ export default function Blog({
           />
         ))}
 
-      <MyHead
+      <SeoHead
         title={metaTitle}
         desc={metaDescription}
         keyword={keywords}

@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 import styled from "./locationsName.module.css";
 
-import MyHead from "../src/Components/MyHead/MyHead";
+import SeoHead from "../src/Components/SeoHead/SeoHead";
 import { getTranslation } from "../src/redux/fetchApiSlice";
 import store from "../src/redux/store";
 import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
@@ -49,7 +49,7 @@ function PagesForSEO({ description2, description1, description3, seo, paths, tru
           dangerouslySetInnerHTML={addOrganizationJsonLd(jsonLD)}
         />
       ))}
-      <MyHead
+      <SeoHead
         title={metaTitle}
         desc={metaDescription}
         keyword={keywords}

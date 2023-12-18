@@ -13,7 +13,7 @@ import { allFlightInfo } from "../../src/redux/flightInfoSlice";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 import Loading from "../../src/Components/Loading/Loading";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
-import MyHead from "../../src/Components/MyHead/MyHead";
+import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
 import styled from "./bookingDetails.module.css";
 import { getContent, getTranslation } from "../../src/redux/fetchApiSlice";
@@ -107,7 +107,7 @@ function BookingDetails() {
   if (isLoading) {
     return (
       <>
-        <MyHead title={title} noIndex canonicalURL={slug} />
+        <SeoHead title={title} noIndex canonicalURL={slug} />
         <Loading spinnerTitle={loadingSpinner} accessibilityTitle={loadingSpinnerAccessibility} />
       </>
     );
@@ -115,7 +115,7 @@ function BookingDetails() {
 
   return (
     <div className={styled.bookingDetails}>
-      <MyHead
+      <SeoHead
         title={`${pickUp || ""}  ${pickUp && dropOff ? "to" : ""} ${dropOff || ""}`}
         noIndex
       />

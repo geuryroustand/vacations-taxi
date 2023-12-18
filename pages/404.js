@@ -1,11 +1,11 @@
-import MyHead from "../src/Components/MyHead/MyHead";
+import SeoHead from "../src/Components/SeoHead/SeoHead";
 import { getTranslation } from "../src/redux/fetchApiSlice";
 import store from "../src/redux/store";
 
 export default function Custom404() {
   return (
     <>
-      <MyHead title="Not Found" noIndex />
+      <SeoHead title="Not Found" noIndex />
       <h1>404 - Page Not Found</h1>;
     </>
   );
