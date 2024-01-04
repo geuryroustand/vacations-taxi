@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
 import { useMediaQuery } from "react-responsive";
+import { useSelector } from "react-redux";
 
 import debounce from "lodash/debounce";
 import format from "date-fns/format";
@@ -11,6 +12,7 @@ import Image from "next/image";
 import styled from "./SearchForm.module.css";
 import SearchOptions from "../SearchOptions/SearchOptions";
 import FallBackLoading from "../Loading/FallBackLoading";
+import flightDetailsSelector from "../../Helper/memoizedSelectors";
 
 const Form = dynamic(() => import("react-bootstrap/Form"), {
   loading: () => <FallBackLoading />
@@ -34,7 +36,9 @@ const DynamicDatePickerSearchForm = dynamic(
   }
 );
 
-const SearchForm = ({ isClicked, bookingSearch }) => {
+const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
+  const router = useRouter();
+
   const isDesktopOrLaptopOrTable =
     // eslint-disable-next-line unicorn/no-negated-condition
     typeof window !== "undefined"
@@ -52,11 +56,34 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
   const inputDropOffReference = useRef();
   const modalInputReference = useRef();
 
-  const [currentPickUpDate, setCurrentPickUpDate] = useState(new Date());
-  const [currentPickUpTime, setCurrentPickUpTime] = useState(new Date());
+  const {
+    pickUpMemoized,
+    dropOffMemoized
+    // pickUpIDMemoized,
+    // dropOffIDMemoized,
+    // allFlightInfoMemoized,
+    // pickUpPassengerMemoized
+  } = useSelector(flightDetailsSelector);
+
+  const selectedCurrentDropDateAndTime =
+    router.query?.dropOffDate && router.query?.dropOffTime
+      ? new Date(`${router.query?.dropOffDate} ${router.query?.dropOffTime}`)
+      : "";
+
+  const [currentReturnFormDate, setCurrentReturnFormDate] = useState(
+    selectedCurrentDropDateAndTime
+  );
 
   const [currentDropOffDate, setCurrentDropOffDate] = useState(new Date());
   const [currentDropOffTime, setCurrentDropOffTime] = useState(new Date());
+
+  const selectedCurrentPickUpDate =
+    router.query?.pickUpDate && router.query?.pickUpTime
+      ? new Date(`${router.query?.pickUpDate} ${router.query?.pickUpTime}`)
+      : new Date();
+
+  const [currentPickUpDate, setCurrentPickUpDate] = useState(new Date(selectedCurrentPickUpDate));
+  const [currentPickUpTime, setCurrentPickUpTime] = useState(new Date());
 
   const [searchedTerm, setSearchedTerm] = useState({
     pickUp: "",
@@ -69,37 +96,51 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
     valueTyped: ""
   });
 
-  const router = useRouter();
+  const [disableReturnInputDate, setDisableReturnInputDate] = useState();
 
   useEffect(() => {
     setSearchedTerm({
       ...searchedTerm,
-      pickUpDate: format(currentPickUpDate, "eee d, MMM  yyyy"),
-      pickUpTime: format(currentPickUpTime, "k:m")
+      pickUpDate: currentPickUpDate && format(currentPickUpDate, "eee d, MMM  yyyy"),
+      pickUpTime: showReturnSearchForm
+        ? currentPickUpTime && format(currentPickUpTime, "k:m")
+        : currentPickUpDate && format(currentPickUpDate, "k:m")
     });
   }, [currentPickUpDate, currentPickUpTime]);
 
   useEffect(() => {
-    if (isClicked) {
+    if (isClicked || disableReturnInputDate) {
       setSearchedTerm({
         ...searchedTerm,
-        pickUpReturn: searchedTerm.dropOff,
-        dropOffReturn: searchedTerm.pickUp,
-        dropOffDate: format(currentDropOffDate, "eee d, MMM  yyyy"),
-        dropOffTime: format(currentDropOffTime, "k:m"),
+        pickUpReturn: pickUpMemoized || searchedTerm.dropOff,
+        dropOffReturn: dropOffMemoized || searchedTerm.pickUp,
+        dropOffDate: disableReturnInputDate
+          ? format(currentReturnFormDate, "eee d, MMM  yyyy")
+          : format(currentDropOffDate, "eee d, MMM  yyyy"),
+        dropOffTime: disableReturnInputDate
+          ? format(currentReturnFormDate, "k:m")
+          : format(currentDropOffTime, "k:m"),
         roundtrip: true
       });
     } else {
       setSearchedTerm({
-        pickUp: searchedTerm.pickUp,
-        dropOff: searchedTerm.dropOff,
+        pickUp: pickUpMemoized || searchedTerm.pickUp,
+        dropOff: dropOffMemoized || searchedTerm.dropOff,
         pickUpDate: searchedTerm.pickUpDate,
         pickUpTime: searchedTerm.pickUpTime,
         pickUpSearchedTermClicked: true,
         dropOffSearchedTermClicked: true
       });
     }
-  }, [isClicked, currentDropOffDate, currentDropOffTime]);
+  }, [
+    isClicked,
+    currentDropOffDate,
+    currentDropOffTime,
+    disableReturnInputDate,
+    pickUpMemoized,
+    dropOffMemoized,
+    currentReturnFormDate
+  ]);
 
   const {
     isEmptyFeedbackPickUp = "",
@@ -108,13 +149,15 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
     inputDropOffPlaceHolder = "",
     passengers = "",
     searchBtn: searchButton = "",
-    pickUpText = ""
+    pickUpText = "",
+    dateLabelArrival = "",
+    dateLabelDeparture = ""
   } = bookingSearch || {};
 
   const [validated, setValidated] = useState(false);
 
-  const [showPickUpSearchedResult, setShowPickUpSearchedResult] = useState(true);
-  const [showDropOffSearchedResult, setShowDropOffSearchedResult] = useState(true);
+  const [showPickUpSearchedResult, setShowPickUpSearchedResult] = useState(false);
+  const [showDropOffSearchedResult, setShowDropOffSearchedResult] = useState(false);
 
   const [modalInputValues, setModalInputValues] = useState({});
 
@@ -146,30 +189,64 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
 
     if (!form.checkValidity() === false) {
       if (roundtrip) {
+        // if (
+        //   (pickUpIDMemoized === router.query?.pickUp &&
+        //     !pickUpID &&
+        //     dropOffIDMemoized === router.query?.dropOff &&
+        //     !dropOffID &&
+        //     !disableReturnInputDate) ||
+        //   (pickUpPassengerMemoized !== pickUpPassenger && !pickUpID)
+        // ) {
+        //   dispatch(
+        //     allFlightInfo({
+        //       ...allFlightInfoMemoized,
+        //       ...searchedTerm,
+        //       pickUpPassenger,
+        //       dropOffPassenger
+        //     })
+        //   );
+        //   return;
+        // }
         router.push({
           pathname: "/booking-details",
           query: {
-            pickUp: pickUpID,
-            dropOff: dropOffID,
+            pickUp: pickUpID || router.query?.pickUp,
+            dropOff: dropOffID || router.query?.dropOff,
             dropOffDate,
             dropOffReturn,
             dropOffTime,
-
             pickUpDate,
             pickUpReturn,
             pickUpTime,
-
             pickUpPassenger,
             dropOffPassenger,
             roundtrip
           }
         });
       } else {
+        // if (
+        //   (pickUpIDMemoized === router.query?.pickUp &&
+        //     !pickUpID &&
+        //     dropOffIDMemoized === router.query?.dropOff &&
+        //     !dropOffID) ||
+        //   (pickUpPassengerMemoized !== pickUpPassenger && !pickUpID)
+        // ) {
+        //   dispatch(
+        //     allFlightInfo({
+        //       ...allFlightInfoMemoized,
+        //       ...searchedTerm,
+        //       pickUpPassenger,
+        //       dropOffPassenger
+        //     })
+        //   );
+        //   return;
+        // }
+
         router.push({
           pathname: "/booking-details",
           query: {
-            pickUp: pickUpID,
-            dropOff: dropOffID,
+            pickUp: pickUpID || router.query?.pickUp,
+            dropOff: dropOffID || router.query?.dropOff,
             pickUpDate,
             pickUpReturn,
             pickUpTime,
@@ -260,7 +337,6 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
   }, [searchedTerm.valueTyped]);
 
   const onChange = (event) => {
-    // if (event.target.value.length <= 2 && !isDesktopOrLaptopOrTable) setShowModal(true);
     setSearchedTerm({
       ...searchedTerm,
       valueTyped: event.target.value,
@@ -297,10 +373,13 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
       setShowDropOffSearchedResult(!showDropOffSearchedResult);
     }
   };
+
   return (
     <Form className={styled.form} validated={validated} noValidate onSubmit={submitData}>
-      <div className={styled.searchForm}>
+      <div
+        className={`${styled.searchForm} ${showReturnSearchForm ? "" : styled.searchFormSpecify}`}>
         <DynamicSearchFormInput
+          showReturnSearchForm={showReturnSearchForm}
           inputReference={inputPickUpReference}
           label={inputPickUpPlaceHolder}
           placeHolder={inputPickUpPlaceHolder}
@@ -326,8 +405,9 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
 
         {showPickUpSearchedResult &&
           isDesktopOrLaptopOrTable &&
+          showPickUpSearchedResult &&
           searchedTerm.pickUp &&
-          showPickUpSearchedResult && (
+          searchedTerm.valueTyped?.length > 1 && (
             <SearchOptions
               locationsFetch={locationsFetch}
               onClickedSearchedResult={onClickedSearchedResult}
@@ -336,6 +416,7 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
           )}
 
         <DynamicSearchFormInput
+          showReturnSearchForm={showReturnSearchForm}
           inputReference={inputDropOffReference}
           label={inputDropOffPlaceHolder}
           placeHolder={inputDropOffPlaceHolder}
@@ -358,32 +439,33 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
           searchedTerm={searchedTerm.dropOff || ""}
         />
 
-        {showDropOffSearchedResult && isDesktopOrLaptopOrTable && searchedTerm.dropOff && (
-          <SearchOptions
-            moveLeft
-            locationsFetch={locationsFetch}
-            onClickedSearchedResult={onClickedSearchedResult}
-            optionToShow="dropOff"
-          />
-        )}
-
-        {/* <SearchFormInput
-          labelPick="Enter pick-up location"
-          placeHolderPick="Enter pick-up location"
-          labelDrop="Enter drop location"
-          placeHolderDrop="Enter drop location "
-          required={true}
-          validated={validated}
-        /> */}
+        {showDropOffSearchedResult &&
+          isDesktopOrLaptopOrTable &&
+          searchedTerm.dropOff &&
+          searchedTerm.valueTyped?.length > 1 && (
+            <SearchOptions
+              moveLeft
+              locationsFetch={locationsFetch}
+              onClickedSearchedResult={onClickedSearchedResult}
+              optionToShow="dropOff"
+            />
+          )}
 
         <DynamicDatePickerSearchForm
+          disableReturnInputDate={disableReturnInputDate}
+          setDisableReturnInputDate={setDisableReturnInputDate}
+          showReturnSearchForm={showReturnSearchForm}
+          isClicked={isClicked}
           passengers={passengers}
           pickUpText={pickUpText}
           pickUpAndDropDate={currentPickUpDate}
           setPickUpAndDropDate={setCurrentPickUpDate}
+          currentReturnFormDate={currentReturnFormDate}
+          setCurrentReturnFormDate={setCurrentReturnFormDate}
           pickUpAndDropTime={currentPickUpTime}
           setPickUpAndDropTime={setCurrentPickUpTime}
-          labelPickDate="arrival date"
+          labelPickDate={dateLabelArrival}
+          dateLabelDeparture={dateLabelDeparture}
           labelPickTime="arrival pick time"
           getPassenger={(event) =>
             setPassenger({
@@ -394,24 +476,42 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
         />
 
         {!isClicked && (
-          <Button type="submit" className={styled["search-btn"]}>
-            <Image src="/images/search.svg" width="25" height="25" alt="location" />
+          <Button
+            type="submit"
+            className={`${styled["search-btn"]} ${
+              showReturnSearchForm ? "" : styled.searchBtnSpecify
+            }`}>
+            <Image
+              src="/images/search.svg"
+              width={showReturnSearchForm ? 25 : 20}
+              height={showReturnSearchForm ? 25 : 20}
+              alt="location"
+            />
+            {searchButton}
+          </Button>
+        )}
+
+        {isClicked && !showReturnSearchForm && (
+          <Button
+            type="submit"
+            className={`${styled["search-btn"]} ${
+              showReturnSearchForm ? "" : styled.searchBtnSpecify
+            }`}>
+            <Image
+              src="/images/search.svg"
+              width={showReturnSearchForm ? 25 : 20}
+              height={showReturnSearchForm ? 25 : 20}
+              alt="search location"
+            />
             {searchButton}
           </Button>
         )}
       </div>
 
-      {isClicked && (
+      {isClicked && showReturnSearchForm && (
         <div className={`${styled.searchForm} ${styled["return-searchForm"]} `}>
-          {/* <SearchFormInput
-            labelPick="Enter pick-up location"
-            placeHolderPick="Enter pick-up location"
-            labelDrop="Enter drop location"
-            placeHolderDrop="Enter drop location "
-            disabled={true}
-          /> */}
-
           <DynamicSearchFormInput
+            showReturnSearchForm={showReturnSearchForm}
             label={inputDropOffPlaceHolder}
             placeHolder={inputDropOffPlaceHolder}
             disabled
@@ -419,6 +519,7 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
           />
 
           <DynamicSearchFormInput
+            showReturnSearchForm={showReturnSearchForm}
             label={inputPickUpPlaceHolder}
             placeHolder={inputPickUpPlaceHolder}
             disabled
@@ -426,13 +527,14 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
           />
 
           <DynamicDatePickerSearchForm
+            showReturnSearchForm={showReturnSearchForm}
             pickUpText={pickUpText}
             passengers={passengers}
             pickUpAndDropDate={currentDropOffDate}
             setPickUpAndDropDate={setCurrentDropOffDate}
             pickUpAndDropTime={currentDropOffTime}
             setPickUpAndDropTime={setCurrentDropOffTime}
-            labelPickDate="departure date"
+            labelPickDate={dateLabelDeparture}
             labelPickTime="departure pick time"
             defaultValue={passenger.pickUpPassenger}
             getPassenger={() =>
@@ -444,10 +546,10 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
           />
         </div>
       )}
-      {isClicked && (
+      {isClicked && showReturnSearchForm && (
         <Button type="submit" className={styled["search-btn"]}>
           <Image src="/images/search.svg" width="25" height="25" alt="location" />
-          Search
+          {searchButton}
         </Button>
       )}
 
@@ -460,13 +562,6 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
           locationsFetch={locationsFetch}
           onChange={onChange}
           onClickedSearchedResult={onClickedSearchedResult}
-          // name={searchedTerm.pickUp.length === 1 ? "pickUp" : ""}
-          // searchedTerm.dropOff.length === 1 && "dropOff"
-
-          // searchedTerm={
-          //   searchedTerm.pickUp
-          //   // (searchedTerm.dropOff.length === 1 && searchedTerm.dropOff)
-          // }
         />
       )}
     </Form>
