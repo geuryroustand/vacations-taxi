@@ -1,4 +1,4 @@
-const fetchData = async (url) => {
+export const fetchData = async (url) => {
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -8,10 +8,7 @@ const fetchData = async (url) => {
   return response.json();
 };
 
-const { NEXT_PUBLIC_API_PROD_URL_STRAPI, NEXT_PUBLIC_API_STRAPI_DEV_URL, NODE_ENV } = process.env;
-
-const PROD = NODE_ENV === "production";
-
-const baseURL = PROD ? NEXT_PUBLIC_API_PROD_URL_STRAPI : NEXT_PUBLIC_API_STRAPI_DEV_URL;
-
-export { baseURL, fetchData };
+const PROD = process.env.NODE_ENV === "production";
+export const baseURL = PROD
+  ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+  : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
