@@ -4,6 +4,7 @@
   background-color: var(--third-color);
   height: 15.5rem;
   overflow-y: scroll;
+  left: 0px;
 }
 
 .searchList::-webkit-scrollbar {
@@ -35,6 +36,7 @@
     position: absolute;
 
     z-index: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 }
 
@@ -70,6 +72,9 @@
 }
 
 @media (min-width: 48em) {
+  .searchListOption {
+    padding-left: 1.1rem;
+  }
   .searchListOption:hover {
     background-color: var(--secondary-darkest-color);
     color: var(--third-color);

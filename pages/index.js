@@ -128,7 +128,12 @@ export default function Home({
 
       {/* <!-- End Meta Pixel Code --> */}
 
-      <DynamicHeader desc={description} oneWay={oneWay} roundTrip={roundTrip} />
+      <DynamicHeader
+        desc={description}
+        oneWay={oneWay}
+        roundTrip={roundTrip}
+        showReturnSearchForm
+      />
 
       <DynamicTrusted trusted={trusted} />
 

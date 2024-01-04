@@ -23,7 +23,14 @@ function DatePickerSearchForm({
   getPassenger,
   defaultValue,
   passengers,
-  pickUpText
+  pickUpText,
+  showReturnSearchForm,
+  isClicked,
+  currentReturnFormDate,
+  setCurrentReturnFormDate,
+  disableReturnInputDate,
+  setDisableReturnInputDate,
+  dateLabelDeparture
 }) {
   const { locale } = useRouter();
   const localeMap = {
@@ -35,96 +42,107 @@ function DatePickerSearchForm({
   registerLocale(locale, localeMap[locale]);
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() + 2);
+
+  const onReturnDateInputClick = () => {
+    setDisableReturnInputDate(true);
+    setCurrentReturnFormDate(new Date());
+  };
+  // Todo need to add the pick time below the calender
+
   return (
     <div className={styled.date}>
       <div className={styled.calender}>
         <Image src="/images/calendar.svg" width="20" height="20" alt="calendar" />
-        <label className="visually-hidden" htmlFor="date-picker">
-          {labelPickDate}
-        </label>
-        <DatePicker
-          locale={locale}
-          id="date-picker"
-          // showTimeSelect
-
-          selected={pickUpAndDropDate}
-          // selected={dataToSend.arrivalDate}
-          // dateFormat="MM/dd/yyyy h:mm aa"
-          // showTimeInput
-          // timeInputLabel="Pick-up Time:"
-          // dateFormat="eee d, MMM  yyyy h:mm aa"
-          onSelect={(date) => setPickUpAndDropDate(date)}
-          // onChange={dateSelect}
-          // timeClassName={handleColor}
-          minDate={new Date()}
-          maxDate={maxDate}
-          showPopperArrow={false}
-          showMonthDropdown
-          showYearDropdown
-          yearDropdownItemNumber={1}
-          scrollableYearDropdown
-          dropdownMode="select"
-          dateFormat="eee d, MMM  yyyy "
-          // peekNextMonth
-          // scrollableYearDropdown
-          // strictParsing
-          // timeIntervals={15}
-          // dateFormat="MMMM d, yyyy h:mm "
-          // timeCaption="Pic-up time"
-          // timeFormat="p"
-          // timeIntervals={1}
-          // dateFormat="Pp"
-          withPortal
-          portalId="root-portal"
-          className={styled["date-picker"]}
-          // required
-          // value={dataToSend.arrivalDate}
-          // onChange={(e) => handlerData("arrivalDate", e.target.value)}
-        />
-      </div>
-
-      <div className={styled.passengerAndPickTime}>
-        <div className={styled.pickTime}>
-          <Image src="/images/Clock.svg" width="20" height="20" alt="calendar" />
-          <label className="visually-hidden" htmlFor="pickTime">
-            {labelPickTime}
+        <div className={styled.calenderAndIconWrapper}>
+          <label className={styled.calenderLabel} htmlFor="date-picker-arrival">
+            {labelPickDate}
           </label>
           <DatePicker
+            autoComplete="off"
             locale={locale}
-            id="pickTime"
-            selected={pickUpAndDropTime}
-            onChange={(date) => setPickUpAndDropTime(date)}
-            showTimeSelectOnly
-            showTimeSelect
-            timeIntervals={10}
-            // timeCaption={t("timeCaption")}
-            timeFormat="HH:mm"
-            dateFormat="h:mm aa"
+            id="date-picker-arrival"
+            selected={pickUpAndDropDate}
+            onChange={(date) => setPickUpAndDropDate(date)}
+            minDate={new Date()}
+            maxDate={maxDate}
+            showMonthDropdown
+            showYearDropdown
+            timeIntervals={5}
+            dropdownMode="select"
+            // showTimeSelect={!showReturnSearchForm}
+            showTimeInput={!showReturnSearchForm}
             timeCaption={pickUpText}
-            // showTimeInput
-            // id="date-picker"
-            // selected={dataToSend.arrivalDate}
-            // dateFormat="MM/dd/yyyy h:mm aa"
-            // showTimeInput
-            // timeInputLabel="Pick-up Time:"
-            // dateFormat="eee d, MMM  yyyy h:mm aa"
-            // timeClassName={handleColor}
-            // timeFormat="HH:mm"
-            // peekNextMonth
-            // scrollableYearDropdown
-            // strictParsing
-            // timeIntervals={15}
-            // dateFormat="MMMM d, yyyy h:mm "
-
-            // timeFormat="p"
-
-            // dateFormat="Pp"
-            // withPortal
-            // portalId="root-portal"
-            className={styled.datePickUp}
+            dateFormat={showReturnSearchForm ? "eee d, MMM yyyy" : "eee d, MMM yyyy HH:mm"}
+            timeFormat="HH:mm"
+            className={styled["date-picker"]}
           />
         </div>
-        <div className={styled.passenger}>
+      </div>
+
+      {!showReturnSearchForm && (
+        <div
+          className={`${styled.calender} ${
+            isClicked || disableReturnInputDate ? "" : styled.calenderDisable
+          }`}>
+          <Image src="/images/calendar.svg" width="20" height="20" alt="calendar" />
+          <div className={styled.calenderAndIconWrapper}>
+            <label className={styled.calenderLabel} htmlFor="date-picker">
+              {dateLabelDeparture}
+            </label>
+            <DatePicker
+              // disabled={disableReturnInputDate}
+              autoComplete="off"
+              onInputClick={onReturnDateInputClick}
+              locale={locale}
+              id="date-picker-return"
+              placeholderText="Add a return"
+              // todayButton="Return Flight"
+              selected={currentReturnFormDate}
+              onChange={(date) => setCurrentReturnFormDate(date)}
+              minDate={new Date()}
+              maxDate={maxDate}
+              showMonthDropdown
+              showYearDropdown
+              timeIntervals={5}
+              dropdownMode="select"
+              // showTimeSelect={!showReturnSearchForm}
+              showTimeInput={!showReturnSearchForm}
+              timeCaption={pickUpText}
+              dateFormat={showReturnSearchForm ? "eee d, MMM yyyy" : "eee d, MMM yyyy HH:mm"}
+              timeFormat="HH:mm"
+              className={`${styled["date-picker"]} ${
+                isClicked || disableReturnInputDate ? "" : styled.calenderDisable
+              }`}
+            />
+          </div>
+        </div>
+      )}
+
+      <div className={styled.passengerAndPickTime}>
+        {showReturnSearchForm && (
+          <div className={styled.pickTime}>
+            <Image src="/images/Clock.svg" width="20" height="20" alt="calendar" />
+            <label className="visually-hidden" htmlFor="pickTime">
+              {labelPickTime}
+            </label>
+            <DatePicker
+              locale={locale}
+              id="pickTime"
+              selected={pickUpAndDropTime}
+              onChange={(date) => setPickUpAndDropTime(date)}
+              showTimeSelectOnly
+              showTimeSelect
+              timeIntervals={5}
+              timeFormat="HH:mm"
+              dateFormat="h:mm aa"
+              timeCaption={pickUpText}
+              className={styled.datePickUp}
+            />
+          </div>
+        )}
+
+        <div
+          className={`${styled.passenger} ${showReturnSearchForm ? "" : styled.passengerSpecify}`}>
           <Image src="/images/user.svg" width="25" height="25" alt="user" />
 
           <Form.Select
