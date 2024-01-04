@@ -367,6 +367,15 @@ const SearchForm = ({ isClicked, bookingSearch }) => {
           />
         )}
 
+        {/* <SearchFormInput
+          labelPick="Enter pick-up location"
+          placeHolderPick="Enter pick-up location"
+          labelDrop="Enter drop location"
+          placeHolderDrop="Enter drop location "
+          required={true}
+          validated={validated}
+        /> */}
+
         <DynamicDatePickerSearchForm
           passengers={passengers}
           pickUpText={pickUpText}
