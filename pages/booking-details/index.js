@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
@@ -20,8 +19,6 @@ import styled from "./bookingDetails.module.css";
 import { getContent, getTranslation } from "../../src/redux/fetchApiSlice";
 import store from "../../src/redux/store";
 
-import flightDetailsSelector from "../../src/Helper/memoizedSelectors";
-
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
   {
@@ -29,7 +26,7 @@ const DynamicBookingSummary = dynamic(
   }
 );
 
-// TODO remove the local storage  and also check the state error
+// TODO remove the local storage
 
 const DynamicCarList = dynamic(() => import("../../src/Components/CarList/CarList"), {
   ssr: false,
@@ -47,9 +44,7 @@ const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header")
 function BookingDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const [showSearchForm, setShowSearchForm] = useState(false);
-  // const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
-
-  const { pickUpMemoized, dropOffMemoized } = useSelector(flightDetailsSelector);
+  const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
 
   const { locale } = useRouter();
   const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
@@ -90,13 +85,10 @@ function BookingDetails() {
     if (response.ok) {
       setIsLoading(false);
       const data = await response.json();
-
       dispatch(
         allFlightInfo({
           ...router.query,
-          ...data,
-          pickUpID: router.query.pickUp,
-          dropOffID: router.query.dropOff
+          ...data
         })
       );
     }
@@ -124,23 +116,20 @@ function BookingDetails() {
   return (
     <div className={styled.bookingDetails}>
       <SeoHead
-        title={`${pickUpMemoized || ""}  ${pickUpMemoized && dropOffMemoized ? "to" : ""} ${
-          dropOffMemoized || ""
-        }`}
+        title={`${pickUp || ""}  ${pickUp && dropOff ? "to" : ""} ${dropOff || ""}`}
         noIndex
       />
 
       <Container>
         <BookingStepProcess />
 
-        <DynamicHeader />
-        {/* {showSearchForm && <DynamicHeader />} */}
+        {showSearchForm && <DynamicHeader />}
 
-        {/* {!showSearchForm && (
+        {!showSearchForm && (
           <Button onClick={() => setShowSearchForm(true)} className={styled.editBtn}>
             {editButton}
           </Button>
-        )} */}
+        )}
       </Container>
       <Container className={styled.bookingDetailsContainer}>
         <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />

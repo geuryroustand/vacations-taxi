@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import dynamic from "next/dynamic";
@@ -16,10 +16,10 @@ import FallBackLoading from "../Loading/FallBackLoading";
 const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"), {
   loading: () => <FallBackLoading />
 });
-const Header = ({ desc, showReturnSearchForm }) => {
+const Header = ({ desc }) => {
   const [isClicked, setIsClicked] = useState(false);
 
-  const { locale, query } = useRouter();
+  const { locale } = useRouter();
   const queryKey = `getTranslation("${locale}")`;
 
   const { oneWayAndRoundTrip, bookingSearch } = useSelector(
@@ -34,35 +34,23 @@ const Header = ({ desc, showReturnSearchForm }) => {
     <p className={styled.heading1Paragraph}>{children}</p>
   );
 
-  useEffect(() => {
-    if (query.roundtrip) {
-      setIsClicked(true);
-    }
-  }, []);
-
   return (
     <div className={styled.hero}>
       <Container>
         <Markdown components={{ h1: heading1, p: heading1Paragraph }}>{desc}</Markdown>
 
-        <div>
-          <Button
-            onClick={() => setIsClicked(false)}
-            className={isClicked ? styled["btn-selected"] : styled["btn-oneWay"]}>
-            {oneWay}
-          </Button>
-          <Button
-            onClick={() => setIsClicked(true)}
-            className={isClicked ? styled["btn-oneWay"] : styled["btn-selected"]}>
-            {roundTrip}
-          </Button>
-        </div>
+        <Button
+          onClick={() => setIsClicked(false)}
+          className={isClicked ? styled["btn-selected"] : styled["btn-oneWay"]}>
+          {oneWay}
+        </Button>
+        <Button
+          onClick={() => setIsClicked(true)}
+          className={isClicked ? styled["btn-oneWay"] : styled["btn-selected"]}>
+          {roundTrip}
+        </Button>
 
-        <DynamicSearchForm
-          bookingSearch={bookingSearch}
-          isClicked={isClicked}
-          showReturnSearchForm={showReturnSearchForm}
-        />
+        <DynamicSearchForm bookingSearch={bookingSearch} isClicked={isClicked} />
       </Container>
     </div>
   );

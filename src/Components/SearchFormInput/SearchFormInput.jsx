@@ -25,30 +25,53 @@ const SearchFormInput = ({
   // const debouncedOnChange = useCallback(debounce(onChange, 1000), []);
 
   return (
-    <Form.Group className={`${styled["form-control"]} ${isEmpty}`} controlId={id}>
-      <Image src="/images/location.svg" width="18" height="18" alt="location" />
-      <div className={styled.formControl}>
-        <Form.Label className="visually-hidden"> {label} </Form.Label>
-        <Form.Control
-          className={styled["form-input"]}
-          type="search"
-          placeholder={placeHolder}
-          required={required}
-          disabled={disabled}
-          autoFocus={autoFocus}
-          onClick={onClickInput}
-          onChange={onChange}
-          name={name}
-          onKeyUp={onKeyUp}
-          value={searchedTerm}
-          autoComplete="off"
-          ref={inputReference}
-        />
-        <Form.Control.Feedback className={styled.searchFormFeedBack} type="invalid">
-          {isEmptyFeedback}
-        </Form.Control.Feedback>
-      </div>
-    </Form.Group>
+    <>
+      <Form.Group className={`${styled["form-control"]} ${isEmpty}`} controlId={id}>
+        <Image src="/images/location.svg" width="18" height="18" alt="location" />
+        <div className={styled.formControl}>
+          <Form.Label className="visually-hidden"> {label} </Form.Label>
+          <Form.Control
+            className={styled["form-input"]}
+            type="search"
+            placeholder={placeHolder}
+            required={required}
+            disabled={disabled}
+            autoFocus={autoFocus}
+            onClick={onClickInput}
+            onChange={onChange}
+            name={name}
+            onKeyUp={onKeyUp}
+            // defaultValue={searchedTerm}
+            value={searchedTerm}
+            autoComplete="off"
+            ref={inputReference}
+          />
+          <Form.Control.Feedback className={styled.searchFormFeedBack} type="invalid">
+            {isEmptyFeedback}
+          </Form.Control.Feedback>
+        </div>
+      </Form.Group>
+
+      {/* <Form.Group
+        className={`${styled["form-control"]} ${isEmpty}`}
+        controlId="formBasicDestination2">
+        <Image src="/images/location.svg" width="18" height="18" alt="location" />
+
+        <div className={styled.formControl}>
+          <Form.Label className="visually-hidden">{labelDrop} </Form.Label>
+          <Form.Control
+            className={styled["form-input"]}
+            type="text"
+            placeholder={placeHolderDrop}
+            required={required}
+            disabled={disabled}
+          />
+          <Form.Control.Feedback className={styled.searchFormFeedBack} type="invalid">
+            Please provide a drop-off location
+          </Form.Control.Feedback>
+        </div>
+      </Form.Group> */}
+    </>
   );
 };
 

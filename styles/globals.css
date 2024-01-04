@@ -8,8 +8,6 @@
   --first-icon-bg: #f0a500;
   --second-icon-bg: #ffa6d5;
   --third-icon-bg: #6d9886;
-  --six-color: #e9ecef;
-  --seven-color: #8f8f8f;
 }
 
 /* Bootstrap */
@@ -37,6 +35,11 @@
   color: #dc3545;
 }
 
+/* Date Picker */
+.react-datepicker__time-container {
+  width: 100% !important;
+}
+
 .cXfWQqS img {
   width: 100%;
 }
@@ -50,6 +53,11 @@
 .selectedCart {
   border-bottom: 3px solid var(--primary-color) !important;
   border-left: 3px solid var(--primary-color) !important;
+}
+
+.main {
+  /* min-height: 85vh; */
+  /* margin-bottom: 100%; */
 }
 
 .visually-hidden {

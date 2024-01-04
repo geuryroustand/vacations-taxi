@@ -21,19 +21,11 @@
   display: flex;
   padding-left: 0.5rem;
   align-items: center;
-  height: 3.5rem;
-  gap: 1rem;
+  height: 2.81rem;
+
   background: var(--third-color);
   border: 0.5px solid var(--fourth-color);
   border-radius: 5px;
-}
-.calenderAndIconWrapper {
-  display: flex;
-  flex-direction: column;
-}
-.calenderLabel {
-  font-size: 1rem;
-  font-weight: 500;
 }
 
 @media (min-width: 45em) {
@@ -75,7 +67,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    height: 3.5rem;
+    height: 2.81rem;
 
     background: var(--third-color);
     border: 0.5px solid var(--fourth-color);
@@ -86,8 +78,7 @@
 
 @media (min-width: 62em) {
   .pickTime {
-    height: 3.7rem;
-    width: 39%;
+    height: 3.5rem;
   }
 }
 .datePickUp {
@@ -97,8 +88,7 @@
 
 @media (min-width: 62em) {
   .calender {
-    height: 3.7rem;
-    width: 45%;
+    height: 3.5rem;
   }
 }
 
@@ -110,7 +100,7 @@
   display: flex;
   align-items: center;
   width: 48%;
-  height: 3.5rem;
+  height: 2.81rem;
   background-color: var(--third-color);
   border: 0.5px solid var(--fourth-color);
   border-radius: 5px;
@@ -122,18 +112,16 @@
   }
 }
 
+@media (min-width: 45em) {
+  .passenger {
+    /* justify-content: space-evenly; */
+  }
+}
 @media (min-width: 62em) {
   .passenger {
-    height: 3.7rem;
-    width: auto;
-  }
-  .passengerSpecify {
-    width: 10rem;
+    height: 3.5rem;
   }
 }
 .select-passenger {
   border: none;
-}
-.calenderDisable {
-  background-color: var(--six-color);
 }

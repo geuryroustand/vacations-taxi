@@ -11,7 +11,7 @@ export default function BookingConFirmation({ description, title }) {
   return (
     <>
       <SeoHead title={title} noIndex canonicalURL="booking-confirmation" />
-      <BookingConfirmation desc={description} />
+      <BookingConfirmation desc={description} />;
     </>
   );
 }
