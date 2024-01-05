@@ -1,26 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# VacationsTaxis
 
-## If for some reason you get access to this project , you are only allow to use to check how I work but you are not allow to use for any other properse. 
+Welcome to the Project!
 
-## Getting Started
+If, for any reason, you gain access to this project, please note that it's strictly for evaluation purposes to observe my work. Any usage beyond this scope is not permitted.
 
-First, run the development server:
+## Running the Project
+
+### Development Server
+
+To run the development server, use the following command:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Production Server
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+To run the production server:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Build the project:
 
-## Learn More
+   ```bash
+   npm run build
+   ```
+
+2. Start the server:
+
+   ```bash
+   npm start
+   ```
+
+Before starting the development server, ensure the CMS (Content Management System) is operational. You can find it at [https://github.com/geuryroustand/vacation-taxis-strapi-backend](https://github.com/geuryroustand/vacation-taxis-strapi-backend).
+
+For local queries or searches, you might need the backend running locally. Refer to [https://github.com/geuryroustand/capstone-project-backend](https://github.com/geuryroustand/capstone-project-backend) for more information. Don't hesitate to ask for the necessary environment variables.
+
+These instructions will help you set up and run the project locally. Please adhere to the specified usage guidelines.
+
+#### Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
@@ -29,7 +46,7 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+#### Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
