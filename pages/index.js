@@ -5,9 +5,10 @@ import { useRouter } from "next/router";
 
 import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 import store from "../src/redux/store";
-import { getTranslation } from "../src/redux/fetchApiSlice";
+
 import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
 import { baseURL, fetchData } from "../src/Helper/fetchData";
+import { fetchCommonContent } from "../src/redux/ContentEndpoints";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
@@ -128,7 +129,12 @@ export default function Home({
 
       {/* <!-- End Meta Pixel Code --> */}
 
-      <DynamicHeader desc={description} oneWay={oneWay} roundTrip={roundTrip} />
+      <DynamicHeader
+        desc={description}
+        oneWay={oneWay}
+        roundTrip={roundTrip}
+        showReturnSearchForm
+      />
 
       <DynamicTrusted trusted={trusted} />
 
@@ -140,7 +146,7 @@ export default function Home({
 }
 
 const fetchTranslationData = async (dispatch, locale) => {
-  await dispatch(getTranslation.initiate(locale));
+  await dispatch(fetchCommonContent.initiate(locale));
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {

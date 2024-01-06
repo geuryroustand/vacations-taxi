@@ -1,34 +1,11 @@
 .hero {
   background-color: var(--secondary-color);
-  /* background: url("/images/hero-small.JPG") no-repeat center center/cover; */
-
   height: 100%;
   min-height: 100%;
   position: relative;
   color: white;
   padding-bottom: 2rem;
 }
-
-/* @media (min-width: 62em) {
-  .hero {
-    background: url("/images/hero.JPG") no-repeat center center/cover;
-  }
-} */
-/* .hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 2;
-} */
-
-/* .hero * {
-  z-index: 10;
-  position: relative;
-} */
 
 .heading1 {
   padding-top: 2rem;
@@ -55,28 +32,6 @@
   max-width: 40rem;
   min-height: 1rem;
 }
-
-/* .oneWay-btn {
-  height: 2.6rem;
-  width: 6.8rem;
-  margin-top: 2rem;
-  margin-right: 1rem;
-  background: var(--secondary-color);
-  color: var(--third-color);
-  background: var(--primary-color);
-  border: none;
-  border-radius: 3px;
-} */
-
-/* .return-btn {
-  height: 2.6rem;
-  width: 6.8rem;
-  margin-top: 2rem;
-  color: var(--third-color);
-  background: var(--primary-color);
-  border-radius: 3px;
-  border: none;
-} */
 
 .btn-oneWay {
   height: 2.6rem;

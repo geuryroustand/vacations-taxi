@@ -14,7 +14,7 @@ const DynamicNavigation = dynamic(() => import("../Navigation/Navigation"), {
 
 const Layout = ({ children }) => {
   const { locale } = useRouter();
-  const queryKey = `getTranslation("${locale}")`;
+  const queryKey = `fetchCommonContent("${locale}")`;
 
   const {
     Company = [],
@@ -25,7 +25,9 @@ const Layout = ({ children }) => {
     helpCenter = {},
     blogs = {},
     DRLink = {}
-  } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
+  } = useSelector(
+    (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
+  );
 
   return (
     <>

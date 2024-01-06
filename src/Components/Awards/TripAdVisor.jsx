@@ -16,10 +16,10 @@ const DynamicReviewSnippets = dynamic(() => import("./ReviewSnippets"), {
 
 const TripAdVisor = () => {
   const { locale } = useRouter();
-  const queryKey = `getTranslation("${locale}")`;
+  const queryKey = `fetchCommonContent("${locale}")`;
 
   const { award } = useSelector(
-    (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
+    (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
   );
   const { awardHeading = "", tripAdvisorHeading = "" } = award || {};
 

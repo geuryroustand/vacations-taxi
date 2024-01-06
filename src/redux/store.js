@@ -3,16 +3,17 @@ import logger from "redux-logger";
 import { HYDRATE, createWrapper } from "next-redux-wrapper";
 
 import flightInfoReducer from "./flightInfoSlice";
-import { fetchApiSlice } from "./fetchApiSlice";
+// import { fetchApiSlice } from "./fetchApiSlice";
+import { contentApiSlice } from "./ContentEndpoints";
 
 const reducers = combineReducers({
   flightInfoReducer,
-  [fetchApiSlice.reducerPath]: fetchApiSlice.reducer
+  [contentApiSlice.reducerPath]: contentApiSlice.reducer
 });
 
 const middleware =
   process.env.NODE_ENV === "development"
-    ? (getDefaultMiddleware) => [...getDefaultMiddleware(), logger, fetchApiSlice.middleware]
+    ? (getDefaultMiddleware) => [...getDefaultMiddleware(), logger, contentApiSlice.middleware]
     : (getDefaultMiddleware) => getDefaultMiddleware();
 
 // const store = configureStore({
@@ -37,7 +38,7 @@ const masterReducer = (state, action) => {
     };
     return {
       ...nextState, // Use nextState to merge the current state
-      [fetchApiSlice.reducerPath]: action.payload[fetchApiSlice.reducerPath]
+      [contentApiSlice.reducerPath]: action.payload[contentApiSlice.reducerPath]
     };
   }
   return reducers(state, action);

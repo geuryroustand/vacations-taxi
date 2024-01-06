@@ -16,8 +16,11 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
 import styled from "./bookingDetails.module.css";
-import { getContent, getTranslation } from "../../src/redux/fetchApiSlice";
+
 import store from "../../src/redux/store";
+
+import flightDetailsSelector from "../../src/Helper/memoizedSelectors";
+import { fetchCommonContent, fetchContent } from "../../src/redux/ContentEndpoints";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -26,7 +29,7 @@ const DynamicBookingSummary = dynamic(
   }
 );
 
-// TODO remove the local storage
+// TODO remove the local storage  and also check the state error
 
 const DynamicCarList = dynamic(() => import("../../src/Components/CarList/CarList"), {
   ssr: false,
@@ -42,12 +45,17 @@ const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header")
 });
 
 function BookingDetails() {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(false);
+  // const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
   const [showSearchForm, setShowSearchForm] = useState(false);
-  const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
+  const { pickUpMemoized, dropOffMemoized } = useSelector(flightDetailsSelector);
+  const isRoundTrip = router?.query?.roundtrip;
 
   const { locale } = useRouter();
-  const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
+  const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
   const {
     title = "",
@@ -55,15 +63,13 @@ function BookingDetails() {
     loadingSpinner = "",
     loadingSpinnerAccessibility = "",
     editButton = ""
-  } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
-
-  const router = useRouter();
-  const dispatch = useDispatch();
+  } = useSelector(
+    (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
+  );
 
   // TODO  fixed the problem when fetch and the price its not find
   const getData = async () => {
     setIsLoading(true);
-    setShowSearchForm(false);
 
     if (!router?.query?.pickUp && !router?.query?.dropOff) {
       setIsLoading(true);
@@ -85,10 +91,13 @@ function BookingDetails() {
     if (response.ok) {
       setIsLoading(false);
       const data = await response.json();
+
       dispatch(
         allFlightInfo({
           ...router.query,
-          ...data
+          ...data,
+          pickUpID: router.query.pickUp,
+          dropOffID: router.query.dropOff
         })
       );
     }
@@ -113,19 +122,24 @@ function BookingDetails() {
     );
   }
 
+  const showForm = showSearchForm || !isRoundTrip;
+  const showEditButton = !showSearchForm && isRoundTrip;
+
   return (
     <div className={styled.bookingDetails}>
       <SeoHead
-        title={`${pickUp || ""}  ${pickUp && dropOff ? "to" : ""} ${dropOff || ""}`}
+        title={`${pickUpMemoized || ""}  ${pickUpMemoized && dropOffMemoized ? "to" : ""} ${
+          dropOffMemoized || ""
+        }`}
         noIndex
       />
 
       <Container>
         <BookingStepProcess />
 
-        {showSearchForm && <DynamicHeader />}
+        {showForm && <DynamicHeader />}
 
-        {!showSearchForm && (
+        {showEditButton && (
           <Button onClick={() => setShowSearchForm(true)} className={styled.editBtn}>
             {editButton}
           </Button>
@@ -146,8 +160,8 @@ function BookingDetails() {
 export default BookingDetails;
 
 const fetchTranslationData = async (dispatch, locale) => {
-  await dispatch(getTranslation.initiate(locale));
-  await dispatch(getContent.initiate(`${baseURL}/booking-detail?locale=${locale}&populate=*`));
+  await dispatch(fetchCommonContent.initiate(locale));
+  await dispatch(fetchContent.initiate(`${baseURL}/booking-detail?locale=${locale}&populate=*`));
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {

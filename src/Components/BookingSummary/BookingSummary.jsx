@@ -12,7 +12,7 @@ const BookingSummary = ({ bookingDetailsWith }) => {
   const { totalPrice, flightInfo, bookingInfo } = flightInfoReducer;
 
   const { locale } = useRouter();
-  const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
+  const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
   const {
     headingOne = "",
@@ -23,7 +23,9 @@ const BookingSummary = ({ bookingDetailsWith }) => {
     passenger = "",
     total = "",
     passengerInfo = ""
-  } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
+  } = useSelector(
+    (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
+  );
 
   const {
     pickUp,

@@ -27,10 +27,10 @@ const CarList = () => {
 
   const [taxiSelected, setTaxiSelected] = useState(0);
   const { locale } = useRouter();
-  const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
+  const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
   const { cards } = useSelector(
-    (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
+    (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
   );
   const { oneWay = "", roundTrip = "", selectText = "", selectedText = "" } = cards || {};
 

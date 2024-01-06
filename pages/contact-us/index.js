@@ -4,9 +4,10 @@ import Container from "react-bootstrap/Container";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import styled from "./contactUs.module.css";
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
-import { getTranslation } from "../../src/redux/fetchApiSlice";
+
 import store from "../../src/redux/store";
 import { baseURL, fetchData } from "../../src/Helper/fetchData";
+import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 
 const DynamicContactForm = dynamic(() => import("../../src/Components/contactForm/ContactForm"), {
   loading: () => <FallBackLoading />
@@ -56,7 +57,7 @@ function contactUs({
 export default contactUs;
 
 const fetchTranslationData = async (dispatch, locale) => {
-  await dispatch(getTranslation.initiate(locale));
+  await dispatch(fetchCommonContent.initiate(locale));
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
