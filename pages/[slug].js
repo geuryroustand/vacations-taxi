@@ -8,10 +8,11 @@ import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 import styled from "./locationsName.module.css";
 
 import SeoHead from "../src/Components/SeoHead/SeoHead";
-import { getTranslation } from "../src/redux/fetchApiSlice";
+
 import store from "../src/redux/store";
 import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
 import { baseURL, fetchData } from "../src/Helper/fetchData";
+import { fetchCommonContent } from "../src/redux/ContentEndpoints";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
@@ -104,7 +105,7 @@ export async function getStaticPaths() {
 }
 
 const fetchTranslationData = async (dispatch, locale) => {
-  await dispatch(getTranslation.initiate(locale));
+  await dispatch(fetchCommonContent.initiate(locale));
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ params, locale }) => {

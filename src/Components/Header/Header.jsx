@@ -20,10 +20,10 @@ const Header = ({ desc, showReturnSearchForm }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const { locale, query } = useRouter();
-  const queryKey = `getTranslation("${locale}")`;
+  const queryKey = `fetchCommonContent("${locale}")`;
 
   const { oneWayAndRoundTrip, bookingSearch } = useSelector(
-    (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
+    (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
   );
 
   const { oneWay = "", return: roundTrip = "" } = oneWayAndRoundTrip || {};

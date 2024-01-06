@@ -10,10 +10,10 @@ import styled from "./Faq.module.css";
 
 const Faq = () => {
   const { locale } = useRouter();
-  const queryKey = `getTranslation("${locale}")`;
+  const queryKey = `fetchCommonContent("${locale}")`;
 
   const { faqHeading = "", faq = [] } = useSelector(
-    (state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {}
+    (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
   );
 
   return (

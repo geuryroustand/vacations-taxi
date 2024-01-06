@@ -2,10 +2,10 @@ import React from "react";
 
 import BookingConfirmation from "../../src/Components/BookingConfirmation/BookingConfirmation";
 
-import { getTranslation } from "../../src/redux/fetchApiSlice";
 import store from "../../src/redux/store";
 import { baseURL, fetchData } from "../../src/Helper/fetchData";
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
+import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 
 export default function BookingConFirmation({ description, title }) {
   return (
@@ -17,7 +17,7 @@ export default function BookingConFirmation({ description, title }) {
 }
 
 const fetchTranslationData = async (dispatch, locale) => {
-  await dispatch(getTranslation.initiate(locale));
+  await dispatch(fetchCommonContent.initiate(locale));
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {

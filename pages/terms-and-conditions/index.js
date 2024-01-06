@@ -2,9 +2,10 @@ import Container from "react-bootstrap/Container";
 import Markdown from "react-markdown";
 
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
-import { getTranslation } from "../../src/redux/fetchApiSlice";
+
 import store from "../../src/redux/store";
 import { baseURL, fetchData } from "../../src/Helper/fetchData";
+import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 
 export default function termsAndConditions({ description, title, slug }) {
   return (
@@ -18,7 +19,7 @@ export default function termsAndConditions({ description, title, slug }) {
 }
 
 const fetchTranslationData = async (dispatch, locale) => {
-  await dispatch(getTranslation.initiate(locale));
+  await dispatch(fetchCommonContent.initiate(locale));
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {

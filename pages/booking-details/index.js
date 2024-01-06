@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
@@ -17,10 +16,11 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
 import styled from "./bookingDetails.module.css";
-import { getContent, getTranslation } from "../../src/redux/fetchApiSlice";
+
 import store from "../../src/redux/store";
 
 import flightDetailsSelector from "../../src/Helper/memoizedSelectors";
+import { fetchCommonContent, fetchContent } from "../../src/redux/ContentEndpoints";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -45,13 +45,17 @@ const DynamicHeader = dynamic(() => import("../../src/Components/Header/Header")
 });
 
 function BookingDetails() {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(false);
   // const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
-
+  const [showSearchForm, setShowSearchForm] = useState(false);
   const { pickUpMemoized, dropOffMemoized } = useSelector(flightDetailsSelector);
+  const isRoundTrip = router?.query?.roundtrip;
 
   const { locale } = useRouter();
-  const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
+  const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
   const {
     title = "",
@@ -59,10 +63,9 @@ function BookingDetails() {
     loadingSpinner = "",
     loadingSpinnerAccessibility = "",
     editButton = ""
-  } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
-
-  const router = useRouter();
-  const dispatch = useDispatch();
+  } = useSelector(
+    (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
+  );
 
   // TODO  fixed the problem when fetch and the price its not find
   const getData = async () => {
@@ -119,6 +122,9 @@ function BookingDetails() {
     );
   }
 
+  const showForm = showSearchForm || !isRoundTrip;
+  const showEditButton = !showSearchForm && isRoundTrip;
+
   return (
     <div className={styled.bookingDetails}>
       <SeoHead
@@ -131,7 +137,13 @@ function BookingDetails() {
       <Container>
         <BookingStepProcess />
 
-        <DynamicHeader />
+        {showForm && <DynamicHeader />}
+
+        {showEditButton && (
+          <Button onClick={() => setShowSearchForm(true)} className={styled.editBtn}>
+            {editButton}
+          </Button>
+        )}
       </Container>
       <Container className={styled.bookingDetailsContainer}>
         <DynamicBookingSummary bookingDetailsWith={styled.bookingDetailsWith} />
@@ -148,8 +160,8 @@ function BookingDetails() {
 export default BookingDetails;
 
 const fetchTranslationData = async (dispatch, locale) => {
-  await dispatch(getTranslation.initiate(locale));
-  await dispatch(getContent.initiate(`${baseURL}/booking-detail?locale=${locale}&populate=*`));
+  await dispatch(fetchCommonContent.initiate(locale));
+  await dispatch(fetchContent.initiate(`${baseURL}/booking-detail?locale=${locale}&populate=*`));
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {

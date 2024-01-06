@@ -17,7 +17,7 @@ const Passenger = () => {
   const dispatch = useDispatch();
 
   const { locale, push, query } = useRouter();
-  const queryKey = `getContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
+  const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
   const {
     passengerDetails = {},
@@ -28,7 +28,9 @@ const Passenger = () => {
     request = "",
     requestPlacerHolder = "",
     continueButton = ""
-  } = useSelector((state) => state?.fetchApi?.queries[queryKey]?.data?.data?.attributes || {});
+  } = useSelector(
+    (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
+  );
 
   const {
     firstName = "",

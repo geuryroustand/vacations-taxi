@@ -1,5 +1,6 @@
 import SeoHead from "../src/Components/SeoHead/SeoHead";
-import { getTranslation } from "../src/redux/fetchApiSlice";
+import { fetchCommonContent } from "../src/redux/ContentEndpoints";
+
 import store from "../src/redux/store";
 
 export default function Custom404() {
@@ -12,7 +13,7 @@ export default function Custom404() {
 }
 
 const fetchTranslationData = async (dispatch, locale) => {
-  await dispatch(getTranslation.initiate(locale));
+  await dispatch(fetchCommonContent.initiate(locale));
 };
 
 export const getStaticProps = store.getStaticProps((storeValue) => async ({ locale }) => {
