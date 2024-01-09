@@ -13,7 +13,23 @@
 }
 
 .articleHeading {
+  font-size: 1.4rem;
+  padding: 1.2rem 0px;
+  font-weight: 400;
+}
+.articleHeading3 {
+  font-weight: 360;
   font-size: 1.3rem;
-  text-align: center;
-  padding-bottom: 2rem;
+  padding: 1rem 0px;
+}
+
+@media (min-width: 45em) {
+  .articleHeading {
+    font-size: 2rem;
+  }
+  .articleHeading3 {
+    font-weight: 360;
+    font-size: 1.5rem;
+    padding: 1rem 0px;
+  }
 }

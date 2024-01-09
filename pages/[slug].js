@@ -27,20 +27,23 @@ const DynamicAwards = dynamic(() => import("../src/Components/Awards/Awards"), {
 
 const Article = ({ content }) => {
   const articleHeading = ({ children }) => <h2 className={styled.articleHeading}>{children}</h2>;
+  const articleHeading3 = ({ children }) => (
+    <h3 className={styled.articleHeadingTwo}>{children}</h3>
+  );
 
   return (
     <article>
-      <Markdown components={{ h2: articleHeading }}>{content}</Markdown>
+      <Markdown components={{ h2: articleHeading, h3: articleHeading3 }}>{content}</Markdown>
     </article>
   );
 };
 
 function PagesForSEO({ description2, description1, description3, seo, paths, trusted }) {
-  const { canonicalURL, keywords, metaDescription, metaTitle, structuredData = [] } = seo;
+  const { canonicalURL, keywords, metaDescription, metaTitle, structuredData = [] } = seo || {};
 
   return (
     <>
-      {structuredData.map((jsonLD, index) => (
+      {structuredData?.map((jsonLD, index) => (
         <Script
           strategy="lazyOnload"
           id={`organization-jsonLD-${index}`}
@@ -87,13 +90,38 @@ const extractPaths = (item) => {
   return [topLevelPath, ...languagePaths];
 };
 
-export async function getStaticPaths() {
+async function generatePathsForLocales(locales) {
   try {
-    const { data } = await fetchData(`${baseURL}/seo-locations?populate=*`);
-    const paths = data.flatMap((element) => extractPaths(element));
+    const paths = await Promise.all(
+      locales.map(async (locale) => {
+        const { data = [] } = await fetchData(`${baseURL}/seo-locations?locale=${locale}`);
+
+        return Promise.all(
+          data.map(async (content) => {
+            const { slug, locale: pathLocale } = content.attributes;
+            return {
+              params: { slug },
+              locale: pathLocale
+            };
+          })
+        );
+      })
+    );
+
+    return paths.flat();
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Error generating paths:", error);
+    return [];
+  }
+}
+
+export async function getStaticPaths({ locales = [] }) {
+  try {
+    const generatedPaths = await generatePathsForLocales(locales);
 
     return {
-      paths,
+      paths: generatedPaths,
       fallback: false
     };
   } catch {
@@ -125,6 +153,7 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ para
     const { description2 = "", description1 = "", description3 = "", seo = {} } = content || {};
 
     const paths = response.data.flatMap((element) => extractPaths(element));
+
     // TODO The content of this fetch need to be add to the global endpoint
     const responseTrusted = await fetchData(`${baseURL}/home-page?populate=*&locale=${locale}`);
 
