@@ -17,7 +17,7 @@ const DynamicSearchForm = dynamic(() => import("../SearchForm/SearchForm"), {
   loading: () => <FallBackLoading />
 });
 const Header = ({ desc, showReturnSearchForm }) => {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isRoundTrip, setIsRoundTrip] = useState(false);
 
   const { locale, query } = useRouter();
   const queryKey = `fetchCommonContent("${locale}")`;
@@ -36,7 +36,7 @@ const Header = ({ desc, showReturnSearchForm }) => {
 
   useEffect(() => {
     if (query.roundtrip) {
-      setIsClicked(true);
+      setIsRoundTrip(true);
     }
   }, []);
 
@@ -47,20 +47,20 @@ const Header = ({ desc, showReturnSearchForm }) => {
 
         <div>
           <Button
-            onClick={() => setIsClicked(false)}
-            className={isClicked ? styled["btn-selected"] : styled["btn-oneWay"]}>
+            onClick={() => setIsRoundTrip(false)}
+            className={isRoundTrip ? styled["btn-selected"] : styled["btn-oneWay"]}>
             {oneWay}
           </Button>
           <Button
-            onClick={() => setIsClicked(true)}
-            className={isClicked ? styled["btn-oneWay"] : styled["btn-selected"]}>
+            onClick={() => setIsRoundTrip(true)}
+            className={isRoundTrip ? styled["btn-oneWay"] : styled["btn-selected"]}>
             {roundTrip}
           </Button>
         </div>
 
         <DynamicSearchForm
           bookingSearch={bookingSearch}
-          isClicked={isClicked}
+          isRoundTrip={isRoundTrip}
           showReturnSearchForm={showReturnSearchForm}
         />
       </Container>
