@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import React from "react";
 import Button from "react-bootstrap/Button";
@@ -5,8 +6,8 @@ import Spinner from "react-bootstrap/Spinner";
 
 import styled from "./SearchOptions.module.css";
 
-const SearchOptions = ({ moveLeft, locationsFetch, onClickedSearchedResult, optionToShow }) => {
-  const { searchResults, isLoading, isError } = locationsFetch;
+const SearchOptions = ({ moveLeft, onClickedSearchedResult, optionToShow }) => {
+  const { searchResults, isLoading, isError } = useSelector((state) => state.searchFormSlice || {});
 
   return (
     <>

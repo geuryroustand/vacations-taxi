@@ -25,7 +25,7 @@ function DatePickerSearchForm({
   passengers,
   pickUpText,
   showReturnSearchForm,
-  isClicked,
+  isRoundTrip,
   currentReturnFormDate,
   setCurrentReturnFormDate,
   disableReturnInputDate,
@@ -82,7 +82,7 @@ function DatePickerSearchForm({
       {!showReturnSearchForm && (
         <div
           className={`${styled.calender} ${
-            isClicked || disableReturnInputDate ? "" : styled.calenderDisable
+            isRoundTrip || disableReturnInputDate ? "" : styled.calenderDisable
           }`}>
           <Image src="/images/calendar.svg" width="20" height="20" alt="calendar" />
           <div className={styled.calenderAndIconWrapper}>
@@ -111,7 +111,7 @@ function DatePickerSearchForm({
               dateFormat={showReturnSearchForm ? "eee d, MMM yyyy" : "eee d, MMM yyyy HH:mm"}
               timeFormat="HH:mm"
               className={`${styled["date-picker"]} ${
-                isClicked || disableReturnInputDate ? "" : styled.calenderDisable
+                isRoundTrip || disableReturnInputDate ? "" : styled.calenderDisable
               }`}
             />
           </div>

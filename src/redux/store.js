@@ -3,11 +3,12 @@ import logger from "redux-logger";
 import { HYDRATE, createWrapper } from "next-redux-wrapper";
 
 import flightInfoReducer from "./flightInfoSlice";
-// import { fetchApiSlice } from "./fetchApiSlice";
+import searchFormSlice from "./SearchLocationEndpoints";
 import { contentApiSlice } from "./ContentEndpoints";
 
 const reducers = combineReducers({
   flightInfoReducer,
+  searchFormSlice,
   [contentApiSlice.reducerPath]: contentApiSlice.reducer
 });
 
