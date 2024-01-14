@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 
 import { baseURL } from "../../src/Helper/fetchData";
-import { allFlightInfo } from "../../src/redux/flightInfoSlice";
+import { fetchPrice } from "../../src/redux/flightInfoSlice";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 import Loading from "../../src/Components/Loading/Loading";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
@@ -48,8 +48,6 @@ function BookingDetails() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [isLoading, setIsLoading] = useState(false);
-  // const { pickUp, dropOff } = useSelector((state) => state.flightInfoReducer.flightInfo || {});
   const [showSearchForm, setShowSearchForm] = useState(false);
   const { pickUpMemoized, dropOffMemoized } = useSelector(flightDetailsSelector);
   const isRoundTrip = router?.query?.roundtrip;
@@ -66,45 +64,12 @@ function BookingDetails() {
   } = useSelector(
     (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
   );
-
-  // TODO  fixed the problem when fetch and the price its not find
-  const getData = async () => {
-    setIsLoading(true);
-
-    if (!router?.query?.pickUp && !router?.query?.dropOff) {
-      setIsLoading(true);
-      return;
-    }
-    const PROD = process.env.NODE_ENV === "production";
-    const response = await fetch(
-      `${
-        PROD
-          ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/addPrices?pickUp=${
-              router?.query?.pickUp
-            }&dropOff=${router?.query?.dropOff}&roundtrip=${router?.query?.roundtrip ?? false}`
-          : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/addPrices?pickUp=${
-              router?.query?.pickUp
-            }&dropOff=${router?.query?.dropOff}&roundtrip=${router?.query?.roundtrip ?? false}`
-      }`
-    );
-
-    if (response.ok) {
-      setIsLoading(false);
-      const data = await response.json();
-
-      dispatch(
-        allFlightInfo({
-          ...router.query,
-          ...data,
-          pickUpID: router.query.pickUp,
-          dropOffID: router.query.dropOff
-        })
-      );
-    }
-  };
+  const { isLoading } = useSelector((state) => state.flightInfoReducer || {});
 
   useEffect(() => {
-    getData();
+    if (router.query.pickUp && router.query.dropOff) {
+      dispatch(fetchPrice(router.query));
+    }
   }, [
     router.query.pickUp,
     router.query.dropOff,

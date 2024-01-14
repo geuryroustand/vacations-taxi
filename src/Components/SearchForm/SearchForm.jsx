@@ -1,18 +1,20 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
 import { useMediaQuery } from "react-responsive";
 import { useSelector } from "react-redux";
 
-import debounce from "lodash/debounce";
-import format from "date-fns/format";
-
 import Image from "next/image";
 import styled from "./SearchForm.module.css";
 import SearchOptions from "../SearchOptions/SearchOptions";
 import FallBackLoading from "../Loading/FallBackLoading";
 import flightDetailsSelector from "../../Helper/memoizedSelectors";
+import useSearchTermUpdate from "../../Hook/useSearchTermUpdate";
+
+import useSearchLocation from "../../Hook/useSearchLocation";
+import submitBookingData from "../../Helper/submitBookingData";
+import updateSearchedTerm from "../../Helper/updateSearchedTerm";
 
 const Form = dynamic(() => import("react-bootstrap/Form"), {
   loading: () => <FallBackLoading />
@@ -36,7 +38,7 @@ const DynamicDatePickerSearchForm = dynamic(
   }
 );
 
-const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
+const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
   const router = useRouter();
 
   const isDesktopOrLaptopOrTable =
@@ -65,24 +67,26 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
     // pickUpPassengerMemoized
   } = useSelector(flightDetailsSelector);
 
-  const selectedCurrentDropDateAndTime =
-    router.query?.dropOffDate && router.query?.dropOffTime
-      ? new Date(`${router.query?.dropOffDate} ${router.query?.dropOffTime}`)
-      : "";
+  // TODO need to fix the problem with the formatting of the dates and times
+
+  // const selectedCurrentDropDateAndTime =
+  //   router.query?.dropOffDate && router.query?.dropOffTime
+  //     ? new Date(`${router.query?.dropOffDate} ${router.query?.dropOffTime}`)
+  //     : undefined;
 
   const [currentReturnFormDate, setCurrentReturnFormDate] = useState(
-    selectedCurrentDropDateAndTime
+    router.query?.dropOffDate && router.query?.dropOffTime ? new Date() : undefined
   );
 
   const [currentDropOffDate, setCurrentDropOffDate] = useState(new Date());
   const [currentDropOffTime, setCurrentDropOffTime] = useState(new Date());
 
-  const selectedCurrentPickUpDate =
-    router.query?.pickUpDate && router.query?.pickUpTime
-      ? new Date(`${router.query?.pickUpDate} ${router.query?.pickUpTime}`)
-      : new Date();
+  // const selectedCurrentPickUpDate =
+  //   router.query?.pickUpDate && router.query?.pickUpTime
+  //     ? new Date(`${router.query?.pickUpDate} ${router.query?.pickUpTime}`)
+  //     : new Date();
 
-  const [currentPickUpDate, setCurrentPickUpDate] = useState(new Date(selectedCurrentPickUpDate));
+  const [currentPickUpDate, setCurrentPickUpDate] = useState(new Date());
   const [currentPickUpTime, setCurrentPickUpTime] = useState(new Date());
 
   const [searchedTerm, setSearchedTerm] = useState({
@@ -98,49 +102,19 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
 
   const [disableReturnInputDate, setDisableReturnInputDate] = useState();
 
-  useEffect(() => {
-    setSearchedTerm({
-      ...searchedTerm,
-      pickUpDate: currentPickUpDate && format(currentPickUpDate, "eee d, MMM  yyyy"),
-      pickUpTime: showReturnSearchForm
-        ? currentPickUpTime && format(currentPickUpTime, "k:m")
-        : currentPickUpDate && format(currentPickUpDate, "k:m")
-    });
-  }, [currentPickUpDate, currentPickUpTime]);
-
-  useEffect(() => {
-    if (isClicked || disableReturnInputDate) {
-      setSearchedTerm({
-        ...searchedTerm,
-        pickUpReturn: pickUpMemoized || searchedTerm.dropOff,
-        dropOffReturn: dropOffMemoized || searchedTerm.pickUp,
-        dropOffDate: disableReturnInputDate
-          ? format(currentReturnFormDate, "eee d, MMM  yyyy")
-          : format(currentDropOffDate, "eee d, MMM  yyyy"),
-        dropOffTime: disableReturnInputDate
-          ? format(currentReturnFormDate, "k:m")
-          : format(currentDropOffTime, "k:m"),
-        roundtrip: true
-      });
-    } else {
-      setSearchedTerm({
-        pickUp: pickUpMemoized || searchedTerm.pickUp,
-        dropOff: dropOffMemoized || searchedTerm.dropOff,
-        pickUpDate: searchedTerm.pickUpDate,
-        pickUpTime: searchedTerm.pickUpTime,
-        pickUpSearchedTermClicked: true,
-        dropOffSearchedTermClicked: true
-      });
-    }
-  }, [
-    isClicked,
-    currentDropOffDate,
-    currentDropOffTime,
+  useSearchTermUpdate({
+    isRoundTrip,
     disableReturnInputDate,
     pickUpMemoized,
     dropOffMemoized,
-    currentReturnFormDate
-  ]);
+    currentReturnFormDate,
+    currentPickUpDate,
+    currentPickUpTime,
+    currentDropOffDate,
+    currentDropOffTime,
+    showReturnSearchForm,
+    setSearchedTerm
+  });
 
   const {
     isEmptyFeedbackPickUp = "",
@@ -169,209 +143,39 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
     setShowModal(true);
   };
 
-  const submitData = (event) => {
-    const form = event.currentTarget;
-    event.preventDefault();
-
-    const {
-      dropOffReturn,
-      pickUpReturn,
-      roundtrip,
-      dropOffID,
-      pickUpID,
-      pickUpDate,
-      pickUpTime,
-      dropOffDate,
-      dropOffTime
-    } = searchedTerm;
-
-    const { pickUpPassenger, dropOffPassenger } = passenger;
-
-    if (!form.checkValidity() === false) {
-      if (roundtrip) {
-        // if (
-        //   (pickUpIDMemoized === router.query?.pickUp &&
-        //     !pickUpID &&
-        //     dropOffIDMemoized === router.query?.dropOff &&
-        //     !dropOffID &&
-        //     !disableReturnInputDate) ||
-        //   (pickUpPassengerMemoized !== pickUpPassenger && !pickUpID)
-        // ) {
-        //   dispatch(
-        //     allFlightInfo({
-        //       ...allFlightInfoMemoized,
-        //       ...searchedTerm,
-        //       pickUpPassenger,
-        //       dropOffPassenger
-        //     })
-        //   );
-        //   return;
-        // }
-        router.push({
-          pathname: "/booking-details",
-          query: {
-            pickUp: pickUpID || router.query?.pickUp,
-            dropOff: dropOffID || router.query?.dropOff,
-            dropOffDate,
-            dropOffReturn,
-            dropOffTime,
-            pickUpDate,
-            pickUpReturn,
-            pickUpTime,
-            pickUpPassenger,
-            dropOffPassenger,
-            roundtrip
-          }
-        });
-      } else {
-        // if (
-        //   (pickUpIDMemoized === router.query?.pickUp &&
-        //     !pickUpID &&
-        //     dropOffIDMemoized === router.query?.dropOff &&
-        //     !dropOffID) ||
-        //   (pickUpPassengerMemoized !== pickUpPassenger && !pickUpID)
-        // ) {
-        //   dispatch(
-        //     allFlightInfo({
-        //       ...allFlightInfoMemoized,
-        //       ...searchedTerm,
-        //       pickUpPassenger,
-        //       dropOffPassenger
-        //     })
-        //   );
-        //   return;
-        // }
-
-        router.push({
-          pathname: "/booking-details",
-          query: {
-            pickUp: pickUpID || router.query?.pickUp,
-            dropOff: dropOffID || router.query?.dropOff,
-            pickUpDate,
-            pickUpReturn,
-            pickUpTime,
-            pickUpPassenger
-          }
-        });
-      }
-    }
-
-    setValidated(true);
-  };
-
-  const [locationsFetch, setLocationsFetch] = useState({
-    searchResults: [],
-    noSearch: true,
-    isLoading: false,
-    isError: false
+  const { submitData } = submitBookingData({
+    searchedTerm,
+    passenger,
+    setValidated,
+    isRoundTrip,
+    disableReturnInputDate
   });
 
-  const searchLocation = debounce(async () => {
-    if (
-      (searchedTerm.valueTyped?.length > 2 &&
-        searchedTerm.valueTyped === inputPickUpReference.current.value) ||
-      (searchedTerm.valueTyped?.length > 2 &&
-        searchedTerm.valueTyped === inputDropOffReference.current.value) ||
-      (searchedTerm.valueTyped?.length > 2 &&
-        searchedTerm.valueTyped === modalInputReference.current?.value)
-    ) {
-      try {
-        const PROD = process.env.NODE_ENV === "production";
-
-        setLocationsFetch({ isLoading: true });
-        // const response = await fetch(
-        //   `${
-        //     PROD
-        //       ? `${process.env.NEXT_PUBLIC_API_PROD_URL}/locations/search`
-        //       : `${process.env.NEXT_PUBLIC_API_DEV_URL}/locations/search`
-        //   }`,
-
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       "Content-Type": "application/json"
-        //     },
-
-        //     body: JSON.stringify({
-        //       location: searchedTerm.valueTyped.trim()
-        //     })
-        //   }
-        // );
-
-        const response = await fetch(
-          `${
-            PROD
-              ? `${
-                  process.env.NEXT_PUBLIC_API_PROD_URL
-                }/locations/search?location=${searchedTerm.valueTyped.trim()}`
-              : `${
-                  process.env.NEXT_PUBLIC_API_DEV_URL
-                }/locations/search?location=${searchedTerm.valueTyped.trim()}`
-          }`
-        );
-        if (!response.ok) throw new Error("Not found ,Contact us here to help you");
-
-        const getDestinations = await response.json();
-
-        setLocationsFetch({
-          ...locationsFetch,
-          isLoading: false,
-          isError: false,
-          searchResults: getDestinations,
-          noSearch: !false
-        });
-      } catch (error) {
-        console.log(error);
-        setLocationsFetch({
-          isLoading: false,
-          noSearch: true,
-          isError: true
-          // searchResults: [{ location: error.message }]
-        });
-      }
-    }
-  }, 600);
-
-  useEffect(() => {
-    searchLocation();
-  }, [searchedTerm.valueTyped]);
-
-  const onChange = (event) => {
-    setSearchedTerm({
-      ...searchedTerm,
-      valueTyped: event.target.value,
-      [event.target.name]: event.target.value
-    });
-
-    if (event.target.name === "pickUp") {
-      setShowPickUpSearchedResult(true);
-    } else {
-      setShowDropOffSearchedResult(true);
-    }
-  };
+  const { onChange } = useSearchLocation({
+    searchedTerm,
+    setSearchedTerm,
+    inputPickUpReference,
+    modalInputReference,
+    inputDropOffReference,
+    setShowPickUpSearchedResult,
+    setShowDropOffSearchedResult
+  });
 
   const onClickedSearchedResult = ({ pickUp, pickUpID, dropOff, dropOffID }) => {
     if (!isDesktopOrLaptopOrTable) {
       setShowModal(false);
     }
 
-    if (pickUp) {
-      setSearchedTerm({
-        ...searchedTerm,
-        pickUp,
-        pickUpID,
-        pickUpSearchedTermClicked: true
-      });
-      setShowPickUpSearchedResult(!showPickUpSearchedResult);
-    } else {
-      setSearchedTerm({
-        ...searchedTerm,
-        dropOff,
-        dropOffID,
-        dropOffSearchedTermClicked: true
-      });
-      setShowDropOffSearchedResult(!showDropOffSearchedResult);
-    }
+    updateSearchedTerm({
+      pickUp,
+      pickUpID,
+      dropOff,
+      dropOffID,
+      setShowPickUpSearchedResult,
+      setShowDropOffSearchedResult,
+      searchedTerm,
+      setSearchedTerm
+    });
   };
 
   return (
@@ -409,7 +213,6 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
           searchedTerm.pickUp &&
           searchedTerm.valueTyped?.length > 1 && (
             <SearchOptions
-              locationsFetch={locationsFetch}
               onClickedSearchedResult={onClickedSearchedResult}
               optionToShow="pickUp"
             />
@@ -445,7 +248,6 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
           searchedTerm.valueTyped?.length > 1 && (
             <SearchOptions
               moveLeft
-              locationsFetch={locationsFetch}
               onClickedSearchedResult={onClickedSearchedResult}
               optionToShow="dropOff"
             />
@@ -455,7 +257,7 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
           disableReturnInputDate={disableReturnInputDate}
           setDisableReturnInputDate={setDisableReturnInputDate}
           showReturnSearchForm={showReturnSearchForm}
-          isClicked={isClicked}
+          isRoundTrip={isRoundTrip}
           passengers={passengers}
           pickUpText={pickUpText}
           pickUpAndDropDate={currentPickUpDate}
@@ -475,7 +277,7 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
           }
         />
 
-        {!isClicked && (
+        {!isRoundTrip && (
           <Button
             type="submit"
             className={`${styled["search-btn"]} ${
@@ -491,7 +293,7 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
           </Button>
         )}
 
-        {isClicked && !showReturnSearchForm && (
+        {isRoundTrip && !showReturnSearchForm && (
           <Button
             type="submit"
             className={`${styled["search-btn"]} ${
@@ -508,7 +310,7 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
         )}
       </div>
 
-      {isClicked && showReturnSearchForm && (
+      {isRoundTrip && showReturnSearchForm && (
         <div className={`${styled.searchForm} ${styled["return-searchForm"]} `}>
           <DynamicSearchFormInput
             showReturnSearchForm={showReturnSearchForm}
@@ -546,7 +348,7 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
           />
         </div>
       )}
-      {isClicked && showReturnSearchForm && (
+      {isRoundTrip && showReturnSearchForm && (
         <Button type="submit" className={styled["search-btn"]}>
           <Image src="/images/search.svg" width="25" height="25" alt="location" />
           {searchButton}
@@ -559,7 +361,6 @@ const SearchForm = ({ isClicked, bookingSearch, showReturnSearchForm }) => {
           showModal={showModal}
           closeModal={closeModal}
           modalInputValues={modalInputValues}
-          locationsFetch={locationsFetch}
           onChange={onChange}
           onClickedSearchedResult={onClickedSearchedResult}
         />

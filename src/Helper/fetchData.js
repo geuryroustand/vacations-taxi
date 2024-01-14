@@ -1,4 +1,4 @@
-export const fetchData = async (url) => {
+const fetchData = async (url) => {
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -9,6 +9,13 @@ export const fetchData = async (url) => {
 };
 
 const PROD = process.env.NODE_ENV === "production";
-export const baseURL = PROD
+
+const baseURL = PROD
   ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
   : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
+
+const baseUrlLocation = PROD
+  ? process.env.NEXT_PUBLIC_API_PROD_URL
+  : process.env.NEXT_PUBLIC_API_DEV_URL;
+
+export { fetchData, baseURL, baseUrlLocation };
