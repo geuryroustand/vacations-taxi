@@ -67,24 +67,26 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
     // pickUpPassengerMemoized
   } = useSelector(flightDetailsSelector);
 
-  const selectedCurrentDropDateAndTime =
-    router.query?.dropOffDate && router.query?.dropOffTime
-      ? new Date(`${router.query?.dropOffDate} ${router.query?.dropOffTime}`)
-      : "";
+  // TODO need to fix the problem with the formatting of the dates and times
+
+  // const selectedCurrentDropDateAndTime =
+  //   router.query?.dropOffDate && router.query?.dropOffTime
+  //     ? new Date(`${router.query?.dropOffDate} ${router.query?.dropOffTime}`)
+  //     : undefined;
 
   const [currentReturnFormDate, setCurrentReturnFormDate] = useState(
-    selectedCurrentDropDateAndTime
+    router.query?.dropOffDate && router.query?.dropOffTime ? new Date() : undefined
   );
 
   const [currentDropOffDate, setCurrentDropOffDate] = useState(new Date());
   const [currentDropOffTime, setCurrentDropOffTime] = useState(new Date());
 
-  const selectedCurrentPickUpDate =
-    router.query?.pickUpDate && router.query?.pickUpTime
-      ? new Date(`${router.query?.pickUpDate} ${router.query?.pickUpTime}`)
-      : new Date();
+  // const selectedCurrentPickUpDate =
+  //   router.query?.pickUpDate && router.query?.pickUpTime
+  //     ? new Date(`${router.query?.pickUpDate} ${router.query?.pickUpTime}`)
+  //     : new Date();
 
-  const [currentPickUpDate, setCurrentPickUpDate] = useState(new Date(selectedCurrentPickUpDate));
+  const [currentPickUpDate, setCurrentPickUpDate] = useState(new Date());
   const [currentPickUpTime, setCurrentPickUpTime] = useState(new Date());
 
   const [searchedTerm, setSearchedTerm] = useState({

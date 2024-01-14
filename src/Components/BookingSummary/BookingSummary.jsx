@@ -20,6 +20,7 @@ const BookingSummary = ({ bookingDetailsWith }) => {
     to = "",
     arrival = "",
     departure = "",
+    at = "",
     passenger = "",
     total = "",
     passengerInfo = ""
@@ -52,14 +53,18 @@ const BookingSummary = ({ bookingDetailsWith }) => {
           <p>{arrival}</p>
           <div className={styled.headingBorder}>
             <h2>{pickUpDate}</h2>
-            <h2>At {pickUpTime}</h2>
+            <h2>
+              {at} {pickUpTime}
+            </h2>
           </div>
           {roundtrip && (
             <div>
               <p>{departure}</p>
               <div className={styled.headingBorder}>
                 <h2>{dropOffDate}</h2>
-                <h2>At {dropOffTime}</h2>
+                <h2>
+                  {at} {dropOffTime}
+                </h2>
               </div>
             </div>
           )}
