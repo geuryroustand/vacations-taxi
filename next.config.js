@@ -5,12 +5,19 @@ const { i18n } = require("./next-i18next.config");
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-
   images: {
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: "https",
         hostname: "**.tripadvisor.com"
+      },
+      {
+        protocol: "https",
+        hostname: "**ui-avatars.com",
+        port: ""
       },
       {
         protocol: "https",

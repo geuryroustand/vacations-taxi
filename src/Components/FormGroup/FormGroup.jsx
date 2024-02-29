@@ -13,12 +13,18 @@ const FormGroup = ({
   errorMessage,
   required,
   isInvalid,
-  value
+  value,
+  asType,
+  isLabelHidden = false,
+  currentDate,
+  as,
+  numberOfRows
 }) => {
   return (
-    <Form.Group className="mb-3" controlId={id}>
-      <Form.Label className="visually-hidden ">{label}</Form.Label>
+    <Form.Group className="mb-3" controlId={id} as={asType}>
+      <Form.Label className={`${!isLabelHidden && "visually-hidden "}`}>{label}</Form.Label>
       <Form.Control
+        min={currentDate}
         onChange={onChange}
         className={styled.input}
         type={type}
@@ -27,6 +33,8 @@ const FormGroup = ({
         required={required}
         isInvalid={isInvalid}
         value={value}
+        as={as}
+        rows={numberOfRows}
       />
       {formButtonText && <Form.Text className="text-muted">{formButtonText}</Form.Text>}
 

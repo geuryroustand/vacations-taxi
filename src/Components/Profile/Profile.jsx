@@ -6,12 +6,13 @@ import Spinner from "react-bootstrap/Spinner";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 import styled from "./Profile.module.css";
-import { useGetUserQuery } from "../../redux/fetchApiSlice";
+
 import {
   getCookieToken,
   removeCookieToken,
   removeCookieTokenWithOutReload
 } from "../../Helper/auth";
+import { useFetchUserQuery } from "../../redux/AuthenticationEndpoints";
 
 const logOut = () => {
   removeCookieToken();
@@ -20,8 +21,8 @@ const logOut = () => {
 const Profile = ({ moveToLeftTable, showDrownDownProfile, showDrownDownInTable, id }) => {
   const cookieToken = getCookieToken();
 
-  const { data, isLoading, isError } = useGetUserQuery(cookieToken);
-
+  const { data, isLoading, isError } = useFetchUserQuery(cookieToken);
+  console.log("data", data);
   if (isError) {
     removeCookieTokenWithOutReload();
   }
@@ -49,7 +50,7 @@ const Profile = ({ moveToLeftTable, showDrownDownProfile, showDrownDownInTable, 
             Log in
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item eventKey="2" href="/register">
+          <NavDropdown.Item eventKey="2" href="/signup">
             Sign up
           </NavDropdown.Item>
         </>

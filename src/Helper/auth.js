@@ -9,6 +9,7 @@ export const setCookieToken = (data) => {
 
   // if (Cookies.get("username")) Router.reload("/");
 };
+
 export const removeCookieToken = () => {
   if (typeof window === "undefined") return;
   Cookies.remove("id");
@@ -24,4 +25,17 @@ export const removeCookieTokenWithOutReload = () => {
 };
 export const getCookieToken = () => {
   return typeof window === "undefined" ? undefined : Cookies.get("jwt");
+};
+
+export const setCookieUrlPath = (path) => {
+  if (typeof window === "undefined") return;
+  Cookies.set("path", path);
+};
+export const getCookieUrlPath = () => {
+  return typeof window === "undefined" ? undefined : Cookies.get("path");
+};
+
+export const removeCookieUrlPath = () => {
+  if (typeof window === "undefined") return;
+  Cookies.remove("path");
 };

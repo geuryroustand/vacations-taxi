@@ -5,16 +5,26 @@ import { HYDRATE, createWrapper } from "next-redux-wrapper";
 import flightInfoReducer from "./flightInfoSlice";
 import searchFormSlice from "./SearchLocationEndpoints";
 import { contentApiSlice } from "./ContentEndpoints";
+import { userApiSlice } from "./AuthenticationEndpoints";
+import { sharedRideApiSlice } from "./SharedRideEndpoints";
 
 const reducers = combineReducers({
   flightInfoReducer,
   searchFormSlice,
-  [contentApiSlice.reducerPath]: contentApiSlice.reducer
+  [userApiSlice.reducerPath]: userApiSlice.reducer,
+  [contentApiSlice.reducerPath]: contentApiSlice.reducer,
+  [sharedRideApiSlice.reducerPath]: sharedRideApiSlice.reducer
 });
 
 const middleware =
   process.env.NODE_ENV === "development"
-    ? (getDefaultMiddleware) => [...getDefaultMiddleware(), logger, contentApiSlice.middleware]
+    ? (getDefaultMiddleware) => [
+        ...getDefaultMiddleware(),
+        logger,
+        contentApiSlice.middleware,
+        userApiSlice.middleware,
+        sharedRideApiSlice.middleware
+      ]
     : (getDefaultMiddleware) => getDefaultMiddleware();
 
 // const store = configureStore({

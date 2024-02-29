@@ -11,7 +11,7 @@ export const userApiSlice = createApi({
     fetchUser: builder.query({
       query: (cookieToken) =>
         cookieToken && {
-          url: "users/me",
+          url: "http://localhost:1337/api/users/me",
           method: "GET",
           headers: {
             Authorization: `Bearer ${cookieToken}`
@@ -21,7 +21,7 @@ export const userApiSlice = createApi({
 
     createUser: builder.mutation({
       query: (user) => ({
-        url: "auth/local/register",
+        url: "http://localhost:1337/api/auth/local/register",
         method: "POST",
         body: user
       })
@@ -29,7 +29,7 @@ export const userApiSlice = createApi({
 
     loginUser: builder.mutation({
       query: (user) => ({
-        url: "auth/local",
+        url: "http://localhost:1337/api/auth/local",
         method: "POST",
         body: user
       })

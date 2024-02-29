@@ -9,6 +9,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 
 import styled from "./Navigation.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
+import Profile from "../Profile/Profile";
 
 const DynamicLanguageSwitcher = dynamic(() => import("../LanguageSwitcher/LanguageSwitcher"), {
   loading: () => <FallBackLoading />
@@ -46,8 +47,8 @@ const Navigation = ({
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Profile id="drownDownBigScreen" />
                 <DynamicLanguageSwitcher id="header" />
-
                 <NavDropdown title={topLocationHeading} id="offcanvasNavbarDropdown-expand-lg-top">
                   {topLocations &&
                     topLocations?.map(({ id, label, link, hidden }, index) => (

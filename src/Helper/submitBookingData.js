@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 
 const submitBookingData = ({
+  isCarSharingPage,
   searchedTerm,
   passenger,
   setValidated,
@@ -22,78 +23,43 @@ const submitBookingData = ({
       pickUpDate,
       pickUpTime,
       dropOffDate,
-      dropOffTime
+      dropOffTime,
+      dropOff,
+      pickUp
     } = searchedTerm;
 
     const { pickUpPassenger, dropOffPassenger } = passenger;
 
     if (!form.checkValidity() === false) {
-      if (isRoundTrip || disableReturnInputDate) {
-        // if (
-        //   (pickUpIDMemoized === router.query?.pickUp &&
-        //     !pickUpID &&
-        //     dropOffIDMemoized === router.query?.dropOff &&
-        //     !dropOffID &&
-        //     !disableReturnInputDate) ||
-        //   (pickUpPassengerMemoized !== pickUpPassenger && !pickUpID)
-        // ) {
-        //   dispatch(
-        //     allFlightInfo({
-        //       ...allFlightInfoMemoized,
-        //       ...searchedTerm,
-        //       pickUpPassenger,
-        //       dropOffPassenger
-        //     })
-        //   );
-        //   return;
-        // }
+      const pickUpInfo = isCarSharingPage ? pickUp : pickUpID || router.query?.pickUp;
+      const dropOffInfo = isCarSharingPage ? dropOff : dropOffID || router.query?.dropOff;
 
-        router.push({
-          pathname: "/booking-details",
-          query: {
-            pickUp: pickUpID || router.query?.pickUp,
-            dropOff: dropOffID || router.query?.dropOff,
-            dropOffDate,
-            dropOffReturn,
-            dropOffTime,
-            pickUpDate,
-            pickUpReturn,
-            pickUpTime,
-            pickUpPassenger,
-            dropOffPassenger,
-            roundtrip
-          }
-        });
-      } else {
-        // if (
-        //   (pickUpIDMemoized === router.query?.pickUp &&
-        //     !pickUpID &&
-        //     dropOffIDMemoized === router.query?.dropOff &&
-        //     !dropOffID) ||
-        //   (pickUpPassengerMemoized !== pickUpPassenger && !pickUpID)
-        // ) {
-        //   dispatch(
-        //     allFlightInfo({
-        //       ...allFlightInfoMemoized,
-        //       ...searchedTerm,
-        //       pickUpPassenger,
-        //       dropOffPassenger
-        //     })
-        //   );
-        //   return;
-        // }
-        router.push({
-          pathname: "/booking-details",
-          query: {
-            pickUp: pickUpID || router.query?.pickUp,
-            dropOff: dropOffID || router.query?.dropOff,
-            pickUpDate,
-            pickUpReturn,
-            pickUpTime,
-            pickUpPassenger
-          }
-        });
+      const queryParameters = {
+        pickUp: pickUpInfo,
+        dropOff: dropOffInfo,
+        pickUpDate,
+        pickUpTime,
+        pickUpPassenger
+      };
+
+      if (isRoundTrip || disableReturnInputDate) {
+        queryParameters.dropOffDate = dropOffDate;
+        queryParameters.dropOffReturn = dropOffReturn;
+        queryParameters.dropOffTime = dropOffTime;
+        queryParameters.pickUpReturn = pickUpReturn;
+        queryParameters.roundtrip = roundtrip;
+        queryParameters.dropOffPassenger = dropOffPassenger;
       }
+
+      const isOneWayOrCarSharingPage = isCarSharingPage ? "/rideshare" : "/booking-details";
+
+      const routeConfig =
+        isRoundTrip || disableReturnInputDate ? "/booking-details" : isOneWayOrCarSharingPage;
+
+      router.push({
+        pathname: routeConfig,
+        query: queryParameters
+      });
     }
 
     setValidated(true);

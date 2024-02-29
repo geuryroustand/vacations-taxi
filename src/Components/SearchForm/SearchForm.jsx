@@ -38,7 +38,7 @@ const DynamicDatePickerSearchForm = dynamic(
   }
 );
 
-const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
+const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm, isCarSharingPage }) => {
   const router = useRouter();
 
   const isDesktopOrLaptopOrTable =
@@ -144,6 +144,7 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
   };
 
   const { submitData } = submitBookingData({
+    isCarSharingPage,
     searchedTerm,
     passenger,
     setValidated,
@@ -254,6 +255,7 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
           )}
 
         <DynamicDatePickerSearchForm
+          isCarSharingPage={isCarSharingPage}
           disableReturnInputDate={disableReturnInputDate}
           setDisableReturnInputDate={setDisableReturnInputDate}
           showReturnSearchForm={showReturnSearchForm}
