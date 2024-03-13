@@ -28,12 +28,18 @@ const DynamicRequestForm = dynamic(() => import("../../src/Components/RequestFor
 });
 
 function Requests() {
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
   const token = getCookieToken();
   const { data, isLoading, isError } = useFetchUserQuery(token);
 
-  const [createRequestOrPost, { isLoading: isLoadingToCreateRequestOrPost }] =
-    useCreateRequestOrPostMutation();
+  const [
+    createRequestOrPost,
+    {
+      data: requestOrPostData,
+      isError: isErrorRequestOrPostData,
+      isLoading: isLoadingToCreateRequestOrPost
+    }
+  ] = useCreateRequestOrPostMutation();
 
   if (isError) {
     removeCookieTokenWithOutReload();
@@ -79,7 +85,14 @@ function Requests() {
     if (data) setPostInfo({ ...postInfo, user: data.id });
   }, [data]);
 
-  if (isLoading) {
+  if (requestOrPostData && !isLoading && !isErrorRequestOrPostData) {
+    const { data: requestOrPostResponse } = requestOrPostData;
+    const { id } = requestOrPostResponse;
+
+    push(`http://localhost:3000/rideshare/${id}`);
+  }
+
+  if (isLoading || isLoadingToCreateRequestOrPost) {
     return (
       <>
         <SeoHead title="Loading" noIndex canonicalURL="post-or-request-a-trip" />

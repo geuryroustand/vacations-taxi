@@ -25,6 +25,7 @@ const ContactTraveler = ({ id, user }) => {
   const { refetch } = useFetchUserCommentsQuery(
     `http://localhost:1337/api/comments/api::share-ride.share-ride:${query?.detailsId}`
   );
+
   const token = getCookieToken();
 
   const [{ validated, errorMessage }, setValidated] = useState({

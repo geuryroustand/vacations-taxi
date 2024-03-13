@@ -17,3 +17,7 @@
   color: var(--primary-color);
   font-weight: bold;
 }
+
+.carpoolIcon {
+  margin-right: 0.4rem;
+}

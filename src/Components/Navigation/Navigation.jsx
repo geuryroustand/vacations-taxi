@@ -1,6 +1,8 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
+import { FaCarSide } from "react-icons/fa6";
+
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -49,6 +51,19 @@ const Navigation = ({
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Profile id="drownDownBigScreen" />
                 <DynamicLanguageSwitcher id="header" />
+                <NavDropdown
+                  title={
+                    <>
+                      <FaCarSide size={16} className={styled.carpoolIcon} />
+                      Carpool
+                    </>
+                  }
+                  id="offcanvasNavbarDropdown-expand-lg-shared-ride">
+                  <NavDropdown.Item href="/find-car-sharing">Find a ride</NavDropdown.Item>
+                  <NavDropdown.Item href="/post-and-request">
+                    Post or request a trip
+                  </NavDropdown.Item>
+                </NavDropdown>
                 <NavDropdown title={topLocationHeading} id="offcanvasNavbarDropdown-expand-lg-top">
                   {topLocations &&
                     topLocations?.map(({ id, label, link, hidden }, index) => (
