@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseURL } from "../Helper/fetchData";
+import { baseURL } from "../../environment";
 
 export const sharedRideApiSlice = createApi({
   reducerPath: "sharedRideApiSlice",
@@ -10,7 +10,7 @@ export const sharedRideApiSlice = createApi({
   endpoints: (builder) => ({
     createRequestOrPost: builder.mutation({
       query: ({ postData, token }) => ({
-        url: "http://localhost:1337/api/share-rides",
+        url: `/share-rides`,
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`

@@ -17,7 +17,7 @@ const CardTripDetails = ({ attributes, id }) => {
   const { time, date, pickUp, dropOff, qtyOfTravelers, user, airlineName, flightNumber } =
     attributes;
 
-  const { username, avatar } = user && user.data && user.data.attributes;
+  const { username, avatar } = (user && user.data && user.data.attributes) || {};
 
   const { formatTime, formatDate } = useDateTimeFormatter();
 

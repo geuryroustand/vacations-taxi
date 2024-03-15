@@ -8,11 +8,13 @@ import Markdown from "react-markdown";
 import styled from "./posts.module.css";
 
 import store from "../../src/redux/store";
-import { baseURL, fetchData } from "../../src/Helper/fetchData";
+
 import addOrganizationJsonLd from "../../src/Helper/addOrganizationJsonLd";
 import Loading from "../../src/Components/Loading/Loading";
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
+import { baseURL } from "../../environment";
+import fetchData from "../../src/Helper/fetchData";
 
 export default function Blog({
   description,

@@ -14,8 +14,8 @@ import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
 import store from "../../src/redux/store";
 
-import { baseURL } from "../../src/Helper/fetchData";
 import { fetchCommonContent, fetchContent } from "../../src/redux/ContentEndpoints";
+import { baseURL } from "../../environment";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),

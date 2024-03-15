@@ -9,14 +9,14 @@ const FormRegisterAndSign = ({ heading, facebookBtnText, googleBtnText, children
     <div className={styled.main}>
       <h1 className={styled.heading}>{heading}</h1>
       <a
-        href={`${NEXT_PUBLIC_API_STRAPI_DEV_URL}/connect/google`}
+        href={`${NEXT_PUBLIC_API_STRAPI_DEV_URL}/connect/google/redirect`}
         type="submit"
         className={`${styled.googleBtn}  ${styled.socialBtn}`}>
         <FcGoogle className={styled.icons} />
         {googleBtnText}
       </a>
       <a
-        href="https://vacationstaxi.herokuapp.com/users/facebookLogin"
+        href={`${NEXT_PUBLIC_API_STRAPI_DEV_URL}/connect/facebook/redirect`}
         className={`${styled.facebookIcon}  ${styled.socialBtn}`}
         type="submit">
         <ImFacebook2 className={styled.icons} />

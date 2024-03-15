@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseURL } from "../Helper/fetchData";
+import { baseURL } from "../../environment";
 
 export const userApiSlice = createApi({
   reducerPath: "userApiSlice",
@@ -11,7 +11,7 @@ export const userApiSlice = createApi({
     fetchUser: builder.query({
       query: (cookieToken) =>
         cookieToken && {
-          url: "http://localhost:1337/api/users/me",
+          url: `/users/me`,
           method: "GET",
           headers: {
             Authorization: `Bearer ${cookieToken}`
@@ -19,9 +19,19 @@ export const userApiSlice = createApi({
         }
     }),
 
+    fetchUserProvider: builder.query({
+      query: ({ providerName, accessToken }) =>
+        providerName &&
+        accessToken && {
+          url: `/auth/${providerName}/callback?access_token=${accessToken}`,
+          method: "GET"
+        },
+      keepUnusedDataFor: Number.POSITIVE_INFINITY
+    }),
+
     createUser: builder.mutation({
       query: (user) => ({
-        url: "http://localhost:1337/api/auth/local/register",
+        url: `/auth/local/register`,
         method: "POST",
         body: user
       })
@@ -29,7 +39,7 @@ export const userApiSlice = createApi({
 
     loginUser: builder.mutation({
       query: (user) => ({
-        url: "http://localhost:1337/api/auth/local",
+        url: `/auth/local`,
         method: "POST",
         body: user
       })
@@ -39,6 +49,7 @@ export const userApiSlice = createApi({
 
 export const {
   useFetchUserQuery,
+  useFetchUserProviderQuery,
   useCreateUserMutation,
   useLoginUserMutation,
   endpoints: userEndpoints

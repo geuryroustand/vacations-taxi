@@ -11,8 +11,10 @@ import SeoHead from "../src/Components/SeoHead/SeoHead";
 
 import store from "../src/redux/store";
 import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
-import { baseURL, fetchData } from "../src/Helper/fetchData";
+
 import { fetchCommonContent } from "../src/redux/ContentEndpoints";
+import { baseURL } from "../environment";
+import fetchData from "../src/Helper/fetchData";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />

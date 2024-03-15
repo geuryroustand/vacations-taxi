@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
-
-import { baseURL } from "../Helper/fetchData";
+import { baseURL } from "../../environment";
 
 export const contentApiSlice = createApi({
   reducerPath: "contentApiSlice",

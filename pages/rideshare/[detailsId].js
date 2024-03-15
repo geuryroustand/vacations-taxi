@@ -9,7 +9,7 @@ import styled from "./rideshare.module.css";
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
-import { fetchData } from "../../src/Helper/fetchData";
+import fetchData from "../../src/Helper/fetchData";
 
 export default function ridesDetails({ data }) {
   const { attributes, id } = data || {};

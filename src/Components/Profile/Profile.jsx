@@ -1,4 +1,3 @@
-import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 
@@ -21,8 +20,10 @@ const logOut = () => {
 const Profile = ({ moveToLeftTable, showDrownDownProfile, showDrownDownInTable, id }) => {
   const cookieToken = getCookieToken();
 
-  const { data, isLoading, isError } = useFetchUserQuery(cookieToken);
-  console.log("data", data);
+  const { data, isLoading, isError } = cookieToken
+    ? useFetchUserQuery(cookieToken)
+    : { data: undefined, isLoading: false, isError: false };
+
   if (isError) {
     removeCookieTokenWithOutReload();
   }
@@ -38,7 +39,7 @@ const Profile = ({ moveToLeftTable, showDrownDownProfile, showDrownDownInTable, 
        ${moveToLeftTable && styled.moveToLeftTable}
        ${showDrownDownProfile && styled.showDrownDownProfile}
       ${showDrownDownInTable && styled.showDrownDownInTable}`}
-      title={<FaUserCircle className={styled.userIcon} title="Drown Down Menu" />}
+      title={<FaUserCircle className={styled.userIcon} title="user profile" />}
       id={id}>
       {data && !isError ? (
         <NavDropdown.Item onClick={logOut} eventKey="1" role="button">

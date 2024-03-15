@@ -1,5 +1,46 @@
-export const {
+/* eslint-disable prefer-destructuring */
+// export const {
+//   NEXT_PUBLIC_API_PROD_URL,
+//   NEXT_PUBLIC_API_DEV_URL,
+
+//   NEXT_PUBLIC_STRIPE_SECRET,
+//   NEXT_PUBLIC_API_PROD_URL_STRAPI,
+
+//   NEXT_PUBLIC_API_STRAPI_DEV_URL,
+//   NEXT_PUBLIC_API_STRAPI_DEV_URL_API
+// } = process.env;
+
+const PROD = process.NODE_ENV === "production";
+
+const NEXT_PUBLIC_API_PROD_URL = process.env.NEXT_PUBLIC_API_PROD_URL;
+const NEXT_PUBLIC_API_DEV_URL = process.env.NEXT_PUBLIC_API_DEV_URL;
+
+const NEXT_PUBLIC_STRIPE_SECRET = process.env.NEXT_PUBLIC_STRIPE_SECRET;
+
+const NEXT_PUBLIC_API_PROD_URL_STRAPI = process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI;
+const NEXT_PUBLIC_API_STRAPI_DEV_URL = process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
+const NEXT_PUBLIC_API_STRAPI_DEV_URL_API = process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL_API;
+
+const baseURL = PROD
+  ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+  : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
+
+const baseURLSpecial = PROD
+  ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+  : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL_API;
+
+const baseUrlLocation = PROD
+  ? process.env.NEXT_PUBLIC_API_PROD_URL
+  : process.env.NEXT_PUBLIC_API_DEV_URL;
+
+export {
+  baseURL,
+  baseURLSpecial,
+  baseUrlLocation,
+  NEXT_PUBLIC_API_PROD_URL,
+  NEXT_PUBLIC_API_DEV_URL,
   NEXT_PUBLIC_STRIPE_SECRET,
+  NEXT_PUBLIC_API_PROD_URL_STRAPI,
   NEXT_PUBLIC_API_STRAPI_DEV_URL,
-  NEXT_PUBLIC_API_STRAPI_PROD_URL
-} = process.env;
+  NEXT_PUBLIC_API_STRAPI_DEV_URL_API
+};

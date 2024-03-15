@@ -8,7 +8,6 @@ import dynamic from "next/dynamic";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { baseURL } from "../../src/Helper/fetchData";
 import { fetchPrice } from "../../src/redux/flightInfoSlice";
 import BookingStepProcess from "../../src/Components/BookingStepProcess/BookingStepProcess";
 import Loading from "../../src/Components/Loading/Loading";
@@ -21,6 +20,7 @@ import store from "../../src/redux/store";
 
 import flightDetailsSelector from "../../src/Helper/memoizedSelectors";
 import { fetchCommonContent, fetchContent } from "../../src/redux/ContentEndpoints";
+import { baseURL } from "../../environment";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),

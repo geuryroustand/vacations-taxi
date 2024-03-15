@@ -4,9 +4,10 @@ import Markdown from "react-markdown";
 
 import store from "../../src/redux/store";
 
-import { baseURL, fetchData } from "../../src/Helper/fetchData";
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
+import fetchData from "../../src/Helper/fetchData";
+import { baseURL } from "../../environment";
 
 export default function aboutUs({ content, title, slug }) {
   return (

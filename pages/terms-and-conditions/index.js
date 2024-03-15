@@ -4,8 +4,10 @@ import Markdown from "react-markdown";
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
 import store from "../../src/redux/store";
-import { baseURL, fetchData } from "../../src/Helper/fetchData";
+
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
+import { baseURL } from "../../environment";
+import fetchData from "../../src/Helper/fetchData";
 
 export default function termsAndConditions({ description, title, slug }) {
   return (
