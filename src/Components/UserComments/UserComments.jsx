@@ -4,12 +4,13 @@ import ContactTraveler from "../ContactTraveler/ContactTraveler";
 import UserComment from "../UserComment/UserComment";
 import styled from "./UserComments.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
+import { baseURL } from "../../../environment";
 
 const UserComments = ({ id, user }) => {
   const { query } = useRouter();
 
   const { data = [], isLoading } = useFetchUserCommentsQuery(
-    `http://localhost:1337/api/comments/api::share-ride.share-ride:${query?.detailsId}`
+    `${baseURL}/comments/api::share-ride.share-ride:${query?.detailsId}`
   );
 
   if (isLoading) {

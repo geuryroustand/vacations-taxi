@@ -23,7 +23,9 @@ const Navigation = ({
   topLocations,
   company,
   helpCenter,
-  blogs
+  blogs,
+  carpool,
+  carpoolLinks
 }) => {
   const { locale } = useRouter();
 
@@ -55,14 +57,16 @@ const Navigation = ({
                   title={
                     <>
                       <FaCarSide size={16} className={styled.carpoolIcon} />
-                      Carpool
+                      {carpool}
                     </>
                   }
                   id="offcanvasNavbarDropdown-expand-lg-shared-ride">
-                  <NavDropdown.Item href="/find-car-sharing">Find a ride</NavDropdown.Item>
-                  <NavDropdown.Item href="/post-and-request">
-                    Post or request a trip
-                  </NavDropdown.Item>
+                  {carpoolLinks &&
+                    carpoolLinks?.map(({ id, locations, slug }) => (
+                      <NavDropdown.Item key={id} href={`${localeLink}${slug}`}>
+                        {locations}
+                      </NavDropdown.Item>
+                    ))}
                 </NavDropdown>
                 <NavDropdown title={topLocationHeading} id="offcanvasNavbarDropdown-expand-lg-top">
                   {topLocations &&

@@ -24,7 +24,9 @@ const Layout = ({ children }) => {
     company = "",
     helpCenter = {},
     blogs = {},
-    DRLink = {}
+    DRLink = {},
+    carpool = "",
+    carpoolLinks = []
   } = useSelector(
     (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
   );
@@ -38,6 +40,8 @@ const Layout = ({ children }) => {
         topLocationHeading={topLocations}
         topLocations={TopLocations}
         company={Company}
+        carpool={carpool}
+        carpoolLinks={carpoolLinks}
       />
       <main className="main">{children}</main>
       <DynamicFooter

@@ -10,13 +10,15 @@ import SeoHead from "../../src/Components/SeoHead/SeoHead";
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
 import fetchData from "../../src/Helper/fetchData";
+import { baseURLSpecial } from "../../environment";
 
 export default function ridesDetails({ data }) {
   const { attributes, id } = data || {};
 
   const { pickUp, dropOff } = attributes || {};
-
-  const user = attributes?.user.data.attributes || {};
+  const user =
+    (attributes && attributes.user && attributes.user.data && attributes.user.data.attributes) ||
+    {};
 
   return (
     <div className={styled.main}>
@@ -57,9 +59,7 @@ export const getServerSideProps = store.getServerSideProps((storeValue) =>
       }
       const { detailsId } = params;
 
-      const { data } = await fetchData(
-        `http://0.0.0.0:1337/api/share-rides/${detailsId}?populate=*`
-      );
+      const { data } = await fetchData(`${baseURLSpecial}/share-rides/${detailsId}?populate=*`);
 
       return {
         props: {

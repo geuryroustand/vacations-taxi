@@ -16,7 +16,7 @@ export const contentApiSlice = createApi({
   endpoints: (builder) => ({
     fetchCommonContent: builder.query({
       query: (locale) => ({
-        url: `common-content?locale=${locale}&populate[TopLocations][populate]=&populate[Company][populate]=&populate[Footer][populate]=*&populate[helpCenter][populate]=&populate[blogs][populate]=&populate[bookingSearch][populate]=&populate[faq][populate]&populate[oneWayAndRoundTrip][populate]=&populate[award][populate]&populate[DRLink][populate]`,
+        url: `common-content?locale=${locale}&populate[TopLocations][populate]=&populate[Company][populate]=&populate[Footer][populate]=*&populate[helpCenter][populate]=&populate[blogs][populate]=&populate[bookingSearch][populate]=&populate[faq][populate]&populate[oneWayAndRoundTrip][populate]=&populate[award][populate]&populate[DRLink][populate]&populate[carpoolLinks][populate]`,
         method: "GET"
       }),
       keepUnusedDataFor: Number.POSITIVE_INFINITY

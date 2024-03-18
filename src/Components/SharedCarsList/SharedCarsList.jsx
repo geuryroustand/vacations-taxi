@@ -13,8 +13,8 @@ const SharedCarsList = () => {
       area: "Punta Cana",
       locations: [
         {
-          name: "Bahia Principe",
-          pickup: "1234",
+          name: "Punta Cana Area",
+          pickup: "Punta cana",
           dropOff: "1677"
         }
         // Add more Punta Cana locations here
@@ -24,26 +24,10 @@ const SharedCarsList = () => {
       area: "Samana",
       locations: [
         {
-          name: "Bahia Principe Samana",
-          pickup: "1234",
-          dropOff: "1677"
-        },
-        {
-          name: "Bahia Principe Samana",
-          pickup: "1234",
-          dropOff: "1677"
-        },
-        {
-          name: "Bahia Principe Samana",
-          pickup: "1234",
-          dropOff: "1677"
-        },
-        {
-          name: "Bahia Principe Samana",
-          pickup: "1234",
+          name: "Samana Area",
+          pickup: "Samana",
           dropOff: "1677"
         }
-        // Add more Samana locations here
       ]
     },
     // Add more location groups here
@@ -51,22 +35,20 @@ const SharedCarsList = () => {
       area: "Santo Domingo",
       locations: [
         {
-          name: "Bahia Principe",
-          pickup: "1234",
+          name: "Santo Domingo Area",
+          pickup: "Santo Domingo",
           dropOff: "1677"
         }
-        // Add more Punta Cana locations here
       ]
     },
     {
       area: "Puerto Plata",
       locations: [
         {
-          name: "Bahia Principe",
-          pickup: "1234",
+          name: "Puerto Plata",
+          pickup: "Puerto plata",
           dropOff: "1677"
         }
-        // Add more Punta Cana locations here
       ]
     },
 
@@ -74,11 +56,10 @@ const SharedCarsList = () => {
       area: "Santiago",
       locations: [
         {
-          name: "Bahia Principe",
-          pickup: "1234",
+          name: "Santiago Area",
+          pickup: "Santiago",
           dropOff: "1677"
         }
-        // Add more Punta Cana locations here
       ]
     }
   ];
@@ -94,9 +75,7 @@ const SharedCarsList = () => {
 
             {locationGroup.locations.map((location) => (
               <p key={location.name}>
-                <Link href={`/pickup=${location.pickup}&dropOff=${location.dropOff}`}>
-                  {location.name}
-                </Link>
+                <Link href={`/rideshare?pickUp=${location.pickup}`}>{location.name}</Link>
               </p>
             ))}
           </Col>
