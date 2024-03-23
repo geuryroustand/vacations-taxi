@@ -56,6 +56,10 @@ function Requests() {
 
   const [postInfo, setPostInfo] = useState(initialPostInfoState);
 
+  const { requestOrPost } = postInfo;
+
+  const headingText = requestOrPost === "request" ? "Post a request " : "Post a trip";
+
   const [{ validated }, setValidated] = useState({
     validated: false
   });
@@ -104,10 +108,10 @@ function Requests() {
   return (
     <div className={styled.main}>
       <Container className={styled.containerForm}>
-        <SeoHead title="Post or Request a Trip" noIndex canonicalURL="post-or-request-a-trip" />
+        <SeoHead title="Offer or Request a Trip" noIndex canonicalURL="offer-and-request-rides" />
         {data ? (
           <>
-            <h1 className={styled.mainHeading}>Post or Request a Trip</h1>
+            <h1 className={styled.mainHeading}>{headingText}</h1>
             <DynamicRequestForm
               postInfo={postInfo}
               onChange={onChange}
@@ -118,7 +122,12 @@ function Requests() {
             />
           </>
         ) : (
-          <AuthLinks title="To publish a ride request or offer a ride, you need to:" />
+          <AuthLinks
+            title="To publish a ride request or offer a ride, you need to:"
+            loginText="login"
+            or="or"
+            createText="Create an account"
+          />
         )}
       </Container>
     </div>

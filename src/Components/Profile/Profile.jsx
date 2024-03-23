@@ -17,7 +17,16 @@ const logOut = () => {
   removeCookieToken();
 };
 
-const Profile = ({ moveToLeftTable, showDrownDownProfile, showDrownDownInTable, id }) => {
+const Profile = ({
+  moveToLeftTable,
+  showDrownDownProfile,
+  showDrownDownInTable,
+  id,
+  loginText,
+  signUpText,
+  signOutText,
+  localeLink
+}) => {
   const cookieToken = getCookieToken();
 
   const { data, isLoading, isError } = cookieToken
@@ -43,16 +52,16 @@ const Profile = ({ moveToLeftTable, showDrownDownProfile, showDrownDownInTable, 
       id={id}>
       {data && !isError ? (
         <NavDropdown.Item onClick={logOut} eventKey="1" role="button">
-          <LiaSignOutAltSolid /> Sign out
+          <LiaSignOutAltSolid /> {signOutText}
         </NavDropdown.Item>
       ) : (
         <>
-          <NavDropdown.Item eventKey="1" href="/login">
-            Log in
+          <NavDropdown.Item eventKey="1" href={`${localeLink}/login`}>
+            {loginText}
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item eventKey="2" href="/signup">
-            Sign up
+          <NavDropdown.Item eventKey="2" href={`${localeLink}/signup`}>
+            {signUpText}
           </NavDropdown.Item>
         </>
       )}

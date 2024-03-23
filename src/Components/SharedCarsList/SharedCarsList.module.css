@@ -1,6 +1,5 @@
 .main {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding: 3rem 0px;
 }
 
 .heading {
@@ -9,4 +8,9 @@
 
 .heading p {
   padding-top: 0.3rem;
+}
+
+.list {
+  list-style-type: none;
+  padding-bottom: 3rem;
 }

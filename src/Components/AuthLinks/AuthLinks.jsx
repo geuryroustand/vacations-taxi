@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-const AuthLinks = ({ title }) => {
+const AuthLinks = ({ title, loginText, or, createText }) => {
   return (
     <>
       <p>{title}</p>
-      <Link href="/login">Sign In</Link>
-      <p>or</p>
-      <Link href="/signup">Create an Account</Link>
+      <Link href="/login">{loginText}</Link>
+      <p>{or}</p>
+      <Link href="/signup">{createText}</Link>
     </>
   );
 };

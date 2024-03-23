@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import styled from "./FormRegisterAndSign.module.css";
 import { NEXT_PUBLIC_API_STRAPI_DEV_URL } from "../../../environment";
 
-const FormRegisterAndSign = ({ heading, facebookBtnText, googleBtnText, children }) => {
+const FormRegisterAndSign = ({ heading, facebookBtnText, googleBtnText, children, or }) => {
   return (
     <div className={styled.main}>
       <h1 className={styled.heading}>{heading}</h1>
@@ -23,7 +23,7 @@ const FormRegisterAndSign = ({ heading, facebookBtnText, googleBtnText, children
         {facebookBtnText}
       </a>
       <hr />
-      <p className={styled.or}>or</p>
+      <p className={styled.or}>{or}</p>
       {children}
     </div>
   );

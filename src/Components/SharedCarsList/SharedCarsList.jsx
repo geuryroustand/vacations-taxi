@@ -6,14 +6,14 @@ import Link from "next/link";
 
 import styled from "./SharedCarsList.module.css";
 
-const SharedCarsList = () => {
+const SharedCarsList = ({ carpool, inText }) => {
   // Define the locations grouped by their respective areas
   const locations = [
     {
       area: "Punta Cana",
       locations: [
         {
-          name: "Punta Cana Area",
+          name: "Punta Cana",
           pickup: "Punta cana",
           dropOff: "1677"
         }
@@ -24,7 +24,7 @@ const SharedCarsList = () => {
       area: "Samana",
       locations: [
         {
-          name: "Samana Area",
+          name: "Samana",
           pickup: "Samana",
           dropOff: "1677"
         }
@@ -35,7 +35,7 @@ const SharedCarsList = () => {
       area: "Santo Domingo",
       locations: [
         {
-          name: "Santo Domingo Area",
+          name: "Santo Domingo",
           pickup: "Santo Domingo",
           dropOff: "1677"
         }
@@ -56,7 +56,7 @@ const SharedCarsList = () => {
       area: "Santiago",
       locations: [
         {
-          name: "Santiago Area",
+          name: "Santiago",
           pickup: "Santiago",
           dropOff: "1677"
         }
@@ -66,11 +66,14 @@ const SharedCarsList = () => {
 
   return (
     <Container>
-      <Row className={styled.main}>
+      <Row as="ul" className={styled.main}>
         {locations.map((locationGroup) => (
-          <Col key={locationGroup.area} xs={12} md={6} lg={3}>
+          <Col className={styled.list} as="li" key={locationGroup.area} xs={12} md={6} lg={3}>
             <h3 className={styled.heading}>
-              Carpool <p>in {locationGroup.area}</p>
+              {carpool}
+              <p>
+                {inText} {locationGroup.area}
+              </p>
             </h3>
 
             {locationGroup.locations.map((location) => (

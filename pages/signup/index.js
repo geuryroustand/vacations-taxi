@@ -10,11 +10,12 @@ import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 
 import { getCookieUrlPath, setCookieToken } from "../../src/Helper/auth";
 
-import Loading from "../../src/Components/Loading/Loading";
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
 import { useCreateUserMutation } from "../../src/redux/AuthenticationEndpoints";
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
+import fetchData from "../../src/Helper/fetchData";
+import { baseURL } from "../../environment";
 
 const DynamicAgreeConditions = dynamic(() =>
   import("../../src/Components/AgreeConditions/AgreeConditions")
@@ -26,7 +27,27 @@ const DynamicFormRegisterAndSign = dynamic(() =>
 );
 const DynamicFormGroup = dynamic(() => import("../../src/Components/FormGroup/FormGroup"));
 
-function signup() {
+function signup({
+  heading,
+  authBtnText,
+  inputUserName,
+  inputUserErrorMessage,
+  inputEmail,
+  inputEmailErrorMessage,
+  inputPassword,
+  inputPasswordErrorMessage,
+  buttonText,
+  agreeText,
+  termsText,
+  andText,
+  privacyText,
+  haveAnAccountText,
+  signInText,
+  emailShareText,
+  or,
+  createText,
+  btnLoadingState
+}) {
   const router = useRouter();
 
   const [{ validated, errors, errorMessage }, setValidated] = useState({
@@ -95,67 +116,70 @@ function signup() {
     }
   }, [isError]);
 
-  return isLoading ? (
-    <Loading spinnerTitle="Loading" accessibilityTitle="Loading" />
-  ) : (
+  return (
     <Suspense fallback={<FallBackLoading />}>
-      <SeoHead title="Create An Account" noIndex canonicalURL="signup" />
+      <SeoHead title={createText} noIndex canonicalURL="signup" />
       <Container style={{ marginBottom: "1.5rem" }}>
         <DynamicFormRegisterAndSign
-          heading="Create Your Free Account"
-          facebookBtnText="Sign up with Facebook"
-          googleBtnText="Sign up with Google">
+          or={or}
+          heading={heading}
+          facebookBtnText={`${authBtnText} Facebook`}
+          googleBtnText={`${authBtnText}  Google`}>
           <Form noValidate validated={validated} onSubmit={onSubmit}>
             <DynamicFormGroup
-              label="Enter a username"
+              label={inputUserName}
               id="username"
-              placeholder="Enter a username"
+              placeholder={inputUserName}
               type="text"
               name="username"
               onChange={onChange}
               required
-              errorMessage={username || "Please provide a unique username."}
+              errorMessage={username || inputUserErrorMessage}
               isInvalid={!!username}
               value={loginInfo.username}
             />
 
             <DynamicFormGroup
-              label="Enter your email address"
+              label={inputEmail}
               id="formEmail"
-              placeholder="Enter an email address"
+              placeholder={inputEmail}
               type="email"
-              formButtonText="We'll never share your email with anyone else."
+              formButtonText={emailShareText}
               name="email"
               onChange={onChange}
               required
-              errorMessage={email || errorMessage || "Please provide a valid email."}
+              errorMessage={email || errorMessage || inputEmailErrorMessage}
               isInvalid={!!email || !!errorMessage}
               value={loginInfo.email}
             />
 
             <DynamicFormGroup
-              label="Enter your Password"
+              label={inputPassword}
               id="formPassword"
-              placeholder="Enter password"
+              placeholder={inputPassword}
               type="password"
               name="password"
               onChange={onChange}
               required
-              errorMessage={password || "Please provide a password."}
+              errorMessage={password || inputPasswordErrorMessage}
               isInvalid={!!password}
               value={loginInfo.password}
             />
-            <DynamicCustomButton buttonType="submit" buttonText="Continue" />
+            <DynamicCustomButton
+              buttonType="submit"
+              buttonText={isLoading ? btnLoadingState : buttonText}
+            />
           </Form>
           <DynamicAgreeConditions>
             <p>
-              By creating an account, you are agreeing to our <br />
-              <Link href="/terms-and-conditions">Terms and Conditions</Link> and{" "}
-              <Link href="/privacy-notice">Privacy Notice</Link>
+              {agreeText}
+              <br />
+              <Link href="/terms-and-conditions"> {termsText}</Link>
+              {andText} <Link href="/privacy-notice">{privacyText}</Link>
             </p>
 
-            <p>Already have an account?</p>
-            <Link href="/login">Sign in</Link>
+            <p>{haveAnAccountText}</p>
+            <Link href="/login">{signInText}</Link>
           </DynamicAgreeConditions>
         </DynamicFormRegisterAndSign>
       </Container>
@@ -175,6 +199,54 @@ export const getServerSideProps = store.getServerSideProps((storeValue) =>
       if (locale) {
         await fetchTranslationData(dispatch, locale);
       }
+
+      const { data } = await fetchData(`${baseURL}/signup?locale=${locale}`);
+
+      const {
+        heading,
+        authBtnText,
+        inputUserName,
+        inputUserErrorMessage,
+        inputEmail,
+        inputEmailErrorMessage,
+        inputPassword,
+        inputPasswordErrorMessage,
+        buttonText,
+        agreeText,
+        termsText,
+        andText,
+        privacyText,
+        haveAnAccountText,
+        signInText,
+        emailShareText,
+        or,
+        createText,
+        btnLoadingState
+      } = data.attributes || {};
+
+      return {
+        props: {
+          heading,
+          authBtnText,
+          inputUserName,
+          inputUserErrorMessage,
+          inputEmail,
+          inputEmailErrorMessage,
+          inputPassword,
+          inputPasswordErrorMessage,
+          buttonText,
+          agreeText,
+          termsText,
+          andText,
+          privacyText,
+          haveAnAccountText,
+          signInText,
+          emailShareText,
+          or,
+          createText,
+          btnLoadingState
+        }
+      };
     } catch (error) {
       if (error.response && error.response.status === 500) {
         res.writeHead(500, { Location: "/500" });
@@ -190,6 +262,7 @@ export const getServerSideProps = store.getServerSideProps((storeValue) =>
 
 export default signup;
 
+// eslint-disable-next-line no-lone-blocks
 {
   /* <div className={styled.passengerDetails}>
             <h2>Passenger Details</h2>

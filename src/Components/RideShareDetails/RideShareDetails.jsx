@@ -11,7 +11,15 @@ const DynamicTripDetails = dynamic(() => import("../TripDetails/TripDetails"), {
   loading: () => <FallBackLoading />
 });
 
-const RideShareDetails = ({ attributes = {} }) => {
+const RideShareDetails = ({
+  attributes = {},
+  tripInformation,
+  passengerText,
+  airlineNameText,
+  flightNumberText,
+  dateText,
+  timeText
+}) => {
   const { time, date, user, airlineName, flightNumber, travelInfo } = attributes;
 
   const { data } = user || {};
@@ -21,14 +29,18 @@ const RideShareDetails = ({ attributes = {} }) => {
 
   return (
     <section className={styled.main}>
-      <h2 className={styled.heading}>Passenger Request</h2>
+      <h2 className={styled.heading}>{passengerText}</h2>
       <UserComment userName={username} comment={travelInfo} />
-      <h3 className={`${styled.heading} ${styled.headingDetails}`}>Flight Details</h3>
+      <h3 className={`${styled.heading} ${styled.headingDetails}`}>{tripInformation}</h3>
       <DynamicTripDetails
         airlineName={airlineName}
         date={formatDate(date)}
         flightNumber={flightNumber}
         time={formatTime(time)}
+        airlineNameText={airlineNameText}
+        flightNumberText={flightNumberText}
+        dateText={dateText}
+        timeText={timeText}
       />
     </section>
   );

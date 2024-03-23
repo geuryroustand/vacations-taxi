@@ -70,7 +70,8 @@
 }
 
 .footerList a:hover,
-.socialMediaList a:hover {
+.socialMediaList a:hover,
+.footerInfoLink:hover {
   color: var(--primary-color);
 }
 .socialMediaList {

@@ -3,6 +3,9 @@ import dynamic from "next/dynamic";
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
+import fetchData from "../../src/Helper/fetchData";
+import { baseURL } from "../../environment";
+import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
 const DynamicFindRideSearch = dynamic(
   () => import("../../src/Components/FindRideSearch/FindRideSearch"),
@@ -23,12 +26,19 @@ const SharedCarsList = dynamic(() => import("../../src/Components/SharedCarsList
 // When the user click on car sharing link will be transfer to
 // a search form and will short it a list of posts
 
-function findRide() {
+function findRide({ mainHeading, subheading, why, because, seo, carpool, inText }) {
+  const { metaTitle, metaDescription, keywords, canonicalURL } = seo || {};
   return (
     <>
-      <DynamicFindRideSearch />
-      <TrustedShareRide />
-      <SharedCarsList />
+      <SeoHead
+        title={metaTitle}
+        desc={metaDescription}
+        canonicalURL={canonicalURL}
+        keyword={keywords}
+      />
+      <DynamicFindRideSearch mainHeading={mainHeading} subheading={subheading} />
+      <TrustedShareRide why={why} because={because} />
+      <SharedCarsList carpool={carpool} inText={inText} />
     </>
   );
 }
@@ -39,7 +49,7 @@ const fetchTranslationData = async (dispatch, locale) => {
 
 export const getServerSideProps = store.getServerSideProps(
   (storeValue) =>
-    async ({ locale, params, res }) => {
+    async ({ locale, res }) => {
       try {
         const { dispatch } = storeValue;
         if (locale) {
@@ -48,9 +58,12 @@ export const getServerSideProps = store.getServerSideProps(
 
         // const { slug } = params;
 
-        // const { data } = await fetchData(
-        //   `${baseURL}/blogs?filters[slug][$eq]=${slug}&locale=${locale}&populate[seo][populate]=*`
-        // );
+        const { data } = await fetchData(
+          `${baseURL}/find-car-shared-ride?populate=*&locale=${locale}`
+        );
+
+        const { mainHeading, subheading, why, because, seo, carpool, inText } =
+          data.attributes || {};
 
         // if (!data || data.length === 0) {
         //   res.statusCode = 404;
@@ -61,17 +74,17 @@ export const getServerSideProps = store.getServerSideProps(
         // const { description, slug: slugURL, seo } = data[0].attributes;
         // const { metaTitle, metaDescription, keywords, structuredData, metaSocial } = seo;
 
-        // return {
-        //   props: {
-        //     description,
-        //     slugURL,
-        //     metaTitle,
-        //     metaDescription,
-        //     keywords,
-        //     structuredData,
-        //     metaSocial
-        //   }
-        // };
+        return {
+          props: {
+            mainHeading,
+            subheading,
+            why,
+            because,
+            seo,
+            carpool,
+            inText
+          }
+        };
       } catch (error) {
         if (error.response && error.response.status === 500) {
           res.writeHead(500, { Location: "/500" });

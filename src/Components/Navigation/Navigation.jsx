@@ -25,7 +25,11 @@ const Navigation = ({
   helpCenter,
   blogs,
   carpool,
-  carpoolLinks
+  carpoolLinks,
+  loginText,
+  signUpText,
+  signOutText,
+  movilNavHeadingText
 }) => {
   const { locale } = useRouter();
 
@@ -46,12 +50,18 @@ const Navigation = ({
             placement="end">
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg-info">
-                Information
+                {movilNavHeadingText}
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Profile id="drownDownBigScreen" />
+                <Profile
+                  localeLink={localeLink}
+                  loginText={loginText}
+                  signUpText={signUpText}
+                  signOutText={signOutText}
+                  id="drownDownBigScreen"
+                />
                 <DynamicLanguageSwitcher id="header" />
                 <NavDropdown
                   title={

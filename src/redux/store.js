@@ -7,13 +7,15 @@ import searchFormSlice from "./SearchLocationEndpoints";
 import { contentApiSlice } from "./ContentEndpoints";
 import { userApiSlice } from "./AuthenticationEndpoints";
 import { sharedRideApiSlice } from "./SharedRideEndpoints";
+import { fetchUtilsApiSlice } from "./fetchUtils";
 
 const reducers = combineReducers({
   flightInfoReducer,
   searchFormSlice,
   [userApiSlice.reducerPath]: userApiSlice.reducer,
   [contentApiSlice.reducerPath]: contentApiSlice.reducer,
-  [sharedRideApiSlice.reducerPath]: sharedRideApiSlice.reducer
+  [sharedRideApiSlice.reducerPath]: sharedRideApiSlice.reducer,
+  [fetchUtilsApiSlice.reducerPath]: fetchUtilsApiSlice.reducer
 });
 
 const middleware =
@@ -23,7 +25,8 @@ const middleware =
         logger,
         contentApiSlice.middleware,
         userApiSlice.middleware,
-        sharedRideApiSlice.middleware
+        sharedRideApiSlice.middleware,
+        fetchUtilsApiSlice.middleware
       ]
     : (getDefaultMiddleware) => getDefaultMiddleware();
 

@@ -49,16 +49,18 @@ function DatePickerSearchForm({
   // Todo need to add the pick time below the calender
 
   const styles = isCarSharingPage ? styled.isCarSharingPage : "";
+
   return (
     <div className={styled.date}>
       <div className={`${styled.calender} ${styles}`}>
         <Image src="/images/calendar.svg" width="20" height="20" alt="calendar" />
         <div className={styled.calenderAndIconWrapper}>
-          {!isCarSharingPage && (
-            <label className={styled.calenderLabel} htmlFor="date-picker-arrival">
-              {labelPickDate}
-            </label>
-          )}
+          <label
+            className={`${styled.calenderLabel} ${isCarSharingPage ? "visually-hidden" : ""} `}
+            htmlFor="date-picker-arrival">
+            {labelPickDate}
+          </label>
+
           <DatePicker
             autoComplete="off"
             locale={locale}

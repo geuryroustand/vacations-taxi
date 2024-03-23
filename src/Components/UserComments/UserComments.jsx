@@ -6,7 +6,21 @@ import styled from "./UserComments.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
 import { baseURL } from "../../../environment";
 
-const UserComments = ({ id, user }) => {
+const UserComments = ({
+  id,
+  user,
+  commentHeading,
+  sendToMessage,
+  placeHolderText,
+  leaveCommentText,
+  loginText,
+  or,
+  createText,
+  buttonText,
+  loadingStateText,
+  errorMessageText,
+  serverErrorMessageText
+}) => {
   const { query } = useRouter();
 
   const { data = [], isLoading } = useFetchUserCommentsQuery(
@@ -19,7 +33,7 @@ const UserComments = ({ id, user }) => {
 
   return (
     <div className={styled.main}>
-      <h3 className={styled.heading}>Comments</h3>
+      <h3 className={styled.heading}>{commentHeading}</h3>
       <ul className={styled.list}>
         {data.map(({ id: commentId, content, author: { name, avatar } }) => (
           <li key={commentId}>
@@ -28,7 +42,20 @@ const UserComments = ({ id, user }) => {
         ))}
       </ul>
 
-      <ContactTraveler id={id} user={user} />
+      <ContactTraveler
+        sendToMessage={sendToMessage}
+        placeHolderText={placeHolderText}
+        leaveCommentText={leaveCommentText}
+        loginText={loginText}
+        or={or}
+        createText={createText}
+        id={id}
+        user={user}
+        buttonText={buttonText}
+        loadingStateText={loadingStateText}
+        errorMessageText={errorMessageText}
+        serverErrorMessageText={serverErrorMessageText}
+      />
     </div>
   );
 };

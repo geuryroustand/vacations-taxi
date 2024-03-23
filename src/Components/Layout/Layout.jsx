@@ -26,7 +26,11 @@ const Layout = ({ children }) => {
     blogs = {},
     DRLink = {},
     carpool = "",
-    carpoolLinks = []
+    carpoolLinks = [],
+    loginText = "",
+    signUpText = "",
+    signOutText = "",
+    movilNavHeadingText = ""
   } = useSelector(
     (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
   );
@@ -42,6 +46,10 @@ const Layout = ({ children }) => {
         company={Company}
         carpool={carpool}
         carpoolLinks={carpoolLinks}
+        loginText={loginText}
+        signUpText={signUpText}
+        signOutText={signOutText}
+        movilNavHeadingText={movilNavHeadingText}
       />
       <main className="main">{children}</main>
       <DynamicFooter

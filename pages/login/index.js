@@ -14,6 +14,8 @@ import { getCookieUrlPath, setCookieToken } from "../../src/Helper/auth";
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
 import { useLoginUserMutation } from "../../src/redux/AuthenticationEndpoints";
+import fetchData from "../../src/Helper/fetchData";
+import { baseURL } from "../../environment";
 
 const DynamicAgreeConditions = dynamic(() =>
   import("../../src/Components/AgreeConditions/AgreeConditions")
@@ -25,7 +27,19 @@ const DynamicFormRegisterAndSign = dynamic(() =>
 );
 const DynamicFormGroup = dynamic(() => import("../../src/Components/FormGroup/FormGroup"));
 
-function login() {
+function login({
+  heading,
+  authBtnText,
+  or,
+  inputEmailText,
+  inputPasswordText,
+  btnSignInText,
+  accountText,
+  signUpText,
+  emailErrorMessage,
+  passwordErrorMessage,
+  loadingStateText
+}) {
   const router = useRouter();
 
   const [loginInfo, setLoginInfo] = useState({
@@ -94,49 +108,50 @@ function login() {
 
   return (
     <Suspense fallback={<FallBackLoading />}>
-      <SeoHead title="Login" noIndex canonicalURL="login" />
+      <SeoHead title={btnSignInText} noIndex canonicalURL="login" />
       <Container style={{ marginBottom: "1.5rem" }}>
         <DynamicFormRegisterAndSign
-          heading="Sign in"
-          facebookBtnText="Continue with Facebook"
-          googleBtnText="Continue with Google">
+          heading={heading}
+          facebookBtnText={`${authBtnText} Facebook`}
+          googleBtnText={`${authBtnText} Google`}
+          or={or}>
           <Form noValidate validated={validated} onSubmit={onSubmit}>
             <DynamicFormGroup
-              label="Enter your email"
+              label={inputEmailText}
               id="formEmail"
-              placeholder="Enter email"
+              placeholder={inputEmailText}
               type="email"
               name="identifier"
               onChange={onChange}
               required
-              errorMessage={identifier || errorMessage || "Please provide a valid email."}
+              errorMessage={identifier || errorMessage || emailErrorMessage}
               isInvalid={!!identifier || !!errorMessage}
               value={loginInfo.identifier}
             />
 
             <DynamicFormGroup
-              label="Enter your Password"
+              label={inputPasswordText}
               id="formPassword"
-              placeholder="Enter Password"
+              placeholder={inputPasswordText}
               type="password"
               name="password"
               onChange={onChange}
               required
-              errorMessage={password || "Please provide a password."}
+              errorMessage={password || passwordErrorMessage}
               isInvalid={!!password}
               value={loginInfo.password}
             />
             <DynamicCustomButton
               disabled={isLoading}
               buttonType="submit"
-              buttonText={isLoading ? "Loading..." : "Sign in"}
+              buttonText={isLoading ? loadingStateText : btnSignInText}
             />
           </Form>
         </DynamicFormRegisterAndSign>
 
         <DynamicAgreeConditions>
-          <p>Don&apos;t have an account?</p>
-          <Link href="/register">Sign up for free</Link>
+          <p>{accountText}</p>
+          <Link href="/signup">{signUpText}</Link>
         </DynamicAgreeConditions>
       </Container>
     </Suspense>
@@ -147,24 +162,56 @@ const fetchTranslationData = async (dispatch, locale) => {
   await dispatch(fetchCommonContent.initiate(locale));
 };
 
-export const getServerSideProps = store.getServerSideProps((storeValue) =>
-  // eslint-disable-next-line consistent-return
-  async ({ locale, res }) => {
-    try {
-      const { dispatch } = storeValue;
-      if (locale) {
-        await fetchTranslationData(dispatch, locale);
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        res.writeHead(500, { Location: "/500" });
+export const getServerSideProps = store.getServerSideProps(
+  (storeValue) =>
+    async ({ locale, res }) => {
+      try {
+        const { dispatch } = storeValue;
+        if (locale) {
+          await fetchTranslationData(dispatch, locale);
+        }
+
+        const { data } = await fetchData(`${baseURL}/login?locale=${locale}`);
+
+        const {
+          heading,
+          authBtnText,
+          or,
+          inputEmailText,
+          inputPasswordText,
+          btnSignInText,
+          accountText,
+          signUpText,
+          emailErrorMessage,
+          passwordErrorMessage,
+          loadingStateText
+        } = data.attributes || {};
+
+        return {
+          props: {
+            heading,
+            authBtnText,
+            or,
+            inputEmailText,
+            inputPasswordText,
+            btnSignInText,
+            accountText,
+            signUpText,
+            emailErrorMessage,
+            passwordErrorMessage,
+            loadingStateText
+          }
+        };
+      } catch (error) {
+        if (error.response && error.response.status === 500) {
+          res.writeHead(500, { Location: "/500" });
+          res.end();
+        }
+        res.writeHead(404, { Location: "/404" });
         res.end();
+        return { props: {} };
       }
-      res.writeHead(404, { Location: "/404" });
-      res.end();
-      return { props: {} };
     }
-  }
 );
 
 export default login;

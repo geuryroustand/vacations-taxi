@@ -13,7 +13,7 @@ const DynamicTripDetails = dynamic(() => import("../TripDetails/TripDetails"), {
   loading: () => <FallBackLoading />
 });
 
-const CardTripDetails = ({ attributes, id }) => {
+const CardTripDetails = ({ attributes, id, to }) => {
   const { time, date, pickUp, dropOff, qtyOfTravelers, user, airlineName, flightNumber } =
     attributes;
 
@@ -27,9 +27,9 @@ const CardTripDetails = ({ attributes, id }) => {
 
   return (
     <li className={styled.cardTripDetailsMain}>
-      <Link className={styled.link} href={`rideshare/${id}`}>
+      <Link target="_blank" className={styled.link} href={`rideshare/${id}`}>
         <section className={styled.cardTripDetails}>
-          <h2 className={styled.heading}>{`${pickUp} to ${dropOff}`}</h2>
+          <h2 className={styled.heading}>{`${pickUp} ${to} ${dropOff}`}</h2>
           <div className={styled.cardTripDetailsInfo}>
             <div className={styled.cardTripDetailsProfile}>
               <div className={styled.profileImgAndName}>

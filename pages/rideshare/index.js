@@ -14,6 +14,7 @@ import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
 import { useFetchRequestAndPostQuery } from "../../src/redux/SharedRideEndpoints";
 import { baseURL } from "../../environment";
+import fetchData from "../../src/Helper/fetchData";
 
 const DynamicSearchForm = dynamic(() => import("../../src/Components/SearchForm/SearchForm"), {
   loading: () => <FallBackLoading />
@@ -26,7 +27,7 @@ const DynamicCardTripDetails = dynamic(
   }
 );
 
-export default function rideShare() {
+export default function rideShare({ from, to, notFoundMessage, linkText }) {
   const { locale, query } = useRouter();
   const { pickUp, dropOff } = query;
 
@@ -47,7 +48,7 @@ export default function rideShare() {
 
   return (
     <div className={styled.main}>
-      <SeoHead title={`${pickUp} ${hasDropOff && `to ${dropOff}`}`} noIndex />
+      <SeoHead title={`${pickUp} ${hasDropOff && `${to} ${dropOff}`}`} noIndex />
       <Container className={styled.container}>
         <DynamicSearchForm
           bookingSearch={bookingSearch}
@@ -55,16 +56,18 @@ export default function rideShare() {
           // isRoundTrip={isRoundTrip}
           showReturnSearchForm
         />
-        <h1 className={styled.bigHeading}>{`From ${pickUp} ${hasDropOff && `to ${dropOff}`}`}</h1>
-        {data.length === undefined && !isLoading && !isError ? (
+        <h1 className={styled.bigHeading}>{`${from} ${pickUp} ${
+          hasDropOff && `${to} ${dropOff}`
+        }`}</h1>
+        {data?.data.length === 0 && !isLoading && !isError ? (
           <>
-            <p>There are currently no shared ride posts available for the searched location.😞</p>
-            <Link href="/post-and-request">Make a post or a request here for a shared ride.😊</Link>
+            <p>{notFoundMessage}😞</p>
+            <Link href="/post-and-request">{linkText}</Link>
           </>
         ) : (
           <ul className={styled.list}>
             {data?.data.map(({ id, attributes }) => (
-              <DynamicCardTripDetails key={id} id={id} attributes={attributes} />
+              <DynamicCardTripDetails to={to} key={id} id={id} attributes={attributes} />
             ))}
           </ul>
         )}
@@ -85,6 +88,19 @@ export const getServerSideProps = store.getServerSideProps((storeValue) =>
       if (locale) {
         await fetchTranslationData(dispatch, locale);
       }
+
+      const { data } = await fetchData(`${baseURL}/rideshare-list?locale=${locale}`);
+
+      const { from, to, notFoundMessage, linkText } = data.attributes || {};
+
+      return {
+        props: {
+          from,
+          to,
+          notFoundMessage,
+          linkText
+        }
+      };
     } catch (error) {
       if (error.response && error.response.status === 500) {
         res.writeHead(500, { Location: "/500" });

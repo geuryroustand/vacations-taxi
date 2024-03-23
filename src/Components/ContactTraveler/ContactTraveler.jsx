@@ -16,14 +16,28 @@ import {
 import { getCookieToken, setCookieUrlPath } from "../../Helper/auth";
 
 import AuthLinks from "../AuthLinks/AuthLinks";
+import { baseURL } from "../../../environment";
 
 const DynamicFormGroup = dynamic(() => import("../FormGroup/FormGroup"));
 
-const ContactTraveler = ({ id, user }) => {
+const ContactTraveler = ({
+  id,
+  user,
+  sendToMessage,
+  placeHolderText,
+  leaveCommentText,
+  loginText,
+  or,
+  createText,
+  buttonText,
+  loadingStateText,
+  errorMessageText,
+  serverErrorMessageText
+}) => {
   const { query } = useRouter();
 
   const { refetch } = useFetchUserCommentsQuery(
-    `http://localhost:1337/api/comments/api::share-ride.share-ride:${query?.detailsId}`
+    `${baseURL}/comments/api::share-ride.share-ride:${query?.detailsId}`
   );
 
   const token = getCookieToken();
@@ -44,7 +58,7 @@ const ContactTraveler = ({ id, user }) => {
   });
 
   const [createComment, { isLoading, error, isError }] = useAddCommentToPostMutation(
-    `http://localhost:1337/api/comments/api::share-ride.share-ride:${query?.detailsId}`
+    `${baseURL}/comments/api::share-ride.share-ride:${query?.detailsId}`
   );
 
   const onChange = (event) => {
@@ -59,7 +73,7 @@ const ContactTraveler = ({ id, user }) => {
     event.preventDefault();
 
     if (!form.checkValidity() === false) {
-      const url = `http://localhost:1337/api/comments/api::share-ride.share-ride:${id}`;
+      const url = `${baseURL}/comments/api::share-ride.share-ride:${id}`;
 
       if (token)
         createComment({ url, comment: addComment, token })
@@ -68,7 +82,7 @@ const ContactTraveler = ({ id, user }) => {
           .catch(() => {
             throw setValidated((previousState) => ({
               ...previousState,
-              errorMessage: "An error occurred while adding the comment. Please try again later.",
+              errorMessage: serverErrorMessageText,
               validated: true
             }));
           });
@@ -107,25 +121,25 @@ const ContactTraveler = ({ id, user }) => {
   return (
     <Form noValidate validated={validated} onSubmit={onSubmit} className={styled.form}>
       <DynamicFormGroup
-        label={`Send a message to ${user?.username}`}
+        label={`${sendToMessage} ${user?.username}`}
         id="content"
         name="content"
         onChange={onChange}
         required
-        errorMessage={errorMessage || "Please provide your comment"}
+        errorMessage={errorMessage || errorMessageText}
         isInvalid={!!errorMessage}
         value={addComment.content}
         as="textarea"
-        placeholder="Eg: I want to share the ride with you..."
+        placeholder={placeHolderText}
         numberOfRows={3}
         isLabelHidden
       />
       {UserData ? (
         <Button disabled={isLoading} className={styled.btnBg} type="submit" variant="primary">
-          {isLoading ? "Sending..." : "Send"}
+          {isLoading ? loadingStateText : buttonText}
         </Button>
       ) : (
-        <AuthLinks title="To leave a comment, please sign in or create an account:" />
+        <AuthLinks loginText={loginText} or={or} createText={createText} title={leaveCommentText} />
       )}
     </Form>
   );
