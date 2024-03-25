@@ -1,7 +1,14 @@
 import Form from "react-bootstrap/Form";
 import styled from "./RadioButtonGroup.module.css";
 
-const RadioButtonGroup = ({ requestOrPost, oneWayOrRoundTrip, onChange }) => {
+const RadioButtonGroup = ({
+  requestOrPost,
+  oneWayOrRoundTrip,
+  onChange,
+  radioBtnRequest,
+  radioBtnOffer,
+  oneWay
+}) => {
   return (
     <>
       <div className={styled.radioButton}>
@@ -12,7 +19,7 @@ const RadioButtonGroup = ({ requestOrPost, oneWayOrRoundTrip, onChange }) => {
           value="request"
           name="requestOrPost"
           id="request"
-          label="Publish a request for a ride"
+          label={radioBtnRequest}
           onChange={onChange}
         />
         <Form.Check
@@ -21,7 +28,7 @@ const RadioButtonGroup = ({ requestOrPost, oneWayOrRoundTrip, onChange }) => {
           checked={requestOrPost === "post"}
           value="post"
           id="post"
-          label="Publish a ride"
+          label={radioBtnOffer}
           name="requestOrPost"
           onChange={onChange}
         />
@@ -32,7 +39,7 @@ const RadioButtonGroup = ({ requestOrPost, oneWayOrRoundTrip, onChange }) => {
           value="oneWay"
           checked={oneWayOrRoundTrip === "oneWay"}
           id="oneWay"
-          label="OneWay"
+          label={oneWay}
           name="oneWayOrRoundTrip"
           onChange={onChange}
         />

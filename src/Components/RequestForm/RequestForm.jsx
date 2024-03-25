@@ -26,31 +26,57 @@ const RequestForm = ({
   onSubmit,
   validated,
   currentDate,
-  isLoadingToCreateRequestOrPost
+  isLoadingToCreateRequestOrPost,
+  contentData
 }) => {
   const { requestOrPost, oneWayOrRoundTrip, travelInfo, hasFlight, airlineName, flightNumber } =
     postInfo;
 
-  const buttonText = requestOrPost === "request" ? "Post request " : "Post trip";
+  const {
+    btnRequest,
+    hasFlight: hasFlightContent,
+    btnOffer,
+    yes: yesContent,
+    no: noContent,
+    arrivalAirlineName,
+    arrivalFlightNumber,
+    travelerInfo,
+    travelerInfoErrorMessage,
+    btnLoadingState,
+    travelerInfoPlacerHolder,
+    radioBtnRequest,
+    radioBtnOffer,
+    oneWay
+  } = contentData?.attributes || {};
+
+  const buttonText = requestOrPost === "request" ? btnRequest : btnOffer;
 
   return (
     <Form noValidate validated={validated} onSubmit={onSubmit}>
       <DynamicRadioButtonGroup
+        radioBtnRequest={radioBtnRequest}
+        radioBtnOffer={radioBtnOffer}
+        oneWay={oneWay}
         requestOrPost={requestOrPost}
         oneWayOrRoundTrip={oneWayOrRoundTrip}
         onChange={onChange}
       />
-      <DynamicTripDetailsInputs postInfo={postInfo} onChange={onChange} currentDate={currentDate} />
+      <DynamicTripDetailsInputs
+        contentData={contentData}
+        postInfo={postInfo}
+        onChange={onChange}
+        currentDate={currentDate}
+      />
 
       <div className={styled.hasFlight}>
-        <p>Do you have flight information?</p>
+        <p>{hasFlightContent}</p>
         <Form.Check
           value="yes"
           checked={hasFlight === "yes"}
           type="radio"
           name="hasFlight"
           id="yes"
-          label="Yes"
+          label={yesContent}
           onChange={onChange}
         />
         <Form.Check
@@ -59,7 +85,7 @@ const RequestForm = ({
           required
           type="radio"
           id="no"
-          label="No"
+          label={noContent}
           name="hasFlight"
           onChange={onChange}
         />
@@ -69,11 +95,11 @@ const RequestForm = ({
         <Row className={styled.hasFlightInputs}>
           <Col md>
             <DynamicFormGroup
-              label="Airline Name"
+              label={arrivalAirlineName}
               id="airlineName"
               type="text"
               name="airlineName"
-              placeholder="Airline Name"
+              placeholder={arrivalAirlineName}
               onChange={onChange}
               value={airlineName}
               asType={Col}
@@ -81,11 +107,11 @@ const RequestForm = ({
           </Col>
           <Col md>
             <DynamicFormGroup
-              label="Flight Number"
+              label={arrivalFlightNumber}
               id="flightNumber"
               type="text"
               name="flightNumber"
-              placeholder="Flight Number"
+              placeholder={arrivalFlightNumber}
               onChange={onChange}
               value={flightNumber}
               asType={Col}
@@ -96,22 +122,22 @@ const RequestForm = ({
 
       <div className={styled.textArea}>
         <DynamicFormGroup
-          label="Any messages for fellow travelers? This could include flight details, airline
-            information, or special requests."
+          label={travelerInfo}
           id="travelInfo"
           name="travelInfo"
           onChange={onChange}
           required
-          errorMessage={travelInfo || "Please provide travel information"}
+          errorMessage={travelInfo || travelerInfoErrorMessage}
           value={travelInfo}
           asType={Col}
           as="textarea"
+          placeholder={travelerInfoPlacerHolder}
           numberOfRows={3}
           isLabelHidden
         />
       </div>
       <Button disabled={isLoadingToCreateRequestOrPost} className={styled.button} type="submit">
-        {isLoadingToCreateRequestOrPost ? "Loading..." : buttonText}
+        {isLoadingToCreateRequestOrPost ? btnLoadingState : buttonText}
       </Button>
     </Form>
   );

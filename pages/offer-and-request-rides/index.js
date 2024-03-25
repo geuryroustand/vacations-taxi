@@ -22,15 +22,20 @@ import { useCreateRequestOrPostMutation } from "../../src/redux/SharedRideEndpoi
 
 import submitRequestOrPost, { initialPostInfoState } from "../../src/Helper/submitRequestOrPost";
 import AuthLinks from "../../src/Components/AuthLinks/AuthLinks";
+import { baseURL } from "../../environment";
+import fetchData from "../../src/Helper/fetchData";
 
 const DynamicRequestForm = dynamic(() => import("../../src/Components/RequestForm/RequestForm"), {
   loading: () => <FallBackLoading />
 });
 
-function Requests() {
+function Requests({ data: contentData }) {
   const { pathname, push } = useRouter();
   const token = getCookieToken();
   const { data, isLoading, isError } = useFetchUserQuery(token);
+
+  const { requestHeading, postHeading, loading, title, loginOrCreate, login, or, create } =
+    contentData?.attributes || {};
 
   const [
     createRequestOrPost,
@@ -58,7 +63,7 @@ function Requests() {
 
   const { requestOrPost } = postInfo;
 
-  const headingText = requestOrPost === "request" ? "Post a request " : "Post a trip";
+  const headingText = requestOrPost === "request" ? requestHeading : postHeading;
 
   const [{ validated }, setValidated] = useState({
     validated: false
@@ -93,13 +98,13 @@ function Requests() {
     const { data: requestOrPostResponse } = requestOrPostData;
     const { id } = requestOrPostResponse;
 
-    push(`http://localhost:3000/rideshare/${id}`);
+    push(`${baseURL}/rideshare/${id}`);
   }
 
-  if (isLoading || isLoadingToCreateRequestOrPost) {
+  if (isLoading) {
     return (
       <>
-        <SeoHead title="Loading" noIndex canonicalURL="post-or-request-a-trip" />
+        <SeoHead title={loading} noIndex canonicalURL="post-or-request-a-trip" />
         <FallBackLoading />
       </>
     );
@@ -108,11 +113,12 @@ function Requests() {
   return (
     <div className={styled.main}>
       <Container className={styled.containerForm}>
-        <SeoHead title="Offer or Request a Trip" noIndex canonicalURL="offer-and-request-rides" />
+        <SeoHead title={title} noIndex canonicalURL="offer-and-request-rides" />
         {data ? (
           <>
             <h1 className={styled.mainHeading}>{headingText}</h1>
             <DynamicRequestForm
+              contentData={contentData}
               postInfo={postInfo}
               onChange={onChange}
               onSubmit={onSubmit}
@@ -122,12 +128,7 @@ function Requests() {
             />
           </>
         ) : (
-          <AuthLinks
-            title="To publish a ride request or offer a ride, you need to:"
-            loginText="login"
-            or="or"
-            createText="Create an account"
-          />
+          <AuthLinks title={loginOrCreate} loginText={login} or={or} createText={create} />
         )}
       </Container>
     </div>
@@ -138,25 +139,103 @@ const fetchTranslationData = async (dispatch, locale) => {
   await dispatch(fetchCommonContent.initiate(locale));
 };
 
-export const getServerSideProps = store.getServerSideProps((storeValue) =>
-  // eslint-disable-next-line consistent-return
-  async ({ locale, res }) => {
-    try {
-      const { dispatch } = storeValue;
-      if (locale) {
-        await fetchTranslationData(dispatch, locale);
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        res.writeHead(500, { Location: "/500" });
+export const getServerSideProps = store.getServerSideProps(
+  (storeValue) =>
+    async ({ locale, res }) => {
+      try {
+        const { dispatch } = storeValue;
+        if (locale) {
+          await fetchTranslationData(dispatch, locale);
+        }
+        const { data } = await fetchData(`${baseURL}/offer-or-request-trip?locale=${locale}`);
+
+        const {
+          requestHeading,
+          postHeading,
+          radioBtnRequest,
+          radioBtnOffer,
+          oneWay,
+          roundTrip,
+          tripHeading,
+          pickUpLocation,
+          pickUpLocationErrorMessage,
+          arrivalDate,
+          arrivalDateErrorMessage,
+          arrivalTimeOffer,
+          arrivalTimeRequest,
+          arrivalTimeErrorMessage,
+          arrivalPrice,
+          arrivalPriceErrorMessage,
+          pickUpLocationPlaceHolder,
+          arrivalDropOffLocation,
+          arrivalDropOffLocationPlacerHolder,
+          arrivalDropOffLocationErrorMessage,
+          arrivalQtyOfTravelerRequest,
+          arrivalQtyOfTravelerOffer,
+          arrivalTraveler,
+          hasFlight,
+          yes,
+          no,
+          arrivalAirlineName,
+          arrivalFlightNumber,
+          travelerInfo,
+          travelerInfoErrorMessage,
+          btnLoadingState,
+          btnRequest,
+          btnOffer,
+          travelerInfoPlacerHolder
+        } = data.attributes || {};
+
+        return {
+          props: {
+            data,
+            requestHeading,
+            postHeading,
+            radioBtnRequest,
+            radioBtnOffer,
+            oneWay,
+            roundTrip,
+            tripHeading,
+            pickUpLocation,
+            pickUpLocationErrorMessage,
+            arrivalDate,
+            arrivalDateErrorMessage,
+            arrivalTimeOffer,
+            arrivalTimeRequest,
+            arrivalTimeErrorMessage,
+            arrivalPrice,
+            arrivalPriceErrorMessage,
+            pickUpLocationPlaceHolder,
+            arrivalDropOffLocation,
+            arrivalDropOffLocationPlacerHolder,
+            arrivalDropOffLocationErrorMessage,
+            arrivalQtyOfTravelerRequest,
+            arrivalQtyOfTravelerOffer,
+            arrivalTraveler,
+            hasFlight,
+            yes,
+            no,
+            arrivalAirlineName,
+            arrivalFlightNumber,
+            travelerInfo,
+            travelerInfoErrorMessage,
+            btnLoadingState,
+            btnRequest,
+            btnOffer,
+            travelerInfoPlacerHolder
+          }
+        };
+      } catch (error) {
+        if (error.response && error.response.status === 500) {
+          res.writeHead(500, { Location: "/500" });
+          res.end();
+          return { props: {} };
+        }
+        res.writeHead(404, { Location: "/404" });
         res.end();
         return { props: {} };
       }
-      res.writeHead(404, { Location: "/404" });
-      res.end();
-      return { props: {} };
     }
-  }
 );
 
 export default Requests;

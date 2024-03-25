@@ -15,7 +15,7 @@ const DynamicFormSelect = dynamic(() => import("../FormSelect/FormSelect"), {
   loading: () => <FallBackLoading />
 });
 
-const TripDetailsInputs = ({ postInfo, onChange, currentDate }) => {
+const TripDetailsInputs = ({ postInfo, onChange, currentDate, contentData }) => {
   const {
     // pickUpLocation,
     // arrivalTime,
@@ -39,37 +39,53 @@ const TripDetailsInputs = ({ postInfo, onChange, currentDate }) => {
     requestOrPost
   } = postInfo;
 
+  const {
+    tripHeading,
+    arrivalDate,
+    arrivalDateErrorMessage,
+    arrivalTimeOffer,
+    arrivalTimeRequest,
+    arrivalTimeErrorMessage,
+    arrivalPrice,
+    arrivalPriceErrorMessage,
+    pickUpLocation,
+    pickUpLocationErrorMessage,
+    pickUpLocationPlaceHolder,
+    arrivalDropOffLocation,
+    arrivalDropOffLocationPlacerHolder,
+    arrivalDropOffLocationErrorMessage,
+    arrivalQtyOfTravelerRequest,
+    arrivalQtyOfTravelerOffer,
+    arrivalTraveler
+  } = contentData?.attributes || {};
+
   return (
     <>
       <div className={styled.tripDetails}>
-        <h2>Trip Details</h2>
+        <h2>{tripHeading}</h2>
         <Row>
           <DynamicFormGroup
-            label="When are you going?"
+            label={arrivalDate}
             id="date"
             currentDate={currentDate}
             type="date"
             name="date"
             onChange={onChange}
             required
-            errorMessage={date || "Please provide a date."}
+            errorMessage={date || arrivalDateErrorMessage}
             value={date}
             asType={Col}
             isLabelHidden
           />
 
           <DynamicFormGroup
-            label={
-              requestOrPost === "request"
-                ? "What time would you like to be picked up, or what is your flight arrival time?"
-                : " At what time will you pick passengers up?"
-            }
+            label={requestOrPost === "request" ? arrivalTimeRequest : arrivalTimeOffer}
             id="time"
             type="time"
             name="time"
             onChange={onChange}
             required
-            errorMessage={time || "Please provide the time."}
+            errorMessage={time || arrivalTimeErrorMessage}
             value={time}
             asType={Col}
             isLabelHidden
@@ -77,13 +93,13 @@ const TripDetailsInputs = ({ postInfo, onChange, currentDate }) => {
           {requestOrPost === "post" && (
             <Col md>
               <DynamicFormGroup
-                label="What's your per-passenger rate in USD?"
+                label={arrivalPrice}
                 id="price"
                 type="number"
                 name="price"
                 onChange={onChange}
                 required
-                errorMessage={price || "Please state your per-person charge."}
+                errorMessage={price || arrivalPriceErrorMessage}
                 value={price}
                 asType={Col}
                 isLabelHidden
@@ -95,14 +111,14 @@ const TripDetailsInputs = ({ postInfo, onChange, currentDate }) => {
         <Row>
           <Col md>
             <DynamicFormGroup
-              label="Where are you leaving from?"
+              label={pickUpLocation}
               id="pickUp"
               type="text"
               name="pickUp"
-              placeholder="Pick-Up Location"
+              placeholder={pickUpLocationPlaceHolder}
               onChange={onChange}
               required
-              errorMessage={pickUp || "Please provide a pick up location."}
+              errorMessage={pickUp || pickUpLocationErrorMessage}
               value={pickUp}
               asType={Col}
               isLabelHidden
@@ -110,14 +126,14 @@ const TripDetailsInputs = ({ postInfo, onChange, currentDate }) => {
           </Col>
           <Col md>
             <DynamicFormGroup
-              label="Where would you like to be dropped off?"
+              label={arrivalDropOffLocation}
               id="dropOff"
               type="text"
               name="dropOff"
-              placeholder="Drop Location"
+              placeholder={arrivalDropOffLocationPlacerHolder}
               onChange={onChange}
               required
-              errorMessage={dropOff || "Please provide a drop off location."}
+              errorMessage={dropOff || arrivalDropOffLocationErrorMessage}
               value={dropOff}
               asType={Col}
               isLabelHidden
@@ -126,14 +142,15 @@ const TripDetailsInputs = ({ postInfo, onChange, currentDate }) => {
 
           <Col md>
             <DynamicFormSelect
+              arrivalTraveler={arrivalTraveler}
               onChange={onChange}
               value={qtyOfTravelers}
               valueName="qtyOfTravelers"
               asType={Col}
               label={
                 requestOrPost === "request"
-                  ? "How many passengers will be with you?"
-                  : "How many passengers can you take?"
+                  ? arrivalQtyOfTravelerRequest
+                  : arrivalQtyOfTravelerOffer
               }
             />
           </Col>
