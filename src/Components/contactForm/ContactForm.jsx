@@ -1,8 +1,12 @@
-import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+import { useState } from "react";
+
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
 import styled from "./ContactForm.module.css";
 
 const ContactForm = ({
@@ -21,11 +25,13 @@ const ContactForm = ({
 }) => {
   const [validated, setValidated] = useState(false);
   const [infoSent, setInfoSent] = useState(false);
+  const { locale } = useRouter();
 
   const [inputValue, setInputValue] = useState({
     email: "",
     message: "",
-    name: ""
+    name: "",
+    locale
   });
   const [message, setMessage] = useState([]);
 
@@ -155,12 +161,15 @@ const ContactForm = ({
           <div className={styled.address}>
             <Image src="/images/tel.svg" width="30" height="30" alt="location" />
             <p>
+              <a href="https://wa.me/+17036592119">WhatsApp</a>
+            </p>
+          </div>
+
+          <div className={styled.address}>
+            <Image src="/images/tel.svg" width="30" height="30" alt="location" />
+            <p>
               <a href="tel:+18094536714">+1 (809) 453-6714 (DR)</a> <br />
-              <a
-                href="tel:+13608607857
-">
-                +1 (703) 659-2119(USA)
-              </a>
+              <a href="tel:+17036592119">+1 (703) 659-2119(USA)</a>
             </p>
           </div>
 
