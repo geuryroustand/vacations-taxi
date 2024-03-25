@@ -1,7 +1,6 @@
 import { FaUserCircle } from "react-icons/fa";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 
-import Spinner from "react-bootstrap/Spinner";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 import styled from "./Profile.module.css";
@@ -29,6 +28,7 @@ const Profile = ({
 }) => {
   const cookieToken = getCookieToken();
 
+  // eslint-disable-next-line no-unused-vars
   const { data, isLoading, isError } = cookieToken
     ? useFetchUserQuery(cookieToken)
     : { data: undefined, isLoading: false, isError: false };
@@ -37,11 +37,7 @@ const Profile = ({
     removeCookieTokenWithOutReload();
   }
 
-  return isLoading ? (
-    <Spinner animation="border" role="status" className="spinnerColor">
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>
-  ) : (
+  return (
     <NavDropdown
       align="end"
       className={`

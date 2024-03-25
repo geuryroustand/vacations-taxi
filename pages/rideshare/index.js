@@ -62,7 +62,7 @@ export default function rideShare({ from, to, notFoundMessage, linkText }) {
         {data?.data.length === 0 && !isLoading && !isError ? (
           <>
             <p>{notFoundMessage}😞</p>
-            <Link href="/post-and-request">{linkText}</Link>
+            <Link href="/offer-and-request-rides">{linkText}</Link>
           </>
         ) : (
           <ul className={styled.list}>
@@ -80,36 +80,36 @@ const fetchTranslationData = async (dispatch, locale) => {
   await dispatch(fetchCommonContent.initiate(locale));
 };
 
-export const getServerSideProps = store.getServerSideProps((storeValue) =>
-  // eslint-disable-next-line consistent-return
-  async ({ locale, res }) => {
-    try {
-      const { dispatch } = storeValue;
-      if (locale) {
-        await fetchTranslationData(dispatch, locale);
-      }
-
-      const { data } = await fetchData(`${baseURL}/rideshare-list?locale=${locale}`);
-
-      const { from, to, notFoundMessage, linkText } = data.attributes || {};
-
-      return {
-        props: {
-          from,
-          to,
-          notFoundMessage,
-          linkText
+export const getServerSideProps = store.getServerSideProps(
+  (storeValue) =>
+    async ({ locale, res }) => {
+      try {
+        const { dispatch } = storeValue;
+        if (locale) {
+          await fetchTranslationData(dispatch, locale);
         }
-      };
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        res.writeHead(500, { Location: "/500" });
+
+        const { data } = await fetchData(`${baseURL}/rideshare-list?locale=${locale}`);
+
+        const { from, to, notFoundMessage, linkText } = data.attributes || {};
+
+        return {
+          props: {
+            from,
+            to,
+            notFoundMessage,
+            linkText
+          }
+        };
+      } catch (error) {
+        if (error.response && error.response.status === 500) {
+          res.writeHead(500, { Location: "/500" });
+          res.end();
+          return { props: {} };
+        }
+        res.writeHead(404, { Location: "/404" });
         res.end();
         return { props: {} };
       }
-      res.writeHead(404, { Location: "/404" });
-      res.end();
-      return { props: {} };
     }
-  }
 );
