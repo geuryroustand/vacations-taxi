@@ -16,7 +16,7 @@ import {
 import { getCookieToken, setCookieUrlPath } from "../../Helper/auth";
 
 import AuthLinks from "../AuthLinks/AuthLinks";
-import { baseURL } from "../../../environment";
+import { PROD } from "../../../environment";
 
 const DynamicFormGroup = dynamic(() => import("../FormGroup/FormGroup"));
 
@@ -37,7 +37,11 @@ const ContactTraveler = ({
   const { query } = useRouter();
 
   const { refetch } = useFetchUserCommentsQuery(
-    `${baseURL}/comments/api::share-ride.share-ride:${query?.detailsId}`
+    `${
+      PROD
+        ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+        : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
+    }/comments/api::share-ride.share-ride:${query?.detailsId}`
   );
 
   const token = getCookieToken();
@@ -58,7 +62,11 @@ const ContactTraveler = ({
   });
 
   const [createComment, { isLoading, error, isError }] = useAddCommentToPostMutation(
-    `${baseURL}/comments/api::share-ride.share-ride:${query?.detailsId}`
+    `${
+      PROD
+        ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+        : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
+    }/comments/api::share-ride.share-ride:${query?.detailsId}`
   );
 
   const onChange = (event) => {
@@ -73,7 +81,11 @@ const ContactTraveler = ({
     event.preventDefault();
 
     if (!form.checkValidity() === false) {
-      const url = `${baseURL}/comments/api::share-ride.share-ride:${id}`;
+      const url = `${
+        PROD
+          ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+          : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
+      }/comments/api::share-ride.share-ride:${id}`;
 
       if (token)
         createComment({ url, comment: addComment, token })

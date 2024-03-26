@@ -4,7 +4,7 @@ import ContactTraveler from "../ContactTraveler/ContactTraveler";
 import UserComment from "../UserComment/UserComment";
 import styled from "./UserComments.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
-import { baseURL } from "../../../environment";
+import { PROD } from "../../../environment";
 
 const UserComments = ({
   id,
@@ -24,7 +24,11 @@ const UserComments = ({
   const { query } = useRouter();
 
   const { data = [], isLoading } = useFetchUserCommentsQuery(
-    `${baseURL}/comments/api::share-ride.share-ride:${query?.detailsId}`
+    `${
+      PROD
+        ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+        : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
+    }/comments/api::share-ride.share-ride:${query?.detailsId}`
   );
 
   if (isLoading) {

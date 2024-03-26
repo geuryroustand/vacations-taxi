@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseURL } from "../../environment";
+import { PROD } from "../../environment";
 
 export const sharedRideApiSlice = createApi({
   reducerPath: "sharedRideApiSlice",
   baseQuery: fetchBaseQuery({
-    baseUrl: baseURL
+    baseUrl: PROD
+      ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+      : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
   }),
 
   endpoints: (builder) => ({

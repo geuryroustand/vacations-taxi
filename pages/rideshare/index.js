@@ -13,8 +13,8 @@ import SeoHead from "../../src/Components/SeoHead/SeoHead";
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
 import { useFetchRequestAndPostQuery } from "../../src/redux/SharedRideEndpoints";
-import { baseURL } from "../../environment";
 import fetchData from "../../src/Helper/fetchData";
+import { PROD, baseURL } from "../../environment";
 
 const DynamicSearchForm = dynamic(() => import("../../src/Components/SearchForm/SearchForm"), {
   loading: () => <FallBackLoading />
@@ -32,7 +32,11 @@ export default function rideShare({ from, to, notFoundMessage, linkText }) {
   const { pickUp, dropOff } = query;
 
   const { data, isLoading, isError } = useFetchRequestAndPostQuery(
-    `${baseURL}/share-rides?filters[pickUp][$containsi]=${pickUp}&populate=*`
+    `${
+      PROD
+        ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+        : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
+    }/share-rides?filters[pickUp][$containsi]=${pickUp}&populate=*`
   );
 
   const queryKey = `fetchCommonContent("${locale}")`;

@@ -10,7 +10,7 @@ import SeoHead from "../../src/Components/SeoHead/SeoHead";
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
 import fetchData from "../../src/Helper/fetchData";
-import { baseURL, baseURLSpecial } from "../../environment";
+import { baseURL } from "../../environment";
 
 export default function ridesDetails({
   data,
@@ -103,7 +103,7 @@ export const getServerSideProps = store.getServerSideProps(
         }
         const { detailsId } = params;
 
-        const { data } = await fetchData(`${baseURLSpecial}/share-rides/${detailsId}?populate=*`);
+        const { data } = await fetchData(`${baseURL}/share-rides/${detailsId}?populate=*`);
 
         const { data: localeContent } = await fetchData(`${baseURL}/rideshare?locale=${locale}`);
 
