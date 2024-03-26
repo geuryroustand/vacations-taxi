@@ -55,7 +55,7 @@ export default function ridesDetails({
           </p>
         </div>
         <Row>
-          <Col>
+          <Col sm={12} md={6}>
             <RideShareDetails
               passengerText={passengerText}
               tripInformation={tripInformation}
@@ -66,7 +66,7 @@ export default function ridesDetails({
               attributes={attributes}
             />
           </Col>
-          <Col>
+          <Col sm={12} md={6}>
             <UserComments
               commentHeading={commentHeading}
               sendToMessage={sendToMessage}

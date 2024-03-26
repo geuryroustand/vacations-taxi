@@ -10,13 +10,24 @@
 }
 
 .heading h1 {
-  font-size: 2.3rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  width: 49rem;
 }
 
 .heading h2 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 300;
   padding-top: 1rem;
+}
+
+@media (min-width: 45em) {
+  .heading h1 {
+    font-size: 2.3rem;
+
+    width: 49rem;
+  }
+
+  .heading h2 {
+    font-size: 1.2rem;
+  }
 }

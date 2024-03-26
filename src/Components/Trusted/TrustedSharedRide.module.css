@@ -3,21 +3,36 @@
 }
 
 .heading {
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 2.68rem;
   text-align: center;
   padding: 4rem 0 3.18rem;
+  margin: 0px auto 1rem;
+}
 
-  margin: 0px auto 2.5rem;
+.col {
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+@media (min-width: 45em) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .col {
+    text-align: left;
+  }
 }
 
 .icons {
   font-size: 1.5rem;
 }
 .title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .rounderIcons {
+  margin: 0 auto;
   width: 3.5rem;
   height: 3.5rem;
   display: flex;
@@ -25,6 +40,15 @@
   align-items: center;
   border-radius: 50%;
 }
+@media (min-width: 45em) {
+  .rounderIcons {
+    margin: 0px;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
 .first {
   background-color: #808000;
 }
@@ -33,18 +57,11 @@
   background-color: #008080;
 }
 
-.second svg {
+.secondIcon,
+.fourthIcon {
   fill: white;
 }
 
-.third {
-  background-color: #ffb6c1;
-}
-
-.fourth {
-  background-color: var(--secondary-color);
-}
-
-.fourth svg {
-  fill: white;
+.description {
+  text-align: start;
 }
