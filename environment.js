@@ -10,7 +10,7 @@
 //   NEXT_PUBLIC_API_STRAPI_DEV_URL_API
 // } = process.env;
 
-const PROD = process.NODE_ENV === "production";
+const PROD = process.env.NODE_ENV === "production";
 
 const NEXT_PUBLIC_API_PROD_URL = process.env.NEXT_PUBLIC_API_PROD_URL;
 const NEXT_PUBLIC_API_DEV_URL = process.env.NEXT_PUBLIC_API_DEV_URL;
