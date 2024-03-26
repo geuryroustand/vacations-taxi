@@ -28,6 +28,7 @@ const SharedCarsList = dynamic(() => import("../../src/Components/SharedCarsList
 
 function findRide({ mainHeading, subheading, why, because, seo, carpool, inText }) {
   const { metaTitle, metaDescription, keywords, canonicalURL } = seo || {};
+
   return (
     <>
       <SeoHead

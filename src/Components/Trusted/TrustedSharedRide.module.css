@@ -41,10 +41,10 @@
   background-color: #ffb6c1;
 }
 
-.fourthBg {
+.fourth {
   background-color: var(--secondary-color);
 }
 
-.fourthBg svg {
+.fourth svg {
   fill: white;
 }
