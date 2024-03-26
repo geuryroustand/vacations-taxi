@@ -27,7 +27,6 @@ export const getStaticProps = store.getStaticProps((storeValue) => async ({ loca
   if (locale) {
     await fetchTranslationData(dispatch, locale);
   }
-
   const { data } = await fetchData(`${baseURL}/booking-confirmation?locale=${locale}`);
 
   const { description, title } = data.attributes;
