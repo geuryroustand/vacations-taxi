@@ -162,8 +162,8 @@ export const getServerSideProps = store.getServerSideProps(
           return { props: {} };
         }
 
-        res.writeHead(302, { Location: "/404" });
-        res.end();
+        // res.writeHead(302, { Location: "/404" });
+        // res.end();
         return { props: {} };
       }
     }
