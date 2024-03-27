@@ -35,9 +35,11 @@ export default function ridesDetails({
   errorMessageText,
   serverErrorMessageText
 }) {
+  console.log(data);
   const { attributes, id } = data || {};
 
   const { pickUp, dropOff } = attributes || {};
+
   const user =
     (attributes && attributes.user && attributes.user.data && attributes.user.data.attributes) ||
     {};
@@ -93,46 +95,21 @@ const fetchTranslationData = async (dispatch, locale) => {
   await dispatch(fetchCommonContent.initiate(locale));
 };
 
-export const getServerSideProps = store.getServerSideProps((storeValue) =>
-  // eslint-disable-next-line no-unused-vars
-  async ({ locale, params, res }) => {
-    try {
-      const { dispatch } = storeValue;
-      if (locale) {
-        await fetchTranslationData(dispatch, locale);
-      }
-      // const { detailsId } = params;
+export const getServerSideProps = store.getServerSideProps(
+  (storeValue) =>
+    async ({ locale, params, res }) => {
+      try {
+        const { dispatch } = storeValue;
+        if (locale) {
+          await fetchTranslationData(dispatch, locale);
+        }
+        const { detailsId } = params;
 
-      const { data } = await fetchData(`${baseURL}/share-rides/13?populate=*`);
+        const { data } = await fetchData(`${baseURL}/share-rides/${detailsId}?populate=*`);
 
-      const { data: localeContent } = await fetchData(`${baseURL}/rideshare?locale=${locale}`);
+        const { data: localeContent } = await fetchData(`${baseURL}/rideshare?locale=${locale}`);
 
-      const {
-        trip,
-        detail,
-        to,
-        tripInformation,
-        passengerText,
-        airlineNameText,
-        flightNumberText,
-        dateText,
-        timeText,
-        commentHeading,
-        sendToMessage,
-        placeHolderText,
-        leaveCommentText,
-        loginText,
-        or,
-        createText,
-        buttonText,
-        loadingStateText,
-        errorMessageText,
-        serverErrorMessageText
-      } = localeContent.attributes || {};
-
-      return {
-        props: {
-          data,
+        const {
           trip,
           detail,
           to,
@@ -153,20 +130,45 @@ export const getServerSideProps = store.getServerSideProps((storeValue) =>
           loadingStateText,
           errorMessageText,
           serverErrorMessageText
+        } = localeContent.attributes || {};
+
+        return {
+          props: {
+            data,
+            trip,
+            detail,
+            to,
+            tripInformation,
+            passengerText,
+            airlineNameText,
+            flightNumberText,
+            dateText,
+            timeText,
+            commentHeading,
+            sendToMessage,
+            placeHolderText,
+            leaveCommentText,
+            loginText,
+            or,
+            createText,
+            buttonText,
+            loadingStateText,
+            errorMessageText,
+            serverErrorMessageText
+          }
+        };
+      } catch (error) {
+        if (error.response && error.response.status === 500) {
+          res.writeHead(500, { Location: "/500" });
+          res.end();
+          return { props: {} };
         }
-      };
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        res.writeHead(500, { Location: "/500" });
-        res.end();
+
+        // res.writeHead(302, { Location: "/404" });
+        // res.end();
         return { props: {} };
       }
-
-      // res.writeHead(302, { Location: "/404" });
-      // res.end();
-      return { props: {} };
     }
-  }
 );
 
 // import { useState } from "react";
