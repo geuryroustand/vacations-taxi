@@ -4,6 +4,9 @@ import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
+import format from "date-fns/format";
+import parse from "date-fns/parse";
+
 import Container from "react-bootstrap/Container";
 
 import FallBackLoading from "../../src/Components/Loading/FallBackLoading";
@@ -29,16 +32,20 @@ const DynamicCardTripDetails = dynamic(
 
 export default function rideShare({ from, to, notFoundMessage, linkText }) {
   const { locale, query } = useRouter();
-  const { pickUp, dropOff } = query;
+  const { pickUp, dropOff, pickUpZone, pickUpDate } = query;
+
+  const removeLastLetter = pickUpZone.slice(0, -1);
+
+  const initialDate = parse(pickUpDate, "EEE dd, MMM  yyyy", new Date());
+  const formattedDate = format(initialDate, "yyyy-MM-dd");
 
   const { data, isLoading, isError } = useFetchRequestAndPostQuery(
     `${
       PROD
         ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
         : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
-    }/share-rides?filters[pickUp][$containsi]=${pickUp}&populate=*`
+    }/share-rides?filters[$and][0][date][$eq]=${formattedDate}&filters[$and][1][zone][$eq]=${removeLastLetter}&populate=*`
   );
-
   const queryKey = `fetchCommonContent("${locale}")`;
 
   const { bookingSearch } = useSelector(

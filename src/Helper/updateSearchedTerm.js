@@ -6,20 +6,24 @@ const updateSearchedTerm = ({
   setShowPickUpSearchedResult,
   setShowDropOffSearchedResult,
   searchedTerm,
-  setSearchedTerm
+  setSearchedTerm,
+  pickUpZone,
+  dropOffZone
 }) => {
   const updatedSearchedTerm = pickUp
     ? {
         ...searchedTerm,
         pickUp,
         pickUpID,
-        pickUpSearchedTermClicked: true
+        pickUpSearchedTermClicked: true,
+        pickUpZone
       }
     : {
         ...searchedTerm,
         dropOff,
         dropOffID,
-        dropOffSearchedTermClicked: true
+        dropOffSearchedTermClicked: true,
+        dropOffZone
       };
 
   setSearchedTerm(updatedSearchedTerm);

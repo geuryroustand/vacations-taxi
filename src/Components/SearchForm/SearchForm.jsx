@@ -97,7 +97,9 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm, isCarSha
     pickUpDate: "",
     pickUpTime: "",
     userValueTypeInTheModal: "",
-    valueTyped: ""
+    valueTyped: "",
+    pickUpZone: "",
+    dropOffZone: ""
   });
 
   const [disableReturnInputDate, setDisableReturnInputDate] = useState();
@@ -162,7 +164,14 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm, isCarSha
     setShowDropOffSearchedResult
   });
 
-  const onClickedSearchedResult = ({ pickUp, pickUpID, dropOff, dropOffID }) => {
+  const onClickedSearchedResult = ({
+    pickUp,
+    pickUpID,
+    dropOff,
+    dropOffID,
+    pickUpZone,
+    dropOffZone
+  }) => {
     if (!isDesktopOrLaptopOrTable) {
       setShowModal(false);
     }
@@ -172,6 +181,8 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm, isCarSha
       pickUpID,
       dropOff,
       dropOffID,
+      pickUpZone,
+      dropOffZone,
       setShowPickUpSearchedResult,
       setShowDropOffSearchedResult,
       searchedTerm,

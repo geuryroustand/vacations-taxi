@@ -25,7 +25,9 @@ const submitBookingData = ({
       dropOffDate,
       dropOffTime,
       dropOff,
-      pickUp
+      pickUp,
+      pickUpZone,
+      dropOffZone
     } = searchedTerm;
 
     const { pickUpPassenger, dropOffPassenger } = passenger;
@@ -39,7 +41,9 @@ const submitBookingData = ({
         dropOff: dropOffInfo,
         pickUpDate,
         pickUpTime,
-        pickUpPassenger
+        pickUpPassenger,
+        pickUpZone,
+        dropOffZone
       };
 
       if (isRoundTrip || disableReturnInputDate) {

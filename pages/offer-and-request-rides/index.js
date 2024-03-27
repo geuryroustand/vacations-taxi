@@ -22,8 +22,9 @@ import { useCreateRequestOrPostMutation } from "../../src/redux/SharedRideEndpoi
 
 import submitRequestOrPost, { initialPostInfoState } from "../../src/Helper/submitRequestOrPost";
 import AuthLinks from "../../src/Components/AuthLinks/AuthLinks";
-import { baseURL } from "../../environment";
+
 import fetchData from "../../src/Helper/fetchData";
+import { baseURL } from "../../environment";
 
 const DynamicRequestForm = dynamic(() => import("../../src/Components/RequestForm/RequestForm"), {
   loading: () => <FallBackLoading />
@@ -98,7 +99,7 @@ function Requests({ data: contentData }) {
     const { data: requestOrPostResponse } = requestOrPostData;
     const { id } = requestOrPostResponse;
 
-    push(`${baseURL}/rideshare/${id}`);
+    push(`/rideshare/${id}`);
   }
 
   if (isLoading) {
@@ -149,80 +150,82 @@ export const getServerSideProps = store.getServerSideProps(
         }
         const { data } = await fetchData(`${baseURL}/offer-or-request-trip?locale=${locale}`);
 
-        const {
-          requestHeading,
-          postHeading,
-          radioBtnRequest,
-          radioBtnOffer,
-          oneWay,
-          roundTrip,
-          tripHeading,
-          pickUpLocation,
-          pickUpLocationErrorMessage,
-          arrivalDate,
-          arrivalDateErrorMessage,
-          arrivalTimeOffer,
-          arrivalTimeRequest,
-          arrivalTimeErrorMessage,
-          arrivalPrice,
-          arrivalPriceErrorMessage,
-          pickUpLocationPlaceHolder,
-          arrivalDropOffLocation,
-          arrivalDropOffLocationPlacerHolder,
-          arrivalDropOffLocationErrorMessage,
-          arrivalQtyOfTravelerRequest,
-          arrivalQtyOfTravelerOffer,
-          arrivalTraveler,
-          hasFlight,
-          yes,
-          no,
-          arrivalAirlineName,
-          arrivalFlightNumber,
-          travelerInfo,
-          travelerInfoErrorMessage,
-          btnLoadingState,
-          btnRequest,
-          btnOffer,
-          travelerInfoPlacerHolder
-        } = data.attributes || {};
+        // const {
+        //   requestHeading,
+        //   postHeading,
+        //   radioBtnRequest,
+        //   radioBtnOffer,
+        //   oneWay,
+        //   roundTrip,
+        //   tripHeading,
+        //   pickUpLocation,
+        //   pickUpLocationErrorMessage,
+        //   arrivalDate,
+        //   arrivalDateErrorMessage,
+        //   arrivalTimeOffer,
+        //   arrivalTimeRequest,
+        //   arrivalTimeErrorMessage,
+        //   arrivalPrice,
+        //   arrivalPriceErrorMessage,
+        //   pickUpLocationPlaceHolder,
+        //   arrivalDropOffLocation,
+        //   arrivalDropOffLocationPlacerHolder,
+        //   arrivalDropOffLocationErrorMessage,
+        //   arrivalQtyOfTravelerRequest,
+        //   arrivalQtyOfTravelerOffer,
+        //   arrivalTraveler,
+        //   hasFlight,
+        //   yes,
+        //   no,
+        //   arrivalAirlineName,
+        //   arrivalFlightNumber,
+        //   travelerInfo,
+        //   travelerInfoErrorMessage,
+        //   btnLoadingState,
+        //   btnRequest,
+        //   btnOffer,
+        //   travelerInfoPlacerHolder,
+        //   zone
+        // } = data.attributes || {};
 
         return {
           props: {
-            data,
-            requestHeading,
-            postHeading,
-            radioBtnRequest,
-            radioBtnOffer,
-            oneWay,
-            roundTrip,
-            tripHeading,
-            pickUpLocation,
-            pickUpLocationErrorMessage,
-            arrivalDate,
-            arrivalDateErrorMessage,
-            arrivalTimeOffer,
-            arrivalTimeRequest,
-            arrivalTimeErrorMessage,
-            arrivalPrice,
-            arrivalPriceErrorMessage,
-            pickUpLocationPlaceHolder,
-            arrivalDropOffLocation,
-            arrivalDropOffLocationPlacerHolder,
-            arrivalDropOffLocationErrorMessage,
-            arrivalQtyOfTravelerRequest,
-            arrivalQtyOfTravelerOffer,
-            arrivalTraveler,
-            hasFlight,
-            yes,
-            no,
-            arrivalAirlineName,
-            arrivalFlightNumber,
-            travelerInfo,
-            travelerInfoErrorMessage,
-            btnLoadingState,
-            btnRequest,
-            btnOffer,
-            travelerInfoPlacerHolder
+            data
+            // requestHeading,
+            // postHeading,
+            // radioBtnRequest,
+            // radioBtnOffer,
+            // oneWay,
+            // roundTrip,
+            // tripHeading,
+            // pickUpLocation,
+            // pickUpLocationErrorMessage,
+            // arrivalDate,
+            // arrivalDateErrorMessage,
+            // arrivalTimeOffer,
+            // arrivalTimeRequest,
+            // arrivalTimeErrorMessage,
+            // arrivalPrice,
+            // arrivalPriceErrorMessage,
+            // pickUpLocationPlaceHolder,
+            // arrivalDropOffLocation,
+            // arrivalDropOffLocationPlacerHolder,
+            // arrivalDropOffLocationErrorMessage,
+            // arrivalQtyOfTravelerRequest,
+            // arrivalQtyOfTravelerOffer,
+            // arrivalTraveler,
+            // hasFlight,
+            // yes,
+            // no,
+            // arrivalAirlineName,
+            // arrivalFlightNumber,
+            // travelerInfo,
+            // travelerInfoErrorMessage,
+            // btnLoadingState,
+            // btnRequest,
+            // btnOffer,
+            // travelerInfoPlacerHolder,
+            // zone
           }
         };
       } catch (error) {

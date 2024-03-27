@@ -46,7 +46,8 @@ const RequestForm = ({
     travelerInfoPlacerHolder,
     radioBtnRequest,
     radioBtnOffer,
-    oneWay
+    oneWay,
+    zone
   } = contentData?.attributes || {};
 
   const buttonText = requestOrPost === "request" ? btnRequest : btnOffer;
@@ -61,6 +62,7 @@ const RequestForm = ({
         oneWayOrRoundTrip={oneWayOrRoundTrip}
         onChange={onChange}
       />
+
       <DynamicTripDetailsInputs
         contentData={contentData}
         postInfo={postInfo}
@@ -92,33 +94,46 @@ const RequestForm = ({
       </div>
 
       {hasFlight === "yes" && (
-        <Row className={styled.hasFlightInputs}>
-          <Col md>
-            <DynamicFormGroup
-              label={arrivalAirlineName}
-              id="airlineName"
-              type="text"
-              name="airlineName"
-              placeholder={arrivalAirlineName}
-              onChange={onChange}
-              value={airlineName}
-              asType={Col}
-            />
-          </Col>
-          <Col md>
-            <DynamicFormGroup
-              label={arrivalFlightNumber}
-              id="flightNumber"
-              type="text"
-              name="flightNumber"
-              placeholder={arrivalFlightNumber}
-              onChange={onChange}
-              value={flightNumber}
-              asType={Col}
-            />
-          </Col>
-        </Row>
+        <div className={styled.hasFlightInputs}>
+          <Row>
+            <Col md>
+              <DynamicFormGroup
+                label={arrivalAirlineName}
+                id="airlineName"
+                type="text"
+                name="airlineName"
+                placeholder={arrivalAirlineName}
+                onChange={onChange}
+                value={airlineName}
+                asType={Col}
+              />
+            </Col>
+            <Col md>
+              <DynamicFormGroup
+                label={arrivalFlightNumber}
+                id="flightNumber"
+                type="text"
+                name="flightNumber"
+                placeholder={arrivalFlightNumber}
+                onChange={onChange}
+                value={flightNumber}
+                asType={Col}
+              />
+            </Col>
+          </Row>
+        </div>
       )}
+
+      <Form.Select name="zone" onChange={onChange} className={styled.zone} aria-label="Which Zone?">
+        <option>{zone}</option>
+        <option value="puntaCana">Punta Cana</option>
+        <option value="samana">Samana</option>
+        <option value="santoDomingo">Santo Domingo</option>
+        <option value="laRomana">La Romana</option>
+        <option value="puertoPlata">Puerto Plata</option>
+        <option value="santiago">Santiago</option>
+        <option value="Other">Other</option>
+      </Form.Select>
 
       <div className={styled.textArea}>
         <DynamicFormGroup

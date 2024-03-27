@@ -26,7 +26,8 @@ export const initialPostInfoState = {
   user: undefined,
   airlineName: "",
   flightNumber: "",
-  hasFlight: "no"
+  hasFlight: "no",
+  zone: ""
 };
 
 const submitRequestOrPost = async (postInfo, setPostInfo, createRequestOrPost, token) => {

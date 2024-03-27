@@ -36,7 +36,6 @@ export default function ridesDetails({
   errorMessageText,
   serverErrorMessageText
 }) {
-  console.log(data);
   const { attributes, id } = data || {};
 
   const { pickUp, dropOff } = attributes || {};
