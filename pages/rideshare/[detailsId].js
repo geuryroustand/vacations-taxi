@@ -14,8 +14,6 @@ import { baseURL } from "../../environment";
 import fetchData from "../../src/Helper/fetchData";
 
 export default function ridesDetails({
-  urlB,
-  error,
   data,
   trip,
   detail,
@@ -45,8 +43,7 @@ export default function ridesDetails({
   const user =
     (attributes && attributes.user && attributes.user.data && attributes.user.data.attributes) ||
     {};
-  console.log("urlB", urlB);
-  console.log("error", error);
+
   return (
     <div className={styled.main}>
       <SeoHead title={`${pickUp} ${to} ${dropOff}`} noIndex />
@@ -109,11 +106,11 @@ export const getServerSideProps = store.getServerSideProps(
         const { detailsId } = params;
 
         const { data } = await fetchData(
-          `http://localhost:1337/api/share-rides/share-rides/${detailsId}?populate=*`
+          `https://strapi.vacationstaxis.com/api/share-rides/${detailsId}?populate=*`
         );
 
         const { data: localeContent } = await fetchData(
-          `http://localhost:1337/api/share-rides/rideshare?locale=${locale}`
+          `https://strapi.vacationstaxis.com/api/rideshare?locale=${locale}`
         );
 
         const {
@@ -141,8 +138,6 @@ export const getServerSideProps = store.getServerSideProps(
 
         return {
           props: {
-            urlA: `${baseURL}/rideshare?locale=${locale}`,
-            urlB: `${baseURL}/share-rides/${detailsId}?populate=*`,
             data,
             trip,
             detail,
@@ -175,12 +170,7 @@ export const getServerSideProps = store.getServerSideProps(
 
         // res.writeHead(302, { Location: "/404" });
         // res.end();
-        return {
-          props: {
-            urlA: `${baseURL}/rideshare?locale=${locale}`,
-            error
-          }
-        };
+        return { props: {} };
       }
     }
 );
