@@ -17,6 +17,7 @@ import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
 import { useFetchRequestAndPostQuery } from "../../src/redux/SharedRideEndpoints";
 import fetchData from "../../src/Helper/fetchData";
+// eslint-disable-next-line no-unused-vars
 import { PROD, baseURL } from "../../environment";
 
 const DynamicSearchForm = dynamic(() => import("../../src/Components/SearchForm/SearchForm"), {
