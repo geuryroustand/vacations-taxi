@@ -104,7 +104,9 @@ export const getServerSideProps = store.getServerSideProps(
           await fetchTranslationData(dispatch, locale);
         }
 
-        const { data } = await fetchData(`${baseURL}/rideshare-list?locale=${locale}`);
+        const { data } = await fetchData(
+          `https://strapi.vacationstaxis.com/rideshare-list?locale=${locale}`
+        );
 
         const { from, to, notFoundMessage, linkText } = data.attributes || {};
 
