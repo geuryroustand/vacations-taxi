@@ -10,7 +10,7 @@ const SharedCarsList = ({ carpool, inText }) => {
   // Define the locations grouped by their respective areas
   const locations = [
     {
-      area: "Punta Cana",
+      area: "puntaCanaA",
       locations: [
         {
           name: "Punta Cana",
@@ -21,7 +21,7 @@ const SharedCarsList = ({ carpool, inText }) => {
       ]
     },
     {
-      area: "Samana",
+      area: "samanaA",
       locations: [
         {
           name: "Samana",
@@ -32,7 +32,7 @@ const SharedCarsList = ({ carpool, inText }) => {
     },
     // Add more location groups here
     {
-      area: "Santo Domingo",
+      area: "santoDomingoA",
       locations: [
         {
           name: "Santo Domingo",
@@ -42,7 +42,7 @@ const SharedCarsList = ({ carpool, inText }) => {
       ]
     },
     {
-      area: "Puerto Plata",
+      area: "puertoPlataA",
       locations: [
         {
           name: "Puerto Plata",
@@ -53,7 +53,7 @@ const SharedCarsList = ({ carpool, inText }) => {
     },
 
     {
-      area: "Santiago",
+      area: "santiagoA",
       locations: [
         {
           name: "Santiago",
@@ -78,7 +78,9 @@ const SharedCarsList = ({ carpool, inText }) => {
 
             {locationGroup.locations.map((location) => (
               <p key={location.name}>
-                <Link href={`/rideshare?pickUp=${location.pickup}`}>{location.name}</Link>
+                <Link href={`/rideshare?pickUp=${location.name}&pickUpZone=${locationGroup.area}`}>
+                  {location.name}
+                </Link>
               </p>
             ))}
           </Col>

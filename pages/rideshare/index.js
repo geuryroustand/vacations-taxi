@@ -36,15 +36,19 @@ export default function rideShare({ from, to, notFoundMessage, linkText }) {
 
   const removeLastLetter = pickUpZone.slice(0, -1);
 
-  const initialDate = parse(pickUpDate, "EEE dd, MMM  yyyy", new Date());
-  const formattedDate = format(initialDate, "yyyy-MM-dd");
+  const initialDate = pickUpDate && parse(pickUpDate, "EEE dd, MMM  yyyy", new Date());
+  const formattedDate = pickUpDate && format(initialDate, "yyyy-MM-dd");
+
+  const fetchPath = pickUpDate
+    ? `filters[$and][0][date][$eq]=${formattedDate}&filters[$and][1][zone][$eq]=${removeLastLetter}&populate=*`
+    : `filters[$and][0][zone][$eq]=${removeLastLetter}&populate=*`;
 
   const { data, isLoading, isError } = useFetchRequestAndPostQuery(
     `${
       PROD
         ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
         : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
-    }/share-rides?filters[$and][0][date][$eq]=${formattedDate}&filters[$and][1][zone][$eq]=${removeLastLetter}&populate=*`
+    }/share-rides?${fetchPath}`
   );
   const queryKey = `fetchCommonContent("${locale}")`;
 
