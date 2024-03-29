@@ -14,7 +14,6 @@ import { baseURL } from "../../environment";
 import fetchData from "../../src/Helper/fetchData";
 
 export default function ridesDetails({
-  urlA,
   urlB,
   error,
   data,
