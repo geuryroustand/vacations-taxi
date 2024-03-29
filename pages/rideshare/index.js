@@ -46,7 +46,7 @@ export default function rideShare({ from, to, notFoundMessage, linkText }) {
     : `filters[$and][0][zone][$eq]=${removeLastLetter}&populate=*`;
 
   const { data, isLoading, isError } = useFetchRequestAndPostQuery(
-    `https://strapi.vacationstaxis.com/api/share-rides?filters[$and][1][zone][$eq]=samana`
+    `https://strapi.vacationstaxis.com/api/share-rides?filters[$and][0][zone][$eq]=samana`
   );
   const queryKey = `fetchCommonContent("${locale}")`;
 
@@ -103,7 +103,7 @@ export const getServerSideProps = store.getServerSideProps(
         }
 
         const { data } = await fetchData(
-          `https://strapi.vacationstaxis.com/rideshare-list?locale=${locale}`
+          `https://strapi.vacationstaxis.com/api/rideshare-list?locale=${locale}`
         );
 
         const { from, to, notFoundMessage, linkText } = data.attributes || {};
