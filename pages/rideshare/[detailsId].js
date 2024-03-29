@@ -16,6 +16,7 @@ import fetchData from "../../src/Helper/fetchData";
 export default function ridesDetails({
   urlA,
   urlB,
+  error,
   data,
   trip,
   detail,
@@ -46,7 +47,7 @@ export default function ridesDetails({
     (attributes && attributes.user && attributes.user.data && attributes.user.data.attributes) ||
     {};
   console.log("urlB", urlB);
-  console.log("urlA", urlA);
+  console.log("error", error);
   return (
     <div className={styled.main}>
       <SeoHead title={`${pickUp} ${to} ${dropOff}`} noIndex />
@@ -171,7 +172,12 @@ export const getServerSideProps = store.getServerSideProps(
 
         // res.writeHead(302, { Location: "/404" });
         // res.end();
-        return { props: {} };
+        return {
+          props: {
+            urlA: `${baseURL}/rideshare?locale=${locale}`,
+            error
+          }
+        };
       }
     }
 );
