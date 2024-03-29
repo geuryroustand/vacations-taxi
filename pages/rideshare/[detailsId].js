@@ -10,7 +10,7 @@ import SeoHead from "../../src/Components/SeoHead/SeoHead";
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
 
-import { PROD, baseURL } from "../../environment";
+import { baseURL } from "../../environment";
 import fetchData from "../../src/Helper/fetchData";
 
 export default function ridesDetails({
@@ -109,19 +109,11 @@ export const getServerSideProps = store.getServerSideProps(
         const { detailsId } = params;
 
         const { data } = await fetchData(
-          `${
-            PROD
-              ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
-              : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
-          }/share-rides/${detailsId}?populate=*`
+          `http://localhost:1337/api/share-rides/share-rides/${detailsId}?populate=*`
         );
 
         const { data: localeContent } = await fetchData(
-          `${
-            PROD
-              ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
-              : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
-          }/rideshare?locale=${locale}`
+          `http://localhost:1337/api/share-rides/rideshare?locale=${locale}`
         );
 
         const {
