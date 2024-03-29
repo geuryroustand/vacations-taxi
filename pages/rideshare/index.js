@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -45,7 +46,7 @@ export default function rideShare({ from, to, notFoundMessage, linkText }) {
     : `filters[$and][0][zone][$eq]=${removeLastLetter}&populate=*`;
 
   const { data, isLoading, isError } = useFetchRequestAndPostQuery(
-    `https://strapi.vacationstaxis.com/api/share-rides?${fetchPath}`
+    `https://strapi.vacationstaxis.com/api/share-rides?filters[$and][1][zone][$eq]=samana`
   );
   const queryKey = `fetchCommonContent("${locale}")`;
 
