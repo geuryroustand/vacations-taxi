@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -18,7 +17,6 @@ import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
 import { useFetchRequestAndPostQuery } from "../../src/redux/SharedRideEndpoints";
 import fetchData from "../../src/Helper/fetchData";
-// eslint-disable-next-line no-unused-vars
 import { PROD, baseURL } from "../../environment";
 
 const DynamicSearchForm = dynamic(() => import("../../src/Components/SearchForm/SearchForm"), {
@@ -42,11 +40,15 @@ export default function rideShare({ from, to, notFoundMessage, linkText }) {
   const formattedDate = pickUpDate && format(initialDate, "yyyy-MM-dd");
 
   const fetchPath = pickUpDate
-    ? `filters[$and][0][date][$eq]=${formattedDate}&filters[$and][1][zone][$eq]=${removeLastLetter}&populate=*`
-    : `filters[$and][0][zone][$eq]=${removeLastLetter}&populate=*`;
+    ? `filters[$and][0][date][$eq]=${formattedDate}&filters[$and][1][zone][$eq]=${removeLastLetter}`
+    : `filters[$and][0][zone][$eq]=${removeLastLetter}`;
 
   const { data, isLoading, isError } = useFetchRequestAndPostQuery(
-    `https://strapi.vacationstaxis.com/api/share-rides?filters[$and][0][zone][$eq]=samana`
+    `${
+      PROD
+        ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+        : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
+    }/share-rides?${fetchPath}&populate=*`
   );
   const queryKey = `fetchCommonContent("${locale}")`;
 
@@ -102,9 +104,7 @@ export const getServerSideProps = store.getServerSideProps(
           await fetchTranslationData(dispatch, locale);
         }
 
-        const { data } = await fetchData(
-          `https://strapi.vacationstaxis.com/api/rideshare-list?locale=${locale}`
-        );
+        const { data } = await fetchData(`${baseURL}/rideshare-list?locale=${locale}`);
 
         const { from, to, notFoundMessage, linkText } = data.attributes || {};
 

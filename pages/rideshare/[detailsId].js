@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -106,13 +105,9 @@ export const getServerSideProps = store.getServerSideProps(
         }
         const { detailsId } = params;
 
-        const { data } = await fetchData(
-          `https://strapi.vacationstaxis.com/api/share-rides/${detailsId}?populate=*`
-        );
+        const { data } = await fetchData(`${baseURL}/share-rides/${detailsId}?populate=*`);
 
-        const { data: localeContent } = await fetchData(
-          `https://strapi.vacationstaxis.com/api/rideshare?locale=${locale}`
-        );
+        const { data: localeContent } = await fetchData(`${baseURL}/rideshare?locale=${locale}`);
 
         const {
           trip,
@@ -169,8 +164,8 @@ export const getServerSideProps = store.getServerSideProps(
           return { props: {} };
         }
 
-        // res.writeHead(302, { Location: "/404" });
-        // res.end();
+        res.writeHead(302, { Location: "/404" });
+        res.end();
         return { props: {} };
       }
     }
