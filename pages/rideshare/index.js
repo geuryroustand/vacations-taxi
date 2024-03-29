@@ -45,11 +45,7 @@ export default function rideShare({ from, to, notFoundMessage, linkText }) {
     : `filters[$and][0][zone][$eq]=${removeLastLetter}&populate=*`;
 
   const { data, isLoading, isError } = useFetchRequestAndPostQuery(
-    `${
-      PROD
-        ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
-        : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL
-    }/share-rides?${fetchPath}`
+    `https://strapi.vacationstaxis.com/api/share-rides?${fetchPath}`
   );
   const queryKey = `fetchCommonContent("${locale}")`;
 
