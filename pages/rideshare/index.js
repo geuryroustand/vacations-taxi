@@ -17,7 +17,7 @@ import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
 import store from "../../src/redux/store";
 import { useFetchRequestAndPostQuery } from "../../src/redux/SharedRideEndpoints";
 import fetchData from "../../src/Helper/fetchData";
-import { PROD, baseURL } from "../../environment";
+import { baseURL } from "../../environment";
 
 const DynamicSearchForm = dynamic(() => import("../../src/Components/SearchForm/SearchForm"), {
   loading: () => <FallBackLoading />
@@ -42,6 +42,8 @@ export default function rideShare({ from, to, notFoundMessage, linkText }) {
   const fetchPath = pickUpDate
     ? `filters[$and][0][date][$eq]=${formattedDate}&filters[$and][1][zone][$eq]=${removeLastLetter}`
     : `filters[$and][0][zone][$eq]=${removeLastLetter}`;
+
+  const PROD = process.env.NODE_ENV === "production";
 
   const { data, isLoading, isError } = useFetchRequestAndPostQuery(
     `${
