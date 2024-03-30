@@ -55,7 +55,7 @@ const CardTripDetails = ({ attributes, id, to }) => {
               airlineName={airlineName}
               date={formatDate(date)}
               flightNumber={flightNumber}
-              // time={formatTime(time)}
+              time={formatTime(time)}
             />
           </div>
         </section>

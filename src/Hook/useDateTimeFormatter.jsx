@@ -7,7 +7,12 @@ const useDateTimeFormatter = () => {
   const { currentLocale } = useLocaleDetector();
 
   const formatTime = (timeString) => {
-    const parsedTime = timeString && parse(timeString, "HH:mm:ss.SSS", new Date());
+    const PROD = process.env.NODE_ENV === "production";
+
+    const parsedTime = PROD
+      ? timeString && parse(timeString, "HH:mm:ss", new Date())
+      : timeString && parse(timeString, "HH:mm:ss.SSS", new Date());
+
     return parsedTime && format(parsedTime, "H:mm", { locale: currentLocale });
   };
 
