@@ -1,6 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
-import { baseURL } from "../../environment";
+
+const PROD = process.env.NODE_ENV === "production";
+
+const baseURL = PROD
+  ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+  : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
 
 export const contentApiSlice = createApi({
   reducerPath: "contentApiSlice",

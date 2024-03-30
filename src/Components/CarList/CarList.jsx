@@ -26,7 +26,9 @@ const CarList = () => {
     useSelector((state) => state?.flightInfoReducer?.flightInfo) || {};
 
   const [taxiSelected, setTaxiSelected] = useState(0);
+
   const { locale } = useRouter();
+
   const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
   const { cards } = useSelector(
