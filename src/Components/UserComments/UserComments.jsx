@@ -4,7 +4,6 @@ import ContactTraveler from "../ContactTraveler/ContactTraveler";
 import UserComment from "../UserComment/UserComment";
 import styled from "./UserComments.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
-import { PROD } from "../../../environment";
 
 const UserComments = ({
   id,
@@ -22,6 +21,8 @@ const UserComments = ({
   serverErrorMessageText
 }) => {
   const { query } = useRouter();
+
+  const PROD = process.env.NODE_ENV === "production";
 
   const { data = [], isLoading } = useFetchUserCommentsQuery(
     `${

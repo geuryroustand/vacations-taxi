@@ -16,7 +16,6 @@ import {
 import { getCookieToken, setCookieUrlPath } from "../../Helper/auth";
 
 import AuthLinks from "../AuthLinks/AuthLinks";
-import { PROD } from "../../../environment";
 
 const DynamicFormGroup = dynamic(() => import("../FormGroup/FormGroup"));
 
@@ -35,6 +34,8 @@ const ContactTraveler = ({
   serverErrorMessageText
 }) => {
   const { query } = useRouter();
+
+  const PROD = process.env.NODE_ENV === "production";
 
   const { refetch } = useFetchUserCommentsQuery(
     `${

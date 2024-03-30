@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { PROD } from "../../environment";
+
+const PROD = process.env.NODE_ENV === "production";
 
 export const userApiSlice = createApi({
   reducerPath: "userApiSlice",
