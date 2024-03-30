@@ -30,7 +30,7 @@ export const initialPostInfoState = {
   zone: ""
 };
 
-const submitRequestOrPost = async (postInfo, setPostInfo, createRequestOrPost, token) => {
+const submitRequestOrPost = async (postInfo, createRequestOrPost, token) => {
   const arrivalTimeString = postInfo?.time || "";
   const time = format(new Date(`1970-01-01T${arrivalTimeString}:00.000Z`), "HH:mm:ss.SSS");
 
@@ -61,7 +61,6 @@ const submitRequestOrPost = async (postInfo, setPostInfo, createRequestOrPost, t
   };
 
   createRequestOrPost({ postData, time, token });
-  setPostInfo(initialPostInfoState);
 };
 
 export default submitRequestOrPost;

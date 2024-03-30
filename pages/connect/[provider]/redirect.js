@@ -19,9 +19,9 @@ const RedirectPage = () => {
       router.replace("/");
     }
 
-    if (isError) {
-      router.push("/login");
-    }
+    // if (isError) {
+    //   router.push("/login");
+    // }
   }, [isSuccess, isError]);
 
   return <FallBackLoading />;

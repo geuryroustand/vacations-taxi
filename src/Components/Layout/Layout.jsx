@@ -13,7 +13,7 @@ const DynamicNavigation = dynamic(() => import("../Navigation/Navigation"), {
 });
 
 const Layout = ({ children }) => {
-  const { locale } = useRouter();
+  const { locale, pathname } = useRouter();
   const queryKey = `fetchCommonContent("${locale}")`;
 
   const {
@@ -35,9 +35,12 @@ const Layout = ({ children }) => {
     (state) => state?.contentApiSlice?.queries[queryKey]?.data?.data?.attributes || {}
   );
 
+  const isAuthPage = pathname === "/connect/[provider]/redirect";
+
   return (
     <>
       <DynamicNavigation
+        displayNot={isAuthPage}
         helpCenter={helpCenter}
         blogs={blogs}
         companyHeading={company}
@@ -53,6 +56,7 @@ const Layout = ({ children }) => {
       />
       <main className="main">{children}</main>
       <DynamicFooter
+        displayNot={isAuthPage}
         footer={Footer}
         companyHeading={company}
         company={Company}

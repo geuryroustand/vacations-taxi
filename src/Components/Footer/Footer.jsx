@@ -29,7 +29,8 @@ const Footer = ({
   topLocations,
   helpCenter,
   blogs,
-  DRLink
+  DRLink,
+  displayNot
 }) => {
   // TODO need to add the santiago airport content
 
@@ -43,7 +44,9 @@ const Footer = ({
 
   const showLink = `/${slug}` !== DRLink?.link;
   return (
-    <footer className={styled.footer}>
+    <footer
+      style={displayNot ? { display: "none" } : { display: "block" }}
+      className={styled.footer}>
       <Container>
         <div className={styled.footerLogoAndLink}>
           <p className={styled.footerLogo}>

@@ -88,11 +88,23 @@ Disallow: es/500
 
 # *
 User-agent: *
+Disallow: /500
+
+# *
+User-agent: *
 Disallow: /blog
 
 # *
 User-agent: *
 Disallow: es/blog
+
+# *
+User-agent: *
+Disallow: /connect
+
+# *
+User-agent: *
+Disallow: es/connect
 
 # *
 User-agent: *

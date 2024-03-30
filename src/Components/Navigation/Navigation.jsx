@@ -29,14 +29,15 @@ const Navigation = ({
   loginText,
   signUpText,
   signOutText,
-  movilNavHeadingText
+  movilNavHeadingText,
+  displayNot
 }) => {
   const { locale } = useRouter();
 
   const localeLink = locale === "en" ? "" : `/${locale}`;
 
   return (
-    <header>
+    <header style={displayNot ? { display: "none" } : { display: "block" }}>
       <Navbar className={styled["navbar-bg"]} expand="lg">
         <Container>
           <Navbar.Brand className={styled["logo-main"]} href={localeLink || "/"}>
