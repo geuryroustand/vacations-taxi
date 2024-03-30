@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 
 import styled from "./Passenger.module.css";
 import { bookingInfo } from "../../redux/flightInfoSlice";
-import { baseURL } from "../../Helper/fetchData";
+import { baseURL } from "../../../environment";
 
 const Passenger = () => {
   const [validated, setValidated] = useState(false);

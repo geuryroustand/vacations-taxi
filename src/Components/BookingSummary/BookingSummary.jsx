@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { HydrationProvider, Client } from "react-hydration-provider";
 
 import styled from "./BookingSummary.module.css";
-import { baseURL } from "../../Helper/fetchData";
+import { baseURL } from "../../../environment";
 
 const BookingSummary = ({ bookingDetailsWith }) => {
   const flightInfoReducer = useSelector((state) => state.flightInfoReducer || {});

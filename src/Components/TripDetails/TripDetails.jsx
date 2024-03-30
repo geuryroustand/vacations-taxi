@@ -1,21 +1,43 @@
 import styled from "./TripDetails.module.css";
 
-const TripDetails = ({ fontBiggest, airlineName, date, flightNumber, time }) => {
+const TripDetails = ({
+  fontBiggest,
+  airlineName,
+  date,
+  flightNumber,
+  time,
+  airlineNameText,
+  flightNumberText,
+  dateText,
+  timeText
+}) => {
   return (
     <div className={styled.tripDetails}>
       <div>
-        <p className={`${styled.boldInfo} ${fontBiggest && styled.fontBiggest}`}>Airline Name</p>
-        <p>{airlineName}</p>
+        {airlineName && (
+          <>
+            <p className={`${styled.boldInfo} ${fontBiggest && styled.fontBiggest}`}>
+              {airlineNameText}
+            </p>
+            <p>{airlineName}</p>
+          </>
+        )}
 
-        <p className={`${styled.boldInfo} ${fontBiggest && styled.fontBiggest}`}>Date</p>
+        <p className={`${styled.boldInfo} ${fontBiggest && styled.fontBiggest}`}>{dateText}</p>
         <p>{date}</p>
       </div>
 
       <div>
-        <p className={`${styled.boldInfo} ${fontBiggest && styled.fontBiggest}`}>Flight Number</p>
-        <p>{flightNumber}</p>
+        {flightNumber && (
+          <>
+            <p className={`${styled.boldInfo} ${fontBiggest && styled.fontBiggest}`}>
+              {flightNumberText}
+            </p>
+            <p>{flightNumber}</p>
+          </>
+        )}
 
-        <p className={`${styled.boldInfo} ${fontBiggest && styled.fontBiggest}`}>Time</p>
+        <p className={`${styled.boldInfo} ${fontBiggest && styled.fontBiggest}`}>{timeText}</p>
         <p>{time}</p>
       </div>
     </div>

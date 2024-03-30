@@ -56,11 +56,39 @@ Disallow: es/404
 
 # *
 User-agent: *
-Disallow: /
+Disallow: es/signup
+
+# *
+User-agent: *
+Disallow: /signup
+
+# *
+User-agent: *
+Disallow: /login
+
+# *
+User-agent: *
+Disallow: es/offer-and-request-rides
+
+# *
+User-agent: *
+Disallow: /offer-and-request-rides
+
+# *
+User-agent: *
+Disallow: /rideshare
+
+# *
+User-agent: *
+Disallow: es/rideshare
 
 # *
 User-agent: *
 Disallow: es/500
+
+# *
+User-agent: *
+Disallow: /500
 
 # *
 User-agent: *
@@ -69,6 +97,14 @@ Disallow: /blog
 # *
 User-agent: *
 Disallow: es/blog
+
+# *
+User-agent: *
+Disallow: /connect
+
+# *
+User-agent: *
+Disallow: es/connect
 
 # *
 User-agent: *
@@ -90,8 +126,12 @@ Allow: es/blog/
 User-agent: *
 Allow: /
 
+# *
+User-agent: *
+Allow: /es
+
 # Host
-Host: https://www.vacationstaxis.com/
+Host: https://www.vacationstaxis.com
 
 # Sitemaps
 Sitemap: https://strapi.vacationstaxis.com/api/sitemap/index.xml

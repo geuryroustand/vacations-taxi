@@ -1,33 +1,60 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 
 import { FaUsers } from "react-icons/fa";
 
 import styled from "./CardTripDetails.module.css";
-import TripDetails from "../TripDetails/TripDetails";
+import FallBackLoading from "../Loading/FallBackLoading";
 
-const CardTripDetails = () => {
+import useDateTimeFormatter from "../../Hook/useDateTimeFormatter";
+
+const DynamicTripDetails = dynamic(() => import("../TripDetails/TripDetails"), {
+  loading: () => <FallBackLoading />
+});
+
+const CardTripDetails = ({ attributes, id, to }) => {
+  const { time, date, pickUp, dropOff, qtyOfTravelers, user, airlineName, flightNumber } =
+    attributes;
+
+  const { username, avatar } = (user && user.data && user.data.attributes) || {};
+
+  const { formatTime, formatDate } = useDateTimeFormatter();
+
+  const { formats } = avatar || {};
+
+  const { thumbnail } = formats || {};
+
   return (
     <li className={styled.cardTripDetailsMain}>
-      <Link className={styled.link} href="/12344232">
+      <Link target="_blank" className={styled.link} href={`rideshare/${id}`}>
         <section className={styled.cardTripDetails}>
-          <h2 className={styled.heading}>Punta Cana Airport to Bahia Principe Punta Cana</h2>
+          <h2 className={styled.heading}>{`${pickUp} ${to} ${dropOff}`}</h2>
           <div className={styled.cardTripDetailsInfo}>
             <div className={styled.cardTripDetailsProfile}>
               <div className={styled.profileImgAndName}>
-                <Image src="/images/hero.JPG" width="35" height="35" alt="Flight tracking" />
-                <p className={styled.name}>John Does</p>
+                {avatar ? (
+                  <Image src={thumbnail?.url} width="38" height="38" alt={username} />
+                ) : (
+                  <Image
+                    src={`https://ui-avatars.com/api/?name=${username}`}
+                    width="38"
+                    height="38"
+                    alt={username}
+                  />
+                )}
+                <p className={styled.name}>{username}</p>
               </div>
 
               <p className={styled.passenger}>
-                Passenger <FaUsers /> 3
+                Passenger <FaUsers /> {qtyOfTravelers}
               </p>
             </div>
-            <TripDetails
-              airlineName="Air Canada"
-              date="Sat, 30 April 2022"
-              flightNumber="AD530"
-              time="21:00 pm"
+            <DynamicTripDetails
+              airlineName={airlineName}
+              date={formatDate(date)}
+              flightNumber={flightNumber}
+              time={formatTime(time)}
             />
           </div>
         </section>

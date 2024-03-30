@@ -38,7 +38,7 @@ const DynamicDatePickerSearchForm = dynamic(
   }
 );
 
-const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
+const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm, isCarSharingPage }) => {
   const router = useRouter();
 
   const isDesktopOrLaptopOrTable =
@@ -97,7 +97,9 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
     pickUpDate: "",
     pickUpTime: "",
     userValueTypeInTheModal: "",
-    valueTyped: ""
+    valueTyped: "",
+    pickUpZone: "",
+    dropOffZone: ""
   });
 
   const [disableReturnInputDate, setDisableReturnInputDate] = useState();
@@ -144,6 +146,7 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
   };
 
   const { submitData } = submitBookingData({
+    isCarSharingPage,
     searchedTerm,
     passenger,
     setValidated,
@@ -161,7 +164,14 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
     setShowDropOffSearchedResult
   });
 
-  const onClickedSearchedResult = ({ pickUp, pickUpID, dropOff, dropOffID }) => {
+  const onClickedSearchedResult = ({
+    pickUp,
+    pickUpID,
+    dropOff,
+    dropOffID,
+    pickUpZone,
+    dropOffZone
+  }) => {
     if (!isDesktopOrLaptopOrTable) {
       setShowModal(false);
     }
@@ -171,6 +181,8 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
       pickUpID,
       dropOff,
       dropOffID,
+      pickUpZone,
+      dropOffZone,
       setShowPickUpSearchedResult,
       setShowDropOffSearchedResult,
       searchedTerm,
@@ -254,6 +266,7 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm }) => {
           )}
 
         <DynamicDatePickerSearchForm
+          isCarSharingPage={isCarSharingPage}
           disableReturnInputDate={disableReturnInputDate}
           setDisableReturnInputDate={setDisableReturnInputDate}
           showReturnSearchForm={showReturnSearchForm}

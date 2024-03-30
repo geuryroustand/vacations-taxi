@@ -7,6 +7,8 @@ import Head from "next/head";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 
+// import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
+
 import { Provider } from "react-redux";
 
 import Layout from "../src/Components/Layout/Layout";
@@ -17,6 +19,7 @@ function MyApp({ Component, ...rest }) {
   const { store, props } = wrapper.useWrappedStore(rest);
 
   return (
+    // <HydrationOverlay>
     <Provider store={store}>
       <Layout>
         <Head>
@@ -95,6 +98,7 @@ function MyApp({ Component, ...rest }) {
         <Component {...props.pageProps} />
       </Layout>
     </Provider>
+    // </HydrationOverlay>
   );
 }
 

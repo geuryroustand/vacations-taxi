@@ -1,16 +1,22 @@
 /** @type {import('next').NextConfig} */
-// eslint-disable-next-line unicorn/prefer-module
-const { i18n } = require("./next-i18next.config");
+
+// const { withHydrationOverlay } = require("@builder.io/react-hydration-overlay/next");
 
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-
   images: {
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: "https",
         hostname: "**.tripadvisor.com"
+      },
+      {
+        protocol: "https",
+        hostname: "**ui-avatars.com"
       },
       {
         protocol: "https",
@@ -25,7 +31,14 @@ const nextConfig = {
   }
 };
 
+// eslint-disable-next-line unicorn/prefer-module
 module.exports = nextConfig;
+
+// To check the Hydration problem in react in dev
+
+// module.exports = withHydrationOverlay({
+//   appRootSelector: "main"
+// })(nextConfig);
 
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({
 //   enabled: process.env.ANALYZE === "true",

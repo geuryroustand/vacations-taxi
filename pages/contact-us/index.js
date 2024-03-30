@@ -6,8 +6,10 @@ import styled from "./contactUs.module.css";
 import SeoHead from "../../src/Components/SeoHead/SeoHead";
 
 import store from "../../src/redux/store";
-import { baseURL, fetchData } from "../../src/Helper/fetchData";
+
 import { fetchCommonContent } from "../../src/redux/ContentEndpoints";
+import fetchData from "../../src/Helper/fetchData";
+import { baseURL } from "../../environment";
 
 const DynamicContactForm = dynamic(() => import("../../src/Components/contactForm/ContactForm"), {
   loading: () => <FallBackLoading />

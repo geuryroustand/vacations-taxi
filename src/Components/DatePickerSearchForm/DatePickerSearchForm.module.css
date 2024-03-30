@@ -137,3 +137,7 @@
 .calenderDisable {
   background-color: var(--six-color);
 }
+
+.isCarSharingPage {
+  width: auto;
+}

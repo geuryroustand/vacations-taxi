@@ -1,6 +1,8 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
+import { FaCarSide } from "react-icons/fa6";
+
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -9,6 +11,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 
 import styled from "./Navigation.module.css";
 import FallBackLoading from "../Loading/FallBackLoading";
+import Profile from "../Profile/Profile";
 
 const DynamicLanguageSwitcher = dynamic(() => import("../LanguageSwitcher/LanguageSwitcher"), {
   loading: () => <FallBackLoading />
@@ -20,14 +23,21 @@ const Navigation = ({
   topLocations,
   company,
   helpCenter,
-  blogs
+  blogs,
+  carpool,
+  carpoolLinks,
+  loginText,
+  signUpText,
+  signOutText,
+  movilNavHeadingText,
+  displayNot
 }) => {
   const { locale } = useRouter();
 
   const localeLink = locale === "en" ? "" : `/${locale}`;
 
   return (
-    <header>
+    <header style={displayNot ? { display: "none" } : { display: "block" }}>
       <Navbar className={styled["navbar-bg"]} expand="lg">
         <Container>
           <Navbar.Brand className={styled["logo-main"]} href={localeLink || "/"}>
@@ -41,13 +51,34 @@ const Navigation = ({
             placement="end">
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg-info">
-                Information
+                {movilNavHeadingText}
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Profile
+                  localeLink={localeLink}
+                  loginText={loginText}
+                  signUpText={signUpText}
+                  signOutText={signOutText}
+                  id="drownDownBigScreen"
+                />
                 <DynamicLanguageSwitcher id="header" />
-
+                <NavDropdown
+                  title={
+                    <>
+                      <FaCarSide size={16} className={styled.carpoolIcon} />
+                      {carpool}
+                    </>
+                  }
+                  id="offcanvasNavbarDropdown-expand-lg-shared-ride">
+                  {carpoolLinks &&
+                    carpoolLinks?.map(({ id, locations, slug }) => (
+                      <NavDropdown.Item key={id} href={`${localeLink}${slug}`}>
+                        {locations}
+                      </NavDropdown.Item>
+                    ))}
+                </NavDropdown>
                 <NavDropdown title={topLocationHeading} id="offcanvasNavbarDropdown-expand-lg-top">
                   {topLocations &&
                     topLocations?.map(({ id, label, link, hidden }, index) => (

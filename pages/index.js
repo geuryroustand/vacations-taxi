@@ -7,8 +7,10 @@ import FallBackLoading from "../src/Components/Loading/FallBackLoading";
 import store from "../src/redux/store";
 
 import addOrganizationJsonLd from "../src/Helper/addOrganizationJsonLd";
-import { baseURL, fetchData } from "../src/Helper/fetchData";
+
 import { fetchCommonContent } from "../src/redux/ContentEndpoints";
+import fetchData from "../src/Helper/fetchData";
+import { baseURL } from "../environment";
 
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />

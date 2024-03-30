@@ -8,7 +8,7 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { updateTotalPrice } from "../../redux/flightInfoSlice";
 import FallBackLoading from "../Loading/FallBackLoading";
 import styled from "./CarList.module.css";
-import { baseURL } from "../../Helper/fetchData";
+import { baseURL } from "../../../environment";
 
 const DynamicCar = dynamic(() => import("../Car/Car"), {
   ssr: false,

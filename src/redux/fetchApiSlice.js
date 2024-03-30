@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { HYDRATE } from "next-redux-wrapper";
-import { baseURL } from "../Helper/fetchData";
+import { baseURLSpecial } from "../../environment";
 
 // Todo remove the keepUnusedDataFor
 export const fetchApiSlice = createApi({
   reducerPath: "fetchApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: baseURL
+    baseUrl: baseURLSpecial
   }),
   // eslint-disable-next-line consistent-return
   extractRehydrationInfo(action) {

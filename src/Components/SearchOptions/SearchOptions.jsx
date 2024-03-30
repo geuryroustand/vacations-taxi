@@ -34,14 +34,22 @@ const SearchOptions = ({ moveLeft, onClickedSearchedResult, optionToShow }) => {
 
       {!isLoading && !isError && (
         <ul className={`${styled.searchList} ${moveLeft && styled.moveLeft}`}>
-          {searchResults?.map(({ location, _id }) => (
+          {searchResults?.map(({ location, _id, region }) => (
             <li key={_id} className={styled.searchListOption}>
               <Button
                 className={styled.searchListBtn}
                 onClick={() =>
                   optionToShow === "pickUp"
-                    ? onClickedSearchedResult({ pickUp: location, pickUpID: _id })
-                    : onClickedSearchedResult({ dropOff: location, dropOffID: _id })
+                    ? onClickedSearchedResult({
+                        pickUp: location,
+                        pickUpID: _id,
+                        pickUpZone: region
+                      })
+                    : onClickedSearchedResult({
+                        dropOff: location,
+                        dropOffID: _id,
+                        dropOffZone: region
+                      })
                 }>
                 {location}
               </Button>

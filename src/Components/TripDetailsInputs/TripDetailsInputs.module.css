@@ -1,0 +1,17 @@
+.tripDetails {
+  background-color: var(--third-color);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.tripDetails h2,
+.passengerDetails h2 {
+  font-size: 1.3rem;
+}
+
+@media (min-width: 45em) {
+  .tripDetails h2,
+  .passengerDetails h2 {
+    font-size: 2rem;
+  }
+}

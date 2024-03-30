@@ -12,12 +12,11 @@ import fr from "date-fns/locale/fr";
 import styled from "./DatePickerSearchForm.module.css";
 
 function DatePickerSearchForm({
+  isCarSharingPage,
   pickUpAndDropDate,
   setPickUpAndDropDate,
-
   labelPickDate,
   labelPickTime,
-
   pickUpAndDropTime,
   setPickUpAndDropTime,
   getPassenger,
@@ -49,14 +48,19 @@ function DatePickerSearchForm({
   };
   // Todo need to add the pick time below the calender
 
+  const styles = isCarSharingPage ? styled.isCarSharingPage : "";
+
   return (
     <div className={styled.date}>
-      <div className={styled.calender}>
+      <div className={`${styled.calender} ${styles}`}>
         <Image src="/images/calendar.svg" width="20" height="20" alt="calendar" />
         <div className={styled.calenderAndIconWrapper}>
-          <label className={styled.calenderLabel} htmlFor="date-picker-arrival">
+          <label
+            className={`${styled.calenderLabel} ${isCarSharingPage ? "visually-hidden" : ""} `}
+            htmlFor="date-picker-arrival">
             {labelPickDate}
           </label>
+
           <DatePicker
             autoComplete="off"
             locale={locale}
@@ -119,7 +123,7 @@ function DatePickerSearchForm({
       )}
 
       <div className={styled.passengerAndPickTime}>
-        {showReturnSearchForm && (
+        {showReturnSearchForm && !isCarSharingPage && (
           <div className={styled.pickTime}>
             <Image src="/images/Clock.svg" width="20" height="20" alt="calendar" />
             <label className="visually-hidden" htmlFor="pickTime">
