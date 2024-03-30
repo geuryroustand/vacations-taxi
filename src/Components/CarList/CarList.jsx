@@ -8,7 +8,6 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { updateTotalPrice } from "../../redux/flightInfoSlice";
 import FallBackLoading from "../Loading/FallBackLoading";
 import styled from "./CarList.module.css";
-import { baseURL } from "../../../environment";
 
 const DynamicCar = dynamic(() => import("../Car/Car"), {
   ssr: false,
@@ -28,6 +27,12 @@ const CarList = () => {
   const [taxiSelected, setTaxiSelected] = useState(0);
 
   const { locale } = useRouter();
+
+  const PROD = process.env.NODE_ENV === "production";
+
+  const baseURL = PROD
+    ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+    : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
 
   const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 

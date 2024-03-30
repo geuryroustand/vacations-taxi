@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 
 import styled from "./Passenger.module.css";
 import { bookingInfo } from "../../redux/flightInfoSlice";
-import { baseURL } from "../../../environment";
 
 const Passenger = () => {
   const [validated, setValidated] = useState(false);
@@ -17,6 +16,13 @@ const Passenger = () => {
   const dispatch = useDispatch();
 
   const { locale, push, query } = useRouter();
+
+  const PROD = process.env.NODE_ENV === "production";
+
+  const baseURL = PROD
+    ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+    : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
+
   const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
   const {
