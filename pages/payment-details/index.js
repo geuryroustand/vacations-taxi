@@ -36,7 +36,13 @@ function paymentDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const [showThankYouMessage] = useState(false);
 
-  const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${router.locale}&populate=*")`;
+  const PROD = process.env.NODE_ENV === "production";
+
+  const url = PROD
+    ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+    : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
+
+  const queryKey = `fetchContent("${url}/booking-detail?locale=${router.locale}&populate=*")`;
   const {
     payment = {},
     paymentLoadingTitle = "",
@@ -67,7 +73,6 @@ function paymentDetails() {
 
     if (!form.checkValidity() === false) {
       try {
-        const PROD = process.env.NODE_ENV === "production";
         setIsLoading(true);
         const response = await fetch(
           `${

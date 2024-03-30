@@ -20,7 +20,6 @@ import store from "../../src/redux/store";
 
 import flightDetailsSelector from "../../src/Helper/memoizedSelectors";
 import { fetchCommonContent, fetchContent } from "../../src/redux/ContentEndpoints";
-import { baseURL } from "../../environment";
 
 const DynamicBookingSummary = dynamic(
   () => import("../../src/Components/BookingSummary/BookingSummary"),
@@ -53,6 +52,13 @@ function BookingDetails() {
   const isRoundTrip = router?.query?.roundtrip;
 
   const { locale } = useRouter();
+
+  const PROD = process.env.NODE_ENV === "production";
+
+  const baseURL = PROD
+    ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+    : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
+
   const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
 
   const {
@@ -125,6 +131,12 @@ function BookingDetails() {
 export default BookingDetails;
 
 const fetchTranslationData = async (dispatch, locale) => {
+  const PROD = process.env.NODE_ENV === "production";
+
+  const baseURL = PROD
+    ? process.env.NEXT_PUBLIC_API_PROD_URL_STRAPI
+    : process.env.NEXT_PUBLIC_API_STRAPI_DEV_URL;
+
   await dispatch(fetchCommonContent.initiate(locale));
   await dispatch(fetchContent.initiate(`${baseURL}/booking-detail?locale=${locale}&populate=*`));
 };
