@@ -11,6 +11,7 @@ const SharedCarsList = ({ carpool, inText }) => {
   const locations = [
     {
       area: "puntaCanaA",
+      name: "Punta Cana",
       locations: [
         {
           name: "Punta Cana",
@@ -22,6 +23,7 @@ const SharedCarsList = ({ carpool, inText }) => {
     },
     {
       area: "samanaA",
+      name: "Samana",
       locations: [
         {
           name: "Samana",
@@ -33,6 +35,7 @@ const SharedCarsList = ({ carpool, inText }) => {
     // Add more location groups here
     {
       area: "santoDomingoA",
+      name: "Santo Domingo",
       locations: [
         {
           name: "Santo Domingo",
@@ -43,6 +46,7 @@ const SharedCarsList = ({ carpool, inText }) => {
     },
     {
       area: "puertoPlataA",
+      name: "Puerto Plata",
       locations: [
         {
           name: "Puerto Plata",
@@ -54,6 +58,7 @@ const SharedCarsList = ({ carpool, inText }) => {
 
     {
       area: "santiagoA",
+      name: "Santiago",
       locations: [
         {
           name: "Santiago",
@@ -72,7 +77,7 @@ const SharedCarsList = ({ carpool, inText }) => {
             <h3 className={styled.heading}>
               {carpool}
               <p>
-                {inText} {locationGroup.area}
+                {inText} {locationGroup.name}
               </p>
             </h3>
 
