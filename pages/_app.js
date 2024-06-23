@@ -23,15 +23,15 @@ function MyApp({ Component, ...rest }) {
     <Provider store={store}>
       <Layout>
         <Head>
-          <title>Book A Taxi Online | Airport Transportation</title>
+          <title>Reliable Airport Transfers and Vacation Taxis | VacationsTaxis</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta
             name="description"
-            content="Book a taxi online for easy airport transfers to/from your accommodation. Various taxi transportation services. Tried & trusted. Flight tracking. 24/7 support."
+            content="Book reliable airport transfers and vacation taxis with Vacations Taxis. Enjoy stress-free travel with our professional and punctual transportation services."
           />
           <meta
             name="keywords"
-            content="VacationsTaxis, Vacations Taxis, Vacations Taxis Dominican Republic, book a taxi,book taxi online, taxi transportation,online cab booking,book airport taxi, taxi ride to airport,online taxi service,cab ride to airport,taxi transportation near me,taxi transportation services,airport car service,airport transportation near me , airport transportation services,airport ride service,airport transfer service, private airport transfer service,best private airport transfer "
+            content="VacationsTaxis, Vacations Taxis,Vacations Taxi, Vacations Taxis Dominican Republic, book a taxi,book taxi online, taxi transportation,online cab booking,book airport taxi, taxi ride to airport,online taxi service,cab ride to airport,taxi transportation near me,taxi transportation services,airport car service,airport transportation near me , airport transportation services,airport ride service,airport transfer service, private airport transfer service,best private airport transfer "
           />
           <link rel="canonical" href="https://www.vacationstaxis.com/" key="canonical" />
           <meta name="robots" content="index, follow" />

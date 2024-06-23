@@ -38,6 +38,10 @@ const Footer = ({
   const socialLinks = footer[0]?.SocialLinks || [];
   const followUs = footer[0]?.followUs || "";
 
+  const currentYear = new Date().getFullYear();
+
+  console.log("currentYear", currentYear);
+
   const {
     query: { slug }
   } = useRouter();
@@ -105,7 +109,7 @@ const Footer = ({
         </div>
 
         <p className={styled.copyright}>
-          {copyright} &copy; vacationsTaxi.com&trade;. {allRights}
+          {copyright} &copy; 2019-{currentYear} vacationsTaxi.com&trade;. {allRights}
         </p>
       </Container>
     </footer>

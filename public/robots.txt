@@ -24,11 +24,11 @@ Disallow: es/terms-and-conditions
 
 # *
 User-agent: *
-Disallow: /contact-us
+Allow: /contact-us
 
 # *
 User-agent: *
-Disallow: es/contact-us
+Allow: es/contact-us
 
 # *
 User-agent: *
@@ -40,11 +40,11 @@ Disallow: es/privacy-notice
 
 # *
 User-agent: *
-Disallow: /about-us
+Allow: /about-us
 
 # *
 User-agent: *
-Disallow: es/about-us
+Allow: es/about-us
 
 # *
 User-agent: *
