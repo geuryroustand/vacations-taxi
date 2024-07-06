@@ -18,9 +18,7 @@ const SeoHead = ({
 
   const getCanonicalURL = () => {
     if (canonicalURL) {
-      return isEnglish
-        ? `https://www.vacationstaxis.com/${canonicalURL}`
-        : `https://www.vacationstaxis.com/${language}/${canonicalURL}`;
+      return `https://www.vacationstaxis.com/${language}/${canonicalURL}`;
     }
     return isEnglish
       ? "https://www.vacationstaxis.com"
@@ -97,7 +95,7 @@ const SeoHead = ({
           {generateLinkTag(
             "alternate",
             locale,
-            `https://www.vacationstaxis.com${locale === "en" ? "" : `/${locale}`}/${slug}`
+            `https://www.vacationstaxis.com${`/${locale}`}/${slug}`
           )}
           {locale === "en" &&
             generateLinkTag("alternate", "x-default", `https://www.vacationstaxis.com/${slug}`)}

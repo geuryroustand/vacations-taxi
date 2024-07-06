@@ -63,10 +63,10 @@ function MyApp({ Component, ...rest }) {
 
         {/* <!-- Google tag (gtag.js) --> */}
         <Script
+          strategy="lazyOnload"
           src={`https://www.googletagmanager.com/gtag/js?id=${
             process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
           }`}
-          strategy="lazyOnload"
         />
 
         <Script
@@ -74,17 +74,17 @@ function MyApp({ Component, ...rest }) {
           strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){window.dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'https://www.googletagmanager.com/gtag/js?id=${
-          process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
-        }');
-      `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${
+                process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+              }', {
+                page_path: window.location.pathname,
+              });
+            `
           }}
         />
-
         {/* <!-- TRUENDO Privacy Center --> */}
         {/* <Script
               strategy="lazyOnload"

@@ -12,7 +12,7 @@ import { baseURL } from "../../environment";
 export default function aboutUs({ content, title, slug }) {
   return (
     <Container className="mt-5">
-      <SeoHead title={title} noIndex canonicalURL={slug} />
+      <SeoHead title={title} canonicalURL={slug} />
       <Markdown>{content}</Markdown>
     </Container>
   );

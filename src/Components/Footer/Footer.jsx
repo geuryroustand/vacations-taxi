@@ -40,8 +40,6 @@ const Footer = ({
 
   const currentYear = new Date().getFullYear();
 
-  console.log("currentYear", currentYear);
-
   const {
     query: { slug }
   } = useRouter();

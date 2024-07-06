@@ -33,7 +33,7 @@ function contactUs({
 }) {
   return (
     <div className={styled.contactForm}>
-      <SeoHead title={title} noIndex canonicalURL={slug} />
+      <SeoHead title={title} canonicalURL={slug} />
 
       <Container className={styled.contactFormWrapper}>
         <DynamicContactForm
