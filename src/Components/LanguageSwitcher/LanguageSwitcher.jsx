@@ -8,6 +8,11 @@ const getLanguageTitle = (language) => {
   return language === "en" ? "English" : "Español";
 };
 const getLanguagePath = (language, pathname) => {
+  if (pathname === "/") {
+    const basePath = `/${language}`;
+
+    return basePath;
+  }
   const basePath = `/${language}${pathname}`;
 
   return basePath;
@@ -29,8 +34,8 @@ const LanguageSwitcher = (id) => {
           </>
         }
         id={`offcanvasNavbarDropdown-expand-lg-languages-${id}`}>
-        <NavDropdown.Item href={getLanguagePath("en", pathname, query)}>English</NavDropdown.Item>
-        <NavDropdown.Item href={getLanguagePath("es", pathname, query)}>Español</NavDropdown.Item>
+        <NavDropdown.Item href={getLanguagePath("en", pathname)}>English</NavDropdown.Item>
+        <NavDropdown.Item href={getLanguagePath("es", pathname)}>Español</NavDropdown.Item>
       </NavDropdown>
     )
   );
