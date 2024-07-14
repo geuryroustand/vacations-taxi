@@ -4,24 +4,19 @@ import { MdLanguage } from "react-icons/md";
 
 import styled from "./LanguageSwitcher.module.css";
 
-const getLanguageTitle = (language) => {
-  return language === "en" ? "English" : "Español";
+const localesText = {
+  en: "English",
+  es: "Español",
+  de: "Deutsch",
+  fr: "Français"
 };
 const getLanguagePath = (language, pathname) => {
-  if (pathname === "/") {
-    const basePath = `/${language}`;
-
-    return basePath;
-  }
-  const basePath = `/${language}${pathname}`;
-
-  return basePath;
+  return pathname === "/" ? `/${language}` : `/${language}${pathname}`;
 };
 
 const LanguageSwitcher = (id) => {
-  const { locale, query, pathname } = useRouter();
+  const { locale, query, pathname, locales } = useRouter();
 
-  const currentLanguageTitle = getLanguageTitle(locale);
   const hasQueryValue = Object.keys(query).length > 0;
 
   return (
@@ -30,12 +25,15 @@ const LanguageSwitcher = (id) => {
         title={
           <>
             <MdLanguage size={16} className={styled.languageSwitcherIcon} />
-            {currentLanguageTitle}
+            {localesText[locale]}
           </>
         }
         id={`offcanvasNavbarDropdown-expand-lg-languages-${id}`}>
-        <NavDropdown.Item href={getLanguagePath("en", pathname)}>English</NavDropdown.Item>
-        <NavDropdown.Item href={getLanguagePath("es", pathname)}>Español</NavDropdown.Item>
+        {locales.map((language) => (
+          <NavDropdown.Item key={language} href={getLanguagePath(language, pathname)}>
+            {localesText[language]}
+          </NavDropdown.Item>
+        ))}
       </NavDropdown>
     )
   );

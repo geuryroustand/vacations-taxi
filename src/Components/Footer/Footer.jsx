@@ -41,8 +41,11 @@ const Footer = ({
   const currentYear = new Date().getFullYear();
 
   const {
-    query: { slug }
+    query: { slug },
+    locale
   } = useRouter();
+
+  const localized = `/${locale}`;
 
   const showLink = `/${slug}` !== DRLink?.link;
   return (
@@ -56,7 +59,7 @@ const Footer = ({
           </p>
 
           {showLink && DRLink && (
-            <Link className={styled.footerInfoLink} href={`blog${DRLink?.link || ""}`}>
+            <Link className={styled.footerInfoLink} href={`${localized}blog${DRLink?.link || ""}`}>
               {DRLink?.label || ""}
             </Link>
           )}
@@ -68,19 +71,19 @@ const Footer = ({
 
             {company &&
               company?.map(({ id, label, link }) => (
-                <Link key={id} href={link}>
+                <Link key={id} href={`${localized}${link}`}>
                   {label}
                 </Link>
               ))}
 
-            <Link href={helpCenter?.link || "/"}>{helpCenter?.label}</Link>
-            <Link href={blogs?.link || "/"}>{blogs?.label}</Link>
+            <Link href={`${localized}${helpCenter?.link}` || "/"}>{helpCenter?.label}</Link>
+            <Link href={`${localized}${blogs?.link}` || "/"}>{blogs?.label}</Link>
           </li>
           <li className={styled.footerList}>
             <h3 className={styled.heading}>{topLocationHeading}</h3>
             {topLocations &&
               topLocations?.map(({ id, label, link, hidden }) => (
-                <Link key={id} href={link} className={hidden ? "sr-only" : ""}>
+                <Link key={id} href={`${localized}${link}`} className={hidden ? "sr-only" : ""}>
                   {label}
                 </Link>
               ))}
