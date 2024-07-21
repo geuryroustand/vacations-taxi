@@ -59,7 +59,7 @@ const Footer = ({
           </p>
 
           {showLink && DRLink && (
-            <Link className={styled.footerInfoLink} href={`${localized}blog${DRLink?.link || ""}`}>
+            <Link className={styled.footerInfoLink} href={`${localized}/blog${DRLink?.link || ""}`}>
               {DRLink?.label || ""}
             </Link>
           )}
