@@ -98,7 +98,11 @@ const SeoHead = ({
             `https://www.vacationstaxis.com${`/${locale}`}/${slug}`
           )}
           {locale === "en" &&
-            generateLinkTag("alternate", "x-default", `https://www.vacationstaxis.com/${slug}`)}
+            generateLinkTag(
+              "alternate",
+              "x-default",
+              `https://www.vacationstaxis.com${`/${locale}`}/${slug}`
+            )}
         </React.Fragment>
       ))}
     </Head>
