@@ -60,21 +60,21 @@ export default function Home({
 
       <Head>
         {locale === "en" ? (
-          <link key="canonical" rel="canonical" href="https://www.vacationstaxis.com/en" />
+          <link key="canonical" rel="canonical" href="https://www.vacationstaxis.com" />
         ) : (
           <link key="canonical" rel="canonical" href={`https://www.vacationstaxis.com/${locale}`} />
         )}
 
-        <link rel="alternate" hrefLang="en" href="https://www.vacationstaxis.com/en" key="en" />
+        <link rel="alternate" hrefLang="en" href="https://www.vacationstaxis.com" key="en" />
         <link rel="alternate" hrefLang="es" href="https://www.vacationstaxis.com/es" key="es" />
-        <link rel="alternate" hrefLang="x-default" href="https://www.vacationstaxis.com/en" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.vacationstaxis.com" />
         <title>{metaTitle}</title>
         <meta name="description" content={metaDescription} />
         <meta name="keywords" content={keywords} />
 
         {/* Facebook Meta Tag */}
 
-        <meta property="og:url" content="https://www.vacationstaxis.com/en" />
+        <meta property="og:url" content="https://www.vacationstaxis.com" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
@@ -84,7 +84,7 @@ export default function Home({
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="https://www.vacationstaxis.com" />
-        <meta property="twitter:url" content="https://www.vacationstaxis.com/en" />
+        <meta property="twitter:url" content="https://www.vacationstaxis.com" />
         <meta property="twitter:title" content={metaTitle} />
         <meta property="twitter:description" content={metaDescription} />
         <meta

@@ -34,7 +34,7 @@ const Navigation = ({
 }) => {
   const { locale } = useRouter();
 
-  const localeLink = `/${locale}`;
+  const localeLink = `${locale === "en" ? "" : `/${locale}`}`;
 
   return (
     <header style={displayNot ? { display: "none" } : { display: "block" }}>
