@@ -45,7 +45,7 @@ const Footer = ({
     locale
   } = useRouter();
 
-  const localized = `${locale === "en" ? "/" : `/${locale}`}`;
+  const localized = `${locale === "en" ? "" : `/${locale}`}`;
 
   const showLink = `/${slug}` !== DRLink?.link;
   return (
