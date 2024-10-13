@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 
 import Container from "react-bootstrap/Container";
@@ -56,7 +57,9 @@ function BookingDetails() {
   const [showSearchForm, setShowSearchForm] = useState(false);
   const { pickUpMemoized, dropOffMemoized } = useSelector(flightDetailsSelector);
   const isRoundTrip = router?.query?.roundtrip;
+  const flightInfoReducer = useSelector((state) => state.flightInfoReducer || {});
 
+  const { flightInfo } = flightInfoReducer;
   const { locale } = useRouter();
 
   const queryKey = `fetchContent("${baseURL}/booking-detail?locale=${locale}&populate=*")`;
@@ -76,12 +79,34 @@ function BookingDetails() {
     if (router.query.pickUp && router.query.dropOff) {
       dispatch(fetchPrice(router.query));
     }
+  }, [router.query.pickUp, router.query.dropOff, router.query.roundtrip]);
+
+  useEffect(() => {
+    if (
+      (router.query.dropOffDate && router.query.dropOffTime) ||
+      (router.query.pickUpDate && router.query.pickUpTime) ||
+      router.query.pickUpPassenger
+    ) {
+      const onlyUpdateFlightInfo = true;
+
+      const mergeQueries = {
+        ...flightInfo,
+        pickUpPassenger: router.query.pickUpPassenger,
+        pickUpTime: router.query.pickUpTime,
+        pickUpDate: router.query.pickUpDate,
+        dropOffDate: router.query.dropOffDate,
+        dropOffTime: router.query.dropOffTime,
+        onlyUpdateFlightInfo
+      };
+
+      dispatch(fetchPrice(mergeQueries));
+    }
   }, [
-    router.query.pickUp,
-    router.query.dropOff,
-    router.query.roundtrip,
     router.query.dropOffDate,
-    router.query.pickUpDate
+    router.query.dropOffTime,
+    router.query.pickUpDate,
+    router.query.pickUpTime,
+    router.query.pickUpPassenger
   ]);
 
   if (isLoading) {

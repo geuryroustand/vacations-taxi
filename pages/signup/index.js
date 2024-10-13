@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-console */
 import React, { Suspense, useState, useEffect } from "react";
 import Link from "next/link";

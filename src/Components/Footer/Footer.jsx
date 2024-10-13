@@ -110,7 +110,7 @@ const Footer = ({
         </div>
 
         <p className={styled.copyright}>
-          {copyright} &copy; 2019-{currentYear} vacationsTaxi.com&trade;. {allRights}
+          {copyright} &copy; 2019-{currentYear} vacationsTaxis.com&trade;. {allRights}
         </p>
       </Container>
     </footer>

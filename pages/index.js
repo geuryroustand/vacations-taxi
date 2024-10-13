@@ -12,6 +12,12 @@ import { fetchCommonContent } from "../src/redux/ContentEndpoints";
 import fetchData from "../src/Helper/fetchData";
 import { baseURL } from "../environment";
 
+// import TaxiSection from "../src/Components/TaxiSection/TaxiSection";
+
+// import SeoHomePageContent from "../src/Components/SEOContentSection/SEOContentSection";
+
+// import TripAdvisorReviews from "../src/Components/Reviews/TripAdvisorReviews";
+
 const DynamicHeader = dynamic(() => import("../src/Components/Header/Header"), {
   loading: () => <FallBackLoading />
 });
@@ -141,8 +147,11 @@ export default function Home({
       <DynamicTrusted trusted={trusted} />
 
       <DynamicHowWork howItWorkHeading={howItWorkHeading} howItWork={howItWork} />
+      {/* <TripAdvisorReviews /> */}
+      {/* <TaxiSection /> */}
       <DynamicAwards />
       <DynamicFaq />
+      {/* <SeoHomePageContent /> */}
     </>
   );
 }

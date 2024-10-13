@@ -3,6 +3,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchPrice = createAsyncThunk("flightInfo/fetchPrice", async (query, thunkAPI) => {
+  if (query.onlyUpdateFlightInfo) {
+    return { ...query };
+  }
   try {
     const PROD = process.env.NODE_ENV === "production";
     const response = await fetch(

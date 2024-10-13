@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,6 +9,7 @@ import { useRouter } from "next/router";
 import es from "date-fns/locale/es";
 import de from "date-fns/locale/de";
 import fr from "date-fns/locale/fr";
+import parse from "date-fns/parse";
 
 import styled from "./DatePickerSearchForm.module.css";
 
@@ -44,11 +46,37 @@ function DatePickerSearchForm({
 
   const onReturnDateInputClick = () => {
     setDisableReturnInputDate(true);
-    setCurrentReturnFormDate(new Date());
+    // setCurrentReturnFormDate(new Date());
   };
   // Todo need to add the pick time below the calender
 
   const styles = isCarSharingPage ? styled.isCarSharingPage : "";
+
+  const { query } = useRouter();
+
+  const { pickUpDate, pickUpTime, dropOffDate, dropOffTime } = query;
+
+  useEffect(() => {
+    if (pickUpDate && pickUpTime) {
+      // Normalize the date string by removing any extra spaces
+      const sanitizedDate = `${pickUpDate} ${pickUpTime}`.replaceAll(/\s+/g, " ").trim();
+      const parsedDate = parse(sanitizedDate, "EEE dd, MMM yyyy HH:mm", new Date(), {
+        locale: localeMap[locale]
+      });
+
+      setPickUpAndDropDate(parsedDate);
+    }
+
+    if (dropOffDate && dropOffTime) {
+      // Normalize the date string by removing any extra spaces
+      const sanitizedDate = `${dropOffDate} ${dropOffTime}`.replaceAll(/\s+/g, " ").trim();
+      const parsedDate = parse(sanitizedDate, "EEE dd, MMM yyyy HH:mm", new Date(), {
+        locale: localeMap[locale]
+      });
+
+      setCurrentReturnFormDate(parsedDate);
+    }
+  }, [pickUpDate, pickUpTime, dropOffDate, dropOffTime]);
 
   return (
     <div className={styled.date}>
@@ -94,14 +122,14 @@ function DatePickerSearchForm({
               {dateLabelDeparture}
             </label>
             <DatePicker
-              // disabled={disableReturnInputDate}
+              disabled={!isRoundTrip}
               autoComplete="off"
               onInputClick={onReturnDateInputClick}
               locale={locale}
               id="date-picker-return"
               placeholderText="Add a return"
               // todayButton="Return Flight"
-              selected={currentReturnFormDate}
+              selected={isRoundTrip ? currentReturnFormDate : ""}
               onChange={(date) => setCurrentReturnFormDate(date)}
               minDate={new Date()}
               maxDate={maxDate}

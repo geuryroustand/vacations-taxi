@@ -5,7 +5,7 @@ const addOrganizationJsonLd = (jsonLD) => {
       `{
       "@context": "http://schema.org",
       "@type": "Organization",
-      "name": " vacationsTaxi.com",
+      "name": " vacationsTaxis.com",
       "url": "https://www.vacationstaxis.com/",
       "logo":"https://res.cloudinary.com/dakkezj8u/image/upload/v1700392099/Vacations_fe5927c27a.png",
       "contactPoint": [

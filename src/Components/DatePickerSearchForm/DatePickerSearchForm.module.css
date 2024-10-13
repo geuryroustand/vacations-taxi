@@ -138,6 +138,10 @@
   background-color: var(--six-color);
 }
 
+.calenderDisable:disabled {
+  cursor: not-allowed;
+}
+
 .isCarSharingPage {
   width: auto;
 }

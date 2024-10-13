@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Suspense, useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";

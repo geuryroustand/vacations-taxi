@@ -25,7 +25,7 @@ const CardTripDetails = ({ attributes, id, to }) => {
   const { formats } = avatar || {};
 
   const { thumbnail } = formats || {};
-  console.log("time", time);
+
   return (
     <li className={styled.cardTripDetailsMain}>
       <Link target="_blank" className={styled.link} href={`rideshare/${id}`}>

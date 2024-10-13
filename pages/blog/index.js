@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-null */
+/* eslint-disable react/no-array-index-key */
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -15,55 +17,49 @@ import fetchData from "../../src/Helper/fetchData";
 import { baseURL } from "../../environment";
 
 export default function Blogs({ data }) {
-  const groupedPosts = [...data]
-    .map((_, index) => {
-      if (index % 3 === 0) {
-        return data.slice(index, index + 3);
-      }
-      // eslint-disable-next-line unicorn/no-null
-      return null;
-    })
-    .filter((group) => group !== null);
+  const groupedPosts = Array.isArray(data)
+    ? [...data]
+        .map((_, index) => {
+          if (index % 3 === 0) {
+            return data.slice(index, index + 3);
+          }
+          return null;
+        })
+        .filter((group) => group !== null)
+    : [];
 
   return (
     <>
       <SeoHead title="Blogs" noIndex canonicalURL="blog" />
       <Container className={styled.postsContainer}>
         <h1 className={styled.postsHeading}>Travel Tips:</h1>
-        {groupedPosts?.map((group) => (
-          <Row key={group}>
-            {group?.map(
-              ({
-                attributes: {
-                  slug,
-                  excerpt,
-                  title,
-                  cover: {
-                    data: {
-                      attributes: {
-                        alternativeText,
-                        formats: { small }
-                      }
-                    }
-                  }
-                },
-                id
-              }) => (
+        {groupedPosts?.map((group, groupIndex) => (
+          <Row key={groupIndex}>
+            {group?.map((post) => {
+              const { attributes, id } = post || {};
+              const { slug, excerpt, title, cover } = attributes || {};
+              const coverData = cover?.data?.attributes?.formats?.small;
+              const alternativeText = cover?.data?.attributes?.alternativeText;
+
+              return attributes && coverData && id ? (
                 <Col key={id} className={styled.cardColumn}>
                   <Link className={styled.cardLink} href={`/blog/${slug}`}>
                     <Card className={styled.postsCard}>
-                      <Image src={small.url} width="345" height="247" alt={alternativeText} />
+                      <Image
+                        src={coverData.url}
+                        width="345"
+                        height="247"
+                        alt={alternativeText || "Blog Image"}
+                      />
                       <Card.Body>
-                        <Card.Title>
-                          <Card.Title>{title}</Card.Title>
-                        </Card.Title>
+                        <Card.Title>{title}</Card.Title>
                         <Card.Text className={styled.truncate}>{excerpt}</Card.Text>
                       </Card.Body>
                     </Card>
                   </Link>
                 </Col>
-              )
-            )}
+              ) : null;
+            })}
           </Row>
         ))}
       </Container>

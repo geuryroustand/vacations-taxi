@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -47,7 +48,7 @@ const CarList = () => {
       originalPrice: priceTaxi1,
       passengers: 4,
       suitcases: 4,
-      image: "standard.webp",
+      image: "minivan6.jpg",
       selectedText
     },
     {
@@ -85,7 +86,7 @@ const CarList = () => {
         discountPrice: applyTenPercentDiscount(priceTaxi1),
         passengers: 4,
         suitcases: 4,
-        image: "standard.webp",
+        image: "minivan6.jpg",
         selectedText
       },
       {

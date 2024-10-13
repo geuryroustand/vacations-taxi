@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import format from "date-fns/format";
 import es from "date-fns/locale/es";
@@ -35,12 +36,14 @@ const useSearchTermUpdate = ({
       ...previousSearchTerm,
       pickUpReturn: pickUpMemoized || previousSearchTerm.dropOff,
       dropOffReturn: dropOffMemoized || previousSearchTerm.pickUp,
-      dropOffDate: disableReturnInputDate
-        ? format(currentReturnFormDate, "eee d, MMM yyyy", { locale: currentLocale })
-        : format(currentDropOffDate, "eee d, MMM yyyy", { locale: currentLocale }),
-      dropOffTime: disableReturnInputDate
-        ? format(currentReturnFormDate, "k:m", { locale: currentLocale })
-        : format(currentDropOffTime, "k:m", { locale: currentLocale }),
+      dropOffDate:
+        disableReturnInputDate && currentReturnFormDate
+          ? format(currentReturnFormDate, "eee d, MMM yyyy", { locale: currentLocale })
+          : format(currentDropOffDate, "eee d, MMM yyyy", { locale: currentLocale }),
+      dropOffTime:
+        disableReturnInputDate && currentReturnFormDate
+          ? format(currentReturnFormDate, "k:m", { locale: currentLocale })
+          : format(currentDropOffTime, "k:m", { locale: currentLocale }),
       roundtrip: true
     };
   };

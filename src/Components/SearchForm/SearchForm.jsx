@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useRef } from "react";
-import { useRouter } from "next/router";
+
 import dynamic from "next/dynamic";
 
 import { useMediaQuery } from "react-responsive";
@@ -39,8 +40,6 @@ const DynamicDatePickerSearchForm = dynamic(
 );
 
 const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm, isCarSharingPage }) => {
-  const router = useRouter();
-
   const isDesktopOrLaptopOrTable =
     // eslint-disable-next-line unicorn/no-negated-condition
     typeof window !== "undefined"
@@ -74,9 +73,7 @@ const SearchForm = ({ isRoundTrip, bookingSearch, showReturnSearchForm, isCarSha
   //     ? new Date(`${router.query?.dropOffDate} ${router.query?.dropOffTime}`)
   //     : undefined;
 
-  const [currentReturnFormDate, setCurrentReturnFormDate] = useState(
-    router.query?.dropOffDate && router.query?.dropOffTime ? new Date() : undefined
-  );
+  const [currentReturnFormDate, setCurrentReturnFormDate] = useState(new Date());
 
   const [currentDropOffDate, setCurrentDropOffDate] = useState(new Date());
   const [currentDropOffTime, setCurrentDropOffTime] = useState(new Date());
