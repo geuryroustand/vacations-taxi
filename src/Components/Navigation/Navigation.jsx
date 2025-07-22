@@ -116,6 +116,9 @@ const Navigation = ({
               <Link className="sr-only" href="https://easypuntacanaairporttransfers.com">
                 Punta Cana Airport Transfers
               </Link>
+              <Link className="sr-only" href="https://www.dominicanairporttransfersplus.com">
+                Dominican Republic Airport Transfers
+              </Link>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
