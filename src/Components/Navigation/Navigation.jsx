@@ -111,6 +111,11 @@ const Navigation = ({
                 </NavDropdown>
                 <Nav.Link href={`${localeLink}${helpCenter?.link}`}>{helpCenter?.label}</Nav.Link>
                 <Nav.Link href={`${localeLink}${blogs?.link}`}>{blogs?.label}</Nav.Link>
+          <a className="sr-only"
+            href="https://www.easypuntacanaairporttransfers.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          ></a>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
