@@ -75,11 +75,9 @@ const Footer = ({
                   {label}
                 </Link>
               ))}
- <a className="sr-only"
-            href="https://www.easypuntacanaairporttransfers.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          ></a>
+            <Link className="sr-only" href="https://easypuntacanaairporttransfers.com">
+              Punta Cana Airport Transfers
+            </Link>
             <Link href={`${localized}${helpCenter?.link}` || "/"}>{helpCenter?.label}</Link>
             <Link href={`${localized}${blogs?.link}` || "/"}>{blogs?.label}</Link>
           </li>

@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import { FaCarSide } from "react-icons/fa6";
 
@@ -111,12 +112,10 @@ const Navigation = ({
                 </NavDropdown>
                 <Nav.Link href={`${localeLink}${helpCenter?.link}`}>{helpCenter?.label}</Nav.Link>
                 <Nav.Link href={`${localeLink}${blogs?.link}`}>{blogs?.label}</Nav.Link>
-          <a className="sr-only"
-            href="https://www.easypuntacanaairporttransfers.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          ></a>
               </Nav>
+              <Link className="sr-only" href="https://easypuntacanaairporttransfers.com">
+                Punta Cana Airport Transfers
+              </Link>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
