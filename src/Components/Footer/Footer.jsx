@@ -75,11 +75,15 @@ const Footer = ({
                   {label}
                 </Link>
               ))}
-            <Link className="sr-only" href="https://easypuntacanaairporttransfers.com">
-              Punta Cana Airport Transfers
-            </Link>
+
             <Link className="sr-only" href="https://www.dominicanairporttransfersplus.com">
               Dominican Republic Airport Transfers
+            </Link>
+            <Link href="https://www.playafronton.com/" className="sr-only">
+              playa fronton
+            </Link>
+            <Link className="sr-only" href="https://easypuntacanaairporttransfers.com">
+              Punta Cana Airport Transfers
             </Link>
             <Link href={`${localized}${helpCenter?.link}` || "/"}>{helpCenter?.label}</Link>
             <Link href={`${localized}${blogs?.link}` || "/"}>{blogs?.label}</Link>

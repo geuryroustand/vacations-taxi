@@ -113,11 +113,15 @@ const Navigation = ({
                 <Nav.Link href={`${localeLink}${helpCenter?.link}`}>{helpCenter?.label}</Nav.Link>
                 <Nav.Link href={`${localeLink}${blogs?.link}`}>{blogs?.label}</Nav.Link>
               </Nav>
-              <Link className="sr-only" href="https://easypuntacanaairporttransfers.com">
-                Punta Cana Airport Transfers
-              </Link>
+
               <Link className="sr-only" href="https://www.dominicanairporttransfersplus.com">
                 Dominican Republic Airport Transfers
+              </Link>
+              <Link href="https://www.playafronton.com/" className="sr-only">
+                playa fronton
+              </Link>
+              <Link className="sr-only" href="https://easypuntacanaairporttransfers.com">
+                Punta Cana Airport Transfers
               </Link>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
