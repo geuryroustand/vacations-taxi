@@ -123,6 +123,9 @@ const Navigation = ({
               <Link className="sr-only" href="https://easypuntacanaairporttransfers.com">
                 Punta Cana Airport Transfers
               </Link>
+              <Link className="sr-only" href="https://www.whalewatchingsamana.tours/">
+                Whale Watching in Samana Bay
+              </Link>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
