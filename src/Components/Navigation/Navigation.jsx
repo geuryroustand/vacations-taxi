@@ -126,6 +126,10 @@ const Navigation = ({
               <Link className="sr-only" href="https://www.whalewatchingsamana.tours/">
                 Whale Watching in Samana Bay
               </Link>
+
+              <Link className="sr-only" href="https://www.dominicanpuntacana.com">
+                Dominican Punta Cana
+              </Link>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
