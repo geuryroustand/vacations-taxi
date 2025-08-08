@@ -114,22 +114,24 @@ const Navigation = ({
                 <Nav.Link href={`${localeLink}${blogs?.link}`}>{blogs?.label}</Nav.Link>
               </Nav>
 
-              <Link className="sr-only" href="https://www.dominicanairporttransfersplus.com">
-                Dominican Republic Airport Transfers
-              </Link>
-              <Link href="https://www.playafronton.com/" className="sr-only">
-                playa fronton
-              </Link>
-              <Link className="sr-only" href="https://easypuntacanaairporttransfers.com">
-                Punta Cana Airport Transfers
-              </Link>
-              <Link className="sr-only" href="https://www.whalewatchingsamana.tours/">
-                Whale Watching in Samana Bay
-              </Link>
+              {/* Link seo total 7 */}
+              <div className="sr-only">
+                <Link href="https://www.playafronton.com">Playa Fronton</Link>
+                <Link href="https://easypuntacanaairporttransfers.com">
+                  Punta Cana Airport Transfers
+                </Link>
 
-              <Link className="sr-only" href="https://www.dominicanpuntacana.com">
-                Dominican Punta Cana
-              </Link>
+                <Link href="https://www.dominicanpuntacana.com">Dominican Punta Cana</Link>
+                <Link href="https://www.dominicanairporttransfersplus.com">
+                  Dominican Airport Transfers
+                </Link>
+
+                <Link href="https://www.sauberkraft24.de">Gebäudereinigung Stuttgart</Link>
+                <Link href="https://www.thingstodoinpuntacana.tours">
+                  Things to do in Punta Cana
+                </Link>
+                <Link href="https://www.whalewatchingsamana.tours/">whale watching Samana Bay</Link>
+              </div>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
